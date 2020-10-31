@@ -37,9 +37,15 @@ public:
 	bool jump = false;
 	bool Godmode = false;
 
-	float speedx = 1;
-	float speedy = 1;
+	float speedx = 25;
+	float speedy = 25;
 	float maxJump = 0;
+
+	iPoint position;
+
+	Animation* currentAnim;
+
+	Animation idleRAnim;
 
 private:
 	SDL_Texture* spriteSheet = nullptr;

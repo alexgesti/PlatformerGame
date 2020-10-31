@@ -7,6 +7,7 @@
 #include "Render.h"
 #include "Window.h"
 #include "Player.h"
+#include "Animation.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -14,6 +15,14 @@
 Player::Player() : Module()
 {
 	name.Create("player");
+
+	//idle animation
+	idleRAnim.PushBack({0, 0, 64, 64});
+	idleRAnim.PushBack({ 64, 0, 64, 64 });
+	idleRAnim.PushBack({ 128, 0, 64, 64 });
+	idleRAnim.PushBack({ 192, 0, 64, 64 });
+	idleRAnim.loop = true;
+	idleRAnim.speed = 0.1f;
 }
 
 // Destructor
@@ -34,6 +43,10 @@ bool Player::Start()
 {
 	//Load texture
 	spriteSheet = app->tex->Load("Assets/textures/herochar_spriteSheet.png");
+	currentAnim = &idleRAnim;
+
+	position.x = 0;
+	position.y = app->render->camera.w/2;
 
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
@@ -58,21 +71,21 @@ bool Player::Update(float dt)
 
 			//Mov left
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
-			app->render->camera.x += speedx;
+			position.x += speedx;
 
 		//Mov right
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE)
-			app->render->camera.x -= speedx;
+			position.x -= speedx;
 
 		//Jump
 		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && gravity == false)
 		{
 			jump = true;
-			maxJump = app->render->camera.y;
+			maxJump = position.y;
 		}
 		if (jump == true && app->render->camera.y < maxJump + 40)
 		{
-			app->render->camera.y += (2 * speedy);
+			position.y -= 2 * speedx;
 		}
 	}
 
@@ -83,19 +96,19 @@ bool Player::Update(float dt)
 
 		//Mov left
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
-			app->render->camera.x += 10;
+			position.x += speedx;
 
 		//Mov right
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE)
-			app->render->camera.x -= 10;
+			position.x -= speedx;
 
 		//Mov up
 		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
-			app->render->camera.y += 10;
+			position.y += speedx;
 
 		//Mov down
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
-			app->render->camera.y -= 10;
+			position.y += speedx;
 	}
 
 
@@ -106,7 +119,9 @@ bool Player::Update(float dt)
 bool Player::PostUpdate()
 {
 	bool ret = true;
-	app->render->DrawTexture(spriteSheet, app->render->camera.w / 2 - app->render->camera.x, app->render->camera.h / 2 - app->render->camera.y);
+
+	SDL_Rect rect = currentAnim->GetCurrentFrame();
+	app->render->DrawTexture(spriteSheet, position.x, position.y, &rect);
 
 	return ret;
 }

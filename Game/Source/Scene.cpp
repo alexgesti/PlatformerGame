@@ -75,6 +75,9 @@ bool Scene::Update(float dt)
 		else if (app->player->Godmode == true)
 			app->player->Godmode = false;
 
+	app->render->camera.x = app->player->position.x;
+	app->render->camera.y = app->player->position.y;
+
 	// Draw map
 	app->map->Draw();
 
