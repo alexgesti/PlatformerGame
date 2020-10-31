@@ -1,72 +1,28 @@
-# Prerequisites
-*.d
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# Ignore thumbnails created by windows
-Thumbs.db
-
-# Ignore files build by Visual Studio
-*.obj
-*.pdb
-*.aps
-*.user
-# *.vcproj
-# *.vcxproj*
-# *.sln
-*.vspscc
-*_i.c
-*.i
-*.icf
-*_p.c
-*.ncb
-*.suo
-*.tlb
-*.tlh
-*.bak
-*.cache
-*.ilk
-*.log
-.vs
-
-[Bb]uild
-[Bb]in
-[Dd]ebug/
-*.sbr
-*.sdf
-obj/
-[R]elease/
-_ReSharper*/
-[Tt]est[Rr]esult*
-ipch/
-*.opensdf
-*.db
-*.opendb
-packages/
+Platformer/.vs/Development/v16/.suo
+Platformer/.vs/Development/v16/Browse.VC.db
+Platformer/.vs/Development/v16/Browse.VC.opendb
+Platformer/Build/Debug/Game.exe
+Platformer/Build/Debug/Game.ilk
+Platformer/Build/Debug/Game.pdb
+Platformer/Build/Debug/Obj/App.obj
+Platformer/Build/Debug/Obj/Audio.obj
+Platformer/Build/Debug/Obj/Game.log
+Platformer/Build/Debug/Obj/Game.tlog/CL.read.1.tlog
+Platformer/Build/Debug/Obj/Game.tlog/CL.write.1.tlog
+Platformer/Build/Debug/Obj/Game.tlog/Game.lastbuildstate
+Platformer/Build/Debug/Obj/Game.tlog/link.read.1.tlog
+Platformer/Build/Debug/Obj/Game.tlog/link.write.1.tlog
+Platformer/Build/Debug/Obj/Input.obj
+Platformer/Build/Debug/Obj/Log.obj
+Platformer/Build/Debug/Obj/Main.obj
+Platformer/Build/Debug/Obj/Map.obj
+Platformer/Build/Debug/Obj/Player.obj
+Platformer/Build/Debug/Obj/pugixml.obj
+Platformer/Build/Debug/Obj/Render.obj
+Platformer/Build/Debug/Obj/Scene.obj
+Platformer/Build/Debug/Obj/Textures.obj
+Platformer/Build/Debug/Obj/vc142.idb
+Platformer/Build/Debug/Obj/vc142.pdb
+Platformer/Build/Debug/Obj/Window.obj
+Platformer/.vs/Development/v16/Browse.VC.db
