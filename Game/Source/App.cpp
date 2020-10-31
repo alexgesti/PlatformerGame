@@ -35,6 +35,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
+	//map->active = false; //Desactivar o activar los pModule->acitve
 	AddModule(scene);
 	AddModule(player);
 
@@ -224,7 +225,7 @@ bool App::PostUpdate()
 	{
 		pModule = item->data;
 
-		if(pModule->active == false) {
+		if(pModule->active == false) { 
 			continue;
 		}
 

@@ -1,7 +1,6 @@
 #include "App.h"
 #include "Input.h"
 #include "Textures.h"
-#include "App.h"
 #include "Input.h"
 #include "Textures.h"
 #include "Audio.h"
@@ -34,7 +33,7 @@ bool Player::Awake()
 bool Player::Start()
 {
 	//Load texture
-	spriteSheet = app->tex->Load("Assets/textures/hero_idle.gif");
+	spriteSheet = app->tex->Load("Assets/textures/herochar_spriteSheet.png");
 
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
@@ -49,7 +48,7 @@ bool Player::PreUpdate()
 }
 
 // Called each loop iteration
-bool Player::Update()
+bool Player::Update(float dt)
 {
 	if (Godmode == false)
 	{
@@ -99,7 +98,6 @@ bool Player::Update()
 			app->render->camera.y -= 10;
 	}
 
-	app->render->DrawTexture(spriteSheet, app->render->camera.w / 2 - app->render->camera.x, app->render->camera.h / 2 - app->render->camera.y);
 
 	return true;
 }
@@ -108,6 +106,7 @@ bool Player::Update()
 bool Player::PostUpdate()
 {
 	bool ret = true;
+	app->render->DrawTexture(spriteSheet, app->render->camera.w / 2 - app->render->camera.x, app->render->camera.h / 2 - app->render->camera.y);
 
 	return ret;
 }

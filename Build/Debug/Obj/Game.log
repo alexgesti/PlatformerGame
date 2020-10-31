@@ -1,7 +1,6 @@
-﻿  App.cpp
-  Render.cpp
-  Scene.cpp
-D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Scene.cpp(54,54): warning C4390: ';': empty controlled statement found; is this the intent?
-D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Scene.cpp(56,54): warning C4390: ';': empty controlled statement found; is this the intent?
-  Generating Code...
+﻿  Player.cpp
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Player.cpp(61,35): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Player.cpp(65,35): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Player.cpp(71,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Player.cpp(75,41): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
   Game.vcxproj -> D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Build\Debug\Game.exe
