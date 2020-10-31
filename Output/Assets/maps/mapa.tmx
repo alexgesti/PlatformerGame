@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="132" height="108" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
+ <properties>
+  <property name="Draw" value="0"/>
+ </properties>
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="72" columns="12">
   <image source="tileset.png" width="192" height="96"/>
  </tileset>
@@ -10,6 +13,9 @@
   <image source="collisions.png" width="192" height="96"/>
  </tileset>
  <layer id="1" name="Mapa" width="132" height="108" offsetx="0.0886105" offsety="0.0685667">
+  <properties>
+   <property name="Draw" value="0"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -28531,7 +28537,7 @@
  </layer>
  <layer id="2" name="Colliders" width="132" height="108">
   <properties>
-   <property name="Draw" type="bool" value="false"/>
+   <property name="Draw" value="1"/>
    <property name="Navigation" type="bool" value="true"/>
   </properties>
   <data>

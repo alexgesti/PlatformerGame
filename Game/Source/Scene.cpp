@@ -65,10 +65,10 @@ bool Scene::Update(float dt)
 			Godmode = false;
 
 	if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN) {
-		if (app->map->showCollider == false)
+		/*if (app->map->showCollider == false)
 			app->map->showCollider = true;
 		else if (app->map->showCollider == true)
-			app->map->showCollider = false;
+			app->map->showCollider = false;*/
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN);
