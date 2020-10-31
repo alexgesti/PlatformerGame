@@ -2,7 +2,8 @@
 #define __PLAYER_H__
 
 #include "Module.h"
-#include "Point.h"
+
+struct SDL_Texture;
 
 class Player : public Module
 {
@@ -13,31 +14,35 @@ public:
 	// Destructor
 	virtual ~Player();
 
+	// Called before render is available
+	bool Awake();
+
 	// Called before the first frame
 	bool Start();
+
+	// Called before all Updates
+	bool PreUpdate();
 
 	// Called each loop iteration
 	bool Update();
 
 	// Called before all Updates
-	//bool PostUpdate();
+	bool PostUpdate();
 
 	// Called before quitting
 	bool CleanUp();
 
 public:
-	
-	iPoint position;
-
-	SDL_Texture* hero = nullptr;
-
 	bool gravity = false;
 	bool jump = false;
 	bool Godmode = false;
+
 	float speedx = 1;
 	float speedy = 1;
 	float maxJump = 0;
 
+private:
+	SDL_Texture* spriteSheet = nullptr;
 };
 
-#endif //!__PLAYER_H__
+#endif // __SCENE_H__

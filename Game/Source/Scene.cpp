@@ -33,8 +33,6 @@ bool Scene::Start()
 {
 	// L03: DONE: Load map
 	app->map->Load("mapa.tmx");
-
-	spriteSheet = app->tex->Load("Assets/textures/hero_idle.gif");
 	
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
@@ -75,60 +73,6 @@ bool Scene::Update(float dt)
 			Godmode = true;
 		else if (Godmode == true)
 			Godmode = false;
-
-	//Player
-	{
-		if (Godmode == false)
-		{
-			//Gravity
-			/*if (gravity == true)
-				position.y -= speedy;*/
-
-			//Mov left
-			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
-				app->render->camera.x += speedx;
-
-			//Mov right
-			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE)
-				app->render->camera.x -= speedx;
-
-			//Jump
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && gravity == false)
-			{
-				jump = true;
-				maxJump = app->render->camera.y;
-			}
-			if (jump == true && app->render->camera.y < maxJump + 40)
-			{
-				app->render->camera.y += (2 * speedy);
-			}
-		}
-
-		//Godmode
-		if (Godmode == true)
-		{
-			gravity = false;
-
-			//Mov left
-			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
-				app->render->camera.x += 10;
-
-			//Mov right
-			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE)
-				app->render->camera.x -= 10;
-
-			//Mov up
-			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
-				app->render->camera.y += 10;
-
-			//Mov down
-			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
-				app->render->camera.y -= 10;
-		}
-
-		app->render->DrawTexture(spriteSheet, app->render->camera.w / 2 - app->render->camera.x, app->render->camera.h / 2 - app->render->camera.y);
-	}
-	
 
 	// Draw map
 	app->map->Draw();
