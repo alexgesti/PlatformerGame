@@ -1,186 +1,3 @@
-//Ver.2
-#ifndef __MAP_H__
-#define __MAP_H__
-
-#include "External/PugiXml/src/pugixml.hpp"
-#include "List.h"
-#include "Point.h"
-#include "SString.h"
-#include "Module.h"
-
-union value {
-	const char* vString;
-	int				vInt;
-	float			vFloat;
-};
-
-struct Properties //Properties
-{
-	struct Property
-	{
-		SString	name;
-		value		data;
-
-	};
-
-	Properties::~Properties()															//Deletes every property and frees all allocated memory.
-	{
-		ListItem<Property*>* item;
-		item = propertyList.start;
-		while (item != NULL)
-		{
-			RELEASE(item->data);
-			item = item->next;
-		}
-		propertyList.clear();												//Clears propertyList by deleting all items in the list and freeing all allocated memory.
-	}
-
-	value Get(const char* name, value* defaultValue = nullptr) const;
-
-	List<Property*>	propertyList;
-};
-
-// ----------------------------------------------------
-struct MapLayer
-{
-	SString	name;
-	int			width;
-	int			height;
-	uint* data;
-	Properties	properties;
-
-	MapLayer() : data(NULL)
-	{}
-
-	~MapLayer()
-	{
-		RELEASE(data);
-	}
-
-	//Get id of tile in position x, y from data[] array
-	inline uint Get(int x, int y) const
-	{
-		return data[(y * width) + x];
-	}
-};
-
-// ----------------------------------------------------
-struct TileSet
-{
-	SDL_Rect GetTileRect(int id) const;
-
-	SString			name;
-	int					firstgid;
-	int					tileWidth;
-	int					tileHeight;
-	int					margin;
-	int					spacing;
-	SDL_Texture* texture;
-	int					texWidth;
-	int					texHeight;
-	int					numTilesWidth;
-	int					numTilesHeight;
-	int					offsetX;
-	int					offsetY;
-
-	SDL_Rect* playerTileRect = new SDL_Rect;
-	SDL_Rect* PlayerTileRect(uint tileId) {
-
-		SDL_Rect* ret = playerTileRect;
-
-		int numTWidth = texWidth / tileWidth;
-		int numTHeight = texHeight / tileHeight;
-
-		int x = tileId % numTWidth;
-		int y = tileId / numTWidth;
-
-
-		ret->x = x * tileWidth;
-		ret->y = y * tileHeight;
-		ret->w = tileWidth;
-		ret->h = tileHeight;
-
-		return ret;
-	}
-
-};
-
-enum class MapTypes
-{
-	UNKNOWN = 0,
-	ORTHOGONAL,
-	ISOMETRIC,
-	STAGGERED
-};
-// ----------------------------------------------------
-struct MapData
-{
-	int						width;
-	int						height;
-	int						tileWidth;
-	int						tileHeight;
-
-	SString				name;
-	Point<float>			startingPosition;
-
-	SDL_Color				backgroundColor;
-	MapTypes				type;
-	List<TileSet*>		tilesets;
-	List<MapLayer*>		layers;
-};
-
-// ----------------------------------------------------
-class Map : public Module
-{
-public:
-
-	Map();
-
-	// Destructor
-	virtual ~Map();
-
-	// Called before render is available
-	bool Awake(pugi::xml_node& conf);
-
-	// Called each loop iteration
-	void Draw();
-	// Called before quitting
-	bool CleanUp();
-
-	// Load / Save
-	bool Load(pugi::xml_node&);
-	bool Save(pugi::xml_node&) const;
-
-	// Load new map
-	bool Load(const char* path);
-
-	iPoint MapToWorld(int x, int y) const;
-	iPoint WorldToMap(int x, int y) const;
-
-private:
-
-	bool LoadMap();
-	bool LoadTilesetDetails(pugi::xml_node& tilesetNode, TileSet* set);
-	bool LoadTilesetImage(pugi::xml_node& tilesetNode, TileSet* set);
-	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
-	bool LoadProperties(pugi::xml_node& node, Properties& properties);
-
-	TileSet* GetTilesetFromTileId(int id) const;
-
-public:
-
-	MapData data;
-
-private:
-
-	pugi::xml_document	mapFile;
-	SString			folder;
-	bool				mapLoaded;
-};
-
-#endif // __MAP_H__
-
-//Ver.1
 //#ifndef __MAP_H__
 //#define __MAP_H__
 //
@@ -339,3 +156,187 @@ private:
 //};
 //
 //#endif // __MAP_H__
+
+#ifndef __MAP_H__
+#define __MAP_H__
+
+#include "External/PugiXml/src/pugixml.hpp"
+#include "List.h"
+#include "Point.h"
+#include "SString.h"
+#include "Module.h"
+
+union value {
+	const char* vString;
+	int				vInt;
+	float			vFloat;
+};
+
+struct Properties //Properties
+{
+	struct Property
+	{
+		SString	name;
+		value		data;
+
+	};
+
+	Properties::~Properties()															//Deletes every property and frees all allocated memory.
+	{
+		ListItem<Property*>* item;
+		item = propertyList.start;
+		while (item != NULL)
+		{
+			RELEASE(item->data);
+			item = item->next;
+		}
+		propertyList.clear();												//Clears propertyList by deleting all items in the list and freeing all allocated memory.
+	}
+
+	value Get(const char* name, value* defaultValue = nullptr) const;
+
+	List<Property*>	propertyList;
+};
+
+// ----------------------------------------------------
+struct MapLayer
+{
+	SString	name;
+	int			width;
+	int			height;
+	uint* data;
+	Properties	properties;
+
+	MapLayer() : data(NULL)
+	{}
+
+	~MapLayer()
+	{
+		RELEASE(data);
+	}
+
+	//Get id of tile in position x, y from data[] array
+	inline uint Get(int x, int y) const
+	{
+		return data[(y * width) + x];
+	}
+};
+
+// ----------------------------------------------------
+struct TileSet
+{
+	SDL_Rect GetTileRect(int id) const;
+
+	SString			name;
+	int					firstgid;
+	int					tileWidth;
+	int					tileHeight;
+	int					margin;
+	int					spacing;
+	int					tileCount;
+	SDL_Texture* texture;
+	int					texWidth;
+	int					texHeight;
+	int					numTilesWidth;
+	int					numTilesHeight;
+	int					offsetX;
+	int					offsetY;
+
+	SDL_Rect* playerTileRect = new SDL_Rect;
+	SDL_Rect* PlayerTileRect(uint tileId) {
+
+		SDL_Rect* ret = playerTileRect;
+
+		int numTWidth = texWidth / tileWidth;
+		int numTHeight = texHeight / tileHeight;
+
+		int x = tileId % numTWidth;
+		int y = tileId / numTWidth;
+
+
+		ret->x = x * tileWidth;
+		ret->y = y * tileHeight;
+		ret->w = tileWidth;
+		ret->h = tileHeight;
+
+		return ret;
+	}
+
+};
+
+enum class MapTypes
+{
+	UNKNOWN = 0,
+	ORTHOGONAL,
+	ISOMETRIC,
+	STAGGERED
+};
+// ----------------------------------------------------
+struct MapData
+{
+	int						width;
+	int						height;
+	int						tileWidth;
+	int						tileHeight;
+
+	SString				name;
+	Point<float>			startingPosition;
+
+	SDL_Color				backgroundColor;
+	MapTypes				type;
+	List<TileSet*>		tilesets;
+	List<MapLayer*>		layers;
+};
+
+// ----------------------------------------------------
+class Map : public Module
+{
+public:
+
+	Map();
+
+	// Destructor
+	virtual ~Map();
+
+	// Called before render is available
+	bool Awake(pugi::xml_node& conf);
+
+	// Called each loop iteration
+	void Draw();
+	// Called before quitting
+	bool CleanUp();
+
+	// Load / Save
+	bool Load(pugi::xml_node&);
+	bool Save(pugi::xml_node&) const;
+
+	// Load new map
+	bool Load(const char* path);
+
+	iPoint MapToWorld(int x, int y) const;
+	iPoint WorldToMap(int x, int y) const;
+
+private:
+
+	bool LoadMap();
+	bool LoadTilesetDetails(pugi::xml_node& tilesetNode, TileSet* set);
+	bool LoadTilesetImage(pugi::xml_node& tilesetNode, TileSet* set);
+	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
+	bool LoadProperties(pugi::xml_node& node, Properties& properties);
+
+	TileSet* GetTilesetFromTileId(int id) const;
+
+public:
+
+	MapData data;
+
+	bool				showCollider = false;
+
+private:
+
+	pugi::xml_document	mapFile;
+	SString			folder;
+	bool				mapLoaded;
+};
+
+#endif // __MAP_H__

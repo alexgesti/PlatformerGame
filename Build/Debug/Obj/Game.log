@@ -1,0 +1,29 @@
+﻿  Main.cpp
+  App.cpp
+  Audio.cpp
+  Input.cpp
+  Map.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(559,19): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(560,19): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+  Scene.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(90,36): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(94,36): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(100,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(104,42): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(74,54): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(75,54): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
+  Render.cpp
+  Textures.cpp
+  Window.cpp
+  Log.cpp
+  pugixml.cpp
+  Generando código...
+  Game.vcxproj -> C:\Users\raulc\Documents\GitHub\PlatformerGame\Build\Debug\Game.exe

@@ -32,8 +32,18 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	bool gravity = false;
+	bool jump = false;
+	bool Godmode = false;
+
+	float speedx = 1;
+	float speedy = 1;
+	float maxJump = 0;
+
 private:
 	SDL_Texture* img;
+
+	SDL_Texture* spriteSheet = nullptr;
 };
 
 #endif // __SCENE_H__
