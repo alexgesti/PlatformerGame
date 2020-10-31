@@ -1,5 +1,5 @@
 ﻿  Map.cpp
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(24,20): warning C4018: '<': no coinciden signed/unsigned
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(67,24): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(257,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(263,21): warning C4018: '<': no coinciden signed/unsigned
   Game.vcxproj -> C:\Users\raulc\Documents\GitHub\PlatformerGame\Build\Debug\Game.exe

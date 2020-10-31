@@ -66,8 +66,13 @@ void Map::Draw()
 					iPoint vec = MapToWorld(x, y);
 					for (int i = 0; i < data.tilesets.count(); i++)
 					{
-						if (layer->data->properties.GetProperty("Draw", 0) == 0)
+						if (showCollider == true) {
 							app->render->DrawTexture(GetTilesetFromTileId(tileId)->texture, vec.x, vec.y, &GetTilesetFromTileId(tileId)->GetTileRect(tileId));
+						}
+						if (showCollider == false) {
+							if (layer->data->properties.GetProperty("Draw", 0) == 0)
+								app->render->DrawTexture(GetTilesetFromTileId(tileId)->texture, vec.x, vec.y, &GetTilesetFromTileId(tileId)->GetTileRect(tileId));
+						}
 					}
 				}
 			}
