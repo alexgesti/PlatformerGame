@@ -6,6 +6,7 @@
 #include "Window.h"
 #include "Scene.h"
 #include "Map.h"
+#include "Player.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -33,7 +34,7 @@ bool Scene::Start()
 {
 	// L03: DONE: Load map
 	app->map->Load("mapa.tmx");
-	
+
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 
@@ -69,10 +70,10 @@ bool Scene::Update(float dt)
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
-		if (Godmode == false)
-			Godmode = true;
-		else if (Godmode == true)
-			Godmode = false;
+		if (app->player->Godmode == false)
+			app->player->Godmode = true;
+		else if (app->player->Godmode == true)
+			app->player->Godmode = false;
 
 	// Draw map
 	app->map->Draw();

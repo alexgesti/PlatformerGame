@@ -34,6 +34,9 @@ public:
 
 private:
 	SDL_Texture* img;
+
+	int camX;
+	int camY;
 };
 
 #endif // __SCENE_H__

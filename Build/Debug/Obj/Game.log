@@ -1,15 +1,7 @@
 ﻿  App.cpp
-  Player.cpp
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(62,35): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(66,35): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(72,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(76,41): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+  Render.cpp
   Scene.cpp
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(89,36): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(93,36): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(99,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(103,42): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(55,54): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(57,54): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
-  Generando código...
-  Game.vcxproj -> C:\Users\raulc\Documents\GitHub\PlatformerGame\Build\Debug\Game.exe
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Scene.cpp(54,54): warning C4390: ';': empty controlled statement found; is this the intent?
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Scene.cpp(56,54): warning C4390: ';': empty controlled statement found; is this the intent?
+  Generating Code...
+  Game.vcxproj -> D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Build\Debug\Game.exe
