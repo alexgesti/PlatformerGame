@@ -51,31 +51,30 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
-    // L02: DONE 3: Request Load / Save when pressing L/S
+    // DEBUG KEYS
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN);
+	
+	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN);
+
+	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+		app->SaveGameRequest("savegame.xml");
+
 	if(app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		app->LoadGameRequest("savegame.xml");
 
-	if(app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
-		app->SaveGameRequest("savegame.xml");
-
-	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
-		if (Godmode == false)
-			Godmode = true;
-		else if (Godmode == true)
-			Godmode = false;
-
-	if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN) {
+	if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
+	{
 		if (app->map->showCollider == false)
 			app->map->showCollider = true;
 		else if (app->map->showCollider == true)
 			app->map->showCollider = false;
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN);
-	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN);
-	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
-		LOG("%d\t%d", app->render->camera.w, app->render->camera.h);
-
+	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+		if (Godmode == false)
+			Godmode = true;
+		else if (Godmode == true)
+			Godmode = false;
 
 	//Player
 	{
@@ -112,19 +111,19 @@ bool Scene::Update(float dt)
 
 			//Mov left
 			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
-				app->render->camera.x += 1;
+				app->render->camera.x += 10;
 
 			//Mov right
 			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE)
-				app->render->camera.x -= 1;
+				app->render->camera.x -= 10;
 
 			//Mov up
 			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
-				app->render->camera.y += 1;
+				app->render->camera.y += 10;
 
 			//Mov down
 			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
-				app->render->camera.y -= 1;
+				app->render->camera.y -= 10;
 		}
 
 		app->render->DrawTexture(spriteSheet, app->render->camera.w / 2 - app->render->camera.x, app->render->camera.h / 2 - app->render->camera.y);
@@ -133,16 +132,6 @@ bool Scene::Update(float dt)
 
 	// Draw map
 	app->map->Draw();
-
-	ListItem<TileSet*>* itemL;
-	itemL = app->map->data.tilesets.start;
-
-	while (itemL != NULL)
-	{
-		app->render->DrawTexture(itemL->data->texture, 0, 0);
-
-		itemL = itemL->next;
-	}
 
 	// L03: DONE 7: Set the window title with map/tileset info
 	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Camera position:%d %d",

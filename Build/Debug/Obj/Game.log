@@ -1,5 +1,8 @@
-﻿  Map.cpp
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(24,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(67,24): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(263,21): warning C4018: '<': no coinciden signed/unsigned
-  Game.vcxproj -> C:\Users\raulc\Documents\GitHub\PlatformerGame\Build\Debug\Game.exe
+﻿  Scene.cpp
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Scene.cpp(89,36): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Scene.cpp(93,36): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Scene.cpp(99,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Scene.cpp(103,42): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Scene.cpp(55,54): warning C4390: ';': empty controlled statement found; is this the intent?
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Scene.cpp(57,54): warning C4390: ';': empty controlled statement found; is this the intent?
+  Game.vcxproj -> D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Build\Debug\Game.exe
