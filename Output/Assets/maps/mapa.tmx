@@ -45236,25 +45236,25 @@
    <tile/>
    <tile/>
    <tile gid="223"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
-   <tile gid="236"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile gid="223"/>
    <tile/>
    <tile/>
@@ -57060,6 +57060,9 @@
   </data>
  </layer>
  <layer id="5" name="CollWin" width="132" height="108">
+  <properties>
+   <property name="Draw" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -59496,25 +59499,25 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
+   <tile gid="236"/>
    <tile/>
    <tile/>
    <tile/>

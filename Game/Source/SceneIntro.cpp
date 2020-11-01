@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "SceneIntro.h"
 #include "Scene.h"
+#include "ModuleController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -61,6 +62,11 @@ bool SceneIntro::PostUpdate()
 	SDL_Rect rect = { 0, 0, app->render->camera.w, app->render->camera.h};
 	app->render->DrawTexture(SpriteIntro, 0, 0, &rect);
 
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		app->modcontrol->currentscene = 2;
+		
+	}
 	return ret;
 }
 

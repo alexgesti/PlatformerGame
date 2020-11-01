@@ -6,9 +6,12 @@
 #include "Audio.h"
 #include "Scene.h"
 #include "SceneIntro.h"
+#include "SceneLogo.h"
+#include "SceneLose.h"
 #include "Map.h"
 #include "Player.h"
 #include "ModuleController.h"
+#include "FateToBlack.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -55,7 +58,7 @@ bool ModuleController::Awake(pugi::xml_node& config)
 	app->modcontrol->active = true;	// ModControl
 	app->render->active = true;		// Render
 
-	currentscene = 1;				// Current Scene
+	currentscene = 0;				// Current Scene
 	
 	return true;
 }
@@ -136,6 +139,9 @@ bool ModuleController::Update(float dt)
 		app->scene->NotSceneActived = false;	// SceneCamera
 		app->player->active = false;			// Player
 		app->sceneIntro->active = false;		// SceneIntro
+		app->sceneLogo->active = true;			//SceneLogo
+		app->sceneLose->active = false;			//SceneLose
+		
 
 		break;
 
@@ -146,6 +152,8 @@ bool ModuleController::Update(float dt)
 		app->scene->NotSceneActived = false;	// SceneCamera
 		app->player->active = false;			// Player
 		app->sceneIntro->active = true;			// SceneIntro
+		app->sceneLogo->active = false;			//SceneLogo
+		app->sceneLose->active = false;			//SceneLose
 
 		break;
 
@@ -156,6 +164,8 @@ bool ModuleController::Update(float dt)
 		app->scene->NotSceneActived = true;		// SceneCamera
 		app->player->active = true;				// Player
 		app->sceneIntro->active = false;		// SceneIntro
+		app->sceneLogo->active = false;			//SceneLogo
+		app->sceneLose->active = false;			//SceneLose
 		
 
 		break;
@@ -167,6 +177,9 @@ bool ModuleController::Update(float dt)
 		app->scene->NotSceneActived = false;	// SceneCamera
 		app->player->active = false;			// Player
 		app->sceneIntro->active = false;		// SceneIntro
+		app->sceneLogo->active = false;			//SceneLogo
+		app->sceneLose->active = true;			//SceneLose
+
 
 		break;
 

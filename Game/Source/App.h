@@ -17,9 +17,12 @@ class Textures;
 class Audio;
 class Scene;
 class SceneIntro;
+class SceneLogo;
+class SceneLose;
 class Map;
 class Player;
 class ModuleController;
+//class FateToBlack;
 
 class App
 {
@@ -91,9 +94,12 @@ public:
 	Audio* audio;
 	Scene* scene;
 	SceneIntro* sceneIntro;
+	SceneLogo* sceneLogo;
+	SceneLose* sceneLose;
 	Map* map;
 	Player* player;
 	ModuleController* modcontrol;
+	//FadeToBlack* fateBlack;
 
 private:
 

@@ -6,9 +6,13 @@
 #include "Audio.h"
 #include "Scene.h"
 #include "SceneIntro.h"
+#include "SceneLogo.h"
+#include "SceneLose.h"
 #include "Map.h"
 #include "Player.h"
 #include "ModuleController.h"
+#include "FateToBlack.h"
+
 
 #include "Defs.h"
 #include "Log.h"
@@ -28,9 +32,12 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio();
 	scene = new Scene();
 	sceneIntro = new SceneIntro();
+	sceneLogo = new SceneLogo();
+	sceneLose = new SceneLose();
 	map = new Map();
 	player = new Player();
 	modcontrol = new ModuleController();
+	//fateBlack = new FadeToBlack();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -41,8 +48,11 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(scene);
 	AddModule(sceneIntro);
+	AddModule(sceneLogo);
+	AddModule(sceneLose);
 	AddModule(player);
 	AddModule(modcontrol);
+	//AddModule(fateBlack);
 
 	// Render last to swap buffer
 	AddModule(render);
