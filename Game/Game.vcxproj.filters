@@ -18,6 +18,7 @@
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\ModuleController.cpp" />
+    <ClCompile Include="Source\SceneIntro.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -58,6 +59,7 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Source\ModuleController.h" />
+    <ClInclude Include="Source\SceneIntro.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

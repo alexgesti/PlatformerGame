@@ -5,6 +5,7 @@
 #include "Textures.h"
 #include "Audio.h"
 #include "Scene.h"
+#include "SceneIntro.h"
 #include "Map.h"
 #include "Player.h"
 #include "ModuleController.h"
@@ -49,11 +50,12 @@ bool ModuleController::Awake(pugi::xml_node& config)
 	app->audio->active = true;		// Audio
 	app->map->active = true;		// Map
 	app->scene->active = true;		// Scene
+	app->sceneIntro->active = true;	// SceneIntro
 	app->player->active = true;		// Player
 	app->modcontrol->active = true;	// ModControl
 	app->render->active = true;		// Render
 
-	currentscene = 2;				// Current Scene
+	currentscene = 1;				// Current Scene
 	
 	return true;
 }
@@ -80,36 +82,39 @@ bool ModuleController::Start()
 bool ModuleController::Update(float dt)
 {
 	// DEBUG KEYS
-	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	if (app->scene->NotSceneActived)
 	{
-		currentscene = 2;
-		app->scene->Reset();
+		if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+		{
+			currentscene = 2;
+			app->scene->Reset();
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN && currentscene == 2)
+		{
+			app->scene->Reset();
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+			app->SaveGameRequest("savegame.xml");
+
+		if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+			app->LoadGameRequest("savegame.xml");
+
+		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
+		{
+			if (app->map->showCollider == false)
+				app->map->showCollider = true;
+			else if (app->map->showCollider == true)
+				app->map->showCollider = false;
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+			if (app->player->Godmode == false)
+				app->player->Godmode = true;
+			else if (app->player->Godmode == true)
+				app->player->Godmode = false;
 	}
-
-	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN && currentscene == 2)
-	{
-		app->scene->Reset();
-	}
-
-	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
-		app->SaveGameRequest("savegame.xml");
-
-	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
-		app->LoadGameRequest("savegame.xml");
-
-	if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
-	{
-		if (app->map->showCollider == false)
-			app->map->showCollider = true;
-		else if (app->map->showCollider == true)
-			app->map->showCollider = false;
-	}
-
-	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
-		if (app->player->Godmode == false)
-			app->player->Godmode = true;
-		else if (app->player->Godmode == true)
-			app->player->Godmode = false;
 
 
 	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentscene = 0;
@@ -126,34 +131,42 @@ bool ModuleController::Update(float dt)
 	{
 	case 0:	//Logo
 
-		app->map->active = false;		// Map
-		app->scene->active = false;		// Scene
-		app->player->active = false;	// Player
+		app->map->active = false;				// Map
+		app->scene->active = false;				// Scene
+		app->scene->NotSceneActived = false;	// SceneCamera
+		app->player->active = false;			// Player
+		app->sceneIntro->active = false;		// SceneIntro
 
 		break;
 
 	case 1:	//Intro
 
-		app->map->active = false;		// Map
-		app->scene->active = false;		// Scene
-		app->player->active = false;	// Player
+		app->map->active = false;				// Map
+		app->scene->active = false;				// Scene
+		app->scene->NotSceneActived = false;	// SceneCamera
+		app->player->active = false;			// Player
+		app->sceneIntro->active = true;			// SceneIntro
 
 		break;
 
 	case 2:	//Gameplay
 
-		app->map->active = true;		// Map
-		app->scene->active = true;		// Scene
-		app->player->active = true;		// Player
+		app->map->active = true;				// Map
+		app->scene->active = true;				// Scene
+		app->scene->NotSceneActived = true;		// SceneCamera
+		app->player->active = true;				// Player
+		app->sceneIntro->active = false;		// SceneIntro
 		
 
 		break;
 
 	case 3:	//Ending
 
-		app->map->active = false;		// Map
-		app->scene->active = false;		// Scene
-		app->player->active = false;	// Player
+		app->map->active = false;				// Map
+		app->scene->active = false;				// Scene
+		app->scene->NotSceneActived = false;	// SceneCamera
+		app->player->active = false;			// Player
+		app->sceneIntro->active = false;		// SceneIntro
 
 		break;
 

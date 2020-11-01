@@ -34,6 +34,8 @@ bool Scene::Start()
 	// L03: DONE: Load map
 	app->map->Load("mapa.tmx");
 
+	NotSceneActived = false;
+
 	return true;
 }
 
@@ -46,8 +48,11 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
-	app->render->camera.x = app->player->position.x + ((app->render->camera.w / 2) - app->player->playerWH / 2);
-	app->render->camera.y = app->player->position.y + ((app->render->camera.h / 2) - app->player->playerWH / 2);
+	if (NotSceneActived)
+	{
+		app->render->camera.x = app->player->position.x + ((app->render->camera.w / 2) - app->player->playerWH / 2);
+		app->render->camera.y = app->player->position.y + ((app->render->camera.h / 2) - app->player->playerWH / 2);
+	}
 
 	// Draw map
 	app->map->Draw();

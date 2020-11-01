@@ -44,6 +44,11 @@ private:
 
 	int camX;
 	int camY;
+
+public:
+
+	bool NotSceneActived;
+
 };
 
 #endif // __SCENE_H__

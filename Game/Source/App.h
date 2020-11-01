@@ -16,6 +16,7 @@ class Render;
 class Textures;
 class Audio;
 class Scene;
+class SceneIntro;
 class Map;
 class Player;
 class ModuleController;
@@ -89,6 +90,7 @@ public:
 	Textures* tex;
 	Audio* audio;
 	Scene* scene;
+	SceneIntro* sceneIntro;
 	Map* map;
 	Player* player;
 	ModuleController* modcontrol;
