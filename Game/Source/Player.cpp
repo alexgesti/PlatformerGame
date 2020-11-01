@@ -21,7 +21,7 @@ Player::Player() : Module()
 	idleRAnim.PushBack({ 128, 0, 64, 64 });
 	idleRAnim.PushBack({ 192, 0, 64, 64 });
 	idleRAnim.loop = true;
-	idleRAnim.speed = 0.1f;
+	idleRAnim.speed = 0.15f;
 }
 
 // Destructor
@@ -110,6 +110,7 @@ bool Player::Update(float dt)
 			position.y -= speedx;
 	}
 
+	currentAnim->Update();
 
 	return true;
 }
