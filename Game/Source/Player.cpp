@@ -211,11 +211,19 @@ bool Player::Update(float dt)
 
 		//Mov left
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
+		{
 			position.x += speedx;
+
+			waslookingRight = false;
+		}
 
 		//Mov right
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE)
+		{
 			position.x -= speedx;
+
+			waslookingRight = true;
+		}
 
 		//Mov up
 		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
@@ -224,6 +232,9 @@ bool Player::Update(float dt)
 		//Mov down
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
 			position.y -= speedx;
+
+		if (waslookingRight) currentAnim = &jumpRAnim;
+		else currentAnim = &jumpLAnim;
 	}
 
 	currentAnim->Update();
