@@ -2,7 +2,7 @@
 
 ## Description
 
-{project description}
+This game is a 2D platformer where you play with the transparency of the platforms using the water.
 
 ## Key Features
 
@@ -26,7 +26,12 @@
  - F5: Save the current game state.
  - F6: Load the previous state.
  - F9: View colliders.
- - F10 God Mode.
+ - F10: God Mode.
+ - F: Kill Player.
+ - 0: Logo Screen.
+ - 1: Intro Screen.
+ - 2: Game Screen.
+ - 3: Game Over Screen.
  
  #### God Mode
  
