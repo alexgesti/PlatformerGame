@@ -38,9 +38,11 @@ public:
 	bool gravity = false;
 	bool jump = false;
 	bool Godmode = false;
+	bool dead = false;
+	bool waslookingRight = false;
 
-	float speedx = 25;
-	float speedy = 25;
+	float speedx = 15;
+	float speedy = 15;
 	float maxJump = 0;
 
 	//Player dimensions
@@ -51,6 +53,13 @@ public:
 	Animation* currentAnim;
 
 	Animation idleRAnim;
+	Animation jumpRAnim;
+	Animation runRAnim;
+	Animation deadRAnim;
+	Animation idleLAnim;
+	Animation jumpLAnim;
+	Animation runLAnim;
+	Animation deadLAnim;
 
 private:
 	SDL_Texture* spriteSheet = nullptr;

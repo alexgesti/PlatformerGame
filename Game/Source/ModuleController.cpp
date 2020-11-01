@@ -53,7 +53,7 @@ bool ModuleController::Awake(pugi::xml_node& config)
 	app->modcontrol->active = true;	// ModControl
 	app->render->active = true;		// Render
 
-	//currentscene = 2;				// Current Scene
+	currentscene = 2;				// Current Scene
 	
 	return true;
 }
@@ -70,6 +70,9 @@ bool ModuleController::Start()
 		ret = item->data->Start();
 		item = item->next;
 	}
+
+	// Load music
+	app->audio->PlayMusic("Assets/audio/music/deities_get_takeout_too.ogg", 0);
 
 	return ret;
 }

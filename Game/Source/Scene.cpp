@@ -1,7 +1,6 @@
 #include "App.h"
 #include "Input.h"
 #include "Textures.h"
-#include "Audio.h"
 #include "Render.h"
 #include "Window.h"
 #include "Scene.h"
@@ -34,9 +33,6 @@ bool Scene::Start()
 {
 	// L03: DONE: Load map
 	app->map->Load("mapa.tmx");
-
-	// Load music
-	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 
 	return true;
 }
