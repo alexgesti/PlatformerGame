@@ -5,12 +5,12 @@
 	<textures />
 	<audio />
 	<map />
-	<scene />
+	<scene>
+		<Player x="-735" y="-1710" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="true" Waslookingright="true" HasGravity="false" WasInGodMode="false" />
+	</scene>
 	<player />
-	<:anonymous>
-		<currentscene Scene="2" />
-	</:anonymous>
+	<:anonymous />
 	<renderer>
-		<camera x="193" y="-1180" />
+		<camera x="-119" y="-1374" />
 	</renderer>
 </save_state>

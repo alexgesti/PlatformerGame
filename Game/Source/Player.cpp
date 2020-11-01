@@ -129,8 +129,8 @@ bool Player::Update(float dt)
 	if (Godmode == false)
 	{
 		//Gravity
-		/*if (gravity == true)
-			position.y -= speedy;*/
+		if (gravity == true)
+			position.y -= speedy;
 
 		//Idle	
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE

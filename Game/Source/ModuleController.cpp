@@ -79,9 +79,47 @@ bool ModuleController::Start()
 
 bool ModuleController::Update(float dt)
 {
+	// DEBUG KEYS
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	{
+		currentscene = 2;
+		app->scene->Reset();
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN && currentscene == 2)
+	{
+		app->scene->Reset();
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+		app->SaveGameRequest("savegame.xml");
+
+	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+		app->LoadGameRequest("savegame.xml");
+
+	if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
+	{
+		if (app->map->showCollider == false)
+			app->map->showCollider = true;
+		else if (app->map->showCollider == true)
+			app->map->showCollider = false;
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+		if (app->player->Godmode == false)
+			app->player->Godmode = true;
+		else if (app->player->Godmode == true)
+			app->player->Godmode = false;
+
+
 	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentscene = 0;
 	if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) currentscene = 1;
-	if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) currentscene = 2;
+	if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+	{
+		currentscene = 2;
+
+		app->scene->Reset();
+	}
 	if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) currentscene = 3;
 
 	switch (currentscene)
@@ -107,6 +145,7 @@ bool ModuleController::Update(float dt)
 		app->map->active = true;		// Map
 		app->scene->active = true;		// Scene
 		app->player->active = true;		// Player
+		
 
 		break;
 

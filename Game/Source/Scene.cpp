@@ -46,31 +46,6 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
-    // DEBUG KEYS
-	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN);
-	
-	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN);
-
-	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
-		app->SaveGameRequest("savegame.xml");
-
-	if(app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
-		app->LoadGameRequest("savegame.xml");
-
-	if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
-	{
-		if (app->map->showCollider == false)
-			app->map->showCollider = true;
-		else if (app->map->showCollider == true)
-			app->map->showCollider = false;
-	}
-
-	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
-		if (app->player->Godmode == false)
-			app->player->Godmode = true;
-		else if (app->player->Godmode == true)
-			app->player->Godmode = false;
-
 	app->render->camera.x = app->player->position.x + ((app->render->camera.w / 2) - app->player->playerWH / 2);
 	app->render->camera.y = app->player->position.y + ((app->render->camera.h / 2) - app->player->playerWH / 2);
 
@@ -99,6 +74,53 @@ bool Scene::PostUpdate()
 		ret = false;
 
 	return ret;
+}
+
+// Load Scene State (Underconstruction)
+bool Scene::LoadState(pugi::xml_node& data)
+{
+	app->player->position.x = data.child("Player").attribute("x").as_int();
+	app->player->position.y = data.child("Player").attribute("y").as_int();
+	app->player->dead = data.child("Player").attribute("Wasdead").as_bool();
+	app->player->deadRAnim.FinishedAlready = data.child("Player").attribute("FinishedDeadRAnim").as_bool();
+	app->player->deadLAnim.FinishedAlready = data.child("Player").attribute("FinishedDeadLAnim").as_bool();
+	app->player->jump = data.child("Player").attribute("Wasjumping").as_bool();
+	app->player->waslookingRight = data.child("Player").attribute("Waslookingright").as_bool();
+	app->player->gravity = data.child("Player").attribute("HasGravity").as_bool();
+	app->player->Godmode = data.child("Player").attribute("WasInGodMode").as_bool();
+
+	return true;
+}
+
+// Save Scene State (Underconstruction)
+bool Scene::SaveState(pugi::xml_node& data) const
+{
+	pugi::xml_node playersave = data.append_child("Player");
+
+	playersave.append_attribute("x") = app->player->position.x;
+	playersave.append_attribute("y") = app->player->position.y;
+	playersave.append_attribute("Wasdead") = app->player->dead;
+	playersave.append_attribute("FinishedDeadRAnim") = app->player->deadRAnim.FinishedAlready;
+	playersave.append_attribute("FinishedDeadLAnim") = app->player->deadLAnim.FinishedAlready;
+	playersave.append_attribute("Wasjumping") = app->player->jump;
+	playersave.append_attribute("Waslookingright") = app->player->waslookingRight;
+	playersave.append_attribute("HasGravity") = app->player->gravity;
+	playersave.append_attribute("WasInGodMode") = app->player->Godmode;
+
+	return true;
+}
+
+bool Scene::Reset()
+{
+	app->player->position.x = 0;
+	app->player->position.y = -1260 - (app->render->camera.h / 2);
+	app->player->dead = false;
+	app->player->jump = false;
+	app->player->waslookingRight = true;
+	app->player->gravity = false;
+	app->player->Godmode = false;
+
+	return true;
 }
 
 // Called before quitting

@@ -39,7 +39,7 @@ public:
 	bool jump = false;
 	bool Godmode = false;
 	bool dead = false;
-	bool waslookingRight = false;
+	bool waslookingRight = true;
 
 	float speedx = 15;
 	float speedy = 15;

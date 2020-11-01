@@ -29,6 +29,13 @@ public:
 	// Called before all Updates
 	bool PostUpdate();
 
+	// Load / Save (Underconstruction)
+	bool LoadState(pugi::xml_node&);
+	bool SaveState(pugi::xml_node&) const;
+
+	//Called when reseting the level
+	bool Reset();
+
 	// Called before quitting
 	bool CleanUp();
 
