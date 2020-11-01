@@ -18,6 +18,7 @@ class Audio;
 class Scene;
 class Map;
 class Player;
+class ModuleController;
 
 class App
 {
@@ -90,6 +91,7 @@ public:
 	Scene* scene;
 	Map* map;
 	Player* player;
+	ModuleController* modcontrol;
 
 private:
 
