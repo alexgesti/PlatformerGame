@@ -65,6 +65,7 @@ bool SceneLogo::PostUpdate()
 	
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
+		app->scene->Reset();
 		app->modcontrol->currentscene = 1;
 
 	}
