@@ -34,6 +34,10 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	bool CollisionPlayer(iPoint positionMapPlayer);
+
+	bool CheckCollision(iPoint positionMapPlayer);
+
 public:
 	bool gravity = false;
 	bool jump = false;
@@ -63,6 +67,9 @@ public:
 
 private:
 	SDL_Texture* spriteSheet = nullptr;
+
+	static const int numnPoints = 4;
+	int pointsCollision[numnPoints][2] = { {1, 0}, {47, 0}, {0, 47}, {47, 47} };
 };
 
 #endif // __SCENE_H__

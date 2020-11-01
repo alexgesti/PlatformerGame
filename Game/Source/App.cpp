@@ -237,6 +237,9 @@ bool App::PostUpdate()
 		ret = item->data->PostUpdate();
 	}
 
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+		ret = false;
+
 	return ret;
 }
 

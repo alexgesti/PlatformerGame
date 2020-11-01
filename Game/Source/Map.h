@@ -94,7 +94,7 @@ struct MapData
 	int	tileWidth;
 	int	tileHeight;
 	SString orientation;
-	SDL_Color backgroundColor;
+	//SDL_Color backgroundColor;
 	MapTypes type;
 	List<TileSet*> tilesets;
 

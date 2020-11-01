@@ -61,9 +61,6 @@ bool SceneIntro::PostUpdate()
 	SDL_Rect rect = { 0, 0, app->render->camera.w, app->render->camera.h};
 	app->render->DrawTexture(SpriteIntro, 0, 0, &rect);
 
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
-
 	return ret;
 }
 

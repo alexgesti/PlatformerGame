@@ -2,10 +2,12 @@
 #include "Input.h"
 #include "Textures.h"
 #include "Input.h"
+#include "Map.h"
 #include "Textures.h"
 #include "Render.h"
 #include "Window.h"
 #include "Player.h"
+#include "ModuleController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -128,6 +130,10 @@ bool Player::Update(float dt)
 {
 	if (Godmode == false)
 	{
+		gravity = true;
+
+		iPoint BeforePos = position;
+
 		//Gravity
 		if (gravity == true)
 			position.y -= speedy;
@@ -202,6 +208,8 @@ bool Player::Update(float dt)
 				deadLAnim.Reset();
 			}
 		}
+
+		if (CollisionPlayer({ position.x, position.y - speedy})) position = BeforePos;
 	}
 
 	//Godmode
@@ -259,4 +267,27 @@ bool Player::CleanUp()
 	LOG("Freeing player");
 
 	return true;
+}
+
+bool Player::CollisionPlayer(iPoint positionMapPlayer)
+{
+	iPoint posMapPlayer;
+	int y = (int)positionMapPlayer.y * -1;
+	int x = (int)positionMapPlayer.x * -1;
+
+	for (int i = 0; i < numnPoints; i++)
+	{
+		posMapPlayer = app->map->WorldToMap(x + (int)pointsCollision[i][0], y + (int)pointsCollision[i][1]);
+		if (CheckCollision(posMapPlayer)) return true;
+	}
+
+	return false;
+}
+
+bool Player::CheckCollision(iPoint positionMapPlayer)
+{
+	if (app->map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return true;
+	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) app->modcontrol->currentscene = 3;
+
+	return false;
 }
