@@ -3,6 +3,8 @@
 
 #include "Module.h"
 
+#include "Animation.h"
+
 struct SDL_Texture;
 
 class Player : public Module
@@ -40,6 +42,9 @@ public:
 	float speedx = 25;
 	float speedy = 25;
 	float maxJump = 0;
+
+	//Player dimensions
+	int playerWH = 48;
 
 	iPoint position;
 

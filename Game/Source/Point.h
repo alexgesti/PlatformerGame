@@ -125,7 +125,7 @@ public:
 	}
 };
 
-typedef Point<int> iPoint;
+typedef Point<float> iPoint;
 typedef Point<float> fPoint;
 
 #endif // __POINT_H__

@@ -1,83 +1,17 @@
-﻿  Main.cpp
-  App.cpp
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(46,11): error C2143: error de sintaxis: falta ';' delante de '*'
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(46,11): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(46,24): error C2238: símbolos (token) inesperados delante de ';'
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(48,21): error C3646: 'idleRAnim': especificador de invalidación desconocido
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(48,21): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
-  Audio.cpp
-  Input.cpp
-  Map.cpp
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(24,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(67,24): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Map.cpp(262,21): warning C4018: '<': no coinciden signed/unsigned
-  Player.cpp
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(46,11): error C2143: error de sintaxis: falta ';' delante de '*'
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(46,11): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(46,24): error C2238: símbolos (token) inesperados delante de ';'
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(48,21): error C3646: 'idleRAnim': especificador de invalidación desconocido
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(48,21): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
+﻿  Scene.cpp
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(20,2): error C2065: 'idleRAnim': identificador no declarado
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(21,2): error C2065: 'idleRAnim': identificador no declarado
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(22,2): error C2065: 'idleRAnim': identificador no declarado
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(23,2): error C2065: 'idleRAnim': identificador no declarado
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(24,2): error C2065: 'idleRAnim': identificador no declarado
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(25,2): error C2065: 'idleRAnim': identificador no declarado
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(46,2): error C2065: 'currentAnim': identificador no declarado
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(46,17): error C2065: 'idleRAnim': identificador no declarado
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(74,24): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(78,50): warning C4244: '=': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
-              TYPE=int
+              TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(78,24): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(79,50): warning C4244: '=': conversión de 'TYPE' a 'int'; posible pérdida de datos
           with
           [
-              TYPE=int
+              TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(84,22): warning C4244: '=': conversión de 'TYPE' a 'float'; posible pérdida de datos
-          with
-          [
-              TYPE=int
-          ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(88,28): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=int
-          ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(99,24): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=int
-          ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(103,24): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=int
-          ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(107,24): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=int
-          ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(111,24): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=int
-          ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(123,18): error C2065: 'currentAnim': identificador no declarado
-  Scene.cpp
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(46,11): error C2143: error de sintaxis: falta ';' delante de '*'
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(46,11): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(46,24): error C2238: símbolos (token) inesperados delante de ';'
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(48,21): error C3646: 'idleRAnim': especificador de invalidación desconocido
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.h(48,21): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(54,54): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(56,54): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
-  Render.cpp
-  Textures.cpp
-  Window.cpp
-  Generando código...
+  Game.vcxproj -> C:\Users\raulc\Documents\GitHub\PlatformerGame\Build\Debug\Game.exe

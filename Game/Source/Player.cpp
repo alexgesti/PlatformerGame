@@ -7,7 +7,6 @@
 #include "Render.h"
 #include "Window.h"
 #include "Player.h"
-#include "Animation.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -46,7 +45,7 @@ bool Player::Start()
 	currentAnim = &idleRAnim;
 
 	position.x = 0;
-	position.y = app->render->camera.w/2;
+	position.y = -1260 - (app->render->camera.h/2);
 
 	// Load music
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
@@ -108,7 +107,7 @@ bool Player::Update(float dt)
 
 		//Mov down
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
-			position.y += speedx;
+			position.y -= speedx;
 	}
 
 
@@ -121,7 +120,7 @@ bool Player::PostUpdate()
 	bool ret = true;
 
 	SDL_Rect rect = currentAnim->GetCurrentFrame();
-	app->render->DrawTexture(spriteSheet, position.x, position.y, &rect);
+	app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
 
 	return ret;
 }
