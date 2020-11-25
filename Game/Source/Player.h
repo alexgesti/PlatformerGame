@@ -34,9 +34,9 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	//bool CollisionPlayer(iPoint positionMapPlayer);
-	//
-	//bool CheckCollision(iPoint positionMapPlayer);
+	bool CollisionPlayer(fPoint positionMapPlayer);
+	
+	bool CheckCollision(fPoint positionMapPlayer);
 
 public:
 	bool gravity = false;
@@ -52,7 +52,7 @@ public:
 	//Player dimensions
 	int playerWH = 48;
 
-	iPoint position;
+	fPoint position;
 
 	Animation* currentAnim;
 
@@ -70,8 +70,8 @@ public:
 private:
 	SDL_Texture* spriteSheet = nullptr;
 
-	//static const int numnPoints = 4;
-	//int pointsCollision[numnPoints][2] = { {1, 0}, {47, 0}, {0, 47}, {47, 47} };
+	static const int numnPoints = 4;
+	int pointsCollision[numnPoints][2] = { {1, 0}, {47, 0}, {0, 47}, {47, 47} };
 };
 
 #endif // __SCENE_H__

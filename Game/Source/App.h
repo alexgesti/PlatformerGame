@@ -22,7 +22,6 @@ class SceneLose;
 class Map;
 class Player;
 class ModuleController;
-class Collisions;
 //class FateToBlack;
 
 class App
@@ -100,7 +99,6 @@ public:
 	Map* map;
 	Player* player;
 	ModuleController* modcontrol;
-	Collisions* collider;
 	//FadeToBlack* fateBlack;
 
 private:

@@ -127,7 +127,7 @@ public:
 	iPoint MapToWorld(int x, int y) const;
 
 	// L05: DONE 2: Add orthographic world to map coordinates
-	iPoint WorldToMap(int x, int y) const;
+	fPoint WorldToMap(int x, int y) const;
 
 private:
 

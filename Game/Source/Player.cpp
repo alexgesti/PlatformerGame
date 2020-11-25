@@ -132,7 +132,7 @@ bool Player::Update(float dt)
 	{
 		gravity = true;
 
-		iPoint BeforePos = position;
+		fPoint BeforePos = position;
 
 		//Gravity
 		if (gravity == true)
@@ -209,7 +209,7 @@ bool Player::Update(float dt)
 			}
 		}
 
-		//if (CollisionPlayer({ position.x, position.y - speedy})) position = BeforePos;
+		if (CollisionPlayer({ position.x, position.y - speedy})) position = BeforePos;
 	}
 
 	//Godmode
@@ -269,10 +269,9 @@ bool Player::CleanUp()
 	return true;
 }
 
-/*
-bool Player::CollisionPlayer(iPoint positionMapPlayer)
+bool Player::CollisionPlayer(fPoint positionMapPlayer)
 {
-	iPoint posMapPlayer;
+	fPoint posMapPlayer;
 	int y = (int)positionMapPlayer.y * -1;
 	int x = (int)positionMapPlayer.x * -1;
 
@@ -285,11 +284,10 @@ bool Player::CollisionPlayer(iPoint positionMapPlayer)
 	return false;
 }
 
-bool Player::CheckCollision(iPoint positionMapPlayer)
+bool Player::CheckCollision(fPoint positionMapPlayer)
 {
 	if (app->map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return true;
 	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) app->modcontrol->currentscene = 3;
 
 	return false;
 }
-*/

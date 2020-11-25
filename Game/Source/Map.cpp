@@ -106,9 +106,9 @@ iPoint Map::MapToWorld(int x, int y) const
 }
 
 // L05: DONE 2: Add orthographic world to map coordinates
-iPoint Map::WorldToMap(int x, int y) const
+fPoint Map::WorldToMap(int x, int y) const
 {
-	iPoint ret;
+	fPoint ret;
 
 	// L05: DONE 3: Add the case for isometric maps to WorldToMap
 	if (data.type == MAPTYPE_ORTHOGONAL)
