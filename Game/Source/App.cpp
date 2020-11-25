@@ -11,6 +11,7 @@
 #include "Map.h"
 #include "Player.h"
 #include "ModuleController.h"
+#include "Collisions.h"
 #include "FateToBlack.h"
 
 
@@ -37,6 +38,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	player = new Player();
 	modcontrol = new ModuleController();
+	collider = new Collisions();
 	//fateBlack = new FadeToBlack();
 
 	// Ordered for awake / Start / Update
@@ -52,6 +54,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(sceneLose);
 	AddModule(player);
 	AddModule(modcontrol);
+	AddModule(collider);
 	//AddModule(fateBlack);
 
 	// Render last to swap buffer

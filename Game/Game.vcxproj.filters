@@ -22,6 +22,10 @@
     <ClCompile Include="Source\FateToBlack.cpp" />
     <ClCompile Include="Source\SceneLogo.cpp" />
     <ClCompile Include="Source\SceneLose.cpp" />
+    <ClCompile Include="Source\Colliders.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collisions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -66,6 +70,10 @@
     <ClInclude Include="Source\FateToBlack.h" />
     <ClInclude Include="Source\SceneLogo.h" />
     <ClInclude Include="Source\SceneLose.h" />
+    <ClInclude Include="Source\Colliders.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collisions.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

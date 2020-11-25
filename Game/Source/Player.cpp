@@ -209,7 +209,7 @@ bool Player::Update(float dt)
 			}
 		}
 
-		if (CollisionPlayer({ position.x, position.y - speedy})) position = BeforePos;
+		//if (CollisionPlayer({ position.x, position.y - speedy})) position = BeforePos;
 	}
 
 	//Godmode
@@ -269,6 +269,7 @@ bool Player::CleanUp()
 	return true;
 }
 
+/*
 bool Player::CollisionPlayer(iPoint positionMapPlayer)
 {
 	iPoint posMapPlayer;
@@ -291,3 +292,4 @@ bool Player::CheckCollision(iPoint positionMapPlayer)
 
 	return false;
 }
+*/
