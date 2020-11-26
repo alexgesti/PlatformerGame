@@ -33,6 +33,9 @@ bool SceneLogo::Start()
 {
 	SpriteLogo = app->tex->Load("Assets/textures/Logo.png");
 
+	app->render->camera.x = 0;
+	app->render->camera.y = 0;
+
 	return true;
 }
 
@@ -45,10 +48,30 @@ bool SceneLogo::PreUpdate()
 // Called each loop iteration
 bool SceneLogo::Update(float dt)
 {
-	if (app->scene->NotSceneActived == false)
+	//HACER FADEOUT
+
+	// Check if texture exist
+	if (SpriteLogo)
 	{
-		app->render->camera.x = 0;
-		app->render->camera.y = 0;
+		// Set alpha of the texture
+		SDL_SetTextureAlphaMod(SpriteLogo, alpha);
+		LOG("Inside SET");
+	}
+
+	// Update the alpha value
+	if (alpha < SDL_ALPHA_OPAQUE)
+	{
+		alphaCalc += 5 * 0.16f;
+		alpha = alphaCalc;
+		LOG("Inside ALPHA increchendo");
+	}
+
+	// If alpha is above 255, clamp it
+	if (alpha >= SDL_ALPHA_OPAQUE)
+	{
+		alpha = SDL_ALPHA_OPAQUE;
+		alphaCalc = (float)SDL_ALPHA_OPAQUE;
+		LOG("Inside STAY 255");
 	}
 
 	return true;
@@ -63,12 +86,11 @@ bool SceneLogo::PostUpdate()
 	app->render->DrawTexture(SpriteLogo, 0, 0, &rect);
 
 	
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	/*if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		app->scene->Reset();
 		app->modcontrol->currentscene = 1;
-
-	}
+	}*/
 	return ret;
 }
 

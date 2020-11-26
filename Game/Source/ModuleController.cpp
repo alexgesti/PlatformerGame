@@ -77,7 +77,7 @@ bool ModuleController::Start()
 	}
 
 	// Load music
-	app->audio->PlayMusic("Assets/audio/music/deities_get_takeout_too.ogg", 0);
+	//app->audio->PlayMusic("Assets/audio/music/deities_get_takeout_too.ogg", 0);
 
 	return ret;
 }

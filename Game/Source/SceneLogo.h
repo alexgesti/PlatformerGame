@@ -34,6 +34,9 @@ public:
 
 private:
 	SDL_Texture* SpriteLogo;
+
+	Uint8 alpha;
+	float alphaCalc;
 };
 
 #endif // __SCENELOGO_H__
