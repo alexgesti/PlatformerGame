@@ -37,6 +37,9 @@ private:
 
 	Uint8 alpha;
 	float alphaCalc;
+
+	bool alphaFinished = false;
+	float Timer = 0;
 };
 
 #endif // __SCENELOGO_H__

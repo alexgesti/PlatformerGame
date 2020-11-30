@@ -48,30 +48,53 @@ bool SceneLogo::PreUpdate()
 // Called each loop iteration
 bool SceneLogo::Update(float dt)
 {
-	//HACER FADEOUT
-
 	// Check if texture exist
 	if (SpriteLogo)
 	{
 		// Set alpha of the texture
 		SDL_SetTextureAlphaMod(SpriteLogo, alpha);
-		LOG("Inside SET");
 	}
 
-	// Update the alpha value
-	if (alpha < SDL_ALPHA_OPAQUE)
+	// Update the alpha value positive
+	if (alpha < SDL_ALPHA_OPAQUE && alphaFinished == false)
 	{
-		alphaCalc += 5 * 0.16f;
+		alphaCalc += 2.5f * 0.16f;
 		alpha = alphaCalc;
-		LOG("Inside ALPHA increchendo");
 	}
 
 	// If alpha is above 255, clamp it
-	if (alpha >= SDL_ALPHA_OPAQUE)
+	if (alpha >= SDL_ALPHA_OPAQUE && alphaFinished == false)
 	{
 		alpha = SDL_ALPHA_OPAQUE;
 		alphaCalc = (float)SDL_ALPHA_OPAQUE;
-		LOG("Inside STAY 255");
+		Timer += 1 * 0.16f;
+	}
+
+	if (alphaFinished == false && Timer >= 5)
+	{
+		alphaFinished = true;
+		Timer = 0;
+	}
+
+	// Update the alpha value negative
+	if (alphaFinished == true && alpha > 0)
+	{
+		alphaCalc -= 2.5f * 0.16f;
+		alpha = alphaCalc;
+	}
+
+	// If alpha is above 0, clamp it
+	if (alphaFinished == true && alpha <= 0)
+	{
+		alpha = 0;
+		alphaCalc = 0;
+		Timer += 1 * 0.16f;
+	}
+
+	if (alphaFinished == true && Timer >= 5)
+	{
+		app->scene->Reset();
+		app->modcontrol->currentscene = 1;
 	}
 
 	return true;
