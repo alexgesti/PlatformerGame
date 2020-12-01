@@ -19,7 +19,6 @@
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\ModuleController.cpp" />
     <ClCompile Include="Source\SceneIntro.cpp" />
-    <ClCompile Include="Source\FateToBlack.cpp" />
     <ClCompile Include="Source\SceneLogo.cpp" />
     <ClCompile Include="Source\SceneLose.cpp" />
   </ItemGroup>
@@ -63,7 +62,6 @@
     </ClInclude>
     <ClInclude Include="Source\ModuleController.h" />
     <ClInclude Include="Source\SceneIntro.h" />
-    <ClInclude Include="Source\FateToBlack.h" />
     <ClInclude Include="Source\SceneLogo.h" />
     <ClInclude Include="Source\SceneLose.h" />
   </ItemGroup>

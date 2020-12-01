@@ -11,7 +11,6 @@
 #include "Map.h"
 #include "Player.h"
 #include "ModuleController.h"
-#include "FateToBlack.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -99,10 +98,10 @@ bool ModuleController::Update(float dt)
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
-			app->SaveGameRequest("savegame.xml");
+			app->SaveGameRequest("GameFile.xml");
 
 		if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
-			app->LoadGameRequest("savegame.xml");
+			app->LoadGameRequest("GameFile.xml");
 
 		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		{

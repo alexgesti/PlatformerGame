@@ -11,7 +11,6 @@
 #include "Map.h"
 #include "Player.h"
 #include "ModuleController.h"
-#include "FateToBlack.h"
 
 
 #include "Defs.h"
@@ -37,7 +36,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	player = new Player();
 	modcontrol = new ModuleController();
-	//fateBlack = new FadeToBlack();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -52,7 +50,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(sceneLose);
 	AddModule(player);
 	AddModule(modcontrol);
-	//AddModule(fateBlack);
 
 	// Render last to swap buffer
 	AddModule(render);
@@ -299,7 +296,6 @@ const char* App::GetOrganization() const
 // Load / Save
 void App::LoadGameRequest(const char* fileName)
 {
-	// NOTE: We should check if SAVE_STATE_FILENAME actually exist
 	loadGameRequested = true;
 	loadedGame.Create(fileName);
 }
@@ -307,10 +303,8 @@ void App::LoadGameRequest(const char* fileName)
 // ---------------------------------------
 void App::SaveGameRequest(const char* fileName) const
 {
-	// NOTE: We should check if SAVE_STATE_FILENAME actually exist and... should we overwriten
 	saveGameRequested = true;
-
-	if (savedGame != loadedGame) savedGame.Create(fileName);
+	savedGame.Create(fileName);
 }
 
 // ---------------------------------------

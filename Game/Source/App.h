@@ -99,7 +99,6 @@ public:
 	Map* map;
 	Player* player;
 	ModuleController* modcontrol;
-	//FadeToBlack* fateBlack;
 
 private:
 
