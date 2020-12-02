@@ -75,11 +75,6 @@ bool Scene::PostUpdate()
 {
 	bool ret = true;
 
-	
-	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
-	{
-		
-	}
 	return ret;
 }
 

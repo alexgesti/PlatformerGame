@@ -294,6 +294,7 @@ int Player::CollisionPlayer()
 	{
 		posMapPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
 		if (CheckCollision(posMapPlayer[i]) == 2) app->modcontrol->currentscene = 3;
+		if (CheckCollision(posMapPlayer[i]) == 3) app->SaveGameRequest("GameFile.xml");
 	}
 	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1) return 2;
 	if (CheckCollision(posMapPlayer[numnPoints - 2]) == 1) return 3;
@@ -320,6 +321,7 @@ int Player::CheckCollision(fPoint positionMapPlayer)
 	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
 	if (app->map->data.layers.At(5)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
 	if (app->map->data.layers.At(6)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
+	if (app->map->data.layers.At(7)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 3;
 
 	return false;
 }
