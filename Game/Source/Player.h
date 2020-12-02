@@ -35,6 +35,7 @@ public:
 	bool CleanUp();
 
 	int CollisionPlayer();
+	bool CollisionFloorPlayer();
 
 	int CheckCollision(fPoint positionMapPlayer);
 
@@ -71,8 +72,9 @@ public:
 private:
 	SDL_Texture* spriteSheet = nullptr;
 
-	static const int numnPoints = 6;
-	int pointsCollision[numnPoints][2] = { {8, 0}, {52, 0}, {8, 63}, {52, 63}, {8, 64}, {52, 64} };
+	static const int numnPoints = 4;
+	int pointsCollision[numnPoints][2] = { {0, 0}, {64, 0}, {0, 62}, {64, 62}};
+	int pointsFloorCollision[numnPoints][2] = { {12, 63}, {52, 63}, {12, 64}, {52, 64} };
 };
 
 #endif // __SCENE_H__

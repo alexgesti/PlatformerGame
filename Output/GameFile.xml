@@ -6,7 +6,7 @@
 	<audio />
 	<map />
 	<scene>
-		<Player x="-1952" y="-1920" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Waslookingright="true" HasGravity="false" WasInGodMode="false" />
+		<Player x="-1829" y="-1920" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Waslookingright="true" HasGravity="false" WasInGodMode="false" />
 	</scene>
 	<sceneintro />
 	<sceneLogo />
@@ -14,6 +14,6 @@
 	<player />
 	<:anonymous />
 	<renderer>
-		<camera x="-1336" y="-1584" />
+		<camera x="-1197" y="-1584" />
 	</renderer>
 </save_state>

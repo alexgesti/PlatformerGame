@@ -22,14 +22,14 @@ Player::Player() : Module()
 	idleRAnim.PushBack({ 128, 0, 64, 64 });
 	idleRAnim.PushBack({ 192, 0, 64, 64 });
 	idleRAnim.loop = true;
-	idleRAnim.speed = 0.4f;
+	idleRAnim.speed = 0.5f;
 
 	//jump rigth animation
 	jumpRAnim.PushBack({ 0, 64, 64, 64 });
 	jumpRAnim.PushBack({ 64, 64, 64, 64 });
 	jumpRAnim.PushBack({ 128, 64, 64, 64 });
 	jumpRAnim.loop = true;
-	jumpRAnim.speed = 0.4f;
+	jumpRAnim.speed = 0.5f;
 
 	//run rigth animation
 	runRAnim.PushBack({ 0, 128, 64, 64 });
@@ -39,7 +39,7 @@ Player::Player() : Module()
 	runRAnim.PushBack({ 256, 128, 64, 64 });
 	runRAnim.PushBack({ 320, 128, 64, 64 });
 	runRAnim.loop = true;
-	runRAnim.speed = 0.4f;
+	runRAnim.speed = 0.5f;
 
 	//dead rigth animation
 	deadRAnim.PushBack({ 0, 192, 64, 64 });
@@ -52,7 +52,7 @@ Player::Player() : Module()
 	deadRAnim.PushBack({ 448, 192, 64, 64 });
 	deadRAnim.PushBack({ 512, 192, 64, 64 });
 	deadRAnim.loop = false;
-	deadRAnim.speed = 0.4f;
+	deadRAnim.speed = 0.5f;
 
 	//idle left animation
 	idleLAnim.PushBack({ 0, 256, 64, 64 });
@@ -60,14 +60,14 @@ Player::Player() : Module()
 	idleLAnim.PushBack({ 128, 256, 64, 64 });
 	idleLAnim.PushBack({ 192, 256, 64, 64 });
 	idleLAnim.loop = true;
-	idleLAnim.speed = 0.4f;
+	idleLAnim.speed = 0.5f;
 
 	//jump left animation
 	jumpLAnim.PushBack({ 0, 320, 64, 64 });
 	jumpLAnim.PushBack({ 64, 320, 64, 64 });
 	jumpLAnim.PushBack({ 128, 320, 64, 64 });
 	jumpLAnim.loop = true;
-	jumpLAnim.speed = 0.4f;
+	jumpLAnim.speed = 0.5f;
 
 	//run left animation
 	runLAnim.PushBack({ 0, 384, 64, 64 });
@@ -77,7 +77,7 @@ Player::Player() : Module()
 	runLAnim.PushBack({ 256, 384, 64, 64 });
 	runLAnim.PushBack({ 320, 384, 64, 64 });
 	runLAnim.loop = true;
-	runLAnim.speed = 0.4f;
+	runLAnim.speed = 0.5f;
 
 	//dead left animation
 	deadLAnim.PushBack({ 0, 448, 64, 64 });
@@ -90,7 +90,7 @@ Player::Player() : Module()
 	deadLAnim.PushBack({ 448, 448, 64, 64 });
 	deadLAnim.PushBack({ 512, 448, 64, 64 });
 	deadLAnim.loop = false;
-	deadLAnim.speed = 0.4f;
+	deadLAnim.speed = 0.5f;
 }
 
 // Destructor
@@ -113,7 +113,7 @@ bool Player::Start()
 	spriteSheet = app->tex->Load("Assets/textures/herochar_spriteSheet.png");
 	currentAnim = &idleRAnim;
 
-	position.x = -1536;
+	position.x = -1544;
 	position.y = -1920;
 
 	return true;
@@ -130,12 +130,14 @@ bool Player::Update(float dt)
 {
 	if (Godmode == false)
 	{
-
-		fPoint BeforePos = position;
-
 		//Gravity
 		if (gravity == true)
+		{
 			position.y -= speedy;
+
+			if (LookingR) currentAnim = &jumpRAnim;
+			else currentAnim = &jumpLAnim;
+		}
 
 		//Idle	
 		if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
@@ -156,7 +158,7 @@ bool Player::Update(float dt)
 		{
 			position.x += speedx;
 
-			currentAnim = &runLAnim;
+			if (gravity == false) currentAnim = &runLAnim;
 
 			LookingR = false;
 		}
@@ -168,7 +170,7 @@ bool Player::Update(float dt)
 		{
 			position.x -= speedx;
 
-			currentAnim = &runRAnim;
+			if(gravity == false) currentAnim = &runRAnim;
 
 			LookingR = true;
 		}
@@ -211,7 +213,7 @@ bool Player::Update(float dt)
 			}
 		}
 
-		if (CollisionPlayer() == 1)
+		if (CollisionFloorPlayer())
 		{
 			gravity = false;
 			jump = false;
@@ -221,16 +223,16 @@ bool Player::Update(float dt)
 			gravity = true;
 		}
 
-
-		if (CollisionPlayer() == 2 && LookingR == false) speedx = 0;
-		else if (CollisionPlayer() == 3 && LookingR == true) speedx = 0;
-		//else speedx = 16;
+		if (CollisionPlayer() == 2 && LookingR == true) speedx = 0;
+		else if (CollisionPlayer() == 3 && LookingR == false) speedx = 0;
+		else speedx = 16;
 	}
 
 	//Godmode
 	if (Godmode == true)
 	{
 		gravity = false;
+		jump = false;
 
 		//Mov left
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
@@ -293,9 +295,21 @@ int Player::CollisionPlayer()
 		posMapPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
 		if (CheckCollision(posMapPlayer[i]) == 2) app->modcontrol->currentscene = 3;
 	}
-	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1 || CheckCollision(posMapPlayer[numnPoints - 2]) == 1) return 1;
+	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1) return 2;
+	if (CheckCollision(posMapPlayer[numnPoints - 2]) == 1) return 3;
 
-	//if (CheckCollision(posMapPlayer[2]) == 1 || CheckCollision(posMapPlayer[3]) == 1) return 2;
+	return false;
+}
+
+bool Player::CollisionFloorPlayer()
+{
+	fPoint posFloorPlayer[numnPoints];
+
+	for (int i = 0; i < numnPoints; i++)
+	{
+		posFloorPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsFloorCollision[i][0], -position.y + (int)pointsFloorCollision[i][1]);
+		if (CheckCollision(posFloorPlayer[i]) == 1) return true;
+	}
 
 	return false;
 }
