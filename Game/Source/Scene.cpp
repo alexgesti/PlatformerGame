@@ -119,8 +119,8 @@ bool Scene::SaveState(pugi::xml_node& data) const
 
 bool Scene::Reset()
 {
-	app->player->position.x = 0;
-	app->player->position.y = -1260 - (app->render->camera.h / 2);
+	app->player->position.x = -1536;
+	app->player->position.y = -1920;
 	app->player->dead = false;
 	app->player->jump = false;
 	app->player->waslookingRight = true;

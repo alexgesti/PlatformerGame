@@ -113,8 +113,8 @@ bool Player::Start()
 	spriteSheet = app->tex->Load("Assets/textures/herochar_spriteSheet.png");
 	currentAnim = &idleRAnim;
 
-	position.x = 0;
-	position.y = -1260 - (app->render->camera.h/2);
+	position.x = -1536;
+	position.y = -1920;
 
 	return true;
 }
@@ -130,7 +130,6 @@ bool Player::Update(float dt)
 {
 	if (Godmode == false)
 	{
-		gravity = true;
 
 		fPoint BeforePos = position;
 
@@ -151,7 +150,6 @@ bool Player::Update(float dt)
 		//Mov left
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT
 			&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE
-			&& jump == false
 			&& dead == false)
 		{
 			position.x += speedx;
@@ -164,7 +162,6 @@ bool Player::Update(float dt)
 		//Mov right
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT
 			&& app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE 
-			&& jump == false
 			&& dead == false)
 		{
 			position.x -= speedx;
@@ -175,19 +172,22 @@ bool Player::Update(float dt)
 		}
 
 		//Jump
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN 
-			&& gravity == false 
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN
+			&& jump == false
 			&& dead == false)
 		{
 			jump = true;
-			maxJump = position.y;
+			top = true;
+			gravity = false;
+			maxJump = position.y + 144;
 		}
-		if (jump == true && app->render->camera.y < maxJump + 40)
+		if (top == true && position.y <= maxJump)
 		{
-			position.y -= 2 * speedx;
+			position.y += speedy;
+			if (position.y == maxJump) top = false;
 		}
 
-		if (jump)
+		if (jump == true)
 		{
 			if (waslookingRight) currentAnim = &jumpRAnim;
 			else currentAnim = &jumpLAnim;
@@ -209,7 +209,15 @@ bool Player::Update(float dt)
 			}
 		}
 
-		if (CollisionPlayer({ position.x, position.y - speedy})) position = BeforePos;
+		if (CollisionPlayer() == 1)
+		{
+			gravity = false;
+			jump = false;
+		}
+		else if (top == false)
+		{
+			gravity = true;
+		}
 	}
 
 	//Godmode
@@ -269,25 +277,26 @@ bool Player::CleanUp()
 	return true;
 }
 
-bool Player::CollisionPlayer(fPoint positionMapPlayer)
+int Player::CollisionPlayer()
 {
-	fPoint posMapPlayer;
-	int y = (int)positionMapPlayer.y * -1;
-	int x = (int)positionMapPlayer.x * -1;
+	fPoint posMapPlayer[numnPoints];
 
 	for (int i = 0; i < numnPoints; i++)
 	{
-		posMapPlayer = app->map->WorldToMap(x + (int)pointsCollision[i][0], y + (int)pointsCollision[i][1]);
-		if (CheckCollision(posMapPlayer)) return true;
+		posMapPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
+		if (CheckCollision(posMapPlayer[i]) == 2) app->modcontrol->currentscene = 3;
 	}
+	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1 || CheckCollision(posMapPlayer[numnPoints - 2]) == 1) return true;
 
 	return false;
 }
 
-bool Player::CheckCollision(fPoint positionMapPlayer)
+int Player::CheckCollision(fPoint positionMapPlayer)
 {
-	if (app->map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return true;
-	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) app->modcontrol->currentscene = 3;
+	if (app->map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
+	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
+	if (app->map->data.layers.At(5)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
+	if (app->map->data.layers.At(6)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
 
 	return false;
 }

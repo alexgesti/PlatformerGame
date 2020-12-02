@@ -34,19 +34,20 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	bool CollisionPlayer(fPoint positionMapPlayer);
-	
-	bool CheckCollision(fPoint positionMapPlayer);
+	int CollisionPlayer();
+
+	int CheckCollision(fPoint positionMapPlayer);
 
 public:
 	bool gravity = false;
-	bool jump = false;
+	bool jump = true;
 	bool Godmode = false;
 	bool dead = false;
 	bool waslookingRight = true;
+	bool top = false;
 
-	float speedx = 15;
-	float speedy = 15;
+	float speedx = 16;
+	float speedy = 16;
 	float maxJump = 0;
 
 	//Player dimensions
@@ -71,7 +72,7 @@ private:
 	SDL_Texture* spriteSheet = nullptr;
 
 	static const int numnPoints = 4;
-	int pointsCollision[numnPoints][2] = { {1, 0}, {47, 0}, {0, 47}, {47, 47} };
+	int pointsCollision[numnPoints][2] = { {8, 0}, {52, 0}, {8, 64}, {52, 64} };
 };
 
 #endif // __SCENE_H__
