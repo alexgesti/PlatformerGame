@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<save_state>
+	<window />
+	<input />
+	<textures />
+	<audio />
+	<map />
+	<scene>
+		<Player x="-1952" y="-1920" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Waslookingright="true" HasGravity="false" WasInGodMode="false" />
+	</scene>
+	<sceneintro />
+	<sceneLogo />
+	<sceneLose />
+	<player />
+	<:anonymous />
+	<renderer>
+		<camera x="-1336" y="-1584" />
+	</renderer>
+</save_state>

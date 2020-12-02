@@ -22,14 +22,14 @@ Player::Player() : Module()
 	idleRAnim.PushBack({ 128, 0, 64, 64 });
 	idleRAnim.PushBack({ 192, 0, 64, 64 });
 	idleRAnim.loop = true;
-	idleRAnim.speed = 0.15f;
+	idleRAnim.speed = 0.4f;
 
 	//jump rigth animation
 	jumpRAnim.PushBack({ 0, 64, 64, 64 });
 	jumpRAnim.PushBack({ 64, 64, 64, 64 });
 	jumpRAnim.PushBack({ 128, 64, 64, 64 });
 	jumpRAnim.loop = true;
-	jumpRAnim.speed = 0.15f;
+	jumpRAnim.speed = 0.4f;
 
 	//run rigth animation
 	runRAnim.PushBack({ 0, 128, 64, 64 });
@@ -39,7 +39,7 @@ Player::Player() : Module()
 	runRAnim.PushBack({ 256, 128, 64, 64 });
 	runRAnim.PushBack({ 320, 128, 64, 64 });
 	runRAnim.loop = true;
-	runRAnim.speed = 0.15f;
+	runRAnim.speed = 0.4f;
 
 	//dead rigth animation
 	deadRAnim.PushBack({ 0, 192, 64, 64 });
@@ -52,7 +52,7 @@ Player::Player() : Module()
 	deadRAnim.PushBack({ 448, 192, 64, 64 });
 	deadRAnim.PushBack({ 512, 192, 64, 64 });
 	deadRAnim.loop = false;
-	deadRAnim.speed = 0.15f;
+	deadRAnim.speed = 0.4f;
 
 	//idle left animation
 	idleLAnim.PushBack({ 0, 256, 64, 64 });
@@ -60,14 +60,14 @@ Player::Player() : Module()
 	idleLAnim.PushBack({ 128, 256, 64, 64 });
 	idleLAnim.PushBack({ 192, 256, 64, 64 });
 	idleLAnim.loop = true;
-	idleLAnim.speed = 0.15f;
+	idleLAnim.speed = 0.4f;
 
 	//jump left animation
 	jumpLAnim.PushBack({ 0, 320, 64, 64 });
 	jumpLAnim.PushBack({ 64, 320, 64, 64 });
 	jumpLAnim.PushBack({ 128, 320, 64, 64 });
 	jumpLAnim.loop = true;
-	jumpLAnim.speed = 0.15f;
+	jumpLAnim.speed = 0.4f;
 
 	//run left animation
 	runLAnim.PushBack({ 0, 384, 64, 64 });
@@ -77,7 +77,7 @@ Player::Player() : Module()
 	runLAnim.PushBack({ 256, 384, 64, 64 });
 	runLAnim.PushBack({ 320, 384, 64, 64 });
 	runLAnim.loop = true;
-	runLAnim.speed = 0.15f;
+	runLAnim.speed = 0.4f;
 
 	//dead left animation
 	deadLAnim.PushBack({ 0, 448, 64, 64 });
@@ -90,7 +90,7 @@ Player::Player() : Module()
 	deadLAnim.PushBack({ 448, 448, 64, 64 });
 	deadLAnim.PushBack({ 512, 448, 64, 64 });
 	deadLAnim.loop = false;
-	deadLAnim.speed = 0.15f;
+	deadLAnim.speed = 0.4f;
 }
 
 // Destructor
@@ -138,12 +138,14 @@ bool Player::Update(float dt)
 			position.y -= speedy;
 
 		//Idle	
-		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
-			&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE
+		if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
+			&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
+			|| (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT
+			&& app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 			&& jump == false
 			&& dead == false)
 		{
-			if (waslookingRight) currentAnim = &idleRAnim;
+			if (LookingR) currentAnim = &idleRAnim;
 			else currentAnim = &idleLAnim;
 		}
 
@@ -156,7 +158,7 @@ bool Player::Update(float dt)
 
 			currentAnim = &runLAnim;
 
-			waslookingRight = false;
+			LookingR = false;
 		}
 
 		//Mov right
@@ -168,7 +170,7 @@ bool Player::Update(float dt)
 
 			currentAnim = &runRAnim;
 
-			waslookingRight = true;
+			LookingR = true;
 		}
 
 		//Jump
@@ -189,7 +191,7 @@ bool Player::Update(float dt)
 
 		if (jump == true)
 		{
-			if (waslookingRight) currentAnim = &jumpRAnim;
+			if (LookingR) currentAnim = &jumpRAnim;
 			else currentAnim = &jumpLAnim;
 		}
 
@@ -198,7 +200,7 @@ bool Player::Update(float dt)
 		{
 			dead = !dead;
 
-			if (waslookingRight) currentAnim = &deadRAnim;
+			if (LookingR) currentAnim = &deadRAnim;
 			else currentAnim = &deadLAnim;
 
 			if (deadRAnim.FinishedAlready && dead == false 
@@ -218,6 +220,11 @@ bool Player::Update(float dt)
 		{
 			gravity = true;
 		}
+
+
+		if (CollisionPlayer() == 2 && LookingR == false) speedx = 0;
+		else if (CollisionPlayer() == 3 && LookingR == true) speedx = 0;
+		//else speedx = 16;
 	}
 
 	//Godmode
@@ -230,7 +237,7 @@ bool Player::Update(float dt)
 		{
 			position.x += speedx;
 
-			waslookingRight = false;
+			LookingR = false;
 		}
 
 		//Mov right
@@ -238,7 +245,7 @@ bool Player::Update(float dt)
 		{
 			position.x -= speedx;
 
-			waslookingRight = true;
+			LookingR = true;
 		}
 
 		//Mov up
@@ -249,7 +256,7 @@ bool Player::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
 			position.y -= speedx;
 
-		if (waslookingRight) currentAnim = &jumpRAnim;
+		if (LookingR) currentAnim = &jumpRAnim;
 		else currentAnim = &jumpLAnim;
 	}
 
@@ -286,7 +293,9 @@ int Player::CollisionPlayer()
 		posMapPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
 		if (CheckCollision(posMapPlayer[i]) == 2) app->modcontrol->currentscene = 3;
 	}
-	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1 || CheckCollision(posMapPlayer[numnPoints - 2]) == 1) return true;
+	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1 || CheckCollision(posMapPlayer[numnPoints - 2]) == 1) return 1;
+
+	//if (CheckCollision(posMapPlayer[2]) == 1 || CheckCollision(posMapPlayer[3]) == 1) return 2;
 
 	return false;
 }

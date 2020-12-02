@@ -92,7 +92,7 @@ bool Scene::LoadState(pugi::xml_node& data)
 	app->player->deadRAnim.FinishedAlready = data.child("Player").attribute("FinishedDeadRAnim").as_bool();
 	app->player->deadLAnim.FinishedAlready = data.child("Player").attribute("FinishedDeadLAnim").as_bool();
 	app->player->jump = data.child("Player").attribute("Wasjumping").as_bool();
-	app->player->waslookingRight = data.child("Player").attribute("Waslookingright").as_bool();
+	app->player->LookingR = data.child("Player").attribute("Waslookingright").as_bool();
 	app->player->gravity = data.child("Player").attribute("HasGravity").as_bool();
 	app->player->Godmode = data.child("Player").attribute("WasInGodMode").as_bool();
 
@@ -110,7 +110,7 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	playersave.append_attribute("FinishedDeadRAnim") = app->player->deadRAnim.FinishedAlready;
 	playersave.append_attribute("FinishedDeadLAnim") = app->player->deadLAnim.FinishedAlready;
 	playersave.append_attribute("Wasjumping") = app->player->jump;
-	playersave.append_attribute("Waslookingright") = app->player->waslookingRight;
+	playersave.append_attribute("Waslookingright") = app->player->LookingR;
 	playersave.append_attribute("HasGravity") = app->player->gravity;
 	playersave.append_attribute("WasInGodMode") = app->player->Godmode;
 
@@ -123,7 +123,7 @@ bool Scene::Reset()
 	app->player->position.y = -1920;
 	app->player->dead = false;
 	app->player->jump = false;
-	app->player->waslookingRight = true;
+	app->player->LookingR = true;
 	app->player->gravity = false;
 	app->player->Godmode = false;
 
