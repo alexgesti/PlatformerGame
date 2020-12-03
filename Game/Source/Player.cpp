@@ -371,3 +371,5 @@ int Player::CheckCollision(fPoint positionMapPlayer)
 
 	return false;
 }
+
+// HACER RESET

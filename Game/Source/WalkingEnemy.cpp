@@ -155,7 +155,7 @@ bool WalkingEnemy::Update(float dt)
 	else if (CollisionEnemy() == 3 && waslookingRight == false) speedx = 0;
 	else speedx = 16; // Change when have pathfinding*/
 
-	if (CheckCollisionRec(app->player->Bposition, position) == 1)
+	if (CheckCollisionRec(app->player->Bposition, position) == 1 && app->player->shoot == true)
 	{
 		dead = true;
 		app->player->shoot = false;
@@ -172,7 +172,7 @@ bool WalkingEnemy::PostUpdate()
 	bool ret = true;
 
 	SDL_Rect rect = currentAnim->GetCurrentFrame();
-	app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
+	if (dead == false) app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
 
 	return ret;
 }
@@ -230,4 +230,19 @@ int WalkingEnemy::CheckCollisionRec(fPoint positionMapBullet, fPoint positionMap
 	return false;
 }
 
-// NEED TO RESET VARIABLES Y GUARDAR TODO EN XML ARCHIVO
+bool WalkingEnemy::Reset() 
+{
+	gravity = false;
+	dead = false;
+	waslookingRight = true;
+	fall = false;
+	IsDead = false;
+
+	position = posCopy;
+
+	currentAnim = &runRAnim;
+
+	return true;
+}
+
+//  GUARDAR TODO EN XML ARCHIVO

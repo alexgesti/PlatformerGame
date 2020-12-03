@@ -34,11 +34,15 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	// Collision
 	int CollisionEnemy();
 	bool CollisionFloorEnemy();
 
 	int CheckCollision(fPoint positionMapEnemy);
 	int CheckCollisionRec(fPoint positionMapPlayer, fPoint positionMapEnemy);
+
+	// Reset
+	bool Reset();
 
 public:
 	bool gravity = false;
