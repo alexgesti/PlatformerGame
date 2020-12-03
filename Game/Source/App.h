@@ -22,7 +22,8 @@ class SceneLose;
 class Map;
 class Player;
 class ModuleController;
-//class FateToBlack;
+class WalkingEnemy;
+class FlyEnemy;
 
 class App
 {
@@ -99,6 +100,8 @@ public:
 	Map* map;
 	Player* player;
 	ModuleController* modcontrol;
+	WalkingEnemy* wenemy;
+	FlyEnemy* fenemy;
 
 private:
 

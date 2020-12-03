@@ -10,6 +10,8 @@
 #include "SceneLose.h"
 #include "Map.h"
 #include "Player.h"
+#include "WalkingEnemy.h"
+#include "FlyEnemy.h"
 #include "ModuleController.h"
 
 #include "Defs.h"
@@ -54,6 +56,8 @@ bool ModuleController::Awake(pugi::xml_node& config)
 	app->scene->active = true;		// Scene
 	app->sceneIntro->active = true;	// SceneIntro
 	app->player->active = true;		// Player
+	app->wenemy->active = true;		// Walking Enemy
+	app->fenemy->active = true;		// Flying Enemy
 	app->modcontrol->active = true;	// ModControl
 	app->render->active = true;		// Render
 
@@ -137,9 +141,11 @@ bool ModuleController::Update(float dt)
 		app->scene->active = false;				// Scene
 		app->scene->NotSceneActived = false;	// SceneCamera
 		app->player->active = false;			// Player
+		app->wenemy->active = false;			// Walking Enemy
+		app->fenemy->active = false;			// Flying Enemy
 		app->sceneIntro->active = false;		// SceneIntro
-		app->sceneLogo->active = true;			//SceneLogo
-		app->sceneLose->active = false;			//SceneLose
+		app->sceneLogo->active = true;			// SceneLogo
+		app->sceneLose->active = false;			// SceneLose
 		
 
 		break;
@@ -150,9 +156,11 @@ bool ModuleController::Update(float dt)
 		app->scene->active = false;				// Scene
 		app->scene->NotSceneActived = false;	// SceneCamera
 		app->player->active = false;			// Player
+		app->wenemy->active = false;			// Walking Enemy
+		app->fenemy->active = false;			// Flying Enemy
 		app->sceneIntro->active = true;			// SceneIntro
-		app->sceneLogo->active = false;			//SceneLogo
-		app->sceneLose->active = false;			//SceneLose
+		app->sceneLogo->active = false;			// SceneLogo
+		app->sceneLose->active = false;			// SceneLose
 
 		break;
 
@@ -162,9 +170,11 @@ bool ModuleController::Update(float dt)
 		app->scene->active = true;				// Scene
 		app->scene->NotSceneActived = true;		// SceneCamera
 		app->player->active = true;				// Player
+		app->wenemy->active = true;				// Walking Enemy
+		app->fenemy->active = true;				// Flying Enemy
 		app->sceneIntro->active = false;		// SceneIntro
-		app->sceneLogo->active = false;			//SceneLogo
-		app->sceneLose->active = false;			//SceneLose
+		app->sceneLogo->active = false;			// SceneLogo
+		app->sceneLose->active = false;			// SceneLose
 		
 
 		break;
@@ -175,9 +185,11 @@ bool ModuleController::Update(float dt)
 		app->scene->active = false;				// Scene
 		app->scene->NotSceneActived = false;	// SceneCamera
 		app->player->active = false;			// Player
+		app->wenemy->active = false;			// Walking Enemy
+		app->fenemy->active = false;			// Flying Enemy
 		app->sceneIntro->active = false;		// SceneIntro
-		app->sceneLogo->active = false;			//SceneLogo
-		app->sceneLose->active = true;			//SceneLose
+		app->sceneLogo->active = false;			// SceneLogo
+		app->sceneLose->active = true;			// SceneLose
 
 
 		break;
@@ -189,23 +201,6 @@ bool ModuleController::Update(float dt)
 	return true;
 }
 
-// Load Scene State (Underconstruction)
-//bool ModuleController::LoadState(pugi::xml_node& data)
-//{
-//	currentscene = data.child("currentscene").attribute("Scene").as_int();
-//
-//	return true;
-//}
-
-// Save Scene State (Underconstruction)
-//bool ModuleController::SaveState(pugi::xml_node& data) const
-//{
-//	pugi::xml_node scene = data.append_child("currentscene");
-//
-//	scene.append_attribute("Scene") = currentscene;
-//
-//	return true;
-//}
 
 bool ModuleController::CleanUp()
 {

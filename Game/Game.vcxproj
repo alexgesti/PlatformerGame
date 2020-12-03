@@ -89,6 +89,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\FlyEnemy.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\Audio.cpp" />
@@ -102,8 +103,10 @@
     <ClCompile Include="Source\SceneLogo.cpp" />
     <ClCompile Include="Source\SceneLose.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
+    <ClCompile Include="Source\WalkingEnemy.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\FlyEnemy.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\ModuleController.h" />
     <ClInclude Include="Source\Player.h" />
@@ -117,6 +120,7 @@
     <ClInclude Include="Source\SceneLogo.h" />
     <ClInclude Include="Source\SceneLose.h" />
     <ClInclude Include="Source\Textures.h" />
+    <ClInclude Include="Source\WalkingEnemy.h" />
     <ClInclude Include="Source\Window.h" />
     <ClInclude Include="Source\Defs.h" />
     <ClInclude Include="Source\List.h" />

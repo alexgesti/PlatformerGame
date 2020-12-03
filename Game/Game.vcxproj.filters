@@ -21,6 +21,8 @@
     <ClCompile Include="Source\SceneIntro.cpp" />
     <ClCompile Include="Source\SceneLogo.cpp" />
     <ClCompile Include="Source\SceneLose.cpp" />
+    <ClCompile Include="Source\FlyEnemy.cpp" />
+    <ClCompile Include="Source\WalkingEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -64,6 +66,8 @@
     <ClInclude Include="Source\SceneIntro.h" />
     <ClInclude Include="Source\SceneLogo.h" />
     <ClInclude Include="Source\SceneLose.h" />
+    <ClInclude Include="Source\FlyEnemy.h" />
+    <ClInclude Include="Source\WalkingEnemy.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

@@ -1,110 +1,75 @@
-﻿  Player.cpp
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(276,53): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+﻿  WalkingEnemy.cpp
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(180,53): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(276,40): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(180,40): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(295,96): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(200,140): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(295,54): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(200,67): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(311,103): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(201,95): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(311,56): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(201,53): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(320,83): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(215,95): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(320,62): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(215,53): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(321,83): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(230,102): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(321,62): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(230,55): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(322,83): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(239,81): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(322,62): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(239,61): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(323,83): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(240,81): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(323,62): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(240,61): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(324,83): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(324,62): warning C4244: 'argumento': conversión de 'TYPE' a 'int'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-  Scene.cpp
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(53,51): warning C4244: '=': conversión de 'TYPE' a 'int'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(54,51): warning C4244: '=': conversión de 'TYPE' a 'int'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(84,70): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(85,70): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-  Generando código...
-  Game.vcxproj -> C:\Users\raulc\Documents\GitHub\PlatformerGame\Build\Debug\Game.exe
+  Game.vcxproj -> D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Build\Debug\Game.exe

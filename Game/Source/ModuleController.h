@@ -24,10 +24,6 @@ public:
 
 	// Called each loop iteration
 	bool Update(float dt);
-	 
-	// Load / Save (Underconstruction)
-	//bool LoadState(pugi::xml_node&);
-	//bool SaveState(pugi::xml_node&) const;
 
 	// Add a new module to handle
 	void AddModule(Module* module);

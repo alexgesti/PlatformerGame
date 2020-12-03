@@ -46,13 +46,14 @@ public:
 	bool dead = false;
 	bool LookingR = true;
 	bool top = false;
+	
 
 	float speedx = 16;
 	float speedy = 16;
 	float maxJump = 0;
 
 	//Player dimensions
-	int playerWH = 48;
+	int playerWH = 64;
 
 	fPoint position;
 
@@ -73,7 +74,9 @@ private:
 	SDL_Texture* spriteSheet = nullptr;
 
 	static const int numnPoints = 4;
-	int pointsCollision[numnPoints][2] = { {0, 0}, {64, 0}, {0, 62}, {64, 62}};
+	int pointsCollision[numnPoints][2] = { {0, 0}, {64, 0}, {0, 62}, {64, 62} };
+	
+public:
 	int pointsFloorCollision[numnPoints][2] = { {12, 63}, {52, 63}, {12, 64}, {52, 64} };
 };
 

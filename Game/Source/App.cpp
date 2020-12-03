@@ -11,6 +11,8 @@
 #include "Map.h"
 #include "Player.h"
 #include "ModuleController.h"
+#include "WalkingEnemy.h"
+#include "FlyEnemy.h"
 
 
 #include "Defs.h"
@@ -36,6 +38,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	player = new Player();
 	modcontrol = new ModuleController();
+	wenemy = new WalkingEnemy();
+	fenemy = new FlyEnemy();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -49,6 +53,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(sceneLogo);
 	AddModule(sceneLose);
 	AddModule(player);
+	AddModule(wenemy);
+	AddModule(fenemy);
 	AddModule(modcontrol);
 
 	// Render last to swap buffer
