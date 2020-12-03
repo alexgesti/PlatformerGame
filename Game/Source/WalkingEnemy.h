@@ -38,8 +38,8 @@ public:
 	int CollisionEnemy();
 	bool CollisionFloorEnemy();
 
-	int CheckCollision(fPoint positionMapPlayer);
-	int CheckCollisionBox
+	int CheckCollision(fPoint positionMapEnemy);
+	int CheckCollisionRec(fPoint positionMapPlayer, fPoint positionMapEnemy);
 
 public:
 	bool gravity = false;

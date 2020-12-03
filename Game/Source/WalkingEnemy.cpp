@@ -199,9 +199,8 @@ int WalkingEnemy::CollisionWithPlayer()
 	{
 		posMapPlayer[i] = app->map->WorldToMap(-app->player->position.x + (int)app->player->pointsFloorCollision[i][0], -app->player->position.y + (int)app->player->pointsFloorCollision[i][1]);
 		posMapEnemy[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
+		if (CheckCollisionRec(posMapPlayer[i], posMapEnemy[i]) == 1) LOG("Im working");
 	}
-
-
 
 	return false;
 }
@@ -242,4 +241,11 @@ int WalkingEnemy::CheckCollision(fPoint positionMapEnemy)
 	return false;
 }
 
-int WalkingEnemy:: 
+int WalkingEnemy::CheckCollisionRec(fPoint positionMapPlayer, fPoint positionMapEnemy)
+{
+	if ((positionMapPlayer.x < (positionMapEnemy.x )) && ((positionMapPlayer.x) > positionMapEnemy.x) &&
+		(positionMapPlayer.y < (positionMapEnemy.y)) && ((positionMapPlayer.y) > positionMapEnemy.x)) return 1; //Poner bien las distancias
+
+
+	return false;
+}

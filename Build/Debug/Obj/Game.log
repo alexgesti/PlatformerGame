@@ -32,22 +32,32 @@ D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Walkin
           [
               TYPE=float
           ]
-D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(215,95): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(214,95): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(215,53): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(214,53): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(230,102): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(229,102): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
           ]
-D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(230,55): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(229,55): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(238,81): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(238,61): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float
@@ -58,16 +68,6 @@ D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Walkin
               TYPE=float
           ]
 D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(239,61): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
-          with
-          [
-              TYPE=float
-          ]
-D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(240,81): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
-          with
-          [
-              TYPE=float
-          ]
-D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\WalkingEnemy.cpp(240,61): warning C4244: 'argument': conversion from 'TYPE' to 'int', possible loss of data
           with
           [
               TYPE=float

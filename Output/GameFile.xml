@@ -6,7 +6,7 @@
 	<audio />
 	<map />
 	<scene>
-		<Player x="-2168" y="-1920" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Waslookingright="true" HasGravity="false" WasInGodMode="false" />
+		<Player x="-1992" y="-1920" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Waslookingright="false" HasGravity="false" WasInGodMode="false" />
 	</scene>
 	<sceneintro />
 	<sceneLogo />
@@ -16,6 +16,6 @@
 	<Flyenemy />
 	<:anonymous />
 	<renderer>
-		<camera x="-1536" y="-1584" />
+		<camera x="-1400" y="-1592" />
 	</renderer>
 </save_state>
