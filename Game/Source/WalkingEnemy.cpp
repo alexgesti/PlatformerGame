@@ -9,6 +9,7 @@
 #include "WalkingEnemy.h"
 #include "Player.h"
 #include "ModuleController.h"
+#include "Pathfinding.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -155,11 +156,13 @@ bool WalkingEnemy::Update(float dt)
 	else if (CollisionEnemy() == 3 && waslookingRight == false) speedx = 0;
 	else speedx = 16; // Change when have pathfinding*/
 
-	if (CheckCollisionRec(app->player->Bposition, position) == 1 && app->player->shoot == true)
+	if (CheckCollisionRec(app->player->Bposition, position) == 1 && app->player->shoot == true && dead == false)
 	{
 		dead = true;
 		app->player->shoot = false;
 	}
+
+	app->pathfinding->CreatePath(position, app->player->position);
 
 	currentAnim->Update();
 
@@ -187,7 +190,7 @@ bool WalkingEnemy::CleanUp()
 
 int WalkingEnemy::CollisionEnemy()
 {
-	fPoint posMapEnemy[numnPoints];
+	iPoint posMapEnemy[numnPoints];
 
 	for (int i = 0; i < numnPoints; i++)
 	{
@@ -202,7 +205,7 @@ int WalkingEnemy::CollisionEnemy()
 
 bool WalkingEnemy::CollisionFloorEnemy()
 {
-	fPoint posFloorEnemy[numnPoints];
+	iPoint posFloorEnemy[numnPoints];
 
 	for (int i = 0; i < numnPoints; i++)
 	{
@@ -213,7 +216,7 @@ bool WalkingEnemy::CollisionFloorEnemy()
 	return false;
 }
 
-int WalkingEnemy::CheckCollision(fPoint positionMapEnemy)
+int WalkingEnemy::CheckCollision(iPoint positionMapEnemy)
 {
 	if (app->map->data.layers.At(3)->data->Get(positionMapEnemy.x, positionMapEnemy.y) != 0) return 1;
 	if (app->map->data.layers.At(4)->data->Get(positionMapEnemy.x, positionMapEnemy.y) != 0) return 1;
@@ -221,7 +224,7 @@ int WalkingEnemy::CheckCollision(fPoint positionMapEnemy)
 	return false;
 }
 
-int WalkingEnemy::CheckCollisionRec(fPoint positionMapBullet, fPoint positionMapEnemy)
+int WalkingEnemy::CheckCollisionRec(iPoint positionMapBullet, iPoint positionMapEnemy)
 {
 	if ((positionMapBullet.x < (positionMapEnemy.x + 52)) && ((positionMapBullet.x + 52) > positionMapEnemy.x) &&
 		(positionMapBullet.y < (positionMapEnemy.y + 64)) && ((positionMapBullet.y + 64) > positionMapEnemy.y)) return 1;

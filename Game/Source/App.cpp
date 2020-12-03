@@ -13,6 +13,7 @@
 #include "ModuleController.h"
 #include "WalkingEnemy.h"
 #include "FlyEnemy.h"
+#include "Pathfinding.h"
 
 
 #include "Defs.h"
@@ -40,6 +41,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	modcontrol = new ModuleController();
 	wenemy = new WalkingEnemy();
 	fenemy = new FlyEnemy();
+	pathfinding = new PathFinding();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -56,6 +58,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(wenemy);
 	AddModule(fenemy);
 	AddModule(modcontrol);
+	AddModule(pathfinding);
 
 	// Render last to swap buffer
 	AddModule(render);

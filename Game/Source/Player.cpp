@@ -334,7 +334,7 @@ bool Player::CleanUp()
 
 int Player::CollisionPlayer()
 {
-	fPoint posMapPlayer[numnPoints];
+	iPoint posMapPlayer[numnPoints];
 
 	for (int i = 0; i < numnPoints; i++)
 	{
@@ -350,7 +350,7 @@ int Player::CollisionPlayer()
 
 bool Player::CollisionFloorPlayer()
 {
-	fPoint posFloorPlayer[numnPoints];
+	iPoint posFloorPlayer[numnPoints];
 
 	for (int i = 0; i < numnPoints; i++)
 	{
@@ -361,7 +361,7 @@ bool Player::CollisionFloorPlayer()
 	return false;
 }
 
-int Player::CheckCollision(fPoint positionMapPlayer)
+int Player::CheckCollision(iPoint positionMapPlayer)
 {
 	if (app->map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
 	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;

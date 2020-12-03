@@ -23,6 +23,7 @@
     <ClCompile Include="Source\SceneLose.cpp" />
     <ClCompile Include="Source\FlyEnemy.cpp" />
     <ClCompile Include="Source\WalkingEnemy.cpp" />
+    <ClCompile Include="Source\Pathfinding.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -68,6 +69,7 @@
     <ClInclude Include="Source\SceneLose.h" />
     <ClInclude Include="Source\FlyEnemy.h" />
     <ClInclude Include="Source\WalkingEnemy.h" />
+    <ClInclude Include="Source\Pathfinding.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

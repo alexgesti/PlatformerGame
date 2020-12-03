@@ -127,7 +127,10 @@ public:
 	iPoint MapToWorld(int x, int y) const;
 
 	// L05: DONE 2: Add orthographic world to map coordinates
-	fPoint WorldToMap(int x, int y) const;
+	iPoint WorldToMap(int x, int y) const;
+
+	// L12b: Create walkability map for pathfinding
+	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
 
 private:
 

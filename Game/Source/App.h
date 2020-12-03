@@ -24,6 +24,7 @@ class Player;
 class ModuleController;
 class WalkingEnemy;
 class FlyEnemy;
+class PathFinding;
 
 class App
 {
@@ -102,6 +103,7 @@ public:
 	ModuleController* modcontrol;
 	WalkingEnemy* wenemy;
 	FlyEnemy* fenemy;
+	PathFinding* pathfinding;
 
 private:
 

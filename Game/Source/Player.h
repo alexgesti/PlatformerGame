@@ -37,7 +37,7 @@ public:
 	int CollisionPlayer();
 	bool CollisionFloorPlayer();
 
-	int CheckCollision(fPoint positionMapPlayer);
+	int CheckCollision(iPoint positionMapPlayer);
 
 public:
 	bool gravity = false;
@@ -58,8 +58,8 @@ public:
 	//Player dimensions
 	int playerWH = 64;
 
-	fPoint position;
-	fPoint Bposition;
+	iPoint position;
+	iPoint Bposition;
 
 	Animation* currentAnim;
 	Animation* BcurrentAnim;

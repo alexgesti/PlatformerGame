@@ -38,8 +38,8 @@ public:
 	int CollisionEnemy();
 	bool CollisionFloorEnemy();
 
-	int CheckCollision(fPoint positionMapEnemy);
-	int CheckCollisionRec(fPoint positionMapPlayer, fPoint positionMapEnemy);
+	int CheckCollision(iPoint positionMapEnemy);
+	int CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapEnemy);
 
 	// Reset
 	bool Reset();
@@ -54,8 +54,8 @@ public:
 	float speedx = 16;
 	float speedy = 16;
 
-	fPoint position;
-	fPoint posCopy;
+	iPoint position;
+	iPoint posCopy;
 
 	Animation* currentAnim;
 
