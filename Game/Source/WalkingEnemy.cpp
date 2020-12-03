@@ -57,7 +57,7 @@ WalkingEnemy::WalkingEnemy() : Module()
 	deadRAnim.PushBack({ 192, 64, 64, 64 });
 	deadRAnim.PushBack({ 128, 64, 64, 64 });
 	deadRAnim.loop = false;
-	deadRAnim.speed = 0.5f;
+	deadRAnim.speed = 0.25f;
 
 	//dead left animation
 	deadLAnim.PushBack({ 0, 192, 64, 64 });
@@ -67,7 +67,7 @@ WalkingEnemy::WalkingEnemy() : Module()
 	deadLAnim.PushBack({ 256, 192, 64, 64 });
 	deadLAnim.PushBack({ 320, 192, 64, 64 });
 	deadLAnim.loop = false;
-	deadLAnim.speed = 0.5f;
+	deadLAnim.speed = 0.25f;
 }
 
 // Destructor
@@ -93,6 +93,8 @@ bool WalkingEnemy::Start()
 	position.x = -1470;
 	position.y = -1920;
 
+	posCopy = position;
+
 	return true;
 }
 
@@ -115,42 +117,31 @@ bool WalkingEnemy::Update(float dt)
 	}
 
 	//Mov left
-	if (app->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
-		/*&& fall == false
-		&& dead == false)*/
+	/*if (fall == false && dead == false)
 	{
-
-
 		currentAnim = &runLAnim;
 
 		waslookingRight = false;
-	}
+	}*/
 
 	//Mov right
-	if (app->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
-		/*&& fall == false
-		&& dead == false)*/
+	if (fall == false && dead == false)
 	{
-
-
 		currentAnim = &runRAnim;
 
 		waslookingRight = true;
 	}
 
 	//Die tester
-	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
+	if (dead)
 	{
-		dead = !dead;
-
 		if (waslookingRight) currentAnim = &deadRAnim;
 		else currentAnim = &deadLAnim;
 
-		if (deadRAnim.FinishedAlready && dead == false
-			|| deadLAnim.FinishedAlready && dead == false)
+		if (deadRAnim.FinishedAlready || deadLAnim.FinishedAlready)
 		{
-			deadRAnim.Reset();
-			deadLAnim.Reset();
+			position.x = 0;
+			position.y = 0;
 		}
 	}
 
@@ -164,7 +155,11 @@ bool WalkingEnemy::Update(float dt)
 	else if (CollisionEnemy() == 3 && waslookingRight == false) speedx = 0;
 	else speedx = 16; // Change when have pathfinding*/
 
-	CollisionWithPlayer();
+	if (CheckCollisionRec(app->player->Bposition, position) == 1)
+	{
+		dead = true;
+		app->player->shoot = false;
+	}
 
 	currentAnim->Update();
 
@@ -188,21 +183,6 @@ bool WalkingEnemy::CleanUp()
 	LOG("Freeing walkingenemy");
 
 	return true;
-}
-
-int WalkingEnemy::CollisionWithPlayer()
-{
-	fPoint posMapPlayer[numnPoints];
-	fPoint posMapEnemy[numnPoints];
-
-	for (int i = 0; i < numnPoints; i++)
-	{
-		posMapPlayer[i] = app->map->WorldToMap(-app->player->position.x + (int)app->player->pointsFloorCollision[i][0], -app->player->position.y + (int)app->player->pointsFloorCollision[i][1]);
-		posMapEnemy[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
-		if (CheckCollisionRec(posMapPlayer[i], posMapEnemy[i]) == 1) LOG("Im working");
-	}
-
-	return false;
 }
 
 int WalkingEnemy::CollisionEnemy()
@@ -241,11 +221,13 @@ int WalkingEnemy::CheckCollision(fPoint positionMapEnemy)
 	return false;
 }
 
-int WalkingEnemy::CheckCollisionRec(fPoint positionMapPlayer, fPoint positionMapEnemy)
+int WalkingEnemy::CheckCollisionRec(fPoint positionMapBullet, fPoint positionMapEnemy)
 {
-	if ((positionMapPlayer.x < (positionMapEnemy.x )) && ((positionMapPlayer.x) > positionMapEnemy.x) &&
-		(positionMapPlayer.y < (positionMapEnemy.y)) && ((positionMapPlayer.y) > positionMapEnemy.x)) return 1; //Poner bien las distancias
+	if ((positionMapBullet.x < (positionMapEnemy.x + 52)) && ((positionMapBullet.x + 52) > positionMapEnemy.x) &&
+		(positionMapBullet.y < (positionMapEnemy.y + 64)) && ((positionMapBullet.y + 64) > positionMapEnemy.y)) return 1;
 
 
 	return false;
 }
+
+// NEED TO RESET VARIABLES Y GUARDAR TODO EN XML ARCHIVO

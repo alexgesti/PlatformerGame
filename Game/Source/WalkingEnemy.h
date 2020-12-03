@@ -34,7 +34,6 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	int CollisionWithPlayer();
 	int CollisionEnemy();
 	bool CollisionFloorEnemy();
 
@@ -52,6 +51,7 @@ public:
 	float speedy = 16;
 
 	fPoint position;
+	fPoint posCopy;
 
 	Animation* currentAnim;
 

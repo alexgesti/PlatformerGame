@@ -45,19 +45,24 @@ public:
 	bool Godmode = false;
 	bool dead = false;
 	bool LookingR = true;
+	bool WasLookingR = true;
 	bool top = false;
-	
+	bool shoot;
 
 	float speedx = 16;
 	float speedy = 16;
 	float maxJump = 0;
+	float ballspeed = 24;
+	float cooldown = 0;
 
 	//Player dimensions
 	int playerWH = 64;
 
 	fPoint position;
+	fPoint Bposition;
 
 	Animation* currentAnim;
+	Animation* BcurrentAnim;
 
 	Animation idleRAnim;
 	Animation jumpRAnim;
@@ -68,10 +73,14 @@ public:
 	Animation runLAnim;
 	Animation deadLAnim;
 
+	Animation BallN;
+	Animation BallS;
+
 	Colliders* playerCollider = nullptr;
 
 private:
 	SDL_Texture* spriteSheet = nullptr;
+	SDL_Texture* ball = nullptr;
 
 	static const int numnPoints = 4;
 	int pointsCollision[numnPoints][2] = { {0, 0}, {64, 0}, {0, 62}, {64, 62} };

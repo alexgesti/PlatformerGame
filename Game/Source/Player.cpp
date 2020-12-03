@@ -17,7 +17,7 @@ Player::Player() : Module()
 	name.Create("player");
 
 	//idle rigth animation
-	idleRAnim.PushBack({0, 0, 64, 64});
+	idleRAnim.PushBack({ 0, 0, 64, 64 });
 	idleRAnim.PushBack({ 64, 0, 64, 64 });
 	idleRAnim.PushBack({ 128, 0, 64, 64 });
 	idleRAnim.PushBack({ 192, 0, 64, 64 });
@@ -91,6 +91,12 @@ Player::Player() : Module()
 	deadLAnim.PushBack({ 512, 448, 64, 64 });
 	deadLAnim.loop = false;
 	deadLAnim.speed = 0.5f;
+
+	//Shoot NULL
+	BallN.PushBack({ 0, 0, 0, 0 });
+
+	//Shoot Real
+	BallS.PushBack({ 0, 0, 16, 16 });
 }
 
 // Destructor
@@ -111,10 +117,15 @@ bool Player::Start()
 {
 	//Load texture
 	spriteSheet = app->tex->Load("Assets/textures/herochar_spriteSheet.png");
+	ball = app->tex->Load("Assets/textures/shoot.png");
 	currentAnim = &idleRAnim;
 
 	position.x = -1544;
 	position.y = -1920;
+
+	BcurrentAnim = &BallN;
+	Bposition.x = position.x;
+	Bposition.y = position.y - 15;
 
 	return true;
 }
@@ -262,6 +273,37 @@ bool Player::Update(float dt)
 		else currentAnim = &jumpLAnim;
 	}
 
+	if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+	{
+		if (shoot == false && cooldown == 0)
+		{
+			shoot = true;
+			if (LookingR) WasLookingR = true;
+			else WasLookingR = false;
+		}
+	}
+
+	if (shoot == true && cooldown >= 20) shoot = false;
+
+	if (shoot == true)
+	{
+		BcurrentAnim = &BallS;
+
+		if (WasLookingR) Bposition.x -= ballspeed;
+		else Bposition.x += ballspeed;
+
+		cooldown++;
+	}
+	else
+	{
+		BcurrentAnim = &BallN;
+		Bposition.x = position.x;
+		Bposition.y = position.y - 15;
+
+		cooldown = 0;
+	}
+
+
 	currentAnim->Update();
 
 	return true;
@@ -274,6 +316,10 @@ bool Player::PostUpdate()
 
 	SDL_Rect rect = currentAnim->GetCurrentFrame();
 	app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
+
+	SDL_Rect rectB = BcurrentAnim->GetCurrentFrame();
+	app->render->DrawTexture(ball, -Bposition.x, -Bposition.y, &rectB); //Probar solo 1 shoot
+	
 
 	return ret;
 }
