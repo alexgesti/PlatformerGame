@@ -25,6 +25,7 @@
 // Constructor
 App::App(int argc, char* args[]) : argc(argc), args(args)
 {
+	PERF_START(ptimer);
 	frames = 0;
 
 	win = new Window();
@@ -62,6 +63,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 
 	// Render last to swap buffer
 	AddModule(render);
+
+
+	PERF_PEEK(ptimer);
 }
 
 // Destructor
@@ -105,6 +109,11 @@ bool App::Awake()
 		// L01: DONE 4: Read the title from the config file
 		title.Create(configApp.child("title").child_value());
 		organization.Create(configApp.child("organization").child_value());
+
+		// L08: DONE 1: Read from config file your framerate cap
+		float framcap = configApp.attribute("framerate_cap").as_float();
+
+		cappedMs = configApp.attribute("framerate_cap").as_uint();
 	}
 
 	if (ret == true)
@@ -181,6 +190,13 @@ pugi::xml_node App::LoadConfig(pugi::xml_document& configFile) const
 // ---------------------------------------------
 void App::PrepareUpdate()
 {
+	frameCount++;
+	lastSecFrameCount++;
+
+	// L08: DONE 4: Calculate the dt: differential time since last frame
+	dt = frameTime.ReadSec();
+	frameTime.Start();
+	delayTimer.Start();
 }
 
 // ---------------------------------------------
@@ -189,6 +205,14 @@ void App::FinishUpdate()
 	// L02: DONE 1: This is a good place to call Load / Save methods
 	if (loadGameRequested == true) LoadGame();
 	if (saveGameRequested == true) SaveGame();
+    
+	FramerateLogic();
+
+	static char title[256];
+	sprintf_s(title, 256, "Platformer Game (The Crossing) (FPS: %i / Av.FPS: %.2f / Last Frame Ms: %02u ms / Last sec frames: %i s / Last dt: %.3f / Play Time: %.3f / Frame Count: %I64u) / Map:%dx%d / Camera position:%dx%d",
+		prevLastSecFrameCount, averageFps, lastFrameMs, framesOnLastUpdate, dt, secondsSinceStartup, frameCount, app->map->data.width, app->map->data.height, app->render->camera.x, app->render->camera.y);
+
+	app->win->SetTitle(title);
 }
 
 // Call modules before each loop iteration
@@ -389,5 +413,24 @@ bool App::SaveGame() const
 	return ret;
 }
 
+void App::FramerateLogic()
+{
+	if (lastSecFrameTime.Read() > 1000)
+	{
+		lastSecFrameTime.Start();
+		prevLastSecFrameCount = lastSecFrameCount;
+		lastSecFrameCount = 0;
+	}
+
+	averageFps = float(frameCount) / startupTime.ReadSec();
+	secondsSinceStartup = startupTime.ReadSec();
+	lastFrameMs = frameTime.Read();
+
+	int delayTime = (1000 / cappedMs) - lastFrameMs;
+	if (delayTime > 0)
+	{
+		SDL_Delay((Uint32)delayTime);
+	}
+}
 
 

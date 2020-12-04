@@ -35,7 +35,9 @@ public:
 private:
 	SDL_Texture* SpriteLogo;
 
-	Uint8 alpha;
+	bool OnlyStart;
+
+	Uint8 alpha = 0;
 	float alphaCalc;
 
 	bool alphaFinished = false;

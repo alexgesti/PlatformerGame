@@ -55,10 +55,21 @@ bool SceneLogo::Update(float dt)
 		SDL_SetTextureAlphaMod(SpriteLogo, alpha);
 	}
 
-	// Update the alpha value positive
-	if (alpha < SDL_ALPHA_OPAQUE && alphaFinished == false)
+	if (OnlyStart == false)
 	{
-		alphaCalc += 2.5f * 0.16f;
+		Timer += dt;
+
+		if (Timer >= 5)
+		{
+			OnlyStart = true;
+			Timer = 0;
+		}
+	}
+
+	// Update the alpha value positive
+	if (alpha < SDL_ALPHA_OPAQUE && alphaFinished == false && OnlyStart == true)
+	{
+		alphaCalc += 100 * dt;
 		alpha = alphaCalc;
 	}
 
@@ -67,10 +78,10 @@ bool SceneLogo::Update(float dt)
 	{
 		alpha = SDL_ALPHA_OPAQUE;
 		alphaCalc = (float)SDL_ALPHA_OPAQUE;
-		Timer += 1 * 0.16f;
+		Timer += dt;
 	}
 
-	if (alphaFinished == false && Timer >= 5)
+	if (alphaFinished == false && Timer >= 5 && OnlyStart == true)
 	{
 		alphaFinished = true;
 		Timer = 0;
@@ -79,7 +90,7 @@ bool SceneLogo::Update(float dt)
 	// Update the alpha value negative
 	if (alphaFinished == true && alpha > 0)
 	{
-		alphaCalc -= 2.5f * 0.16f;
+		alphaCalc -= 100 * dt;
 		alpha = alphaCalc;
 	}
 
@@ -88,10 +99,10 @@ bool SceneLogo::Update(float dt)
 	{
 		alpha = 0;
 		alphaCalc = 0;
-		Timer += 1 * 0.16f;
+		Timer += dt;
 	}
 
-	if (alphaFinished == true && Timer >= 5)
+	if (alphaFinished == true && Timer >= 5 && OnlyStart == true)
 	{
 		app->scene->Reset();
 		app->modcontrol->currentscene = 1;

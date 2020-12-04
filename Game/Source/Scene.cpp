@@ -57,16 +57,6 @@ bool Scene::Update(float dt)
 	// Draw map
 	app->map->Draw();
 
-	// L03: DONE 7: Set the window title with map/tileset info
-	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Camera position:%d %d",
-				   app->map->data.width, app->map->data.height,
-				   app->map->data.tileWidth, app->map->data.tileHeight,
-				   app->map->data.tilesets.count(),
-				   app->render->camera.x,
-				   app->render->camera.y);
-
-	app->win->SetTitle(title.GetString());
-
 	return true;
 }
 
