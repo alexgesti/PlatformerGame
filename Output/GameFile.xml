@@ -6,7 +6,7 @@
 	<audio />
 	<map />
 	<scene>
-		<Player x="-6584" y="-640" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Waslookingright="true" HasGravity="false" WasInGodMode="false" />
+		<Player x="-6520" y="-640" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Waslookingright="true" HasGravity="false" WasInGodMode="false" />
 	</scene>
 	<sceneintro />
 	<sceneLogo />
@@ -17,6 +17,6 @@
 	<:anonymous />
 	<pathfinding />
 	<renderer>
-		<camera x="-5960" y="-312" />
+		<camera x="-5912" y="-312" />
 	</renderer>
 </save_state>

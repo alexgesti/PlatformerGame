@@ -13,6 +13,13 @@
 Scene::Scene() : Module()
 {
 	name.Create("scene");
+
+	//pillar animation
+	pillar.PushBack({ 0, 0, 48, 80 });
+	pillar.PushBack({ 48, 0, 48, 80 });
+	pillar.PushBack({ 96, 0, 48, 80 });
+	pillar.loop = true;
+	pillar.speed = 0.25f;
 }
 
 // Destructor
@@ -33,8 +40,10 @@ bool Scene::Start()
 {
 	// L03: DONE: Load map
 	app->map->Load("mapa.tmx");
+	spritePillar = app->tex->Load("Assets/textures/save_point_saving-x64.png");
 
 	NotSceneActived = false;
+	PillarAnim = &pillar;
 
 	return true;
 }
@@ -57,6 +66,8 @@ bool Scene::Update(float dt)
 	// Draw map
 	app->map->Draw();
 
+	PillarAnim->Update();
+
 	return true;
 }
 
@@ -64,6 +75,11 @@ bool Scene::Update(float dt)
 bool Scene::PostUpdate()
 {
 	bool ret = true;
+
+	SDL_Rect rect = PillarAnim->GetCurrentFrame();
+	app->render->DrawTexture(spritePillar, 2057, 1905, &rect);
+	app->render->DrawTexture(spritePillar, 4552, 1008, &rect);
+	app->render->DrawTexture(spritePillar, 6472, 624, &rect);
 
 	return ret;
 }

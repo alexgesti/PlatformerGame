@@ -3,6 +3,8 @@
 
 #include "Module.h"
 
+#include "Animation.h"
+
 struct SDL_Texture;
 
 class Scene : public Module
@@ -39,8 +41,14 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+public:
+	Animation* PillarAnim;
+
+	Animation pillar;
+
 private:
 	SDL_Texture* img;
+	SDL_Texture* spritePillar = nullptr;
 
 	int camX;
 	int camY;
