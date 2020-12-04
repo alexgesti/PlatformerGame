@@ -8,6 +8,8 @@
 #include "Window.h"
 #include "FlyEnemy.h"
 #include "ModuleController.h"
+#include "Pathfinding.h"
+#include "Player.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -86,8 +88,6 @@ bool FlyEnemy::Update(float dt)
 {
 	//gravity = true;
 
-	fPoint BeforePos = position;
-
 	//Mov left
 	if (app->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
 		/*&& fall == false
@@ -129,6 +129,8 @@ bool FlyEnemy::Update(float dt)
 	}
 
 	//if (CollisionEnemy({ position.x, position.y - speedy })) position = BeforePos;
+
+	app->pathfinding->CreatePath(position, app->player->position);
 
 	currentAnim->Update();
 

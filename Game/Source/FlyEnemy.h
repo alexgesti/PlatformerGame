@@ -48,7 +48,7 @@ public:
 	//Enemy dimensions
 	int enemyWH = 48;
 
-	fPoint position;
+	iPoint position;
 
 	Animation* currentAnim;
 
