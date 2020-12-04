@@ -130,7 +130,7 @@ bool FlyEnemy::Update(float dt)
 
 	//if (CollisionEnemy({ position.x, position.y - speedy })) position = BeforePos;
 
-	app->pathfinding->CreatePath(position, app->player->position);
+	//app->pathfinding->CreatePath(position, app->player->position);
 
 	currentAnim->Update();
 

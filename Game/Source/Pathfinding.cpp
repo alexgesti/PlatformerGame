@@ -193,13 +193,14 @@ int PathFinding::CreatePath(iPoint& origin, iPoint& destination)
 			// Use the Pathnode::parent and Flip() the path when you are finish
 			if (currentCell->pos == destination) {
 				lastPath.Clear();
-				for (const PathNode* pathIterator = currentCell; pathIterator != nullptr && pathIterator->pos != origin; pathIterator = pathIterator->PathNode::parent) {
+				for (const PathNode* pathIterator = currentCell; pathIterator != nullptr && pathIterator->pos != origin; pathIterator = pathIterator->PathNode::parent) 
+				{
 					lastPath.PushBack(pathIterator->pos);
 				}
 				lastPath.Flip();
-				return lastPath.Count();
+				return lastPath.Count(); // Cantidad de tiles que hay hasta el objetivo. Porque se devuelve?
 			}
-
+			// Parte rara. 
 			// L12b: TODO 5: Fill a list of all adjancent nodes
 			PathList adjacentNodes;
 			currentCell->FindWalkableAdjacents(adjacentNodes);
