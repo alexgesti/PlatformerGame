@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "WalkingEnemy.h"
 #include "FlyEnemy.h"
+#include "Audio.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -21,7 +22,19 @@ Scene::Scene() : Module()
 	pillar.PushBack({ 48, 0, 48, 80 });
 	pillar.PushBack({ 96, 0, 48, 80 });
 	pillar.loop = true;
-	pillar.speed = 0.25f;
+	pillar.speed = 0.15f;
+
+	//Orb
+	obrN.PushBack({ 0, 32, 32, 32 });
+
+	obrOb.PushBack({ 0, 0, 32, 32 });
+	obrOb.PushBack({ 32, 0, 32, 32 });
+	obrOb.PushBack({ 64, 0, 32, 32 });
+	obrOb.PushBack({ 96, 0, 32, 32 });
+	obrOb.PushBack({ 128, 0, 32, 32 });
+	obrOb.PushBack({ 32, 32, 32, 32 });
+	obrOb.loop = false;
+	obrOb.speed = 0.1f;
 }
 
 // Destructor
@@ -44,9 +57,14 @@ bool Scene::Start()
 	app->map->Load("mapa.tmx");
 	spritePillar = app->tex->Load("Assets/textures/save_point_saving-x64.png");
 	lifePlayer = app->tex->Load("Assets/textures/lifLife_X64.png");
-
+	spriteorb = app->tex->Load("Assets/textures/orb.png");
+    checkpointSound = app->audio->LoadFx("Assets/audio/sound/checkPoint.wav");
 	NotSceneActived = false;
 	PillarAnim = &pillar;
+	CurrentAnimOrb = &obrN;
+
+	Orbposition.x = 3150;
+	Orbposition.y = 1175;
 
 	return true;
 }
@@ -66,10 +84,23 @@ bool Scene::Update(float dt)
 		app->render->camera.y = app->player->position.y + ((app->render->camera.h / 2) - app->player->playerWH / 2);
 	}
 
+	if (CheckCollisionRec(app->player->position, Orbposition) == true)
+	{
+		CurrentAnimOrb = &obrOb;
+	}
+
+	if (obrOb.FinishedAlready)
+	{
+		Orbposition.x = 0;
+		Orbposition.y = 0;
+	}
+
 	// Draw map
 	app->map->Draw();
 
-	PillarAnim->Update();
+	if (CheckPointActive) PillarAnim->Update();
+
+	CurrentAnimOrb->Update();
 
 	return true;
 }
@@ -89,6 +120,9 @@ bool Scene::PostUpdate()
 		app->render->DrawTexture(lifePlayer, -app->render->camera.x + (64*i), -app->render->camera.y);
 	}
 
+	SDL_Rect orbrect = CurrentAnimOrb->GetCurrentFrame();
+	app->render->DrawTexture(spriteorb, Orbposition.x, Orbposition.y, &orbrect);
+	
 	return ret;
 }
 
@@ -183,6 +217,15 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	flyenemysave.append_attribute("FWaslookingright") = app->fenemy->waslookingRight;
 
 	return true;
+}
+
+bool Scene::CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapOrb)
+{
+	if ((-positionMapPlayer.x < (positionMapOrb.x + 52)) && ((-positionMapPlayer.x + 52) > positionMapOrb.x) &&
+		(-positionMapPlayer.y < (positionMapOrb.y + 64)) && ((-positionMapPlayer.y + 64) > positionMapOrb.y)) return true;
+
+
+	return false;
 }
 
 bool Scene::Reset()

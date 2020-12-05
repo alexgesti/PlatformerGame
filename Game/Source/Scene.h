@@ -35,6 +35,9 @@ public:
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&) const;
 
+	// CollisionOrb
+	bool CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapOrb);
+
 	//Called when reseting the level
 	bool Reset();
 
@@ -43,17 +46,30 @@ public:
 
 public:
 	Animation* PillarAnim;
+	Animation* CurrentAnimOrb;
 
 	Animation pillar;
 
-private:
-	SDL_Texture* img = nullptr;
-	SDL_Texture* spritePillar = nullptr;
-	SDL_Texture* lifePlayer = nullptr;
+	Animation obrN;
+	Animation obrOb;
 
+private:
+	SDL_Texture* img;
+	SDL_Texture* spritePillar;
+	SDL_Texture* lifePlayer;
+	SDL_Texture* spriteorb;
+	int camX;
+	int camY;
 public:
 
 	bool NotSceneActived;
+	bool CheckPointActive; 
+	bool SoundOneTime;
+
+	iPoint Orbposition;
+
+	// Sound
+	uint checkpointSound;
 
 };
 

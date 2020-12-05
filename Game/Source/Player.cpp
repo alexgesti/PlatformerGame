@@ -7,6 +7,8 @@
 #include "Render.h"
 #include "Window.h"
 #include "Player.h"
+#include "Scene.h"
+#include "Audio.h"
 #include "ModuleController.h"
 
 #include "Defs.h"
@@ -245,10 +247,24 @@ bool Player::Update(float dt)
 		if (CollisionPlayer() == 1) {
 			app->SaveGameRequest("GameFile.xml");
 
+			app->scene->CheckPointActive = true;
+
+			if (app->scene->SoundOneTime == false)
+			{
+				app->audio->PlayFx(app->scene->checkpointSound);
+				app->scene->SoundOneTime = true;
+			}
+
 			if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) position = { -2057, -1921 };
 			if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) position = { -4552, -1024 };
 			if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) position = { -6472, -640 };
 
+		}
+		else
+		{
+			app->scene->CheckPointActive = false;
+			app->scene->SoundOneTime = false;
+			app->scene->pillar.Reset();
 		}
 	}
 

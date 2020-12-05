@@ -157,7 +157,7 @@ bool FlyEnemy::CleanUp()
 int FlyEnemy::CheckCollisionRec(iPoint positionMapBullet, iPoint positionMapEnemy)
 {
 	if ((positionMapBullet.x < (positionMapEnemy.x + 52)) && ((positionMapBullet.x + 52) > positionMapEnemy.x) &&
-		(positionMapBullet.y < (positionMapEnemy.y + 64)) && ((positionMapBullet.y + 64) > positionMapEnemy.y)) return 1;
+		(positionMapBullet.y < (positionMapEnemy.y + 47)) && ((positionMapBullet.y + 47) > positionMapEnemy.y)) return 1;
 
 
 	return false;
