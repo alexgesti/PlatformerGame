@@ -148,7 +148,8 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = false;		// SceneIntro
 		app->sceneLogo->active = true;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
-		
+
+		app->render->SetBackgroundColor(black);	
 
 		break;
 
@@ -177,6 +178,8 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = false;		// SceneIntro
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
+
+		app->render->SetBackgroundColor(blue);
 		
 
 		break;

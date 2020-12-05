@@ -39,6 +39,8 @@ private:
 
 	List<Module*> modules;
 
+	SDL_Color blue = { 153, 225, 204 };
+	SDL_Color black = { 0, 0, 0 };
 };
 
 #endif // __MODULECONTROLLER_H__
