@@ -160,10 +160,21 @@ bool WalkingEnemy::Update(float dt)
 	else if (CollisionEnemy() == 3 && waslookingRight == false) speedx = 0;
 	else speedx = 16; // Change when have pathfinding*/
 
-	if (CheckCollisionRec(app->player->Bposition, position) == 1 && app->player->shoot == true && dead == false)
+	if (CheckCollisionRec(app->player->Bposition, position) && app->player->shoot == true && dead == false)
 	{
 		dead = true;
 		app->player->shoot = false;
+	}
+
+	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false)
+	{
+		hitingPlayer = true;
+		app->player->life--;
+	}
+
+	if (!CheckCollisionRec(app->player->position, position) && dead == false)
+	{
+		hitingPlayer = false;
 	}
 
 	//app->pathfinding->CreatePath(position, app->player->position);
@@ -226,10 +237,10 @@ int WalkingEnemy::CheckCollision(iPoint positionMapEnemy)
 	return false;
 }
 
-int WalkingEnemy::CheckCollisionRec(iPoint positionMapBullet, iPoint positionMapEnemy)
+bool WalkingEnemy::CheckCollisionRec(iPoint positionMapBullet, iPoint positionMapEnemy)
 {
 	if ((positionMapBullet.x < (positionMapEnemy.x + 52)) && ((positionMapBullet.x + 52) > positionMapEnemy.x) &&
-		(positionMapBullet.y < (positionMapEnemy.y + 64)) && ((positionMapBullet.y + 64) > positionMapEnemy.y)) return 1;
+		(positionMapBullet.y < (positionMapEnemy.y + 64)) && ((positionMapBullet.y + 64) > positionMapEnemy.y)) return true;
 
 
 	return false;

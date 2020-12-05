@@ -124,6 +124,7 @@ bool ModuleController::Update(float dt)
 				app->player->Godmode = false;
 	}
 
+	if (app->player->life <= 0) currentscene = 3;
 
 	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN) currentscene = 0;
 	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN) currentscene = 1;
@@ -180,7 +181,6 @@ bool ModuleController::Update(float dt)
 		app->sceneLose->active = false;			// SceneLose
 
 		app->render->SetBackgroundColor(blue);
-		
 
 		break;
 
@@ -195,7 +195,6 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = false;		// SceneIntro
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = true;			// SceneLose
-
 
 		break;
 

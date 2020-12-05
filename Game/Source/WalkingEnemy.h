@@ -39,7 +39,7 @@ public:
 	bool CollisionFloorEnemy();
 
 	int CheckCollision(iPoint positionMapEnemy);
-	int CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapEnemy);
+	bool CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapEnemy);
 
 public:
 	bool gravity = false;
@@ -47,6 +47,7 @@ public:
 	bool waslookingRight = true;
 	bool fall = false;
 	bool IsDead = false;
+	bool hitingPlayer = false;
 
 	float speedx = 16;
 	float speedy = 16;
