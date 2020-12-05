@@ -6,7 +6,7 @@
 	<audio />
 	<map />
 	<scene>
-		<Player x="-2114" y="-1920" Ballx="-2114" Bally="-1935" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Lookingright="true" Waslookingright="true" WasTop="false" WasShooting="false" maxJump="0" Cooldown="0" Waslookingright="true" HasGravity="false" WasInGodMode="false" PlayerLifes="3" />
+		<Player x="-2110" y="-1920" Ballx="-2110" Bally="-1935" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Lookingright="true" Waslookingright="true" WasTop="false" WasShooting="false" maxJump="0" Cooldown="0" Waslookingright="true" HasGravity="false" WasInGodMode="false" PlayerLifes="3" />
 		<Mushroom Wx="-1470" Wy="-1920" WWasdead="false" WIsWasdead="false" WFinishedDeadRAnim="false" WFinishedDeadLAnim="false" WWaslookingright="true" WWasFalling="false" WHasGravity="false" />
 		<Bat Fx="-1430" Fy="-1920" FWasdead="false" FIsWasdead="false" FFinishedDeadRAnim="false" FFinishedDeadLAnim="false" FWaslookingright="true" />
 	</scene>
@@ -19,6 +19,6 @@
 	<:anonymous />
 	<pathfinding />
 	<renderer>
-		<camera x="-1487" y="-1592" />
+		<camera x="-1485" y="-1592" />
 	</renderer>
 </save_state>

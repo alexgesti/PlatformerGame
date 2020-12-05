@@ -93,6 +93,7 @@ bool Scene::Update(float dt)
 	if (CheckCollisionRec(app->player->position, PSposition) == true)
 	{
 		PSposition = { 0, 0 };
+		app->player->life++;
 	}
 
 	if (obrOb.FinishedAlready)
