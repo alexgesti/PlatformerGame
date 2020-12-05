@@ -43,8 +43,8 @@ public:
 	bool IsDead = false;
 	bool hitingPlayer = false;
 
-	float speedx = 16;
-	float speedy = 16;
+	float speedx = 8;
+	float speedy = 2;
 
 	iPoint posCopy;
 	iPoint position;
@@ -62,7 +62,8 @@ private:
 	SDL_Texture* spriteSheet = nullptr;
 
 	static const int numnPoints = 4;
-	int pointsCollision[numnPoints][2] = { {1, 0}, {47, 0}, {0, 47}, {47, 47} }; // Change
+	int pointsCollision[numnPoints][2] = { {0, 0}, {32, 0}, {0, 28}, {32, 28} };
+	int detectdistance = 192;
 };
 
 #endif // __SCENE_H__

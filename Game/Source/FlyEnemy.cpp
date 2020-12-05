@@ -71,8 +71,8 @@ bool FlyEnemy::Start()
 	spriteSheet = app->tex->Load("Assets/textures/flyenemy_spritesheet.png");
 	currentAnim = &runRAnim;
 
-	position.x = -1430;
-	position.y = -1920;
+	position.x = -4928;
+	position.y = -1024;
 
 	posCopy = position;
 
@@ -88,12 +88,42 @@ bool FlyEnemy::PreUpdate()
 // Called each loop iteration
 bool FlyEnemy::Update(float dt)
 {
+	//Mov left
+	if (((app->player->position.y <= position.y + detectdistance 
+		&& app->player->position.y > position.y)
+		|| (app->player->position.y >= position.y - detectdistance
+		&& app->player->position.y < position.y)
+		|| app->player->position.y == position.y)
+		&& app->player->position.x >= position.x
+		&& dead == false
+		&& app->player->Godmode == false)
+	{
+		currentAnim = &runLAnim;
+		position.x += speedx;
+		waslookingRight = false;
+
+		if (app->player->position.y == position.y);
+		if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
+		if (app->player->position.y >= position.y - detectdistance && app->player->position.y < position.y) position.y -= speedy;
+	}
+
 	//Mov right
-	if (dead == false)
+	if (((app->player->position.y <= position.y + detectdistance
+		&& app->player->position.y > position.y)
+		|| (app->player->position.y >= position.y - detectdistance
+			&& app->player->position.y < position.y)
+		|| app->player->position.y == position.y)
+		&& app->player->position.x <= position.x
+		&& dead == false
+		&& app->player->Godmode == false)
 	{
 		currentAnim = &runRAnim;
-
+		position.x -= speedx;
 		waslookingRight = true;
+
+		if (app->player->position.y == position.y);
+		if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
+		if (app->player->position.y >= position.y - detectdistance && app->player->position.y < position.y) position.y -= speedy;
 	}
 
 	//Die

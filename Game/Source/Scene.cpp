@@ -165,8 +165,6 @@ bool Scene::LoadState(pugi::xml_node& data)
 	app->wenemy->deadLAnim.FinishedAlready = data.child("Mushroom").attribute("WFinishedDeadLAnim").as_bool();
 	app->wenemy->waslookingRight = data.child("Mushroom").attribute("WWaslookingright").as_bool();
 	app->wenemy->gravity = data.child("Mushroom").attribute("WHasGravity").as_bool();
-	app->wenemy->fall = data.child("Mushroom").attribute("WWasFalling").as_bool();
-	app->wenemy->gravity = data.child("Mushroom").attribute("WHasGravity").as_bool();
 
 	// Bat
 	app->fenemy->position.x = data.child("Bat").attribute("Fx").as_int();
@@ -213,7 +211,6 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	walkenemysave.append_attribute("WFinishedDeadRAnim") = app->wenemy->deadRAnim.FinishedAlready;
 	walkenemysave.append_attribute("WFinishedDeadLAnim") = app->wenemy->deadLAnim.FinishedAlready;
 	walkenemysave.append_attribute("WWaslookingright") = app->wenemy->waslookingRight;
-	walkenemysave.append_attribute("WWasFalling") = app->wenemy->fall;
 	walkenemysave.append_attribute("WHasGravity") = app->wenemy->gravity;
 
 	flyenemysave.append_attribute("Fx") = app->fenemy->position.x;

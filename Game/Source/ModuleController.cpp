@@ -124,8 +124,6 @@ bool ModuleController::Update(float dt)
 				app->player->Godmode = false;
 	}
 
-	if (app->player->life <= 0) currentscene = 3;
-
 	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN) currentscene = 0;
 	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN) currentscene = 1;
 	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
@@ -136,6 +134,8 @@ bool ModuleController::Update(float dt)
 	}
 	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentscene = 3;
 
+	if (app->player->life <= 0 && (app->player->deadLAnim.HasFinished() || app->player->deadRAnim.HasFinished())) currentscene = 3;
+	
 	switch (currentscene)
 	{
 	case 0:	//Logo

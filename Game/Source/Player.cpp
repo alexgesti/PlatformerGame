@@ -143,7 +143,7 @@ bool Player::Update(float dt)
 	if (Godmode == false)
 	{
 		//Gravity
-		if (gravity == true)
+		if (gravity == true && dead == false)
 		{
 			position.y -= speedy * dt;
 
@@ -211,10 +211,10 @@ bool Player::Update(float dt)
 			else currentAnim = &jumpLAnim;
 		}
 
-		//Die tester
-		if (app->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
+		//Die
+		if (life <= 0)
 		{
-			dead = !dead;
+			dead = true;
 
 			if (LookingR) currentAnim = &deadRAnim;
 			else currentAnim = &deadLAnim;
@@ -284,7 +284,7 @@ bool Player::Update(float dt)
 		gravity = false;
 		jump = false;
 		top = false;
-		speedx = 16;
+		speedx = 8;
 
 		//Mov left
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
@@ -380,7 +380,7 @@ int Player::CollisionPlayer()
 	for (int i = 0; i < numnPoints; i++)
 	{
 		posMapPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
-		if (CheckCollision(posMapPlayer[i]) == 2) app->modcontrol->currentscene = 3;
+		if (CheckCollision(posMapPlayer[i]) == 2) life = 0;
 		if (CheckCollision(posMapPlayer[i]) == 3) return 1;
 	}
 	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1) return 2;

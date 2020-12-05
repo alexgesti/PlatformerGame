@@ -45,12 +45,11 @@ public:
 	bool gravity = false;
 	bool dead = false;
 	bool waslookingRight = true;
-	bool fall = false;
 	bool IsDead = false;
 	bool hitingPlayer = false;
 
-	float speedx = 16;
-	float speedy = 16;
+	float speedx = 4;
+	float speedy = 4;
 
 	iPoint position;
 	iPoint posCopy;
@@ -60,10 +59,12 @@ public:
 	Animation fallRAnim;
 	Animation runRAnim;
 	Animation deadRAnim;
+	Animation idleRAnim;
 
 	Animation fallLAnim;
 	Animation runLAnim;
 	Animation deadLAnim;
+	Animation idleLAnim;
 
 	Colliders* enemyCollider = nullptr;
 

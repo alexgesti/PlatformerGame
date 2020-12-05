@@ -69,6 +69,16 @@ WalkingEnemy::WalkingEnemy() : Module()
 	deadLAnim.PushBack({ 320, 192, 64, 64 });
 	deadLAnim.loop = false;
 	deadLAnim.speed = 0.12f;
+
+	idleRAnim.PushBack({ 64, 0, 64, 64 });
+	idleRAnim.PushBack({ 0, 0, 64, 64 });
+	idleLAnim.loop = true;
+	idleLAnim.speed = 0.05f;
+
+	idleLAnim.PushBack({ 384, 128, 64, 64 });
+	idleLAnim.PushBack({ 448, 128, 64, 64 });
+	idleRAnim.loop = true;
+	idleRAnim.speed = 0.05f;
 }
 
 // Destructor
@@ -91,8 +101,8 @@ bool WalkingEnemy::Start()
 	spriteSheet = app->tex->Load("Assets/textures/enemy_spritesheet.png");
 	currentAnim = &runRAnim;
 
-	position.x = -1470;
-	position.y = -1920;
+	position.x = -3456;
+	position.y = -1664;
 
 	posCopy = position;
 
@@ -113,24 +123,39 @@ bool WalkingEnemy::Update(float dt)
 	{
 		position.y -= speedy;
 
-		if (waslookingRight) currentAnim = &fallRAnim;
-		else currentAnim = &fallLAnim;
+		/*if (waslookingRight) currentAnim = &fallRAnim;
+		else currentAnim = &fallLAnim;*/
+	}
+
+	if (waslookingRight == true)
+	{
+		currentAnim = &idleRAnim;
+	}
+	if (waslookingRight == false)
+	{
+		currentAnim = &idleLAnim;
+	}
+
+	//Mov right
+	if (app->player->position.y == position.y 
+		&& app->player->position.x >= position.x 
+		&& dead == false
+		&& app->player->Godmode == false)
+	{
+		currentAnim = &runRAnim;
+		position.x += speedx;
+		waslookingRight = true;
 	}
 
 	//Mov left
-	/*if (fall == false && dead == false)
+	else if (app->player->position.y == position.y
+		&& app->player->position.x <= position.x
+		&& dead == false
+		&& app->player->Godmode == false)
 	{
 		currentAnim = &runLAnim;
-
+		position.x -= speedx;
 		waslookingRight = false;
-	}*/
-
-	//Mov right
-	if (fall == false && dead == false)
-	{
-		currentAnim = &runRAnim;
-
-		waslookingRight = true;
 	}
 
 	//Die tester
