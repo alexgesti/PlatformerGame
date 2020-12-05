@@ -47,11 +47,9 @@ public:
 	Animation pillar;
 
 private:
-	SDL_Texture* img;
+	SDL_Texture* img = nullptr;
 	SDL_Texture* spritePillar = nullptr;
-
-	int camX;
-	int camY;
+	SDL_Texture* lifePlayer = nullptr;
 
 public:
 

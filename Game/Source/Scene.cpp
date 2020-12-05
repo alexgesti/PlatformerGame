@@ -43,6 +43,7 @@ bool Scene::Start()
 	// L03: DONE: Load map
 	app->map->Load("mapa.tmx");
 	spritePillar = app->tex->Load("Assets/textures/save_point_saving-x64.png");
+	lifePlayer = app->tex->Load("Assets/textures/lifLife_X64.png");
 
 	NotSceneActived = false;
 	PillarAnim = &pillar;
@@ -61,7 +62,7 @@ bool Scene::Update(float dt)
 {
 	if (NotSceneActived)
 	{
-		app->render->camera.x = app->player->position.x + ((app->render->camera.w / 2) - app->player->playerWH / 2);
+		app->render->camera.x = app->player->position.x + ((app->render->camera.w / 2) - app->player->playerWH / 2);		 
 		app->render->camera.y = app->player->position.y + ((app->render->camera.h / 2) - app->player->playerWH / 2);
 	}
 
@@ -82,6 +83,11 @@ bool Scene::PostUpdate()
 	app->render->DrawTexture(spritePillar, 2057, 1905, &rect);
 	app->render->DrawTexture(spritePillar, 4552, 1008, &rect);
 	app->render->DrawTexture(spritePillar, 6472, 624, &rect);
+
+	for (int i = 0; i < app->player->life; i++)
+	{
+		app->render->DrawTexture(lifePlayer, -app->render->camera.x + (64*i), -app->render->camera.y);
+	}
 
 	return ret;
 }

@@ -57,6 +57,7 @@ public:
 
 	//Player dimensions
 	int playerWH = 64;
+	int life = 3;
 
 	iPoint position;
 	iPoint Bposition;
