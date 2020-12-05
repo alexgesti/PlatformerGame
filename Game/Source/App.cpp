@@ -110,9 +110,6 @@ bool App::Awake()
 		title.Create(configApp.child("title").child_value());
 		organization.Create(configApp.child("organization").child_value());
 
-		// L08: DONE 1: Read from config file your framerate cap
-		float framcap = configApp.attribute("framerate_cap").as_float();
-
 		cappedMs = configApp.attribute("framerate_cap").as_uint();
 	}
 
@@ -209,8 +206,8 @@ void App::FinishUpdate()
 	FramerateLogic();
 
 	static char title[256];
-	sprintf_s(title, 256, "Platformer Game (The Crossing) (FPS: %i / Av.FPS: %.2f / Last Frame Ms: %02u ms / Last sec frames: %i s / Last dt: %.3f / Play Time: %.3f / Frame Count: %I64u) / Map:%dx%d / Camera position:%dx%d",
-		prevLastSecFrameCount, averageFps, lastFrameMs, framesOnLastUpdate, dt, secondsSinceStartup, frameCount, app->map->data.width, app->map->data.height, app->render->camera.x, app->render->camera.y);
+	sprintf_s(title, 256, "Platformer Game (The Crossing) (FPS: %i / Av.FPS: %.2f / Last Frame Ms: %02u ms / Last dt: %.3f / Play Time: %.3f / Frame Count: %I64u / Vsync: %i / Map:%dx%d / Camera position:%d %d)",
+		prevLastSecFrameCount, averageFps, lastFrameMs, dt, secondsSinceStartup, frameCount, (int)app->render->Vsync ,app->map->data.width, app->map->data.height, app->render->camera.x, app->render->camera.y);
 
 	app->win->SetTitle(title);
 }

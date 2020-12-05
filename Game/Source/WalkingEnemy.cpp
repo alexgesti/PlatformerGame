@@ -143,6 +143,10 @@ bool WalkingEnemy::Update(float dt)
 		{
 			position.x = 0;
 			position.y = 0;
+			deadRAnim.Reset();
+			deadLAnim.Reset();
+			gravity = false;
+			IsDead = true;
 		}
 	}
 
@@ -162,9 +166,9 @@ bool WalkingEnemy::Update(float dt)
 		app->player->shoot = false;
 	}
 
-	app->pathfinding->CreatePath(position, app->player->position);
+	//app->pathfinding->CreatePath(position, app->player->position);
 
-	currentAnim->Update();
+	if (IsDead == false) currentAnim->Update();
 
 	return true;
 }
@@ -175,7 +179,7 @@ bool WalkingEnemy::PostUpdate()
 	bool ret = true;
 
 	SDL_Rect rect = currentAnim->GetCurrentFrame();
-	if (dead == false) app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
+	if (IsDead == false) app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
 
 	return ret;
 }
@@ -195,7 +199,6 @@ int WalkingEnemy::CollisionEnemy()
 	for (int i = 0; i < numnPoints; i++)
 	{
 		posMapEnemy[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
-		//if (CheckCollision(posMapPlayer[i]) == 3) app->SaveGameRequest("GameFile.xml");
 	}
 	if (CheckCollision(posMapEnemy[numnPoints - 1]) == 1) return 2;
 	if (CheckCollision(posMapEnemy[numnPoints - 2]) == 1) return 3;
@@ -232,20 +235,3 @@ int WalkingEnemy::CheckCollisionRec(iPoint positionMapBullet, iPoint positionMap
 
 	return false;
 }
-
-bool WalkingEnemy::Reset() 
-{
-	gravity = false;
-	dead = false;
-	waslookingRight = true;
-	fall = false;
-	IsDead = false;
-
-	position = posCopy;
-
-	currentAnim = &runRAnim;
-
-	return true;
-}
-
-//  GUARDAR TODO EN XML ARCHIVO

@@ -39,7 +39,7 @@ FlyEnemy::FlyEnemy() : Module()
 	deadRAnim.PushBack({ 32, 0, 32, 32 });
 	deadRAnim.PushBack({ 0, 0, 32, 32 });
 	deadRAnim.loop = false;
-	deadRAnim.speed = 0.5f;
+	deadRAnim.speed = 0.25f;
 
 	//dead left animation
 	deadLAnim.PushBack({ 0, 64, 32, 32 });
@@ -48,7 +48,7 @@ FlyEnemy::FlyEnemy() : Module()
 	deadLAnim.PushBack({ 96, 64, 32, 32 });
 	deadLAnim.PushBack({ 128, 64, 32, 32 });
 	deadLAnim.loop = false;
-	deadLAnim.speed = 0.5f;
+	deadLAnim.speed = 0.25f;
 }
 
 // Destructor
@@ -74,6 +74,8 @@ bool FlyEnemy::Start()
 	position.x = -1430;
 	position.y = -1920;
 
+	posCopy = position;
+
 	return true;
 }
 
@@ -89,50 +91,46 @@ bool FlyEnemy::Update(float dt)
 	//gravity = true;
 
 	//Mov left
-	if (app->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN)
-		/*&& fall == false
-		&& dead == false)*/
+	/*if (dead == false)
 	{
-
-
 		currentAnim = &runLAnim;
 
 		waslookingRight = false;
-	}
+	}*/
 
 	//Mov right
-	if (app->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
-		/*&& fall == false
-		&& dead == false)*/
+	if (dead == false)
 	{
-
-
 		currentAnim = &runRAnim;
 
 		waslookingRight = true;
 	}
 
-	//Die tester
-	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
+	//Die
+	if (dead)
 	{
-		dead = !dead;
-
 		if (waslookingRight) currentAnim = &deadRAnim;
 		else currentAnim = &deadLAnim;
 
-		if (deadRAnim.FinishedAlready && dead == false
-			|| deadLAnim.FinishedAlready && dead == false)
+		if (deadRAnim.FinishedAlready || deadLAnim.FinishedAlready)
 		{
+			position.x = 0;
+			position.y = 0;
 			deadRAnim.Reset();
 			deadLAnim.Reset();
+			IsDead = true;
 		}
 	}
 
-	//if (CollisionEnemy({ position.x, position.y - speedy })) position = BeforePos;
+	if (CheckCollisionRec(app->player->Bposition, position) == 1 && app->player->shoot == true && dead == false)
+	{
+		dead = true;
+		app->player->shoot = false;
+	}
 
 	//app->pathfinding->CreatePath(position, app->player->position);
 
-	currentAnim->Update();
+	if (IsDead == false) currentAnim->Update();
 
 	return true;
 }
@@ -143,7 +141,7 @@ bool FlyEnemy::PostUpdate()
 	bool ret = true;
 
 	SDL_Rect rect = currentAnim->GetCurrentFrame();
-	app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
+	if (IsDead == false) app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
 
 	return ret;
 }
@@ -154,4 +152,13 @@ bool FlyEnemy::CleanUp()
 	LOG("Freeing flyingenemy");
 
 	return true;
+}
+
+int FlyEnemy::CheckCollisionRec(iPoint positionMapBullet, iPoint positionMapEnemy)
+{
+	if ((positionMapBullet.x < (positionMapEnemy.x + 52)) && ((positionMapBullet.x + 52) > positionMapEnemy.x) &&
+		(positionMapBullet.y < (positionMapEnemy.y + 64)) && ((positionMapBullet.y + 64) > positionMapEnemy.y)) return 1;
+
+
+	return false;
 }

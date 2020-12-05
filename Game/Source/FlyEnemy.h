@@ -34,20 +34,18 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	//bool CollisionEnemy(fPoint positionMapPlayer);
-
-	//bool CheckCollision(fPoint positionMapPlayer);
+	// Collision
+	int CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapEnemy);
 
 public:
 	bool dead = false;
 	bool waslookingRight = true;
+	bool IsDead = false;
 
-	float speedx = 15;
-	float speedy = 15;
+	float speedx = 16;
+	float speedy = 16;
 
-	//Enemy dimensions
-	int enemyWH = 48;
-
+	iPoint posCopy;
 	iPoint position;
 
 	Animation* currentAnim;

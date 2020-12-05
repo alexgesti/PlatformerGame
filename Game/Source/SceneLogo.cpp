@@ -69,7 +69,7 @@ bool SceneLogo::Update(float dt)
 	// Update the alpha value positive
 	if (alpha < SDL_ALPHA_OPAQUE && alphaFinished == false && OnlyStart == true)
 	{
-		alphaCalc += 100 * dt;
+		alphaCalc += 150 * dt;
 		alpha = alphaCalc;
 	}
 
@@ -90,7 +90,7 @@ bool SceneLogo::Update(float dt)
 	// Update the alpha value negative
 	if (alphaFinished == true && alpha > 0)
 	{
-		alphaCalc -= 100 * dt;
+		alphaCalc -= 150 * dt;
 		alpha = alphaCalc;
 	}
 

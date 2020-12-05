@@ -41,9 +41,6 @@ public:
 	int CheckCollision(iPoint positionMapEnemy);
 	int CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapEnemy);
 
-	// Reset
-	bool Reset();
-
 public:
 	bool gravity = false;
 	bool dead = false;

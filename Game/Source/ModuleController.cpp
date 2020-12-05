@@ -63,6 +63,8 @@ bool ModuleController::Awake(pugi::xml_node& config)
 
 	currentscene = 0;				// Current Scene
 	
+	app->SaveGameRequest("StartValues.xml");
+
 	return true;
 }
 
