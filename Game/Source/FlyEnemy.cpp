@@ -23,14 +23,14 @@ FlyEnemy::FlyEnemy() : Module()
 	runLAnim.PushBack({ 32, 96, 32, 32 });
 	runLAnim.PushBack({ 64, 96, 32, 32 });
 	runLAnim.loop = true;
-	runLAnim.speed = 0.5f;
+	runLAnim.speed = 0.15f;
 
 	//run rigth animation
 	runRAnim.PushBack({ 128, 32, 32, 32 });
 	runRAnim.PushBack({ 96, 32, 32, 32 });
 	runRAnim.PushBack({ 64, 32, 32, 32 });
 	runRAnim.loop = true;
-	runRAnim.speed = 0.5f;
+	runRAnim.speed = 0.15f;
 
 	//dead rigth animation
 	deadRAnim.PushBack({ 128, 0, 32, 32 });
@@ -39,7 +39,7 @@ FlyEnemy::FlyEnemy() : Module()
 	deadRAnim.PushBack({ 32, 0, 32, 32 });
 	deadRAnim.PushBack({ 0, 0, 32, 32 });
 	deadRAnim.loop = false;
-	deadRAnim.speed = 0.25f;
+	deadRAnim.speed = 0.12f;
 
 	//dead left animation
 	deadLAnim.PushBack({ 0, 64, 32, 32 });
@@ -48,7 +48,7 @@ FlyEnemy::FlyEnemy() : Module()
 	deadLAnim.PushBack({ 96, 64, 32, 32 });
 	deadLAnim.PushBack({ 128, 64, 32, 32 });
 	deadLAnim.loop = false;
-	deadLAnim.speed = 0.25f;
+	deadLAnim.speed = 0.12f;
 }
 
 // Destructor
@@ -88,16 +88,6 @@ bool FlyEnemy::PreUpdate()
 // Called each loop iteration
 bool FlyEnemy::Update(float dt)
 {
-	//gravity = true;
-
-	//Mov left
-	/*if (dead == false)
-	{
-		currentAnim = &runLAnim;
-
-		waslookingRight = false;
-	}*/
-
 	//Mov right
 	if (dead == false)
 	{
@@ -122,10 +112,21 @@ bool FlyEnemy::Update(float dt)
 		}
 	}
 
-	if (CheckCollisionRec(app->player->Bposition, position) == 1 && app->player->shoot == true && dead == false)
+	if (CheckCollisionRec(app->player->Bposition, position) && app->player->shoot == true && dead == false)
 	{
 		dead = true;
 		app->player->shoot = false;
+	}
+
+	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false)
+	{
+		hitingPlayer = true;
+		app->player->life--;
+	}
+
+	if (!CheckCollisionRec(app->player->position, position) && dead == false)
+	{
+		hitingPlayer = false;
 	}
 
 	//app->pathfinding->CreatePath(position, app->player->position);
@@ -154,7 +155,7 @@ bool FlyEnemy::CleanUp()
 	return true;
 }
 
-int FlyEnemy::CheckCollisionRec(iPoint positionMapBullet, iPoint positionMapEnemy)
+bool FlyEnemy::CheckCollisionRec(iPoint positionMapBullet, iPoint positionMapEnemy)
 {
 	if ((positionMapBullet.x < (positionMapEnemy.x + 52)) && ((positionMapBullet.x + 52) > positionMapEnemy.x) &&
 		(positionMapBullet.y < (positionMapEnemy.y + 47)) && ((positionMapBullet.y + 47) > positionMapEnemy.y)) return 1;

@@ -28,11 +28,11 @@ WalkingEnemy::WalkingEnemy() : Module()
 	runLAnim.PushBack({ 384, 128, 64, 64 });
 	runLAnim.PushBack({ 448, 128, 64, 64 });
 	runLAnim.loop = true;
-	runLAnim.speed = 0.5f;
+	runLAnim.speed = 0.15f;
 
 	//fall left animation
 	fallLAnim.PushBack({ 64, 128, 64, 64 });
-	fallLAnim.speed = 0.5f;
+	fallLAnim.speed = 0.15f;
 
 	//run rigth animation
 	runRAnim.PushBack({ 448, 0, 64, 64 });
@@ -44,11 +44,11 @@ WalkingEnemy::WalkingEnemy() : Module()
 	runRAnim.PushBack({ 64, 0, 64, 64 });
 	runRAnim.PushBack({ 0, 0, 64, 64 });
 	runRAnim.loop = true;
-	runRAnim.speed = 0.5f;
+	runRAnim.speed = 0.15f;
 
 	//fall rigth animation
 	fallRAnim.PushBack({ 384, 0, 64, 64 });
-	fallRAnim.speed = 0.5f;
+	fallRAnim.speed = 0.15f;
 
 	//dead rigth animation
 	deadRAnim.PushBack({ 448, 64, 64, 64 });
@@ -58,7 +58,7 @@ WalkingEnemy::WalkingEnemy() : Module()
 	deadRAnim.PushBack({ 192, 64, 64, 64 });
 	deadRAnim.PushBack({ 128, 64, 64, 64 });
 	deadRAnim.loop = false;
-	deadRAnim.speed = 0.25f;
+	deadRAnim.speed = 0.12f;
 
 	//dead left animation
 	deadLAnim.PushBack({ 0, 192, 64, 64 });
@@ -68,7 +68,7 @@ WalkingEnemy::WalkingEnemy() : Module()
 	deadLAnim.PushBack({ 256, 192, 64, 64 });
 	deadLAnim.PushBack({ 320, 192, 64, 64 });
 	deadLAnim.loop = false;
-	deadLAnim.speed = 0.25f;
+	deadLAnim.speed = 0.12f;
 }
 
 // Destructor
@@ -155,10 +155,6 @@ bool WalkingEnemy::Update(float dt)
 		gravity = false;
 	}
 	else gravity = true;
-
-	/*if (CollisionEnemy() == 2 && waslookingRight == true) speedx = 0;
-	else if (CollisionEnemy() == 3 && waslookingRight == false) speedx = 0;
-	else speedx = 16; // Change when have pathfinding*/
 
 	if (CheckCollisionRec(app->player->Bposition, position) && app->player->shoot == true && dead == false)
 	{

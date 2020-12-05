@@ -35,12 +35,13 @@ public:
 	bool CleanUp();
 
 	// Collision
-	int CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapEnemy);
+	bool CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapEnemy);
 
 public:
 	bool dead = false;
 	bool waslookingRight = true;
 	bool IsDead = false;
+	bool hitingPlayer = false;
 
 	float speedx = 16;
 	float speedy = 16;

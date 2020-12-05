@@ -22,7 +22,7 @@ Scene::Scene() : Module()
 	pillar.PushBack({ 48, 0, 48, 80 });
 	pillar.PushBack({ 96, 0, 48, 80 });
 	pillar.loop = true;
-	pillar.speed = 0.15f;
+	pillar.speed = 0.12f;
 
 	//Orb
 	obrN.PushBack({ 0, 32, 32, 32 });
