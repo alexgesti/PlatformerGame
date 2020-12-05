@@ -237,6 +237,15 @@ bool Player::Update(float dt)
 		if (CollisionPlayer() == 2 && LookingR == true) speedx = 0;
 		else if (CollisionPlayer() == 3 && LookingR == false) speedx = 0;
 		else speedx = 16;
+
+		if (CollisionPlayer() == 1) {
+			app->SaveGameRequest("GameFile.xml");
+
+			if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) position = { -2057, -1921 };
+			if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) position = { -4552, -1024 };
+			if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) position = { -6472, -640 };
+
+		}
 	}
 
 	//Godmode
@@ -340,7 +349,7 @@ int Player::CollisionPlayer()
 	{
 		posMapPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
 		if (CheckCollision(posMapPlayer[i]) == 2) app->modcontrol->currentscene = 3;
-		if (CheckCollision(posMapPlayer[i]) == 3) app->SaveGameRequest("GameFile.xml");
+		if (CheckCollision(posMapPlayer[i]) == 3) return 1;
 	}
 	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1) return 2;
 	if (CheckCollision(posMapPlayer[numnPoints - 2]) == 1) return 3;
@@ -363,13 +372,10 @@ bool Player::CollisionFloorPlayer()
 
 int Player::CheckCollision(iPoint positionMapPlayer)
 {
-	if (app->map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
-	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
-	if (app->map->data.layers.At(5)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
-	if (app->map->data.layers.At(6)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
-	if (app->map->data.layers.At(7)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 3;
+	if (app->map->data.layers.At(1)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
+	if (app->map->data.layers.At(2)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
+	if (app->map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
+	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 3;
 
 	return false;
 }
-
-// HACER RESET

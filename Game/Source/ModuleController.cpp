@@ -125,15 +125,15 @@ bool ModuleController::Update(float dt)
 	}
 
 
-	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentscene = 0;
-	if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) currentscene = 1;
-	if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN) currentscene = 0;
+	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN) currentscene = 1;
+	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
 	{
 		currentscene = 2;
 
 		app->scene->Reset();
 	}
-	if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) currentscene = 3;
+	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentscene = 3;
 
 	switch (currentscene)
 	{

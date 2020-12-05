@@ -221,8 +221,7 @@ bool WalkingEnemy::CollisionFloorEnemy()
 
 int WalkingEnemy::CheckCollision(iPoint positionMapEnemy)
 {
-	if (app->map->data.layers.At(3)->data->Get(positionMapEnemy.x, positionMapEnemy.y) != 0) return 1;
-	if (app->map->data.layers.At(4)->data->Get(positionMapEnemy.x, positionMapEnemy.y) != 0) return 1;
+	if (app->map->data.layers.At(1)->data->Get(positionMapEnemy.x, positionMapEnemy.y) != 0) return 1;
 
 	return false;
 }
