@@ -175,7 +175,7 @@ bool Player::Update(float dt)
 			LookingR = false;
 		}
 
-		LOG("%d", position.y);
+		LOG("%d", position.x);
 
 		//Mov right
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT
@@ -240,8 +240,18 @@ bool Player::Update(float dt)
 		}
 		if(!CollisionFloorPlayer()) jump = true;
 
-		if (CollisionPlayer() == 2 && LookingR == true) speedx = 0;
-		else if (CollisionPlayer() == 3 && LookingR == false) speedx = 0;
+		if (CollisionPlayer() == 2 && LookingR == true)
+		{
+			speedx = 0;
+			int auxpos = position.x / 8;
+			position.x = auxpos * 8;
+		}
+		else if (CollisionPlayer() == 3 && LookingR == false)
+		{
+			speedx = 0;
+			int auxpos = position.x / 8;
+			position.x = auxpos * 8;
+		}
 		else speedx = 8;
 
 		if (CollisionPlayer() == 1) {
@@ -273,6 +283,8 @@ bool Player::Update(float dt)
 	{
 		gravity = false;
 		jump = false;
+		top = false;
+		speedx = 16;
 
 		//Mov left
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)

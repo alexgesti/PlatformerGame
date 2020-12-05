@@ -57,6 +57,7 @@ private:
 	SDL_Texture* img;
 	SDL_Texture* spritePillar;
 	SDL_Texture* lifePlayer;
+	SDL_Texture* PSup;
 	SDL_Texture* spriteorb;
 	int camX;
 	int camY;
@@ -67,6 +68,7 @@ public:
 	bool SoundOneTime;
 
 	iPoint Orbposition;
+	iPoint PSposition;
 
 	// Sound
 	uint checkpointSound;

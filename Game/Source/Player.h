@@ -83,10 +83,10 @@ private:
 	SDL_Texture* ball = nullptr;
 
 	static const int numnPoints = 4;
-	int pointsCollision[numnPoints][2] = { {0, 0}, {64, 0}, {0, 63}, {64, 63} };
+	int pointsCollision[numnPoints][2] = { {-8, 0}, {64, 0}, {-8, 63}, {64, 63} };
 	
 public:
-	int pointsFloorCollision[numnPoints][2] = { {12, 64}, {52, 64}, {12, 64}, {52, 64} };
+	int pointsFloorCollision[numnPoints][2] = { {4, 64}, {52, 64}, {4, 64}, {52, 64} };
 };
 
 #endif // __SCENE_H__

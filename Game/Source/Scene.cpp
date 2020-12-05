@@ -57,14 +57,15 @@ bool Scene::Start()
 	app->map->Load("mapa.tmx");
 	spritePillar = app->tex->Load("Assets/textures/save_point_saving-x64.png");
 	lifePlayer = app->tex->Load("Assets/textures/lifLife_X64.png");
+	PSup = app->tex->Load("Assets/textures/lifLife_X32.png");
 	spriteorb = app->tex->Load("Assets/textures/orb.png");
     checkpointSound = app->audio->LoadFx("Assets/audio/sound/checkPoint.wav");
 	NotSceneActived = false;
 	PillarAnim = &pillar;
 	CurrentAnimOrb = &obrN;
 
-	Orbposition.x = 3150;
-	Orbposition.y = 1175;
+	Orbposition = { 3150, 1175 };
+	PSposition = { 3950, 1280 };
 
 	return true;
 }
@@ -89,10 +90,14 @@ bool Scene::Update(float dt)
 		CurrentAnimOrb = &obrOb;
 	}
 
+	if (CheckCollisionRec(app->player->position, PSposition) == true)
+	{
+		PSposition = { 0, 0 };
+	}
+
 	if (obrOb.FinishedAlready)
 	{
-		Orbposition.x = 0;
-		Orbposition.y = 0;
+		Orbposition = { 0, 0 };
 	}
 
 	// Draw map
@@ -122,6 +127,8 @@ bool Scene::PostUpdate()
 
 	SDL_Rect orbrect = CurrentAnimOrb->GetCurrentFrame();
 	app->render->DrawTexture(spriteorb, Orbposition.x, Orbposition.y, &orbrect);
+
+	app->render->DrawTexture(PSup, PSposition.x, PSposition.y);
 	
 	return ret;
 }
