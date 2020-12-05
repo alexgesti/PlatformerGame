@@ -22,14 +22,14 @@ Player::Player() : Module()
 	idleRAnim.PushBack({ 128, 0, 64, 64 });
 	idleRAnim.PushBack({ 192, 0, 64, 64 });
 	idleRAnim.loop = true;
-	idleRAnim.speed = 0.5f;
+	idleRAnim.speed = 0.15f;
 
 	//jump rigth animation
 	jumpRAnim.PushBack({ 0, 64, 64, 64 });
 	jumpRAnim.PushBack({ 64, 64, 64, 64 });
 	jumpRAnim.PushBack({ 128, 64, 64, 64 });
 	jumpRAnim.loop = true;
-	jumpRAnim.speed = 0.5f;
+	jumpRAnim.speed = 0.15f;
 
 	//run rigth animation
 	runRAnim.PushBack({ 0, 128, 64, 64 });
@@ -39,7 +39,7 @@ Player::Player() : Module()
 	runRAnim.PushBack({ 256, 128, 64, 64 });
 	runRAnim.PushBack({ 320, 128, 64, 64 });
 	runRAnim.loop = true;
-	runRAnim.speed = 0.5f;
+	runRAnim.speed = 0.15f;
 
 	//dead rigth animation
 	deadRAnim.PushBack({ 0, 192, 64, 64 });
@@ -52,7 +52,7 @@ Player::Player() : Module()
 	deadRAnim.PushBack({ 448, 192, 64, 64 });
 	deadRAnim.PushBack({ 512, 192, 64, 64 });
 	deadRAnim.loop = false;
-	deadRAnim.speed = 0.5f;
+	deadRAnim.speed = 0.15f;
 
 	//idle left animation
 	idleLAnim.PushBack({ 0, 256, 64, 64 });
@@ -60,14 +60,14 @@ Player::Player() : Module()
 	idleLAnim.PushBack({ 128, 256, 64, 64 });
 	idleLAnim.PushBack({ 192, 256, 64, 64 });
 	idleLAnim.loop = true;
-	idleLAnim.speed = 0.5f;
+	idleLAnim.speed = 0.15f;
 
 	//jump left animation
 	jumpLAnim.PushBack({ 0, 320, 64, 64 });
 	jumpLAnim.PushBack({ 64, 320, 64, 64 });
 	jumpLAnim.PushBack({ 128, 320, 64, 64 });
 	jumpLAnim.loop = true;
-	jumpLAnim.speed = 0.5f;
+	jumpLAnim.speed = 0.15f;
 
 	//run left animation
 	runLAnim.PushBack({ 0, 384, 64, 64 });
@@ -77,7 +77,7 @@ Player::Player() : Module()
 	runLAnim.PushBack({ 256, 384, 64, 64 });
 	runLAnim.PushBack({ 320, 384, 64, 64 });
 	runLAnim.loop = true;
-	runLAnim.speed = 0.5f;
+	runLAnim.speed = 0.15f;
 
 	//dead left animation
 	deadLAnim.PushBack({ 0, 448, 64, 64 });
@@ -90,13 +90,11 @@ Player::Player() : Module()
 	deadLAnim.PushBack({ 448, 448, 64, 64 });
 	deadLAnim.PushBack({ 512, 448, 64, 64 });
 	deadLAnim.loop = false;
-	deadLAnim.speed = 0.5f;
+	deadLAnim.speed = 0.15f;
 
-	//Shoot NULL
-	BallN.PushBack({ 0, 0, 0, 0 });
-
-	//Shoot Real
-	BallS.PushBack({ 0, 0, 16, 16 });
+	//Shoot
+	Ball.PushBack({ 0, 0, 0, 0 });
+	Ball.PushBack({ 0, 0, 16, 16 });
 }
 
 // Destructor
@@ -123,7 +121,7 @@ bool Player::Start()
 	position.x = -1544;
 	position.y = -1920;
 
-	BcurrentAnim = &BallN;
+	BcurrentAnim = &Ball;
 	Bposition.x = position.x;
 	Bposition.y = position.y - 15;
 
@@ -139,12 +137,13 @@ bool Player::PreUpdate()
 // Called each loop iteration
 bool Player::Update(float dt)
 {
+	dt *= 100;
 	if (Godmode == false)
 	{
 		//Gravity
 		if (gravity == true)
 		{
-			position.y -= speedy;
+			position.y -= speedy * dt;
 
 			if (LookingR) currentAnim = &jumpRAnim;
 			else currentAnim = &jumpLAnim;
@@ -167,19 +166,21 @@ bool Player::Update(float dt)
 			&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE
 			&& dead == false)
 		{
-			position.x += speedx;
+			position.x += speedx * dt;
 
 			if (gravity == false) currentAnim = &runLAnim;
 
 			LookingR = false;
 		}
 
+		LOG("%d", position.y);
+
 		//Mov right
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT
 			&& app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE 
 			&& dead == false)
 		{
-			position.x -= speedx;
+			position.x -= speedx * dt;
 
 			if(gravity == false) currentAnim = &runRAnim;
 
@@ -196,10 +197,10 @@ bool Player::Update(float dt)
 			gravity = false;
 			maxJump = position.y + 144;
 		}
-		if (top == true && position.y <= maxJump)
+		if (top == true && position.y < maxJump)
 		{
 			position.y += speedy;
-			if (position.y == maxJump) top = false;
+			if (position.y >= maxJump) top = false;
 		}
 
 		if (jump == true)
@@ -228,15 +229,18 @@ bool Player::Update(float dt)
 		{
 			gravity = false;
 			jump = false;
+			int auxpos = position.y / 16;
+			position.y = auxpos * 16;
 		}
 		else if (top == false)
 		{
 			gravity = true;
 		}
+		if(!CollisionFloorPlayer()) jump = true;
 
 		if (CollisionPlayer() == 2 && LookingR == true) speedx = 0;
 		else if (CollisionPlayer() == 3 && LookingR == false) speedx = 0;
-		else speedx = 16;
+		else speedx = 8;
 
 		if (CollisionPlayer() == 1) {
 			app->SaveGameRequest("GameFile.xml");
@@ -257,7 +261,7 @@ bool Player::Update(float dt)
 		//Mov left
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
 		{
-			position.x += speedx;
+			position.x += speedx * dt;
 
 			LookingR = false;
 		}
@@ -265,18 +269,18 @@ bool Player::Update(float dt)
 		//Mov right
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE)
 		{
-			position.x -= speedx;
+			position.x -= speedx * dt;
 
 			LookingR = true;
 		}
 
 		//Mov up
 		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
-			position.y += speedx;
+			position.y += speedx * dt;
 
 		//Mov down
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
-			position.y -= speedx;
+			position.y -= speedx * dt;
 
 		if (LookingR) currentAnim = &jumpRAnim;
 		else currentAnim = &jumpLAnim;
@@ -296,7 +300,7 @@ bool Player::Update(float dt)
 
 	if (shoot == true)
 	{
-		BcurrentAnim = &BallS;
+		Ball.GetSelectedFrame(1);
 
 		if (WasLookingR) Bposition.x -= ballspeed;
 		else Bposition.x += ballspeed;
@@ -305,7 +309,7 @@ bool Player::Update(float dt)
 	}
 	else
 	{
-		BcurrentAnim = &BallN;
+		Ball.GetSelectedFrame(2);
 		Bposition.x = position.x;
 		Bposition.y = position.y - 15;
 

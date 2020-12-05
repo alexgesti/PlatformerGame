@@ -111,7 +111,8 @@ bool Scene::LoadState(pugi::xml_node& data)
 	app->player->gravity = data.child("Player").attribute("HasGravity").as_bool();
 	app->player->maxJump = data.child("Player").attribute("maxJump").as_int();
 	app->player->cooldown = data.child("Player").attribute("Cooldown").as_int();
-	app->player->Godmode = data.child("Player").attribute("WasInGodMode").as_bool();
+	app->player->life = data.child("Player").attribute("PlayerLifes").as_int();
+	app->player->Godmode = data.child("Player").attribute("WasInGodMode").as_bool();	
 
 	// Mushroom
 	app->wenemy->position.x = data.child("Mushroom").attribute("Wx").as_int();
@@ -161,6 +162,7 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	playersave.append_attribute("Waslookingright") = app->player->LookingR;
 	playersave.append_attribute("HasGravity") = app->player->gravity;
 	playersave.append_attribute("WasInGodMode") = app->player->Godmode;
+	playersave.append_attribute("PlayerLifes") = app->player->life;
 
 	walkenemysave.append_attribute("Wx") = app->wenemy->position.x;
 	walkenemysave.append_attribute("Wy") = app->wenemy->position.y;

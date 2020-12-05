@@ -49,8 +49,8 @@ public:
 	bool top = false;
 	bool shoot;
 
-	float speedx = 16;
-	float speedy = 16;
+	float speedx = 8;
+	float speedy = 8;
 	float maxJump = 0;
 	float ballspeed = 24;
 	float cooldown = 0;
@@ -74,8 +74,7 @@ public:
 	Animation runLAnim;
 	Animation deadLAnim;
 
-	Animation BallN;
-	Animation BallS;
+	Animation Ball;
 
 	Colliders* playerCollider = nullptr;
 
@@ -84,10 +83,10 @@ private:
 	SDL_Texture* ball = nullptr;
 
 	static const int numnPoints = 4;
-	int pointsCollision[numnPoints][2] = { {0, 0}, {64, 0}, {0, 62}, {64, 62} };
+	int pointsCollision[numnPoints][2] = { {0, 0}, {64, 0}, {0, 63}, {64, 63} };
 	
 public:
-	int pointsFloorCollision[numnPoints][2] = { {12, 63}, {52, 63}, {12, 64}, {52, 64} };
+	int pointsFloorCollision[numnPoints][2] = { {12, 64}, {52, 64}, {12, 64}, {52, 64} };
 };
 
 #endif // __SCENE_H__
