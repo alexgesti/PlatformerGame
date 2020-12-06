@@ -85,9 +85,6 @@ bool ModuleController::Start()
 		item = item->next;
 	}
 
-	// Load music
-	//app->audio->PlayMusic("Assets/audio/music/deities_get_takeout_too.ogg", 0);
-
 	return ret;
 }
 
@@ -108,10 +105,10 @@ bool ModuleController::Update(float dt)
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
-			app->SaveGameRequest("GameFile.xml");
+			app->SaveGameRequest("save_game.xml");
 
 		if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
-			app->LoadGameRequest("GameFile.xml");
+			app->LoadGameRequest("save_game.xml");
 
 		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		{
@@ -145,7 +142,12 @@ bool ModuleController::Update(float dt)
 		currentscene = 0;
 		app->sceneLogo->Reset();
 	}
-	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN) currentscene = 1;
+	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
+	{
+		currentscene = 1;
+		app->sceneLogo->MusicOn = true;
+		app->sceneIntro->OneTimeOnly = false;
+	}
 	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
 	{
 		currentscene = 2;

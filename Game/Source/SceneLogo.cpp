@@ -4,8 +4,10 @@
 #include "Render.h"
 #include "Window.h"
 #include "SceneLogo.h"
+#include "SceneIntro.h"
 #include "Scene.h"
 #include "ModuleController.h"
+#include "Audio.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -36,6 +38,8 @@ bool SceneLogo::Start()
 	app->render->camera.x = 0;
 	app->render->camera.y = 0;
 
+	Reset();
+
 	return true;
 }
 
@@ -64,6 +68,8 @@ bool SceneLogo::Update(float dt)
 			OnlyStart = true;
 			Timer = 0;
 		}
+
+		app->audio->PlayMusic("NULL", 0);
 	}
 
 	// Update the alpha value positive
@@ -103,9 +109,10 @@ bool SceneLogo::Update(float dt)
 	}
 
 	if (alphaFinished == true && Timer >= 5 && OnlyStart == true)
-	{
-		app->scene->Reset();
+	{	
 		app->modcontrol->currentscene = 1;
+		MusicOn = true;
+		app->scene->Reset();
 	}
 
 	return true;
@@ -125,6 +132,8 @@ bool SceneLogo::PostUpdate()
 // Reset
 bool SceneLogo::Reset()
 {
+	MusicOn = false;
+	app->sceneIntro->OneTimeOnly = false;
 	OnlyStart = false;
 	alphaFinished = false;
 	Timer = 0;

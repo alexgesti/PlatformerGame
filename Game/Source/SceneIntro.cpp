@@ -4,8 +4,10 @@
 #include "Render.h"
 #include "Window.h"
 #include "SceneIntro.h"
+#include "SceneLogo.h"
 #include "Scene.h"
 #include "ModuleController.h"
+#include "Audio.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -46,6 +48,13 @@ bool SceneIntro::PreUpdate()
 // Called each loop iteration
 bool SceneIntro::Update(float dt)
 {
+	// Load music
+	if (OneTimeOnly == false && app->sceneLogo->MusicOn == true)
+	{
+		app->audio->PlayMusic("Assets/audio/music/deities_get_takeout_too.ogg", 0);
+		OneTimeOnly = true;
+	}
+
 	if (app->scene->NotSceneActived == false)
 	{
 		app->render->camera.x = 0;

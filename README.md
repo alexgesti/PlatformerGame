@@ -9,7 +9,7 @@ This game is a 2D platformer where you need to kill the enemies and finish the c
  - Platformer game in orthogonal perspective. 
  - Player has the ability to shot but with a cooldown.
  - Player has checkpoints, they save the state of the game and teleport the player in to a other checkpoint.
- - The player has lived, he can lose them if he gets hit by an enemy.
+ - The player has lifes, he can lose them if he gets hit by an enemy.
  - Enemies follows player when they see him.
  
 ## Controls

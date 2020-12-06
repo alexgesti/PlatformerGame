@@ -45,6 +45,9 @@ private:
 
 	bool alphaFinished = false;
 	float Timer = 0;
+
+public:
+	bool MusicOn;
 };
 
 #endif // __SCENELOGO_H__

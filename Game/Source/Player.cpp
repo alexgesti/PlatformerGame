@@ -259,7 +259,7 @@ bool Player::Update(float dt)
 		else speedx = 8;
 
 		if (CollisionPlayer() == 1) {
-			app->SaveGameRequest("GameFile.xml");
+			app->SaveGameRequest("save_game.xml");
 
 			app->scene->CheckPointActive = true;
 
