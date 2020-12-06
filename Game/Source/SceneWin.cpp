@@ -31,7 +31,7 @@ bool SceneWin::Awake()
 // Called before the first frame
 bool SceneWin::Start()
 {
-	SpriteWin = app->tex->Load("Assets/textures/Win.png");
+	SpriteWin = app->tex->Load("Assets/Screens/Title//Win.png");
 
 	return true;
 }

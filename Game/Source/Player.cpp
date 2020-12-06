@@ -116,13 +116,13 @@ bool Player::Awake()
 bool Player::Start()
 {
 	//Load texture
-	spriteSheet = app->tex->Load("Assets/textures/herochar_spriteSheet.png");
-	ball = app->tex->Load("Assets/textures/shoot.png");
+	spriteSheet = app->tex->Load("Assets/Characters/Hero/herochar_spriteSheet.png");
+	ball = app->tex->Load("Assets/Screens/Gameplay/shoot.png");
 
-	jumpFx = app->audio->LoadFx("Assets/audio/sound/jump.wav");
-	deathFx = app->audio->LoadFx("Assets/audio/sound/deathPlayer.wav");
-	hitFx = app->audio->LoadFx("Assets/audio/sound/hit.wav");
-	shootFx = app->audio->LoadFx("Assets/audio/sound/shoot.wav");
+	jumpFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Hero/jump.wav");
+	deathFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Hero/deathPlayer.wav");
+	hitFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Hero/hit.wav");
+	shootFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Hero/shoot.wav");
 
 	currentAnim = &idleRAnim;
 

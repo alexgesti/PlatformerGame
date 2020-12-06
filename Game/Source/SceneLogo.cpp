@@ -31,7 +31,7 @@ bool SceneLogo::Awake()
 // Called before the first frame
 bool SceneLogo::Start()
 {
-	SpriteLogo = app->tex->Load("Assets/textures/Logo.png");
+	SpriteLogo = app->tex->Load("Assets/Screens/Logo/Logo.png");
 
 	app->render->camera.x = 0;
 	app->render->camera.y = 0;

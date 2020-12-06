@@ -31,7 +31,7 @@ bool SceneIntro::Awake()
 // Called before the first frame
 bool SceneIntro::Start()
 {
-	SpriteIntro = app->tex->Load("Assets/textures/intro.png");
+	SpriteIntro = app->tex->Load("Assets/Screens/Title/intro.png");
 
 	return true;
 }

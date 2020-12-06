@@ -69,8 +69,8 @@ bool FlyEnemy::Awake()
 bool FlyEnemy::Start()
 {
 	//Load texture
-	spriteSheet = app->tex->Load("Assets/textures/flyenemy_spritesheet.png");
-	deathEnemyFx = app->audio->LoadFx("Assets/audio/sound/deathEnemy.wav");
+	spriteSheet = app->tex->Load("Assets/Characters/Enemies/FlyingEnemies/flyenemy_spritesheet.png");
+	deathEnemyFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Enemies/deathEnemy.wav");
 
 	currentAnim = &runRAnim;
 

@@ -99,8 +99,8 @@ bool WalkingEnemy::Awake()
 bool WalkingEnemy::Start()
 {
 	//Load texture
-	spriteSheet = app->tex->Load("Assets/textures/enemy_spritesheet.png");
-	deathEnemyFx = app->audio->LoadFx("Assets/audio/sound/deathEnemy.wav");
+	spriteSheet = app->tex->Load("Assets/Characters/Enemies/WalkingEnemies/enemy_spritesheet.png");
+	deathEnemyFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Enemies/deathEnemy.wav");
 
 	currentAnim = &runRAnim;
 

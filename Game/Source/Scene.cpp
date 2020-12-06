@@ -59,15 +59,15 @@ bool Scene::Start()
 {
 	// L03: DONE: Load map
 	app->map->Load("mapa.tmx");
-	spritePillar = app->tex->Load("Assets/textures/save_point_saving-x64.png");
-	lifePlayer = app->tex->Load("Assets/textures/lifLife_X64.png");
-	PSup = app->tex->Load("Assets/textures/lifLife_X32.png");
-	spriteorb = app->tex->Load("Assets/textures/orb.png");
-	pointsSprite = app->tex->Load("Assets/textures/Points.png");
+	spritePillar = app->tex->Load("Assets/Screens/Gameplay/save_point_saving-x64.png");
+	lifePlayer = app->tex->Load("Assets/Screens/Gameplay/lifLife_X64.png");
+	PSup = app->tex->Load("Assets/Screens/Gameplay/lifLife_X32.png");
+	spriteorb = app->tex->Load("Assets/Screens/Gameplay/orb.png");
+	pointsSprite = app->tex->Load("Assets/Screens/Gameplay/Points.png");
 
-    checkpointSound = app->audio->LoadFx("Assets/audio/sound/checkPoint.wav");
-	oneupFx = app->audio->LoadFx("Assets/audio/sound/1up.wav");
-	coinFx = app->audio->LoadFx("Assets/audio/sound/coin.wav");
+    checkpointSound = app->audio->LoadFx("Assets/Audio/Fx/checkPoint.wav");
+	oneupFx = app->audio->LoadFx("Assets/Audio/Fx/1up.wav");
+	coinFx = app->audio->LoadFx("Assets/Audio/Fx/coin.wav");
 
 	NotSceneActived = false;
 	PillarAnim = &pillar;

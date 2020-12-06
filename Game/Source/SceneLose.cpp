@@ -31,7 +31,7 @@ bool SceneLose::Awake()
 // Called before the first frame
 bool SceneLose::Start()
 {
-	SpriteLose = app->tex->Load("Assets/textures/Lose.png");
+	SpriteLose = app->tex->Load("Assets/Screens/Title/Lose.png");
 
 	return true;
 }
