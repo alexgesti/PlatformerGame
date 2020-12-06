@@ -229,13 +229,6 @@ bool Player::Update(float dt)
 
 			if (LookingR) currentAnim = &deadRAnim;
 			else currentAnim = &deadLAnim;
-
-			if (deadRAnim.FinishedAlready && dead == false 
-				|| deadLAnim.FinishedAlready && dead == false)
-			{
-				deadRAnim.Reset();
-				deadLAnim.Reset();
-			}
 		}
 
 		if (CollisionFloorPlayer())
@@ -270,12 +263,6 @@ bool Player::Update(float dt)
 
 			app->scene->CheckPointActive = true;
 
-			if (app->scene->SoundOneTime == false)
-			{
-				app->audio->PlayFx(app->scene->checkpointSound);
-				app->scene->SoundOneTime = true;
-			}
-
 			if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) position = { -2057, -1921 };
 			if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) position = { -4552, -1024 };
 			if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) position = { -6472, -640 };
@@ -284,6 +271,7 @@ bool Player::Update(float dt)
 		else
 		{
 			app->scene->CheckPointActive = false;
+			if (app->scene->counterCheckPointSound >= 1) app->scene->counterCheckPointSound = 0;
 			app->scene->SoundOneTime = false;
 			app->scene->pillar.Reset();
 		}

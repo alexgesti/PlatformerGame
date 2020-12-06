@@ -53,16 +53,13 @@ public:
 	float speedy = 4;
 
 	iPoint position;
-	iPoint posCopy;
 
 	Animation* currentAnim;
 
-	Animation fallRAnim;
 	Animation runRAnim;
 	Animation deadRAnim;
 	Animation idleRAnim;
 
-	Animation fallLAnim;
 	Animation runLAnim;
 	Animation deadLAnim;
 	Animation idleLAnim;

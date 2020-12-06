@@ -58,9 +58,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(sceneLogo);
 	AddModule(sceneLose);
 	AddModule(sceneWin);
-	AddModule(player);
 	AddModule(wenemy);
 	AddModule(fenemy);
+	AddModule(player);
 	AddModule(modcontrol);
 	AddModule(pathfinding);
 

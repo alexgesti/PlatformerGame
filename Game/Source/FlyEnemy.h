@@ -47,7 +47,6 @@ public:
 	float speedx = 8;
 	float speedy = 2;
 
-	iPoint posCopy;
 	iPoint position;
 
 	Animation* currentAnim;
@@ -62,8 +61,6 @@ public:
 private:
 	SDL_Texture* spriteSheet = nullptr;
 
-	static const int numnPoints = 4;
-	int pointsCollision[numnPoints][2] = { {0, 0}, {32, 0}, {0, 28}, {32, 28} };
 	int detectdistance = 192;
 
 	//FX

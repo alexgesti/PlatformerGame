@@ -31,10 +31,6 @@ WalkingEnemy::WalkingEnemy() : Module()
 	runLAnim.loop = true;
 	runLAnim.speed = 0.15f;
 
-	//fall left animation
-	fallLAnim.PushBack({ 64, 128, 64, 64 });
-	fallLAnim.speed = 0.15f;
-
 	//run rigth animation
 	runRAnim.PushBack({ 448, 0, 64, 64 });
 	runRAnim.PushBack({ 384, 0, 64, 64 });
@@ -46,10 +42,6 @@ WalkingEnemy::WalkingEnemy() : Module()
 	runRAnim.PushBack({ 0, 0, 64, 64 });
 	runRAnim.loop = true;
 	runRAnim.speed = 0.15f;
-
-	//fall rigth animation
-	fallRAnim.PushBack({ 384, 0, 64, 64 });
-	fallRAnim.speed = 0.15f;
 
 	//dead rigth animation
 	deadRAnim.PushBack({ 448, 64, 64, 64 });
@@ -107,8 +99,6 @@ bool WalkingEnemy::Start()
 	position.x = -3456;
 	position.y = -1664;
 
-	posCopy = position;
-
 	return true;
 }
 
@@ -125,9 +115,6 @@ bool WalkingEnemy::Update(float dt)
 	if (gravity == true)
 	{
 		position.y -= speedy;
-
-		/*if (waslookingRight) currentAnim = &fallRAnim;
-		else currentAnim = &fallLAnim;*/
 	}
 
 	if (waslookingRight == true)
@@ -161,7 +148,7 @@ bool WalkingEnemy::Update(float dt)
 		waslookingRight = false;
 	}
 
-	//Die tester
+	//Die
 	if (dead)
 	{
 		if (waslookingRight) currentAnim = &deadRAnim;

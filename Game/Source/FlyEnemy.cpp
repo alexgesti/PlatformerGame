@@ -77,8 +77,6 @@ bool FlyEnemy::Start()
 	position.x = -4928;
 	position.y = -1024;
 
-	posCopy = position;
-
 	return true;
 }
 
@@ -157,7 +155,7 @@ bool FlyEnemy::Update(float dt)
 		app->player->shoot = false;
 	}
 
-	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false)
+	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->Godmode == false)
 	{
 		hitingPlayer = true;
 		app->player->life--;

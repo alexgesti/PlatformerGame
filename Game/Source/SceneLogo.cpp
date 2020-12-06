@@ -57,7 +57,7 @@ bool SceneLogo::Update(float dt)
 
 	if (OnlyStart == false)
 	{
-		Timer += dt;
+		Timer++;
 
 		if (Timer >= 5)
 		{
@@ -67,21 +67,21 @@ bool SceneLogo::Update(float dt)
 	}
 
 	// Update the alpha value positive
-	if (alpha < SDL_ALPHA_OPAQUE && alphaFinished == false && OnlyStart == true)
+	if (alpha < 254 && alphaFinished == false && OnlyStart == true)
 	{
-		alphaCalc += 150 * dt;
+		alphaCalc += 15 * 0.16f;
 		alpha = alphaCalc;
 	}
 
 	// If alpha is above 255, clamp it
-	if (alpha >= SDL_ALPHA_OPAQUE && alphaFinished == false)
+	if (alpha >= 254 && alphaFinished == false)
 	{
 		alpha = SDL_ALPHA_OPAQUE;
 		alphaCalc = (float)SDL_ALPHA_OPAQUE;
-		Timer += dt;
+		Timer++;
 	}
 
-	if (alphaFinished == false && Timer >= 5 && OnlyStart == true)
+	if (alphaFinished == false && Timer >= 100 && OnlyStart == true)
 	{
 		alphaFinished = true;
 		Timer = 0;
@@ -90,7 +90,7 @@ bool SceneLogo::Update(float dt)
 	// Update the alpha value negative
 	if (alphaFinished == true && alpha > 0)
 	{
-		alphaCalc -= 150 * dt;
+		alphaCalc -= 15 * 0.16f;
 		alpha = alphaCalc;
 	}
 
@@ -99,7 +99,7 @@ bool SceneLogo::Update(float dt)
 	{
 		alpha = 0;
 		alphaCalc = 0;
-		Timer += dt;
+		Timer++;
 	}
 
 	if (alphaFinished == true && Timer >= 5 && OnlyStart == true)
@@ -120,6 +120,17 @@ bool SceneLogo::PostUpdate()
 	app->render->DrawTexture(SpriteLogo, 0, 0, &rect);
 
 	return ret;
+}
+
+// Reset
+bool SceneLogo::Reset()
+{
+	OnlyStart = false;
+	alphaFinished = false;
+	Timer = 0;
+	alpha = 0;
+
+	return true;
 }
 
 // Called before quitting

@@ -6,17 +6,18 @@
 	<audio />
 	<map />
 	<scene>
-		<Player x="-1544" y="-1920" Ballx="-1544" Bally="-1935" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Lookingright="true" Waslookingright="true" WasTop="false" WasShooting="false" maxJump="0" Cooldown="0" Waslookingright="true" HasGravity="false" WasInGodMode="false" PlayerLifes="3" />
-		<Mushroom Wx="-3456" Wy="-1664" WWasdead="false" WIsWasdead="false" WFinishedDeadRAnim="false" WFinishedDeadLAnim="false" WWaslookingright="true" WHasGravity="false" />
-		<Bat Fx="-4928" Fy="-1024" FWasdead="false" FIsWasdead="false" FFinishedDeadRAnim="false" FFinishedDeadLAnim="false" FWaslookingright="true" />
+		<Player x="-1544" y="-1920" Ballx="-1544" Bally="-1935" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Lookingright="true" Waslookingright="true" OnceSound="false" WasTop="false" WasShooting="false" maxJump="0" Cooldown="0" Waslookingright="true" HasGravity="false" WasInGodMode="false" PlayerLifes="3" />
+		<Mushroom Wx="-3456" Wy="-1664" WWasdead="false" WIsWasdead="false" WFinishedDeadRAnim="false" WFinishedDeadLAnim="false" WWaslookingright="true" WHasGravity="false" WHitPlayer="false" WOnceSound="false" />
+		<Bat Fx="-4928" Fy="-1024" FWasdead="false" FIsWasdead="false" FFinishedDeadRAnim="false" FFinishedDeadLAnim="false" FWaslookingright="true" FHitPlayer="false" FOnceSound="false" />
+		<Scene checkpointActive="false" checkpointSound="1" OrbObtained="false" counterCheckPointSound="0" OrbPosX="3150" OrbPosY="1175" AnimOrbFinished="false" OnlyOnceOrb="false" PSpositionX="3950" PSpositionY="1280" />
 	</scene>
 	<sceneintro />
 	<sceneLogo />
 	<sceneLose />
 	<sceneWin />
-	<player />
 	<enemy />
 	<Flyenemy />
+	<player />
 	<:anonymous />
 	<pathfinding />
 	<renderer>

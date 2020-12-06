@@ -29,6 +29,9 @@ public:
 	// Called before all Updates
 	bool PostUpdate();
 
+	// Reset
+	bool Reset();
+
 	// Called before quitting
 	bool CleanUp();
 

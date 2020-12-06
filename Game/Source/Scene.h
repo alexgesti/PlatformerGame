@@ -72,14 +72,17 @@ public:
 	bool CheckPointActive; 
 	bool SoundOneTime;
 	bool OrbObtained;
+	bool OnlyOnceOrb;
+
+	float counterCheckPointSound;
 
 	iPoint Orbposition;
 	iPoint PSposition;
 
 	// Sound
 	uint checkpointSound;
-	uint oneupFx = 0;
-	uint coinFx = 0;
+	uint oneupFx;
+	uint coinFx;
 
 };
 

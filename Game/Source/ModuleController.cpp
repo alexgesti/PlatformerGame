@@ -56,6 +56,9 @@ bool ModuleController::Awake(pugi::xml_node& config)
 	app->map->active = true;		// Map
 	app->scene->active = true;		// Scene
 	app->sceneIntro->active = true;	// SceneIntro
+	app->sceneLogo->active = true;	// SceneLogo
+	app->sceneLose->active = true;	// SceneLose
+	app->sceneWin->active = true;	// SceneWin
 	app->player->active = true;		// Player
 	app->wenemy->active = true;		// Walking Enemy
 	app->fenemy->active = true;		// Flying Enemy
@@ -137,7 +140,11 @@ bool ModuleController::Update(float dt)
 		}
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN) currentscene = 0;
+	if (app->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
+	{
+		currentscene = 0;
+		app->sceneLogo->Reset();
+	}
 	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN) currentscene = 1;
 	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
 	{
@@ -149,7 +156,12 @@ bool ModuleController::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentscene = 4;
 
 
-	if (app->player->life <= 0 && (app->player->deadLAnim.HasFinished() || app->player->deadRAnim.HasFinished())) currentscene = 3;
+	if (app->player->life <= 0 && (app->player->deadLAnim.FinishedAlready || app->player->deadRAnim.FinishedAlready))
+	{
+		app->player->deadRAnim.Reset();
+		app->player->deadLAnim.Reset();
+		currentscene = 3;
+	}
 	
 	switch (currentscene)
 	{
@@ -164,7 +176,7 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = false;		// SceneIntro
 		app->sceneLogo->active = true;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
-		app->sceneWin->active = false;			//SceneWin
+		app->sceneWin->active = false;			// SceneWin
 
 		app->render->SetBackgroundColor(black);	
 
@@ -181,7 +193,7 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = true;			// SceneIntro
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
-		app->sceneWin->active = false;			//SceneWin
+		app->sceneWin->active = false;			// SceneWin
 
 		break;
 
@@ -196,7 +208,7 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = false;		// SceneIntro
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
-		app->sceneWin->active = false;			//SceneWin
+		app->sceneWin->active = false;			// SceneWin
 
 		app->render->SetBackgroundColor(blue);
 
@@ -213,7 +225,7 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = false;		// SceneIntro
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = true;			// SceneLose
-		app->sceneWin->active = false;			//SceneWin
+		app->sceneWin->active = false;			// SceneWin
 
 		break;
 
@@ -228,7 +240,7 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = false;		// SceneIntro
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
-		app->sceneWin->active = true;			//SceneWin
+		app->sceneWin->active = true;			// SceneWin
 
 		break;
 

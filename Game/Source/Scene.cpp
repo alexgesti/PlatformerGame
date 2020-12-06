@@ -95,10 +95,11 @@ bool Scene::Update(float dt)
 		app->render->camera.y = app->player->position.y + ((app->render->camera.h / 2) - app->player->playerWH / 2);
 	}
 
-	if (CheckCollisionRec(app->player->position, Orbposition) == true)
+	if (CheckCollisionRec(app->player->position, Orbposition) == true && OnlyOnceOrb == false)
 	{
 		CurrentAnimOrb = &obrOb;
 		app->audio->PlayFx(coinFx);
+		OnlyOnceOrb = true;
 	}
 
 	if (CheckCollisionRec(app->player->position, PSposition) == true)
@@ -117,15 +118,32 @@ bool Scene::Update(float dt)
 	if (OrbObtained)
 	{
 		pointsAnim = &p1;
+		obrOb.Reset();
+		CurrentAnimOrb = &obrN;
 	}
 	else pointsAnim = &p0;
 
 	// Draw map
 	app->map->Draw();
 
-	if (CheckPointActive) PillarAnim->Update();
+	if (CheckPointActive)
+	{
+		if (SoundOneTime == false && counterCheckPointSound == 0)
+		{
+			app->audio->PlayFx(checkpointSound);
+			SoundOneTime = true;
+		}
 
-	CurrentAnimOrb->Update();
+		counterCheckPointSound += dt;
+
+		PillarAnim->Update();
+	}
+	else
+	{
+		if (counterCheckPointSound > 0) counterCheckPointSound += dt;
+	}
+
+	if (OrbObtained == false) CurrentAnimOrb->Update();
 
 	pointsAnim->Update();
 
@@ -174,6 +192,7 @@ bool Scene::LoadState(pugi::xml_node& data)
 	app->player->WasLookingR = data.child("Player").attribute("Waslookingright").as_bool();
 	app->player->top = data.child("Player").attribute("WasTop").as_bool();
 	app->player->shoot = data.child("Player").attribute("WasShooting").as_bool();
+	app->player->oncesound = data.child("Player").attribute("OnceSound").as_bool(); 
 	app->player->gravity = data.child("Player").attribute("HasGravity").as_bool();
 	app->player->maxJump = data.child("Player").attribute("maxJump").as_int();
 	app->player->cooldown = data.child("Player").attribute("Cooldown").as_int();
@@ -189,6 +208,8 @@ bool Scene::LoadState(pugi::xml_node& data)
 	app->wenemy->deadLAnim.FinishedAlready = data.child("Mushroom").attribute("WFinishedDeadLAnim").as_bool();
 	app->wenemy->waslookingRight = data.child("Mushroom").attribute("WWaslookingright").as_bool();
 	app->wenemy->gravity = data.child("Mushroom").attribute("WHasGravity").as_bool();
+	app->wenemy->hitingPlayer = data.child("Mushroom").attribute("WHitPlayer").as_bool();
+	app->wenemy->oncesound = data.child("Mushroom").attribute("WOnceSound").as_bool();
 
 	// Bat
 	app->fenemy->position.x = data.child("Bat").attribute("Fx").as_int();
@@ -198,6 +219,20 @@ bool Scene::LoadState(pugi::xml_node& data)
 	app->fenemy->deadRAnim.FinishedAlready = data.child("Bat").attribute("FFinishedDeadRAnim").as_bool();
 	app->fenemy->deadLAnim.FinishedAlready = data.child("Bat").attribute("FFinishedDeadLAnim").as_bool();
 	app->fenemy->waslookingRight = data.child("Bat").attribute("FWaslookingright").as_bool();
+	app->fenemy->hitingPlayer = data.child("Bat").attribute("FHitPlayer").as_bool();
+	app->fenemy->oncesound = data.child("Bat").attribute("FOnceSound").as_bool();
+
+	// Scene
+	CheckPointActive = data.child("Scene").attribute("checkpointActive").as_bool();
+	checkpointSound = data.child("Scene").attribute("checkpointSound").as_bool();
+	OrbObtained = data.child("Scene").attribute("OrbObtained").as_bool();
+	counterCheckPointSound = data.child("Scene").attribute("counterCheckPointSound").as_float();
+	Orbposition.x = data.child("Scene").attribute("OrbPosX").as_int();
+	Orbposition.y = data.child("Scene").attribute("OrbPosY").as_int();
+	obrOb.FinishedAlready = data.child("Scene").attribute("AnimOrbFinished").as_bool();
+	OnlyOnceOrb = data.child("Scene").attribute("OnlyOnceOrb").as_bool();
+	PSposition.x = data.child("Scene").attribute("PSpositionX").as_int();
+	PSposition.y = data.child("Scene").attribute("PSpositionY").as_int();
 
 	return true;
 }
@@ -208,6 +243,7 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	pugi::xml_node playersave = data.append_child("Player");
 	pugi::xml_node walkenemysave = data.append_child("Mushroom");
 	pugi::xml_node flyenemysave = data.append_child("Bat");
+	pugi::xml_node scenesave = data.append_child("Scene");
 
 	playersave.append_attribute("x") = app->player->position.x;
 	playersave.append_attribute("y") = app->player->position.y;
@@ -219,6 +255,7 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	playersave.append_attribute("Wasjumping") = app->player->jump;
 	playersave.append_attribute("Lookingright") = app->player->LookingR;
 	playersave.append_attribute("Waslookingright") = app->player->WasLookingR;
+	playersave.append_attribute("OnceSound") = app->player->oncesound;
 	playersave.append_attribute("WasTop") = app->player->top;
 	playersave.append_attribute("WasShooting") = app->player->shoot;
 	playersave.append_attribute("maxJump") = app->player->maxJump;
@@ -236,6 +273,8 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	walkenemysave.append_attribute("WFinishedDeadLAnim") = app->wenemy->deadLAnim.FinishedAlready;
 	walkenemysave.append_attribute("WWaslookingright") = app->wenemy->waslookingRight;
 	walkenemysave.append_attribute("WHasGravity") = app->wenemy->gravity;
+	walkenemysave.append_attribute("WHitPlayer") = app->wenemy->hitingPlayer;
+	walkenemysave.append_attribute("WOnceSound") = app->wenemy->oncesound;
 
 	flyenemysave.append_attribute("Fx") = app->fenemy->position.x;
 	flyenemysave.append_attribute("Fy") = app->fenemy->position.y;
@@ -244,6 +283,19 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	flyenemysave.append_attribute("FFinishedDeadRAnim") = app->fenemy->deadRAnim.FinishedAlready;
 	flyenemysave.append_attribute("FFinishedDeadLAnim") = app->fenemy->deadLAnim.FinishedAlready;
 	flyenemysave.append_attribute("FWaslookingright") = app->fenemy->waslookingRight;
+	flyenemysave.append_attribute("FHitPlayer") = app->fenemy->hitingPlayer;
+	flyenemysave.append_attribute("FOnceSound") = app->fenemy->oncesound;
+
+	scenesave.append_attribute("checkpointActive") = CheckPointActive;
+	scenesave.append_attribute("checkpointSound") = checkpointSound;
+	scenesave.append_attribute("OrbObtained") = OrbObtained;
+	scenesave.append_attribute("counterCheckPointSound") = counterCheckPointSound;
+	scenesave.append_attribute("OrbPosX") = Orbposition.x;
+	scenesave.append_attribute("OrbPosY") = Orbposition.y;
+	scenesave.append_attribute("AnimOrbFinished") = obrOb.FinishedAlready;
+	scenesave.append_attribute("OnlyOnceOrb") = OnlyOnceOrb;
+	scenesave.append_attribute("PSpositionX") = PSposition.x;
+	scenesave.append_attribute("PSpositionY") = PSposition.y;
 
 	return true;
 }
