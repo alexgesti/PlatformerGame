@@ -35,10 +35,11 @@ This game is a 2D platformer where you need to kill the enemies and finish the c
  - F9: View colliders.
  - F10: God Mode.
  - F11: Change capped FPS (60 to 30).
- - 7: Logo Screen.
- - 8: Intro Screen.
- - 9: Game Screen.
- - 0: Game Over Screen.
+ - 6: Logo Screen.
+ - 7: Intro Screen.
+ - 8: Game Screen.
+ - 9: Game Over Screen.
+ - 0: Win Screen.
  
  #### God Mode
  
