@@ -13,6 +13,7 @@
 	<sceneintro />
 	<sceneLogo />
 	<sceneLose />
+	<sceneWin />
 	<player />
 	<enemy />
 	<Flyenemy />

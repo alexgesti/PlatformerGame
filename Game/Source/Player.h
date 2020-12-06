@@ -48,6 +48,7 @@ public:
 	bool WasLookingR = true;
 	bool top = false;
 	bool shoot;
+	bool oncesound = false;
 
 	float speedx = 8;
 	float speedy = 8;
@@ -87,6 +88,12 @@ private:
 	
 public:
 	int pointsFloorCollision[numnPoints][2] = { {4, 64}, {52, 64}, {4, 64}, {52, 64} };
+
+	//FX
+	uint jumpFx = 0;
+	uint deathFx = 0;
+	uint shootFx = 0;
+	uint hitFx = 0;
 };
 
 #endif // __SCENE_H__

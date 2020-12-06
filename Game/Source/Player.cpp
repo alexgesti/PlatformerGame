@@ -118,6 +118,12 @@ bool Player::Start()
 	//Load texture
 	spriteSheet = app->tex->Load("Assets/textures/herochar_spriteSheet.png");
 	ball = app->tex->Load("Assets/textures/shoot.png");
+
+	jumpFx = app->audio->LoadFx("Assets/audio/sound/jump.wav");
+	deathFx = app->audio->LoadFx("Assets/audio/sound/deathPlayer.wav");
+	hitFx = app->audio->LoadFx("Assets/audio/sound/hit.wav");
+	shootFx = app->audio->LoadFx("Assets/audio/sound/shoot.wav");
+
 	currentAnim = &idleRAnim;
 
 	position.x = -1544;
@@ -175,8 +181,6 @@ bool Player::Update(float dt)
 			LookingR = false;
 		}
 
-		LOG("%d", position.x);
-
 		//Mov right
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT
 			&& app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE 
@@ -198,6 +202,7 @@ bool Player::Update(float dt)
 			top = true;
 			gravity = false;
 			maxJump = position.y + 144;
+			app->audio->PlayFx(jumpFx);
 		}
 		if (top == true && position.y < maxJump)
 		{
@@ -215,6 +220,12 @@ bool Player::Update(float dt)
 		if (life <= 0)
 		{
 			dead = true;
+
+			if (oncesound == false)
+			{
+				oncesound = true;
+				app->audio->PlayFx(deathFx);
+			}
 
 			if (LookingR) currentAnim = &deadRAnim;
 			else currentAnim = &deadLAnim;
@@ -321,6 +332,7 @@ bool Player::Update(float dt)
 			shoot = true;
 			if (LookingR) WasLookingR = true;
 			else WasLookingR = false;
+			app->audio->PlayFx(shootFx);
 		}
 	}
 
@@ -382,7 +394,8 @@ int Player::CollisionPlayer()
 		posMapPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
 		if (CheckCollision(posMapPlayer[i]) == 2) life = 0;
 		if (CheckCollision(posMapPlayer[i]) == 3) return 1;
-	}
+		if (CheckCollision(posMapPlayer[i]) == 4) app->modcontrol->currentscene=4;
+		}
 	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1) return 2;
 	if (CheckCollision(posMapPlayer[numnPoints - 2]) == 1) return 3;
 
@@ -405,9 +418,10 @@ bool Player::CollisionFloorPlayer()
 int Player::CheckCollision(iPoint positionMapPlayer)
 {
 	if (app->map->data.layers.At(1)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
-	if (app->map->data.layers.At(2)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
+	if (app->map->data.layers.At(2)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 4;
 	if (app->map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
 	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 3;
+
 
 	return false;
 }

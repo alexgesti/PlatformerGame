@@ -8,6 +8,7 @@
 #include "SceneIntro.h"
 #include "SceneLogo.h"
 #include "SceneLose.h"
+#include "SceneWin.h"
 #include "Map.h"
 #include "Player.h"
 #include "WalkingEnemy.h"
@@ -118,21 +119,35 @@ bool ModuleController::Update(float dt)
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+		{
 			if (app->player->Godmode == false)
 				app->player->Godmode = true;
 			else if (app->player->Godmode == true)
 				app->player->Godmode = false;
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
+		{
+			capped = !capped;
+
+			if (capped)
+				app->cappedMs = 30;
+			else if (capped == false)
+				app->cappedMs = 60;
+		}
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN) currentscene = 0;
-	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN) currentscene = 1;
-	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN) currentscene = 0;
+	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN) currentscene = 1;
+	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
 	{
 		currentscene = 2;
 
 		app->scene->Reset();
 	}
-	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentscene = 3;
+	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN) currentscene = 3;
+	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentscene = 4;
+
 
 	if (app->player->life <= 0 && (app->player->deadLAnim.HasFinished() || app->player->deadRAnim.HasFinished())) currentscene = 3;
 	
@@ -149,6 +164,7 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = false;		// SceneIntro
 		app->sceneLogo->active = true;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
+		app->sceneWin->active = false;			//SceneWin
 
 		app->render->SetBackgroundColor(black);	
 
@@ -165,6 +181,7 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = true;			// SceneIntro
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
+		app->sceneWin->active = false;			//SceneWin
 
 		break;
 
@@ -179,6 +196,7 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = false;		// SceneIntro
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
+		app->sceneWin->active = false;			//SceneWin
 
 		app->render->SetBackgroundColor(blue);
 
@@ -195,6 +213,22 @@ bool ModuleController::Update(float dt)
 		app->sceneIntro->active = false;		// SceneIntro
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = true;			// SceneLose
+		app->sceneWin->active = false;			//SceneWin
+
+		break;
+
+	case 4: //Win
+
+		app->map->active = false;				// Map
+		app->scene->active = false;				// Scene
+		app->scene->NotSceneActived = false;	// SceneCamera
+		app->player->active = false;			// Player
+		app->wenemy->active = false;			// Walking Enemy
+		app->fenemy->active = false;			// Flying Enemy
+		app->sceneIntro->active = false;		// SceneIntro
+		app->sceneLogo->active = false;			// SceneLogo
+		app->sceneLose->active = false;			// SceneLose
+		app->sceneWin->active = true;			//SceneWin
 
 		break;
 

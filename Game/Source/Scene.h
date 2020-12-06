@@ -47,11 +47,15 @@ public:
 public:
 	Animation* PillarAnim;
 	Animation* CurrentAnimOrb;
+	Animation* pointsAnim;
 
 	Animation pillar;
 
 	Animation obrN;
 	Animation obrOb;
+
+	Animation p0;
+	Animation p1;
 
 private:
 	SDL_Texture* img;
@@ -59,6 +63,7 @@ private:
 	SDL_Texture* lifePlayer;
 	SDL_Texture* PSup;
 	SDL_Texture* spriteorb;
+	SDL_Texture* pointsSprite;
 	int camX;
 	int camY;
 public:
@@ -66,12 +71,15 @@ public:
 	bool NotSceneActived;
 	bool CheckPointActive; 
 	bool SoundOneTime;
+	bool OrbObtained;
 
 	iPoint Orbposition;
 	iPoint PSposition;
 
 	// Sound
 	uint checkpointSound;
+	uint oneupFx = 0;
+	uint coinFx = 0;
 
 };
 

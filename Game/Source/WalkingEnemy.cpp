@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "ModuleController.h"
 #include "Pathfinding.h"
+#include "Audio.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -99,6 +100,8 @@ bool WalkingEnemy::Start()
 {
 	//Load texture
 	spriteSheet = app->tex->Load("Assets/textures/enemy_spritesheet.png");
+	deathEnemyFx = app->audio->LoadFx("Assets/audio/sound/deathEnemy.wav");
+
 	currentAnim = &runRAnim;
 
 	position.x = -3456;
@@ -164,6 +167,12 @@ bool WalkingEnemy::Update(float dt)
 		if (waslookingRight) currentAnim = &deadRAnim;
 		else currentAnim = &deadLAnim;
 
+		if (oncesound == false) 
+		{
+			oncesound = true;
+			app->audio->PlayFx(deathEnemyFx);
+		}		
+
 		if (deadRAnim.FinishedAlready || deadLAnim.FinishedAlready)
 		{
 			position.x = 0;
@@ -187,10 +196,11 @@ bool WalkingEnemy::Update(float dt)
 		app->player->shoot = false;
 	}
 
-	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false)
+	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->Godmode == false)
 	{
 		hitingPlayer = true;
 		app->player->life--;
+		app->audio->PlayFx(app->player->hitFx);
 	}
 
 	if (!CheckCollisionRec(app->player->position, position) && dead == false)

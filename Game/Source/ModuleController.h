@@ -37,6 +37,8 @@ public:
 
 private: 
 
+	bool capped = false;
+
 	List<Module*> modules;
 
 	SDL_Color blue = { 153, 225, 204 };

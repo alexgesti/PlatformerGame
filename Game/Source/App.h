@@ -22,6 +22,7 @@ class Scene;
 class SceneIntro;
 class SceneLogo;
 class SceneLose;
+class SceneWin;
 class Map;
 class Player;
 class ModuleController;
@@ -103,6 +104,7 @@ public:
 	SceneIntro* sceneIntro;
 	SceneLogo* sceneLogo;
 	SceneLose* sceneLose;
+	SceneWin* sceneWin;
 	Map* map;
 	Player* player;
 	ModuleController* modcontrol;
@@ -110,6 +112,7 @@ public:
 	FlyEnemy* fenemy;
 	PathFinding* pathfinding;
 
+	uint32 cappedMs;
 private:
 
 	int argc;
@@ -151,8 +154,6 @@ private:
 	uint32 lastSecFrameCount = 0;
 	uint32 prevLastSecFrameCount = 0;
 	float dt = 0.0f;
-
-	uint32 cappedMs;
 };
 
 extern App* app;

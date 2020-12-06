@@ -35,6 +35,10 @@ Scene::Scene() : Module()
 	obrOb.PushBack({ 32, 32, 32, 32 });
 	obrOb.loop = false;
 	obrOb.speed = 0.1f;
+
+	// Points
+	p0.PushBack({ 0, 0, 432, 48 });
+	p1.PushBack({ 0, 49, 432, 48 });
 }
 
 // Destructor
@@ -59,10 +63,16 @@ bool Scene::Start()
 	lifePlayer = app->tex->Load("Assets/textures/lifLife_X64.png");
 	PSup = app->tex->Load("Assets/textures/lifLife_X32.png");
 	spriteorb = app->tex->Load("Assets/textures/orb.png");
+	pointsSprite = app->tex->Load("Assets/textures/Points.png");
+
     checkpointSound = app->audio->LoadFx("Assets/audio/sound/checkPoint.wav");
+	oneupFx = app->audio->LoadFx("Assets/audio/sound/1up.wav");
+	coinFx = app->audio->LoadFx("Assets/audio/sound/coin.wav");
+
 	NotSceneActived = false;
 	PillarAnim = &pillar;
 	CurrentAnimOrb = &obrN;
+	pointsAnim = &p0;
 
 	Orbposition = { 3150, 1175 };
 	PSposition = { 3950, 1280 };
@@ -88,18 +98,27 @@ bool Scene::Update(float dt)
 	if (CheckCollisionRec(app->player->position, Orbposition) == true)
 	{
 		CurrentAnimOrb = &obrOb;
+		app->audio->PlayFx(coinFx);
 	}
 
 	if (CheckCollisionRec(app->player->position, PSposition) == true)
 	{
 		PSposition = { 0, 0 };
 		app->player->life++;
+		app->audio->PlayFx(oneupFx);
 	}
 
 	if (obrOb.FinishedAlready)
 	{
 		Orbposition = { 0, 0 };
+		OrbObtained = true;
 	}
+	
+	if (OrbObtained)
+	{
+		pointsAnim = &p1;
+	}
+	else pointsAnim = &p0;
 
 	// Draw map
 	app->map->Draw();
@@ -107,6 +126,8 @@ bool Scene::Update(float dt)
 	if (CheckPointActive) PillarAnim->Update();
 
 	CurrentAnimOrb->Update();
+
+	pointsAnim->Update();
 
 	return true;
 }
@@ -125,6 +146,9 @@ bool Scene::PostUpdate()
 	{
 		app->render->DrawTexture(lifePlayer, -app->render->camera.x + (64*i), -app->render->camera.y);
 	}
+
+	SDL_Rect pointRect = pointsAnim->GetCurrentFrame();
+	app->render->DrawTexture(pointsSprite, -app->render->camera.x + 850, -app->render->camera.y, &pointRect);
 
 	SDL_Rect orbrect = CurrentAnimOrb->GetCurrentFrame();
 	app->render->DrawTexture(spriteorb, Orbposition.x, Orbposition.y, &orbrect);

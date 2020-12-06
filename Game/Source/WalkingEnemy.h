@@ -47,6 +47,7 @@ public:
 	bool waslookingRight = true;
 	bool IsDead = false;
 	bool hitingPlayer = false;
+	bool oncesound = false;
 
 	float speedx = 4;
 	float speedy = 4;
@@ -74,6 +75,9 @@ private:
 	static const int numnPoints = 4;
 	int pointsCollision[numnPoints][2] = { {0, 0}, {64, 0}, {0, 62}, {64, 62} };
 	int pointsFloorCollision[numnPoints][2] = { {12, 63}, {52, 63}, {12, 64}, {52, 64} };
+
+	//FX
+	uint deathEnemyFx = 0;
 };
 
 #endif // __SCENE_H__

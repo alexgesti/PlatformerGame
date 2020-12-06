@@ -8,6 +8,7 @@
 #include "SceneIntro.h"
 #include "SceneLogo.h"
 #include "SceneLose.h"
+#include "SceneWin.h"
 #include "Map.h"
 #include "Player.h"
 #include "ModuleController.h"
@@ -37,6 +38,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	sceneIntro = new SceneIntro();
 	sceneLogo = new SceneLogo();
 	sceneLose = new SceneLose();
+	sceneWin = new SceneWin();
 	map = new Map();
 	player = new Player();
 	modcontrol = new ModuleController();
@@ -55,6 +57,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(sceneIntro);
 	AddModule(sceneLogo);
 	AddModule(sceneLose);
+	AddModule(sceneWin);
 	AddModule(player);
 	AddModule(wenemy);
 	AddModule(fenemy);
