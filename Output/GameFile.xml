@@ -6,9 +6,9 @@
 	<audio />
 	<map />
 	<scene>
-		<Player x="-2105" y="-1918" Ballx="-2105" Bally="-1933" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="true" Lookingright="true" Waslookingright="true" WasTop="false" WasShooting="false" maxJump="-1776" Cooldown="0" Waslookingright="true" HasGravity="true" WasInGodMode="false" PlayerLifes="3" />
-		<Mushroom Wx="-3456" Wy="-1664" WWasdead="false" WIsWasdead="false" WFinishedDeadRAnim="false" WFinishedDeadLAnim="false" WWaslookingright="true" WHasGravity="false" />
-		<Bat Fx="-4928" Fy="-1024" FWasdead="false" FIsWasdead="false" FFinishedDeadRAnim="false" FFinishedDeadLAnim="false" FWaslookingright="true" />
+		<Player x="-6532" y="-640" Ballx="-6532" Bally="-655" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Lookingright="true" Waslookingright="true" WasTop="false" WasShooting="false" maxJump="-560" Cooldown="0" Waslookingright="true" HasGravity="false" WasInGodMode="false" PlayerLifes="4" />
+		<Mushroom Wx="0" Wy="-1920" WWasdead="true" WIsWasdead="true" WFinishedDeadRAnim="false" WFinishedDeadLAnim="false" WWaslookingright="true" WHasGravity="false" />
+		<Bat Fx="-5776" Fy="-734" FWasdead="false" FIsWasdead="false" FFinishedDeadRAnim="false" FFinishedDeadLAnim="false" FWaslookingright="true" />
 	</scene>
 	<sceneintro />
 	<sceneLogo />
@@ -20,6 +20,6 @@
 	<:anonymous />
 	<pathfinding />
 	<renderer>
-		<camera x="-1468" y="-1561" />
+		<camera x="-5907" y="-312" />
 	</renderer>
 </save_state>

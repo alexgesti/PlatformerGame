@@ -32,6 +32,7 @@ bool SceneIntro::Awake()
 bool SceneIntro::Start()
 {
 	SpriteIntro = app->tex->Load("Assets/Screens/Title/intro.png");
+	SpaceStart = app->tex->Load("Assets/Screens/Title/start.png");
 
 	return true;
 }
@@ -62,11 +63,13 @@ bool SceneIntro::PostUpdate()
 	SDL_Rect rect = { 0, 0, app->render->camera.w, app->render->camera.h};
 	app->render->DrawTexture(SpriteIntro, 0, 0, &rect);
 
+	SDL_Rect start = { 0, 0, app->render->camera.w, app->render->camera.h };
+	app->render->DrawTexture(SpaceStart, 0, 0, &rect);
+
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
 		app->scene->Reset();
-		app->modcontrol->currentscene = 2;
-		
+		app->modcontrol->currentscene = 2;		
 	}
 	return ret;
 }

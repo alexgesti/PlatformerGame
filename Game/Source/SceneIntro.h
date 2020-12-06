@@ -34,6 +34,7 @@ public:
 
 private:
 	SDL_Texture* SpriteIntro;
+	SDL_Texture* SpaceStart;
 };
 
 #endif // __SCENEINTRO_H__
