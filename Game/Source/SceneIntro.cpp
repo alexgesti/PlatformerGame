@@ -51,7 +51,7 @@ bool SceneIntro::Update(float dt)
 	// Load music
 	if (OneTimeOnly == false && app->sceneLogo->MusicOn == true)
 	{
-		app->audio->PlayMusic("Assets/audio/music/deities_get_takeout_too.ogg", 0);
+		app->audio->PlayMusic("Assets/Audio/Music/deities_get_takeout_too.ogg", 0);
 		OneTimeOnly = true;
 	}
 
