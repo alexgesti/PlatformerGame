@@ -101,7 +101,9 @@ Player::Player() : Module()
 
 // Destructor
 Player::~Player()
-{}
+{
+
+}
 
 // Called before render is available
 bool Player::Awake()
@@ -146,6 +148,7 @@ bool Player::PreUpdate()
 bool Player::Update(float dt)
 {
 	dt *= 100;
+
 	if (Godmode == false)
 	{
 		//Gravity
@@ -258,7 +261,8 @@ bool Player::Update(float dt)
 		}
 		else speedx = 8;
 
-		if (CollisionPlayer() == 1) {
+		if (CollisionPlayer() == 1) 
+		{
 			app->SaveGameRequest("save_game.xml");
 
 			app->scene->CheckPointActive = true;
@@ -383,7 +387,8 @@ int Player::CollisionPlayer()
 		if (CheckCollision(posMapPlayer[i]) == 2) life = 0;
 		if (CheckCollision(posMapPlayer[i]) == 3) return 1;
 		if (CheckCollision(posMapPlayer[i]) == 4) app->modcontrol->currentscene=4;
-		}
+	}
+
 	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1) return 2;
 	if (CheckCollision(posMapPlayer[numnPoints - 2]) == 1) return 3;
 
@@ -409,7 +414,6 @@ int Player::CheckCollision(iPoint positionMapPlayer)
 	if (app->map->data.layers.At(2)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 4;
 	if (app->map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
 	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 3;
-
 
 	return false;
 }

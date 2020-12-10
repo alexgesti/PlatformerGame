@@ -191,7 +191,8 @@ int PathFinding::CreatePath(iPoint& origin, iPoint& destination)
 			// L12b: TODO 4: If we just added the destination, we are done!
 			// Backtrack to create the final path
 			// Use the Pathnode::parent and Flip() the path when you are finish
-			if (currentCell->pos == destination) {
+			if (currentCell->pos == destination) 
+			{
 				lastPath.Clear();
 				for (const PathNode* pathIterator = currentCell; pathIterator != nullptr && pathIterator->pos != origin; pathIterator = pathIterator->PathNode::parent) 
 				{
@@ -211,14 +212,17 @@ int PathFinding::CreatePath(iPoint& origin, iPoint& destination)
 			// If it is already in the open list, check if it is a better path (compare G)
 			// If it is a better path, Update the parent
 			for (ListItem<PathNode>* adjacentNodeIterator = adjacentNodes.list.start; adjacentNodeIterator != nullptr; adjacentNodeIterator = adjacentNodeIterator->next) {
-				if (close.Find(adjacentNodeIterator->data.pos) != NULL) {
+				if (close.Find(adjacentNodeIterator->data.pos) != NULL) 
+				{
 					continue;
 				}
 				ListItem<PathNode>* duplicateNode = (ListItem<PathNode>*)open.Find(adjacentNodeIterator->data.pos);
-				if (duplicateNode == NULL) {
+				if (duplicateNode == NULL) 
+				{
 					open.list.add(adjacentNodeIterator->data);
 				}
-				else if (adjacentNodeIterator->data.g < duplicateNode->data.g) {
+				else if (adjacentNodeIterator->data.g < duplicateNode->data.g) 
+				{
 					duplicateNode->data.g = adjacentNodeIterator->data.g;
 					duplicateNode->data.parent = currentCell;
 				}

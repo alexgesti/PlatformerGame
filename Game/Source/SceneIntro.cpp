@@ -19,7 +19,9 @@ SceneIntro::SceneIntro() : Module()
 
 // Destructor
 SceneIntro::~SceneIntro()
-{}
+{
+
+}
 
 // Called before render is available
 bool SceneIntro::Awake()

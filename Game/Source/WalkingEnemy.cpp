@@ -76,7 +76,9 @@ WalkingEnemy::WalkingEnemy() : Module()
 
 // Destructor
 WalkingEnemy::~WalkingEnemy()
-{}
+{
+
+}
 
 // Called before render is available
 bool WalkingEnemy::Awake()

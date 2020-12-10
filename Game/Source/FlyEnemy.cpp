@@ -54,7 +54,9 @@ FlyEnemy::FlyEnemy() : Module()
 
 // Destructor
 FlyEnemy::~FlyEnemy()
-{}
+{
+
+}
 
 // Called before render is available
 bool FlyEnemy::Awake()
