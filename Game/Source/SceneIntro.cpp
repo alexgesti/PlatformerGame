@@ -12,9 +12,16 @@
 #include "Defs.h"
 #include "Log.h"
 
-SceneIntro::SceneIntro() : Module()
+SceneIntro::SceneIntro() : Module() //Esto debe de heredar de scene, habria que sacar todos los void que no sean necesarios (no esten puesto en scene) y modificarlos. Ademas necesitamos un scene manager.
 {
 	name.Create("sceneintro");
+
+	// GUI: Initialize required controls for the screen
+	btnStart = new GuiButton(1, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "START");
+	btnStart->SetObserver(this);
+
+	btnExit = new GuiButton(2, { 1280 / 2 - 300 / 2, 400, 300, 80 }, "EXIT");
+	btnExit->SetObserver(this);
 }
 
 // Destructor
@@ -89,6 +96,24 @@ bool SceneIntro::PostUpdate()
 bool SceneIntro::CleanUp()
 {
 	LOG("Freeing scene");
+
+	return true;
+}
+
+//----------------------------------------------------------
+// Manage GUI events for this screen
+//----------------------------------------------------------
+bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
+{
+	switch (control->type)
+	{
+	case GuiControlType::BUTTON:
+	{
+		if (control->id == 1); //Transicion a gameplay
+		else if (control->id == 2) return 0;
+	}
+	default: break;
+	}
 
 	return true;
 }

@@ -3,6 +3,8 @@
 
 #include "Module.h"
 
+#include "GuiButton.h"
+
 struct SDL_Texture;
 
 class SceneIntro : public Module
@@ -32,12 +34,18 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	// Declare on mouse click event
+	bool OnGuiMouseClickEvent(GuiControl* control);
+
 private:
 	SDL_Texture* SpriteIntro;
 	SDL_Texture* SpaceStart;
 
 public:
 	bool OneTimeOnly;
+
+	GuiButton* btnStart;
+	GuiButton* btnExit;
 
 };
 
