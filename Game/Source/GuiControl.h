@@ -3,7 +3,7 @@
 
 #include "Input.h"
 #include "Render.h"
-#include "Scene.h"
+#include "SceneBase.h"
 
 #include "Point.h"
 #include "SString.h"
@@ -37,7 +37,8 @@ class GuiControl
 {
 public:
 
-    GuiControl(GuiControlType type, uint32 id) : type(type), id(id), state(GuiControlState::NORMAL) {}
+    GuiControl(GuiControlType type, uint32 id) : type(type), id(id), state(GuiControlState::NORMAL) 
+    {}
 
     GuiControl(GuiControlType type, SDL_Rect bounds, const char* text) :
         type(type),
@@ -65,7 +66,7 @@ public:
         section = { 0, 0, 0, 0 };
     }
 
-    void SetObserver(Scene* scene)
+    void SetObserver(SceneBase* scene)
     {
         observer = scene;
     }

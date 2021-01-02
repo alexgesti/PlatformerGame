@@ -10,7 +10,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-SceneWin::SceneWin() : Module()
+SceneWin::SceneWin() : SceneBase()
 {
 	name.Create("sceneWin");
 }

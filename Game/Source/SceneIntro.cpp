@@ -12,7 +12,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-SceneIntro::SceneIntro() : Module() //Esto debe de heredar de scene, habria que sacar todos los void que no sean necesarios (no esten puesto en scene) y modificarlos. Ademas necesitamos un scene manager.
+SceneIntro::SceneIntro() : SceneBase() //Esto debe de heredar de scene, habria que sacar todos los void que no sean necesarios (no esten puesto en scene) y modificarlos. Ademas necesitamos un scene manager.
 {
 	name.Create("sceneintro");
 

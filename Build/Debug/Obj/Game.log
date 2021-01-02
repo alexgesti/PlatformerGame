@@ -1,0 +1,261 @@
+﻿  FlyEnemy.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(105,23): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(109,123): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(110,123): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(124,23): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(128,123): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(129,123): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(108,45): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(127,45): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
+  ModuleController.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneBase.h(35,16): warning C4101: 'input': variable local sin referencia
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(94,11): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(99,9): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(104,9): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(143,8): error C2039: "sceneLogo": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(148,8): error C2039: "sceneLogo": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(149,8): error C2039: "sceneIntro": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(155,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(173,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(174,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(178,8): error C2039: "sceneIntro": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(179,8): error C2039: "sceneLogo": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(180,8): error C2039: "sceneLose": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(181,8): error C2039: "sceneWin": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(190,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(191,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(195,8): error C2039: "sceneIntro": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(196,8): error C2039: "sceneLogo": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(197,8): error C2039: "sceneLose": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(198,8): error C2039: "sceneWin": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(205,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(206,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(210,8): error C2039: "sceneIntro": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(211,8): error C2039: "sceneLogo": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(212,8): error C2039: "sceneLose": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(213,8): error C2039: "sceneWin": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(222,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(223,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(227,8): error C2039: "sceneIntro": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(228,8): error C2039: "sceneLogo": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(229,8): error C2039: "sceneLose": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(230,8): error C2039: "sceneWin": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(237,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(238,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(242,8): error C2039: "sceneIntro": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(243,8): error C2039: "sceneLogo": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(244,8): error C2039: "sceneLose": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\ModuleController.cpp(245,8): error C2039: "sceneWin": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+  Pathfinding.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Point.h(111,24): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Point.h(107): message : al compilar la función del miembro clase plantilla "TYPE Point<TYPE>::DistanceTo(const Point<TYPE> &) const"
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Pathfinding.cpp(162): message : Vea la referencia a la creación de una instancia de la función plantilla "TYPE Point<TYPE>::DistanceTo(const Point<TYPE> &) const" que se está compilando
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\PathFinding.h(72): message : Vea la referencia a la creación de una instancia de clase plantilla "Point<int>" que se está compilando
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Point.h(111,15): warning C4244: 'return': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+  Player.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneBase.h(35,16): warning C4101: 'input': variable local sin referencia
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(157,29): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(180,29): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(192,29): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(207,25): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(212,24): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(268,9): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(277,9): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(278,13): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(278,54): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(279,9): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(280,9): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(295,29): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(303,29): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(310,29): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(314,29): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(337,44): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(338,32): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+  Scene.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneBase.h(35,16): warning C4101: 'input': variable local sin referencia
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(197,73): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(198,75): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  SceneIntro.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneBase.h(35,16): warning C4101: 'input': variable local sin referencia
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneIntro.cpp(21,28): error C2664: 'void GuiControl::SetObserver(Scene *)': el argumento 1 no puede convertirse de 'SceneIntro *' a 'Scene *'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneIntro.cpp(21,24): message : Los tipos señalados no están relacionados; la conversión requiere reinterpret_cast, conversión de estilo de C o conversión de estilo de función
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\GuiControl.h(69,10): message : vea la declaración de 'GuiControl::SetObserver'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneIntro.cpp(24,27): error C2664: 'void GuiControl::SetObserver(Scene *)': el argumento 1 no puede convertirse de 'SceneIntro *' a 'Scene *'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneIntro.cpp(24,23): message : Los tipos señalados no están relacionados; la conversión requiere reinterpret_cast, conversión de estilo de C o conversión de estilo de función
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\GuiControl.h(69,10): message : vea la declaración de 'GuiControl::SetObserver'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneIntro.cpp(61,35): error C2039: "sceneLogo": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneIntro.cpp(67,11): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneIntro.cpp(89,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+  SceneLogo.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneBase.h(35,16): warning C4101: 'input': variable local sin referencia
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneLogo.cpp(79,11): warning C4244: '=': conversión de 'float' a 'Uint8'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneLogo.cpp(100,11): warning C4244: '=': conversión de 'float' a 'Uint8'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneLogo.cpp(115,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneLogo.cpp(136,7): error C2039: "sceneIntro": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+  SceneLose.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneBase.h(35,16): warning C4101: 'input': variable local sin referencia
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneLose.cpp(48,11): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneLose.cpp(67,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+  SceneWin.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneBase.h(35,16): warning C4101: 'input': variable local sin referencia
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneWin.cpp(48,11): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\SceneWin.cpp(67,8): error C2039: "scene": no es un miembro de "App"
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\App.h(29): message : vea la declaración de 'App'
+  Textures.cpp
+  pugixml.cpp
+  Generando código...

@@ -12,7 +12,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-SceneLogo::SceneLogo() : Module()
+SceneLogo::SceneLogo() : SceneBase()
 {
 	name.Create("sceneLogo");
 }

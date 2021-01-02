@@ -211,7 +211,8 @@ int PathFinding::CreatePath(iPoint& origin, iPoint& destination)
 			// If it is NOT found, calculate its F and add it to the open list
 			// If it is already in the open list, check if it is a better path (compare G)
 			// If it is a better path, Update the parent
-			for (ListItem<PathNode>* adjacentNodeIterator = adjacentNodes.list.start; adjacentNodeIterator != nullptr; adjacentNodeIterator = adjacentNodeIterator->next) {
+			for (ListItem<PathNode>* adjacentNodeIterator = adjacentNodes.list.start; adjacentNodeIterator != nullptr; adjacentNodeIterator = adjacentNodeIterator->next) 
+			{
 				if (close.Find(adjacentNodeIterator->data.pos) != NULL) 
 				{
 					continue;

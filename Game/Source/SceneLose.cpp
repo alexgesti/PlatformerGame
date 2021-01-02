@@ -10,7 +10,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-SceneLose::SceneLose() : Module()
+SceneLose::SceneLose() : SceneBase()
 {
 	name.Create("sceneLose");
 }

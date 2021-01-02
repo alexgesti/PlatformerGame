@@ -66,10 +66,12 @@ void Map::Draw()
 					iPoint vec = MapToWorld(x, y);
 					for (int i = 0; i < data.tilesets.count(); i++)
 					{
-						if (showCollider == true) {
+						if (showCollider == true) 
+						{
 							app->render->DrawTexture(GetTilesetFromTileId(tileId)->texture, vec.x, vec.y, &GetTilesetFromTileId(tileId)->GetTileRect(tileId));
 						}
-						if (showCollider == false) {
+						if (showCollider == false) 
+						{
 							if (layer->data->properties.GetProperty("Draw", 0) == 0)
 								app->render->DrawTexture(GetTilesetFromTileId(tileId)->texture, vec.x, vec.y, &GetTilesetFromTileId(tileId)->GetTileRect(tileId));
 						}
@@ -360,7 +362,8 @@ bool Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	uint* pointer = new uint[size];
 	memset(pointer, 0, size);
 	layer->data = pointer;
-	if (layer->data == NULL) {
+	if (layer->data == NULL)
+	{
 		LOG("Error al crear el array de layer");
 		ret = false;
 	}

@@ -1,13 +1,13 @@
 #ifndef __SCENE_H__
 #define __SCENE_H__
 
-#include "Module.h"
+#include "SceneBase.h"
 
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class Scene : public Module
+class Scene : public SceneBase
 {
 public:
 

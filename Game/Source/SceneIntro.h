@@ -1,13 +1,13 @@
 #ifndef __SCENEINTRO_H__
 #define __SCENEINTRO_H__
 
-#include "Module.h"
+#include "SceneBase.h"
 
 #include "GuiButton.h"
 
 struct SDL_Texture;
 
-class SceneIntro : public Module
+class SceneIntro : public SceneBase
 {
 public:
 

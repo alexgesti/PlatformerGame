@@ -1,11 +1,11 @@
 #ifndef __SCENELOGO_H__
 #define __SCENELOGO_H__
 
-#include "Module.h"
+#include "SceneBase.h"
 
 struct SDL_Texture;
 
-class SceneLogo : public Module
+class SceneLogo : public SceneBase
 {
 public:
 

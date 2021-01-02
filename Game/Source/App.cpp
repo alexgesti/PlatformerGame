@@ -4,11 +4,7 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Audio.h"
-#include "Scene.h"
-#include "SceneIntro.h"
-#include "SceneLogo.h"
-#include "SceneLose.h"
-#include "SceneWin.h"
+#include "SceneBase.h"
 #include "Map.h"
 #include "Player.h"
 #include "ModuleController.h"
@@ -34,11 +30,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	render = new Render();
 	tex = new Textures();
 	audio = new Audio();
-	scene = new Scene();
-	sceneIntro = new SceneIntro();
-	sceneLogo = new SceneLogo();
-	sceneLose = new SceneLose();
-	sceneWin = new SceneWin();
+	scenebase = new SceneBase();
 	map = new Map();
 	player = new Player();
 	modcontrol = new ModuleController();
@@ -53,11 +45,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
-	AddModule(scene);
-	AddModule(sceneIntro);
-	AddModule(sceneLogo);
-	AddModule(sceneLose);
-	AddModule(sceneWin);
+	AddModule(scenebase);
 	AddModule(wenemy);
 	AddModule(fenemy);
 	AddModule(player);

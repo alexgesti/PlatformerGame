@@ -1,6 +1,8 @@
 #ifndef _SCENEBASE_H_
 #define _SCENEBASE_H_
 
+#include "Module.h"
+
 #include "SString.h"
 
 class Input;
@@ -17,17 +19,27 @@ enum class SceneType
     ENDING
 };
 
-class SceneBase
+class SceneBase : public Module
 {
 public:
 
-    Scene() : active(true), loaded(false), transitionRequired(false) {}
+    SceneBase() : active(true), loaded(false), transitionRequired(false) {}
 
-    virtual bool Start() return true;
+    virtual bool Start()
+    {
+        return true;
+    }
 
-    virtual bool Update(float dt) return true;//Input* input, mirar si se necesita. No se porque pero me habia dado problemas.
+    virtual bool Update(float dt)
+    {
+        Input* input;
+        return true; //Input* input, mirar si se necesita. No se porque pero me habia dado problemas.
+    }
 
-    virtual bool PostUpdate() return true;
+    virtual bool PostUpdate()
+    {
+        return true;
+    }
 
     void TransitionToScene(SceneType scene)
     {
