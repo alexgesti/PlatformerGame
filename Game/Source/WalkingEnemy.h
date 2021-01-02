@@ -1,13 +1,13 @@
 #ifndef __WALKINGENEMY_H__
 #define __WALKINGENEMY_H__
 
-#include "Module.h"
+#include "Entity.h"
 
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class WalkingEnemy : public Module
+class WalkingEnemy : public Entity
 {
 public:
 

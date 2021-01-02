@@ -20,10 +20,8 @@ class Textures;
 class Audio;
 class SceneBase;
 class Map;
-class Player;
 class ModuleController;
-class WalkingEnemy;
-class FlyEnemy;
+class Entity;
 class PathFinding;
 
 class App
@@ -98,10 +96,8 @@ public:
 	Audio* audio;
 	SceneBase* scenebase;
 	Map* map;
-	Player* player;
 	ModuleController* modcontrol;
-	WalkingEnemy* wenemy;
-	FlyEnemy* fenemy;
+	Entity* entity;
 	PathFinding* pathfinding;
 
 	uint32 cappedMs;

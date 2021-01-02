@@ -1,9 +1,7 @@
 #include "App.h"
 #include "Input.h"
 #include "Textures.h"
-#include "Input.h"
 #include "Map.h"
-#include "Textures.h"
 #include "Render.h"
 #include "Window.h"
 #include "WalkingEnemy.h"
@@ -15,7 +13,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-WalkingEnemy::WalkingEnemy() : Module()
+WalkingEnemy::WalkingEnemy() : Entity()
 {
 	name.Create("enemy");
 

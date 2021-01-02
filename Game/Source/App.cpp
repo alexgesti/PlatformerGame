@@ -6,12 +6,9 @@
 #include "Audio.h"
 #include "SceneBase.h"
 #include "Map.h"
-#include "Player.h"
 #include "ModuleController.h"
-#include "WalkingEnemy.h"
-#include "FlyEnemy.h"
 #include "Pathfinding.h"
-
+#include "Entity.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -32,11 +29,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio();
 	scenebase = new SceneBase();
 	map = new Map();
-	player = new Player();
 	modcontrol = new ModuleController();
-	wenemy = new WalkingEnemy();
-	fenemy = new FlyEnemy();
 	pathfinding = new PathFinding();
+	entity = new Entity();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -46,11 +41,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(scenebase);
-	AddModule(wenemy);
-	AddModule(fenemy);
-	AddModule(player);
 	AddModule(modcontrol);
 	AddModule(pathfinding);
+	AddModule(entity);
 
 	// Render last to swap buffer
 	AddModule(render);

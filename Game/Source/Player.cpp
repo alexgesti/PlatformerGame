@@ -1,9 +1,7 @@
 #include "App.h"
 #include "Input.h"
 #include "Textures.h"
-#include "Input.h"
 #include "Map.h"
-#include "Textures.h"
 #include "Render.h"
 #include "Window.h"
 #include "Player.h"
@@ -14,7 +12,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-Player::Player() : Module()
+Player::Player() : Entity()
 {
 	name.Create("player");
 

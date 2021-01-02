@@ -1,13 +1,13 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-#include "Module.h"
+#include "Entity.h"
 
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class Player : public Module
+class Player : public Entity
 {
 public:
 

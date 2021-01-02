@@ -1,13 +1,13 @@
 #ifndef __FLYENEMY_H__
 #define __FLYENEMY_H__
 
-#include "Module.h"
+#include "Entity.h"
 
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class FlyEnemy : public Module
+class FlyEnemy : public Entity
 {
 public:
 
