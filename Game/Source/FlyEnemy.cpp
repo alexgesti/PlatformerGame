@@ -13,10 +13,8 @@
 #include "Defs.h"
 #include "Log.h"
 
-FlyEnemy::FlyEnemy() : Entity()
+FlyEnemy::FlyEnemy() : Entity(EntityType::FENEMY)
 {
-	name.Create("Flyenemy");
-
 	//run left animation
 	runLAnim.PushBack({ 0, 96, 32, 32 });
 	runLAnim.PushBack({ 32, 96, 32, 32 });
@@ -90,7 +88,7 @@ bool FlyEnemy::PreUpdate()
 bool FlyEnemy::Update(float dt)
 {
 	//Mov left
-	if (((app->player->position.y <= position.y + detectdistance 
+	if (((app->position.y <= position.y + detectdistance 
 		&& app->player->position.y > position.y)
 		|| (app->player->position.y >= position.y - detectdistance
 		&& app->player->position.y < position.y)

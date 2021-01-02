@@ -1,7 +1,7 @@
 #ifndef __MAP_H__
 #define __MAP_H__
 
-#include "Module.h"
+#include "Entity.h"
 #include "List.h"
 #include "Point.h"
 
@@ -102,7 +102,7 @@ struct MapData
 	List<MapLayer*> layers;
 };
 
-class Map : public Module
+class Map : public Entity
 {
 public:
 

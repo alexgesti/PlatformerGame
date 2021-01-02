@@ -19,9 +19,8 @@ class Render;
 class Textures;
 class Audio;
 class SceneBase;
-class Map;
 class ModuleController;
-class Entity;
+class EntityManager;
 class PathFinding;
 
 class App
@@ -95,9 +94,8 @@ public:
 	Textures* tex;
 	Audio* audio;
 	SceneBase* scenebase;
-	Map* map;
 	ModuleController* modcontrol;
-	Entity* entity;
+	EntityManager* entitymanager;
 	PathFinding* pathfinding;
 
 	uint32 cappedMs;

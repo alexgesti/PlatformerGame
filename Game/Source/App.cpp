@@ -5,10 +5,9 @@
 #include "Textures.h"
 #include "Audio.h"
 #include "SceneBase.h"
-#include "Map.h"
 #include "ModuleController.h"
 #include "Pathfinding.h"
-#include "Entity.h"
+#include "EntityManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -28,10 +27,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	tex = new Textures();
 	audio = new Audio();
 	scenebase = new SceneBase();
-	map = new Map();
 	modcontrol = new ModuleController();
 	pathfinding = new PathFinding();
-	entity = new Entity();
+	entitymanager = new EntityManager();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -39,11 +37,10 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(input);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(map);
 	AddModule(scenebase);
 	AddModule(modcontrol);
 	AddModule(pathfinding);
-	AddModule(entity);
+	AddModule(entitymanager);
 
 	// Render last to swap buffer
 	AddModule(render);

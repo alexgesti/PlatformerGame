@@ -1,41 +1,41 @@
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
-#include "Module.h"
+#include "Point.h"
+#include "SString.h"
 
-#include "Animation.h"
+enum class EntityType
+{
+    PLAYER,
+    FENEMY,
+    WENEMY,
+    MAP,
+    UNKNOWN
+};
 
-struct SDL_Texture;
-
-class Entity : public Module
+class Entity
 {
 public:
 
-	Entity();
+    Entity(EntityType type) : type(type), active(true) {}
 
-	// Destructor
-	virtual ~Entity();
+    virtual bool Update(float dt)
+    {
+        return true;
+    }
 
-	// Called before render is available
-	bool Awake();
+public:
 
-	// Called before the first frame
-	bool Start();
+    EntityType type;
+    bool active = true;
+    //SString name;         // Entity name identifier?
+    //uint32 id;            // Entity identifier?
 
-	// Called before all Updates
-	bool PreUpdate();
-
-	// Called each loop iteration
-	bool Update(float dt);
-
-	// Called before all Updates
-	bool PostUpdate();
-
-	// Called before quitting
-	bool CleanUp();
-
-	// Collision
-	bool CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapEnemy);
+    // Possible properties, it depends on how generic we
+    // want our Entity class, maybe it's not renderable...
+    iPoint position;        // Use a float instead?
+    bool renderable = false;
+    //SDL_Texture* texture;
 };
 
-#endif // __SCENE_H__
+#endif // __ENTITY_H__

@@ -12,10 +12,8 @@
 #include "Defs.h"
 #include "Log.h"
 
-Player::Player() : Entity()
+Player::Player() : Entity(EntityType::PLAYER)
 {
-	name.Create("player");
-
 	//idle rigth animation
 	idleRAnim.PushBack({ 0, 0, 64, 64 });
 	idleRAnim.PushBack({ 64, 0, 64, 64 });

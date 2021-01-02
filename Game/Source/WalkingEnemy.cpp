@@ -13,10 +13,8 @@
 #include "Defs.h"
 #include "Log.h"
 
-WalkingEnemy::WalkingEnemy() : Entity()
+WalkingEnemy::WalkingEnemy() : Entity(EntityType::WENEMY)
 {
-	name.Create("enemy");
-
 	//run left animation
 	runLAnim.PushBack({ 0, 128, 64, 64 });
 	runLAnim.PushBack({ 64, 128, 64, 64 });

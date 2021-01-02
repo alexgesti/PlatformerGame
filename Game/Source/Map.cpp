@@ -9,9 +9,9 @@
 
 #include <math.h>
 
-Map::Map() : Module(), mapLoaded(false)
+Map::Map() : Entity(EntityType::MAP), mapLoaded(false)
 {
-	name.Create("map");
+
 }
 
 // Destructor
