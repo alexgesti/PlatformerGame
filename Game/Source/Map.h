@@ -5,6 +5,7 @@
 #include "List.h"
 #include "Point.h"
 
+#include "SDL/include/SDL.h"
 #include "PugiXml\src\pugixml.hpp"
 
 // L03: DONE 2: Create a struct to hold information for a TileSet

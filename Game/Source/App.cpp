@@ -4,7 +4,7 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Audio.h"
-#include "SceneBase.h"
+#include "SceneManager.h"
 #include "ModuleController.h"
 #include "Pathfinding.h"
 #include "EntityManager.h"
@@ -26,7 +26,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	render = new Render();
 	tex = new Textures();
 	audio = new Audio();
-	scenebase = new SceneBase();
+	scenemanager = new SceneManager();
 	modcontrol = new ModuleController();
 	pathfinding = new PathFinding();
 	entitymanager = new EntityManager();
@@ -37,7 +37,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(input);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(scenebase);
+	AddModule(scenemanager);
 	AddModule(modcontrol);
 	AddModule(pathfinding);
 	AddModule(entitymanager);
@@ -187,8 +187,8 @@ void App::FinishUpdate()
 	FramerateLogic();
 
 	static char title[256];
-	sprintf_s(title, 256, "Platformer Game (The Crossing) (FPS: %i / Av.FPS: %.2f / Last Frame Ms: %02u ms / Last dt: %.3f / Play Time: %.3f / Frame Count: %I64u / Vsync: %i / Map:%dx%d / Camera position:%d %d)",
-		prevLastSecFrameCount, averageFps, lastFrameMs, dt, secondsSinceStartup, frameCount, (int)app->render->Vsync ,app->map->data.width, app->map->data.height, app->render->camera.x, app->render->camera.y);
+	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %I64u ",
+		averageFps, lastFrameMs, framesOnLastUpdate, dt, secondsSinceStartup, frameCount);
 
 	app->win->SetTitle(title);
 }
@@ -403,6 +403,7 @@ void App::FramerateLogic()
 	averageFps = float(frameCount) / startupTime.ReadSec();
 	secondsSinceStartup = startupTime.ReadSec();
 	lastFrameMs = frameTime.Read();
+	framesOnLastUpdate = prevLastSecFrameCount;
 
 	int delayTime = (1000 / cappedMs) - lastFrameMs;
 	if (delayTime > 0)

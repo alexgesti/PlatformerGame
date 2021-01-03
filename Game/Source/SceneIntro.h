@@ -1,13 +1,14 @@
 #ifndef __SCENEINTRO_H__
 #define __SCENEINTRO_H__
 
-#include "SceneBase.h"
+#include "SceneManager.h"
 
+#include "Scene.h"
 #include "GuiButton.h"
 
 struct SDL_Texture;
 
-class SceneIntro : public SceneBase
+class SceneIntro : public SceneManager
 {
 public:
 
@@ -29,7 +30,7 @@ public:
 	bool Update(float dt);
 
 	// Called before all Updates
-	bool PostUpdate();
+	bool PostUpdate(Scene* scene);
 
 	// Called before quitting
 	bool CleanUp();
@@ -42,8 +43,6 @@ private:
 	SDL_Texture* SpaceStart;
 
 public:
-	bool OneTimeOnly;
-
 	GuiButton* btnStart;
 	GuiButton* btnExit;
 

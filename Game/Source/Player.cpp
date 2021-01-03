@@ -1,7 +1,6 @@
 #include "App.h"
 #include "Input.h"
 #include "Textures.h"
-#include "Map.h"
 #include "Render.h"
 #include "Window.h"
 #include "Player.h"
@@ -141,7 +140,7 @@ bool Player::PreUpdate()
 }
 
 // Called each loop iteration
-bool Player::Update(float dt)
+bool Player::Update(float dt, Map* map)
 {
 	dt *= 100;
 
@@ -230,7 +229,7 @@ bool Player::Update(float dt)
 			else currentAnim = &deadLAnim;
 		}
 
-		if (CollisionFloorPlayer())
+		if (CollisionFloorPlayer(map))
 		{
 			gravity = false;
 			jump = false;
@@ -241,15 +240,15 @@ bool Player::Update(float dt)
 		{
 			gravity = true;
 		}
-		if(!CollisionFloorPlayer()) jump = true;
+		if(!CollisionFloorPlayer(map)) jump = true;
 
-		if (CollisionPlayer() == 2 && LookingR == true)
+		if (CollisionPlayer(map) == 2 && LookingR == true)
 		{
 			speedx = 0;
 			int auxpos = position.x / 8;
 			position.x = auxpos * 8;
 		}
-		else if (CollisionPlayer() == 3 && LookingR == false)
+		else if (CollisionPlayer(map) == 3 && LookingR == false)
 		{
 			speedx = 0;
 			int auxpos = position.x / 8;
@@ -257,6 +256,8 @@ bool Player::Update(float dt)
 		}
 		else speedx = 8;
 
+		//F9
+		/*
 		if (CollisionPlayer() == 1) 
 		{
 			app->SaveGameRequest("save_game.xml");
@@ -275,6 +276,7 @@ bool Player::Update(float dt)
 			app->scene->SoundOneTime = false;
 			app->scene->pillar.Reset();
 		}
+		*/
 	}
 
 	//Godmode
@@ -373,43 +375,43 @@ bool Player::CleanUp()
 	return true;
 }
 
-int Player::CollisionPlayer()
+int Player::CollisionPlayer(Map* map)
 {
 	iPoint posMapPlayer[numnPoints];
 
 	for (int i = 0; i < numnPoints; i++)
 	{
-		posMapPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
-		if (CheckCollision(posMapPlayer[i]) == 2) life = 0;
-		if (CheckCollision(posMapPlayer[i]) == 3) return 1;
-		if (CheckCollision(posMapPlayer[i]) == 4) app->modcontrol->currentscene=4;
+		posMapPlayer[i] = map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
+		if (CheckCollision(posMapPlayer[i], map) == 2) life = 0;
+		if (CheckCollision(posMapPlayer[i], map) == 3) return 1;
+		if (CheckCollision(posMapPlayer[i], map) == 4) app->modcontrol->currentscene=4;
 	}
 
-	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1) return 2;
-	if (CheckCollision(posMapPlayer[numnPoints - 2]) == 1) return 3;
+	if (CheckCollision(posMapPlayer[numnPoints - 1], map) == 1) return 2;
+	if (CheckCollision(posMapPlayer[numnPoints - 2], map) == 1) return 3;
 
 	return false;
 }
 
-bool Player::CollisionFloorPlayer()
+bool Player::CollisionFloorPlayer(Map* map)
 {
 	iPoint posFloorPlayer[numnPoints];
 
 	for (int i = 0; i < numnPoints; i++)
 	{
-		posFloorPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsFloorCollision[i][0], -position.y + (int)pointsFloorCollision[i][1]);
-		if (CheckCollision(posFloorPlayer[i]) == 1) return true;
+		posFloorPlayer[i] = map->WorldToMap(-position.x + (int)pointsFloorCollision[i][0], -position.y + (int)pointsFloorCollision[i][1]);
+		if (CheckCollision(posFloorPlayer[i], map) == 1) return true;
 	}
 
 	return false;
 }
 
-int Player::CheckCollision(iPoint positionMapPlayer)
+int Player::CheckCollision(iPoint positionMapPlayer, Map* map)
 {
-	if (app->map->data.layers.At(1)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
-	if (app->map->data.layers.At(2)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 4;
-	if (app->map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
-	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 3;
+	if (map->data.layers.At(1)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
+	if (map->data.layers.At(2)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 4;
+	if (map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
+	if (map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 3;
 
 	return false;
 }

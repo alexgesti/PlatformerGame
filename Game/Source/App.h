@@ -18,7 +18,7 @@ class Input;
 class Render;
 class Textures;
 class Audio;
-class SceneBase;
+class SceneManager;
 class ModuleController;
 class EntityManager;
 class PathFinding;
@@ -93,7 +93,7 @@ public:
 	Render* render;
 	Textures* tex;
 	Audio* audio;
-	SceneBase* scenebase;
+	SceneManager* scenemanager;
 	ModuleController* modcontrol;
 	EntityManager* entitymanager;
 	PathFinding* pathfinding;

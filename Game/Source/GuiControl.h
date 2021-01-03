@@ -3,7 +3,7 @@
 
 #include "Input.h"
 #include "Render.h"
-#include "SceneBase.h"
+#include "SceneManager.h"
 
 #include "Point.h"
 #include "SString.h"
@@ -66,7 +66,7 @@ public:
         section = { 0, 0, 0, 0 };
     }
 
-    void SetObserver(SceneBase* scene)
+    void SetObserver(SceneManager* scene)
     {
         observer = scene;
     }

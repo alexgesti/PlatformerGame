@@ -1,11 +1,14 @@
 #ifndef __SCENELOGO_H__
 #define __SCENELOGO_H__
 
-#include "SceneBase.h"
+#include "SceneManager.h"
+
+#include "Scene.h"
+#include "SceneIntro.h"
 
 struct SDL_Texture;
 
-class SceneLogo : public SceneBase
+class SceneLogo : public SceneManager
 {
 public:
 
@@ -24,7 +27,7 @@ public:
 	bool PreUpdate();
 
 	// Called each loop iteration
-	bool Update(float dt);
+	bool Update(float dt, Scene* scene);
 
 	// Called before all Updates
 	bool PostUpdate();
@@ -45,9 +48,6 @@ private:
 
 	bool alphaFinished = false;
 	float Timer = 0;
-
-public:
-	bool MusicOn;
 };
 
 #endif // __SCENELOGO_H__

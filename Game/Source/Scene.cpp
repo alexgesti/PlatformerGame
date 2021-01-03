@@ -4,16 +4,12 @@
 #include "Render.h"
 #include "Window.h"
 #include "Scene.h"
-#include "Map.h"
-#include "Player.h"
-#include "WalkingEnemy.h"
-#include "FlyEnemy.h"
 #include "Audio.h"
 
 #include "Defs.h"
 #include "Log.h"
 
-Scene::Scene() : SceneBase()
+Scene::Scene() : SceneManager()
 {
 	name.Create("scene");
 
@@ -55,10 +51,10 @@ bool Scene::Awake()
 }
 
 // Called before the first frame
-bool Scene::Start()
+bool Scene::Start(Map* map)
 {
 	// L03: DONE: Load map
-	app->map->Load("mapa.tmx");
+	map->Load("mapa.tmx");
 	spritePillar = app->tex->Load("Assets/Screens/Gameplay/save_point_saving-x64.png");
 	lifePlayer = app->tex->Load("Assets/Screens/Gameplay/lifLife_X64.png");
 	PSup = app->tex->Load("Assets/Screens/Gameplay/lifLife_X32.png");
@@ -69,7 +65,6 @@ bool Scene::Start()
 	oneupFx = app->audio->LoadFx("Assets/Audio/Fx/1up.wav");
 	coinFx = app->audio->LoadFx("Assets/Audio/Fx/coin.wav");
 
-	NotSceneActived = false;
 	PillarAnim = &pillar;
 	CurrentAnimOrb = &obrN;
 	pointsAnim = &p0;
@@ -87,25 +82,25 @@ bool Scene::PreUpdate()
 }
 
 // Called each loop iteration
-bool Scene::Update(float dt)
+bool Scene::Update(float dt, Map* map, Player* player)
 {
-	if (NotSceneActived)
+	if (notSceneActived)
 	{
-		app->render->camera.x = app->player->position.x + ((app->render->camera.w / 2) - app->player->playerWH / 2);		 
-		app->render->camera.y = app->player->position.y + ((app->render->camera.h / 2) - app->player->playerWH / 2);
+		app->render->camera.x = player->position.x + ((app->render->camera.w / 2) - player->playerWH / 2);		 
+		app->render->camera.y = player->position.y + ((app->render->camera.h / 2) - player->playerWH / 2);
 	}
 
-	if (CheckCollisionRec(app->player->position, Orbposition) == true && OnlyOnceOrb == false)
+	if (CheckCollisionRec(player->position, Orbposition) == true && OnlyOnceOrb == false)
 	{
 		CurrentAnimOrb = &obrOb;
 		app->audio->PlayFx(coinFx);
 		OnlyOnceOrb = true;
 	}
 
-	if (CheckCollisionRec(app->player->position, PSposition) == true)
+	if (CheckCollisionRec(player->position, PSposition) == true)
 	{
 		PSposition = { 0, 0 };
-		app->player->life++;
+		player->life++;
 		app->audio->PlayFx(oneupFx);
 	}
 
@@ -124,7 +119,7 @@ bool Scene::Update(float dt)
 	else pointsAnim = &p0;
 
 	// Draw map
-	app->map->Draw();
+	map->Draw();
 
 	if (CheckPointActive)
 	{
@@ -151,7 +146,7 @@ bool Scene::Update(float dt)
 }
 
 // Called each loop iteration
-bool Scene::PostUpdate()
+bool Scene::PostUpdate(Player* player)
 {
 	bool ret = true;
 
@@ -160,7 +155,7 @@ bool Scene::PostUpdate()
 	app->render->DrawTexture(spritePillar, 4552, 1008, &rect);
 	app->render->DrawTexture(spritePillar, 6472, 624, &rect);
 
-	for (int i = 0; i < app->player->life; i++)
+	for (int i = 0; i < player->life; i++)
 	{
 		app->render->DrawTexture(lifePlayer, -app->render->camera.x + (64*i), -app->render->camera.y);
 	}
@@ -176,6 +171,7 @@ bool Scene::PostUpdate()
 	return ret;
 }
 
+/*
 // Load Scene State (Underconstruction)
 bool Scene::LoadState(pugi::xml_node& data)
 {
@@ -299,6 +295,7 @@ bool Scene::SaveState(pugi::xml_node& data) const
 
 	return true;
 }
+*/
 
 bool Scene::CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapOrb)
 {

@@ -4,15 +4,8 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Audio.h"
-#include "Scene.h"
-#include "SceneIntro.h"
-#include "SceneLogo.h"
-#include "SceneLose.h"
-#include "SceneWin.h"
-#include "Map.h"
-#include "Player.h"
-#include "WalkingEnemy.h"
-#include "FlyEnemy.h"
+#include "SceneManager.h"
+#include "EntityManager.h"
 #include "ModuleController.h"
 
 #include "Defs.h"
@@ -53,15 +46,8 @@ bool ModuleController::Awake(pugi::xml_node& config)
 	app->input->active = true;		// Input
 	app->tex->active = true;		// Texture
 	app->audio->active = true;		// Audio
-	app->map->active = true;		// Map
-	app->scene->active = true;		// Scene
-	app->sceneIntro->active = true;	// SceneIntro
-	app->sceneLogo->active = true;	// SceneLogo
-	app->sceneLose->active = true;	// SceneLose
-	app->sceneWin->active = true;	// SceneWin
-	app->player->active = true;		// Player
-	app->wenemy->active = true;		// Walking Enemy
-	app->fenemy->active = true;		// Flying Enemy
+	app->entitymanager->active = true;		// Map
+	app->scenemanager->active = true;		// Scene
 	app->modcontrol->active = true;	// ModControl
 	app->render->active = true;		// Render
 
@@ -88,20 +74,20 @@ bool ModuleController::Start()
 	return ret;
 }
 
-bool ModuleController::Update(float dt)
+bool ModuleController::Update(float dt, Scene* scene, Map* map, Player* player)
 {
 	// DEBUG KEYS
-	if (app->scene->NotSceneActived)
+	if (scene->notSceneActived)
 	{
 		if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		{
 			currentscene = 2;
-			app->scene->Reset();
+			scene->Reset();
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN && currentscene == 2)
 		{
-			app->scene->Reset();
+			scene->Reset();
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
@@ -112,18 +98,12 @@ bool ModuleController::Update(float dt)
 
 		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		{
-			if (app->map->showCollider == false)
-				app->map->showCollider = true;
-			else if (app->map->showCollider == true)
-				app->map->showCollider = false;
+			map->showCollider = !map->showCollider;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 		{
-			if (app->player->Godmode == false)
-				app->player->Godmode = true;
-			else if (app->player->Godmode == true)
-				app->player->Godmode = false;
+			player->Godmode = !player->Godmode;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
@@ -137,6 +117,7 @@ bool ModuleController::Update(float dt)
 		}
 	}
 
+	/*
 	if (app->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
 	{
 		currentscene = 0;
@@ -156,15 +137,17 @@ bool ModuleController::Update(float dt)
 	}
 	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN) currentscene = 3;
 	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentscene = 4;
+	*/
 
 
-	if (app->player->life <= 0 && (app->player->deadLAnim.FinishedAlready || app->player->deadRAnim.FinishedAlready))
+	if (player->life <= 0 && (player->deadLAnim.FinishedAlready || player->deadRAnim.FinishedAlready))
 	{
-		app->player->deadRAnim.Reset();
-		app->player->deadLAnim.Reset();
+		player->deadRAnim.Reset();
+		player->deadLAnim.Reset();
 		currentscene = 3;
 	}
 	
+	/*
 	switch (currentscene)
 	{
 	case 0:	//Logo
@@ -249,6 +232,7 @@ bool ModuleController::Update(float dt)
 	default:
 		break;
 	}
+	*/
 
 	return true;
 }

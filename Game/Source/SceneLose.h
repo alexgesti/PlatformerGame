@@ -1,11 +1,13 @@
-#ifndef __SCENELOSE_H__
-#define __SCENELOSE_H__
+#ifndef __SceneLOSE_H__
+#define __SceneLOSE_H__
 
-#include "SceneBase.h"
+#include "SceneManager.h"
+
+#include "Scene.h"
 
 struct SDL_Texture;
 
-class SceneLose : public SceneBase
+class SceneLose : public SceneManager
 {
 public:
 
@@ -27,7 +29,7 @@ public:
 	bool Update(float dt);
 
 	// Called before all Updates
-	bool PostUpdate();
+	bool PostUpdate(Scene* scene);
 
 	// Called before quitting
 	bool CleanUp();
@@ -36,6 +38,5 @@ private:
 	SDL_Texture* SpriteLose;
 };
 
-#endif // __SCENELOSE_H__
-#pragma once
+#endif // __SceneLOSE_H__
 #pragma once

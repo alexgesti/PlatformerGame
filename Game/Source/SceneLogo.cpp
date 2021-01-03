@@ -4,15 +4,13 @@
 #include "Render.h"
 #include "Window.h"
 #include "SceneLogo.h"
-#include "SceneIntro.h"
-#include "Scene.h"
 #include "ModuleController.h"
 #include "Audio.h"
 
 #include "Defs.h"
 #include "Log.h"
 
-SceneLogo::SceneLogo() : SceneBase()
+SceneLogo::SceneLogo() : SceneManager()
 {
 	name.Create("sceneLogo");
 }
@@ -50,7 +48,7 @@ bool SceneLogo::PreUpdate()
 }
 
 // Called each loop iteration
-bool SceneLogo::Update(float dt)
+bool SceneLogo::Update(float dt, Scene* scene)
 {
 	// Check if texture exist
 	if (SpriteLogo)
@@ -111,8 +109,8 @@ bool SceneLogo::Update(float dt)
 	if (alphaFinished == true && Timer >= 5 && OnlyStart == true)
 	{	
 		app->modcontrol->currentscene = 1;
-		MusicOn = true;
-		app->scene->Reset();
+		logoMusicOn = true;
+		scene->Reset();
 	}
 
 	return true;
@@ -132,8 +130,8 @@ bool SceneLogo::PostUpdate()
 // Reset
 bool SceneLogo::Reset()
 {
-	MusicOn = false;
-	app->sceneIntro->OneTimeOnly = false;
+	logoMusicOn = false;
+	introOnceOnly = false;
 	OnlyStart = false;
 	alphaFinished = false;
 	Timer = 0;

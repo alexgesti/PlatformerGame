@@ -4,13 +4,12 @@
 #include "Render.h"
 #include "Window.h"
 #include "SceneWin.h"
-#include "Scene.h"
 #include "ModuleController.h"
 
 #include "Defs.h"
 #include "Log.h"
 
-SceneWin::SceneWin() : SceneBase()
+SceneWin::SceneWin() : SceneManager()
 {
 	name.Create("sceneWin");
 }
@@ -45,7 +44,7 @@ bool SceneWin::PreUpdate()
 // Called each loop iteration
 bool SceneWin::Update(float dt)
 {
-	if (app->scene->NotSceneActived == false)
+	if (notSceneActived == false)
 	{
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;
@@ -55,7 +54,7 @@ bool SceneWin::Update(float dt)
 }
 
 // Called each loop iteration
-bool SceneWin::PostUpdate()
+bool SceneWin::PostUpdate(Scene* scene)
 {
 	bool ret = true;
 
@@ -64,7 +63,7 @@ bool SceneWin::PostUpdate()
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		app->scene->Reset();
+		scene->Reset();
 		app->modcontrol->currentscene = 1;
 
 	}

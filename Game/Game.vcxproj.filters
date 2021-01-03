@@ -18,9 +18,6 @@
     <ClCompile Include="Source\Scene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SceneIntro.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\SceneLogo.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -78,6 +75,9 @@
     <ClCompile Include="Source\EntityManager.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SceneIntro.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -118,9 +118,6 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SceneIntro.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Source\SceneLogo.h">
@@ -180,14 +177,17 @@
     <ClInclude Include="Source\GuiManager.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SceneBase.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Entity.h">
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Source\EntityManager.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneIntro.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneManager.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

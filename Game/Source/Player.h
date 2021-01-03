@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 
+#include "Map.h"
 #include "Animation.h"
 
 struct SDL_Texture;
@@ -26,7 +27,7 @@ public:
 	bool PreUpdate();
 
 	// Called each loop iteration
-	bool Update(float dt);
+	bool Update(float dt, Map* map);
 
 	// Called before all Updates
 	bool PostUpdate();
@@ -34,10 +35,10 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	int CollisionPlayer();
-	bool CollisionFloorPlayer();
+	int CollisionPlayer(Map* map);
+	bool CollisionFloorPlayer(Map* map);
 
-	int CheckCollision(iPoint positionMapPlayer);
+	int CheckCollision(iPoint positionMapPlayer, Map* map);
 
 public:
 	bool gravity = false;

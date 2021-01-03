@@ -3,6 +3,9 @@
 
 #include "Module.h"
 
+#include "Scene.h"
+#include "Map.h"
+#include "Player.h"
 #include "Point.h"
 
 #include "SDL/include/SDL.h"
@@ -23,7 +26,7 @@ public:
 	bool Start();
 
 	// Called each loop iteration
-	bool Update(float dt);
+	bool Update(float dt, Scene* scene, Map* map, Player* player);
 
 	// Add a new module to handle
 	void AddModule(Module* module);

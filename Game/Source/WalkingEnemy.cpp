@@ -107,7 +107,7 @@ bool WalkingEnemy::PreUpdate()
 }
 
 // Called each loop iteration
-bool WalkingEnemy::Update(float dt)
+bool WalkingEnemy::Update(float dt, Map* map, Player* player)
 {
 	//Gravity
 	if (gravity == true)
@@ -125,10 +125,10 @@ bool WalkingEnemy::Update(float dt)
 	}
 
 	//Mov right
-	if (app->player->position.y == position.y 
-		&& app->player->position.x >= position.x 
+	if (player->position.y == position.y 
+		&& player->position.x >= position.x 
 		&& dead == false
-		&& app->player->Godmode == false)
+		&& player->Godmode == false)
 	{
 		currentAnim = &runRAnim;
 		position.x += speedx;
@@ -136,10 +136,10 @@ bool WalkingEnemy::Update(float dt)
 	}
 
 	//Mov left
-	else if (app->player->position.y == position.y
-		&& app->player->position.x <= position.x
+	else if (player->position.y == position.y
+		&& player->position.x <= position.x
 		&& dead == false
-		&& app->player->Godmode == false)
+		&& player->Godmode == false)
 	{
 		currentAnim = &runLAnim;
 		position.x -= speedx;
@@ -169,26 +169,26 @@ bool WalkingEnemy::Update(float dt)
 		}
 	}
 
-	if (CollisionFloorEnemy())
+	if (CollisionFloorEnemy(map))
 	{
 		gravity = false;
 	}
 	else gravity = true;
 
-	if (CheckCollisionRec(app->player->Bposition, position) && app->player->shoot == true && dead == false)
+	if (CheckCollisionRec(player->Bposition, position) && player->shoot == true && dead == false)
 	{
 		dead = true;
-		app->player->shoot = false;
+		player->shoot = false;
 	}
 
-	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->Godmode == false)
+	if (CheckCollisionRec(player->position, position) && hitingPlayer == false && dead == false && player->Godmode == false)
 	{
 		hitingPlayer = true;
-		app->player->life--;
-		app->audio->PlayFx(app->player->hitFx);
+		player->life--;
+		app->audio->PlayFx(player->hitFx);
 	}
 
-	if (!CheckCollisionRec(app->player->position, position) && dead == false)
+	if (!CheckCollisionRec(player->position, position) && dead == false)
 	{
 		hitingPlayer = false;
 	}
@@ -219,36 +219,36 @@ bool WalkingEnemy::CleanUp()
 	return true;
 }
 
-int WalkingEnemy::CollisionEnemy()
+int WalkingEnemy::CollisionEnemy(Map* map)
 {
 	iPoint posMapEnemy[numnPoints];
 
 	for (int i = 0; i < numnPoints; i++)
 	{
-		posMapEnemy[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
+		posMapEnemy[i] = map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
 	}
-	if (CheckCollision(posMapEnemy[numnPoints - 1]) == 1) return 2;
-	if (CheckCollision(posMapEnemy[numnPoints - 2]) == 1) return 3;
+	if (CheckCollision(posMapEnemy[numnPoints - 1], map) == 1) return 2;
+	if (CheckCollision(posMapEnemy[numnPoints - 2], map) == 1) return 3;
 
 	return false;
 }
 
-bool WalkingEnemy::CollisionFloorEnemy()
+bool WalkingEnemy::CollisionFloorEnemy(Map* map)
 {
 	iPoint posFloorEnemy[numnPoints];
 
 	for (int i = 0; i < numnPoints; i++)
 	{
-		posFloorEnemy[i] = app->map->WorldToMap(-position.x + (int)pointsFloorCollision[i][0], -position.y + (int)pointsFloorCollision[i][1]);
-		if (CheckCollision(posFloorEnemy[i]) == 1) return true;
+		posFloorEnemy[i] = map->WorldToMap(-position.x + (int)pointsFloorCollision[i][0], -position.y + (int)pointsFloorCollision[i][1]);
+		if (CheckCollision(posFloorEnemy[i], map) == 1) return true;
 	}
 
 	return false;
 }
 
-int WalkingEnemy::CheckCollision(iPoint positionMapEnemy)
+int WalkingEnemy::CheckCollision(iPoint positionMapEnemy, Map* map)
 {
-	if (app->map->data.layers.At(1)->data->Get(positionMapEnemy.x, positionMapEnemy.y) != 0) return 1;
+	if (map->data.layers.At(1)->data->Get(positionMapEnemy.x, positionMapEnemy.y) != 0) return 1;
 
 	return false;
 }

@@ -1,13 +1,15 @@
 #ifndef __SCENE_H__
 #define __SCENE_H__
 
-#include "SceneBase.h"
+#include "SceneManager.h"
 
+#include "Map.h"
+#include "Player.h"
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class Scene : public SceneBase
+class Scene : public SceneManager
 {
 public:
 
@@ -20,20 +22,22 @@ public:
 	bool Awake();
 
 	// Called before the first frame
-	bool Start();
+	bool Start(Map* map);
 
 	// Called before all Updates
 	bool PreUpdate();
 
 	// Called each loop iteration
-	bool Update(float dt);
+	bool Update(float dt, Map* map, Player* player);
 
 	// Called before all Updates
-	bool PostUpdate();
+	bool PostUpdate(Player* player);
 
+	/*
 	// Load / Save (Underconstruction)
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&) const;
+	*/
 
 	// CollisionOrb
 	bool CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapOrb);
@@ -67,8 +71,6 @@ private:
 	int camX;
 	int camY;
 public:
-
-	bool NotSceneActived;
 	bool CheckPointActive; 
 	bool SoundOneTime;
 	bool OrbObtained;

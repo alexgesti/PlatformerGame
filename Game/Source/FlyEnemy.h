@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 
+#include "Player.h"
 #include "Animation.h"
 
 struct SDL_Texture;
@@ -26,7 +27,7 @@ public:
 	bool PreUpdate();
 
 	// Called each loop iteration
-	bool Update(float dt);
+	bool Update(float dt, Player* player);
 
 	// Called before all Updates
 	bool PostUpdate();

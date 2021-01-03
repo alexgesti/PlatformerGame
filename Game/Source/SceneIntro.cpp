@@ -4,15 +4,13 @@
 #include "Render.h"
 #include "Window.h"
 #include "SceneIntro.h"
-#include "SceneLogo.h"
-#include "Scene.h"
 #include "ModuleController.h"
 #include "Audio.h"
 
 #include "Defs.h"
 #include "Log.h"
 
-SceneIntro::SceneIntro() : SceneBase() //Esto debe de heredar de scene, habria que sacar todos los void que no sean necesarios (no esten puesto en scene) y modificarlos. Ademas necesitamos un scene manager.
+SceneIntro::SceneIntro() : SceneManager() //Esto debe de heredar de scene, habria que sacar todos los void que no sean necesarios (no esten puesto en scene) y modificarlos. Ademas necesitamos un scene manager.
 {
 	name.Create("sceneintro");
 
@@ -58,13 +56,13 @@ bool SceneIntro::PreUpdate()
 bool SceneIntro::Update(float dt)
 {
 	// Load music
-	if (OneTimeOnly == false && app->sceneLogo->MusicOn == true)
+	if (introOnceOnly == false && logoMusicOn == true)
 	{
 		app->audio->PlayMusic("Assets/Audio/Music/deities_get_takeout_too.ogg", 0);
-		OneTimeOnly = true;
+		introOnceOnly = true;
 	}
 
-	if (app->scene->NotSceneActived == false)
+	if (notSceneActived == false)
 	{
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;
@@ -74,7 +72,7 @@ bool SceneIntro::Update(float dt)
 }
 
 // Called each loop iteration
-bool SceneIntro::PostUpdate()
+bool SceneIntro::PostUpdate(Scene* scene)
 {
 	bool ret = true;
 
@@ -86,7 +84,7 @@ bool SceneIntro::PostUpdate()
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		app->scene->Reset();
+		scene->Reset();
 		app->modcontrol->currentscene = 2;		
 	}
 	return ret;

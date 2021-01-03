@@ -1,11 +1,13 @@
 #ifndef __SceneWIN_H__
 #define __SceneWIN_H__
 
-#include "SceneBase.h"
+#include "SceneManager.h"
+
+#include "Scene.h"
 
 struct SDL_Texture;
 
-class SceneWin : public SceneBase
+class SceneWin : public SceneManager
 {
 public:
 
@@ -27,7 +29,7 @@ public:
 	bool Update(float dt);
 
 	// Called before all Updates
-	bool PostUpdate();
+	bool PostUpdate(Scene* scene);
 
 	// Called before quitting
 	bool CleanUp();

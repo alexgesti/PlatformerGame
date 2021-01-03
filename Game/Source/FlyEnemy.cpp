@@ -7,7 +7,6 @@
 #include "FlyEnemy.h"
 #include "ModuleController.h"
 #include "Pathfinding.h"
-#include "Player.h"
 #include "Audio.h"
 
 #include "Defs.h"
@@ -85,44 +84,44 @@ bool FlyEnemy::PreUpdate()
 }
 
 // Called each loop iteration
-bool FlyEnemy::Update(float dt)
+bool FlyEnemy::Update(float dt, Player* player)
 {
 	//Mov left
-	if (((app->position.y <= position.y + detectdistance 
-		&& app->player->position.y > position.y)
-		|| (app->player->position.y >= position.y - detectdistance
-		&& app->player->position.y < position.y)
-		|| app->player->position.y == position.y)
-		&& app->player->position.x >= position.x
+	if (((player->position.y <= position.y + detectdistance
+		&& player->position.y > position.y)
+		|| (player->position.y >= position.y - detectdistance
+		&& player->position.y < position.y)
+		|| player->position.y == position.y)
+		&& player->position.x >= position.x
 		&& dead == false
-		&& app->player->Godmode == false)
+		&& player->Godmode == false)
 	{
 		currentAnim = &runLAnim;
 		position.x += speedx;
 		waslookingRight = false;
 
-		if (app->player->position.y == position.y);
-		if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
-		if (app->player->position.y >= position.y - detectdistance && app->player->position.y < position.y) position.y -= speedy;
+		if (player->position.y == position.y);
+		if (player->position.y <= position.y + detectdistance && player->position.y > position.y) position.y += speedy;
+		if (player->position.y >= position.y - detectdistance && player->position.y < position.y) position.y -= speedy;
 	}
 
 	//Mov right
-	if (((app->player->position.y <= position.y + detectdistance
-		&& app->player->position.y > position.y)
-		|| (app->player->position.y >= position.y - detectdistance
-			&& app->player->position.y < position.y)
-		|| app->player->position.y == position.y)
-		&& app->player->position.x <= position.x
+	if (((player->position.y <= position.y + detectdistance
+		&& player->position.y > position.y)
+		|| (player->position.y >= position.y - detectdistance
+			&& player->position.y < position.y)
+		|| player->position.y == position.y)
+		&& player->position.x <= position.x
 		&& dead == false
-		&& app->player->Godmode == false)
+		&& player->Godmode == false)
 	{
 		currentAnim = &runRAnim;
 		position.x -= speedx;
 		waslookingRight = true;
 
-		if (app->player->position.y == position.y);
-		if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
-		if (app->player->position.y >= position.y - detectdistance && app->player->position.y < position.y) position.y -= speedy;
+		if (player->position.y == position.y);
+		if (player->position.y <= position.y + detectdistance && player->position.y > position.y) position.y += speedy;
+		if (player->position.y >= position.y - detectdistance && player->position.y < position.y) position.y -= speedy;
 	}
 
 	//Die
@@ -147,20 +146,20 @@ bool FlyEnemy::Update(float dt)
 		}
 	}
 
-	if (CheckCollisionRec(app->player->Bposition, position) && app->player->shoot == true && dead == false)
+	if (CheckCollisionRec(player->Bposition, position) && player->shoot == true && dead == false)
 	{
 		dead = true;
-		app->player->shoot = false;
+		player->shoot = false;
 	}
 
-	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->Godmode == false)
+	if (CheckCollisionRec(player->position, position) && hitingPlayer == false && dead == false && player->Godmode == false)
 	{
 		hitingPlayer = true;
-		app->player->life--;
-		app->audio->PlayFx(app->player->hitFx);
+		player->life--;
+		app->audio->PlayFx(player->hitFx);
 	}
 
-	if (!CheckCollisionRec(app->player->position, position) && dead == false)
+	if (!CheckCollisionRec(player->position, position) && dead == false)
 	{
 		hitingPlayer = false;
 	}
