@@ -81,6 +81,11 @@ public:
 	iPoint Orbposition;
 	iPoint PSposition;
 
+	// Checkpoint
+	iPoint PosCheck1 = { 2057, 1905 };
+	iPoint PosCheck2 = { 4552, 1008 };
+	iPoint PosCheck3 = { 6472, 624 };
+
 	// Sound
 	uint checkpointSound;
 	uint oneupFx;

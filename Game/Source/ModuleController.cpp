@@ -42,16 +42,16 @@ bool ModuleController::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Module Controller");
 
-	app->win->active = true;		// Windows
-	app->input->active = true;		// Input
-	app->tex->active = true;		// Texture
-	app->audio->active = true;		// Audio
+	app->win->active = true;				// Windows
+	app->input->active = true;				// Input
+	app->tex->active = true;				// Texture
+	app->audio->active = true;				// Audio
 	app->entitymanager->active = true;		// Map
 	app->scenemanager->active = true;		// Scene
-	app->modcontrol->active = true;	// ModControl
-	app->render->active = true;		// Render
+	app->modcontrol->active = true;			// ModControl
+	app->render->active = true;				// Render
 
-	currentscene = 0;				// Current Scene
+	currentscene = 0;						// Current Scene
 	
 	app->SaveGameRequest("StartValues.xml");
 
@@ -95,6 +95,25 @@ bool ModuleController::Update(float dt, Scene* scene, Map* map, Player* player)
 
 		if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 			app->LoadGameRequest("save_game.xml");
+
+		if (app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN && player->dead == false)
+		{
+			if (player->CollisionPlayer(map) == 1)
+			{
+				player->position.x = -(scene->PosCheck2.x);
+				player->position.y = -(scene->PosCheck2.y + 15);
+			}
+			else if (player->CollisionPlayer(map) == 4)
+			{
+				player->position.x = -(scene->PosCheck3.x);
+				player->position.y = -(scene->PosCheck3.y + 15);
+			}
+			else if (player->CollisionPlayer(map) == 5)
+			{
+				player->position.x = -(scene->PosCheck1.x);
+				player->position.y = -(scene->PosCheck1.y + 15);
+			}
+		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		{

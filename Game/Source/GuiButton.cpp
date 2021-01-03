@@ -1,4 +1,4 @@
-#include "GuiButton.h"
+/*#include "GuiButton.h"
 
 GuiButton::GuiButton(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(GuiControlType::BUTTON, id)
 {
@@ -60,4 +60,4 @@ bool GuiButton::Draw(Render* render)
     }
 
     return false;
-}
+}*/

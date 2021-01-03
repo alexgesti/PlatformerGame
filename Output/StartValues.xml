@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<save_state>
+	<window />
+	<input />
+	<textures />
+	<audio />
+	<:anonymous />
+	<:anonymous />
+	<pathfinding />
+	<entitymanager />
+	<renderer>
+		<camera x="0" y="0" />
+	</renderer>
+</save_state>

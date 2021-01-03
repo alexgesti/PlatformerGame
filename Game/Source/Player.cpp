@@ -256,7 +256,6 @@ bool Player::Update(float dt, Map* map)
 		}
 		else speedx = 8;
 
-		//F9
 		/*
 		if (CollisionPlayer() == 1) 
 		{
@@ -383,7 +382,9 @@ int Player::CollisionPlayer(Map* map)
 	{
 		posMapPlayer[i] = map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
 		if (CheckCollision(posMapPlayer[i], map) == 2) life = 0;
-		if (CheckCollision(posMapPlayer[i], map) == 3) return 1;
+		if (CheckCollision(posMapPlayer[i], map) == 3) return 1; // Checkpoint 1
+		if (CheckCollision(posMapPlayer[i], map) == 5) return 4; // Checkpoint 2
+		if (CheckCollision(posMapPlayer[i], map) == 6) return 5; // Checkpoint 3
 		if (CheckCollision(posMapPlayer[i], map) == 4) app->modcontrol->currentscene=4;
 	}
 
@@ -411,7 +412,9 @@ int Player::CheckCollision(iPoint positionMapPlayer, Map* map)
 	if (map->data.layers.At(1)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
 	if (map->data.layers.At(2)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 4;
 	if (map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
-	if (map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 3;
+	if (map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 3; // CheckPoint 1
+	if (map->data.layers.At(5)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 5; // CheckPoint 2
+	if (map->data.layers.At(6)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 6; // CheckPoint 3
 
 	return false;
 }

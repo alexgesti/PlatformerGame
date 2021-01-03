@@ -4,7 +4,7 @@
 #include "SceneManager.h"
 
 #include "Scene.h"
-#include "GuiButton.h"
+//#include "GuiButton.h"
 
 struct SDL_Texture;
 
@@ -36,15 +36,15 @@ public:
 	bool CleanUp();
 
 	// Declare on mouse click event
-	bool OnGuiMouseClickEvent(GuiControl* control);
+	//bool OnGuiMouseClickEvent(GuiControl* control);
 
 private:
 	SDL_Texture* SpriteIntro;
 	SDL_Texture* SpaceStart;
 
 public:
-	GuiButton* btnStart;
-	GuiButton* btnExit;
+	//GuiButton* btnStart;
+	//GuiButton* btnExit;
 
 };
 

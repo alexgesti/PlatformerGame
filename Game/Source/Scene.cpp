@@ -121,10 +121,12 @@ bool Scene::Update(float dt, Map* map, Player* player)
 	// Draw map
 	map->Draw();
 
-	if (CheckPointActive)
+	/*if (CheckPointActive)
 	{
 		if (SoundOneTime == false && counterCheckPointSound == 0)
 		{
+			app->SaveGameRequest("save_game.xml");
+
 			app->audio->PlayFx(checkpointSound);
 			SoundOneTime = true;
 		}
@@ -136,7 +138,7 @@ bool Scene::Update(float dt, Map* map, Player* player)
 	else
 	{
 		if (counterCheckPointSound > 0) counterCheckPointSound += dt;
-	}
+	}*/
 
 	if (OrbObtained == false) CurrentAnimOrb->Update();
 
@@ -151,9 +153,9 @@ bool Scene::PostUpdate(Player* player)
 	bool ret = true;
 
 	SDL_Rect rect = PillarAnim->GetCurrentFrame();
-	app->render->DrawTexture(spritePillar, 2057, 1905, &rect);
-	app->render->DrawTexture(spritePillar, 4552, 1008, &rect);
-	app->render->DrawTexture(spritePillar, 6472, 624, &rect);
+	app->render->DrawTexture(spritePillar, PosCheck1.x, PosCheck1.y, &rect);
+	app->render->DrawTexture(spritePillar, PosCheck2.x, PosCheck2.y, &rect);
+	app->render->DrawTexture(spritePillar, PosCheck3.x, PosCheck3.y, &rect);
 
 	for (int i = 0; i < player->life; i++)
 	{

@@ -14,12 +14,12 @@ SceneIntro::SceneIntro() : SceneManager() //Esto debe de heredar de scene, habri
 {
 	name.Create("sceneintro");
 
-	// GUI: Initialize required controls for the screen
+	/*// GUI: Initialize required controls for the screen
 	btnStart = new GuiButton(1, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "START");
 	btnStart->SetObserver(this);
 
 	btnExit = new GuiButton(2, { 1280 / 2 - 300 / 2, 400, 300, 80 }, "EXIT");
-	btnExit->SetObserver(this);
+	btnExit->SetObserver(this);*/
 }
 
 // Destructor
@@ -101,7 +101,7 @@ bool SceneIntro::CleanUp()
 //----------------------------------------------------------
 // Manage GUI events for this screen
 //----------------------------------------------------------
-bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
+/*bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
 {
 	switch (control->type)
 	{
@@ -114,4 +114,4 @@ bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
 	}
 
 	return true;
-}
+}*/

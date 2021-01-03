@@ -1,4 +1,4 @@
-#include "GuiCheckBox.h"
+/*#include "GuiCheckBox.h"
 
 GuiCheckBox::GuiCheckBox(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(GuiControlType::CHECKBOX, id)
 {
@@ -67,4 +67,4 @@ bool GuiCheckBox::Draw(Render* render)
     }
 
     return false;
-}
+}*/
