@@ -149,14 +149,14 @@ bool Player::Update(float dt)
 {
 	dt *= 100;
 
-	if (Godmode == false)
+	if (godMode == false)
 	{
 		//Gravity
 		if (gravity == true && dead == false)
 		{
 			position.y -= speedy * dt;
 
-			if (LookingR) currentAnim = &jumpRAnim;
+			if (lookingR) currentAnim = &jumpRAnim;
 			else currentAnim = &jumpLAnim;
 		}
 
@@ -168,7 +168,7 @@ bool Player::Update(float dt)
 			&& jump == false
 			&& dead == false)
 		{
-			if (LookingR) currentAnim = &idleRAnim;
+			if (lookingR) currentAnim = &idleRAnim;
 			else currentAnim = &idleLAnim;
 		}
 
@@ -181,7 +181,7 @@ bool Player::Update(float dt)
 
 			if (gravity == false) currentAnim = &runLAnim;
 
-			LookingR = false;
+			lookingR = false;
 		}
 
 		//Mov right
@@ -193,7 +193,7 @@ bool Player::Update(float dt)
 
 			if(gravity == false) currentAnim = &runRAnim;
 
-			LookingR = true;
+			lookingR = true;
 		}
 
 		//Jump
@@ -215,7 +215,7 @@ bool Player::Update(float dt)
 
 		if (jump == true)
 		{
-			if (LookingR) currentAnim = &jumpRAnim;
+			if (lookingR) currentAnim = &jumpRAnim;
 			else currentAnim = &jumpLAnim;
 		}
 
@@ -230,7 +230,7 @@ bool Player::Update(float dt)
 				app->audio->PlayFx(deathFx);
 			}
 
-			if (LookingR) currentAnim = &deadRAnim;
+			if (lookingR) currentAnim = &deadRAnim;
 			else currentAnim = &deadLAnim;
 		}
 
@@ -247,13 +247,13 @@ bool Player::Update(float dt)
 		}
 		if(!CollisionFloorPlayer()) jump = true;
 
-		if (CollisionPlayer() == 2 && LookingR == true)
+		if (CollisionPlayer() == 2 && lookingR == true)
 		{
 			speedx = 0;
 			int auxpos = position.x / 8;
 			position.x = auxpos * 8;
 		}
-		else if (CollisionPlayer() == 3 && LookingR == false)
+		else if (CollisionPlayer() == 3 && lookingR == false)
 		{
 			speedx = 0;
 			int auxpos = position.x / 8;
@@ -267,10 +267,6 @@ bool Player::Update(float dt)
 
 			app->scene->CheckPointActive = true;
 
-			if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) position = { -2057, -1921 };
-			if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) position = { -4552, -1024 };
-			if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) position = { -6472, -640 };
-
 		}
 		else
 		{
@@ -281,8 +277,8 @@ bool Player::Update(float dt)
 		}
 	}
 
-	//Godmode
-	if (Godmode == true)
+	//godMode
+	if (godMode == true)
 	{
 		gravity = false;
 		jump = false;
@@ -294,7 +290,7 @@ bool Player::Update(float dt)
 		{
 			position.x += speedx * dt;
 
-			LookingR = false;
+			lookingR = false;
 		}
 
 		//Mov right
@@ -302,7 +298,7 @@ bool Player::Update(float dt)
 		{
 			position.x -= speedx * dt;
 
-			LookingR = true;
+			lookingR = true;
 		}
 
 		//Mov up
@@ -313,7 +309,7 @@ bool Player::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
 			position.y -= speedx * dt;
 
-		if (LookingR) currentAnim = &jumpRAnim;
+		if (lookingR) currentAnim = &jumpRAnim;
 		else currentAnim = &jumpLAnim;
 	}
 
@@ -322,8 +318,8 @@ bool Player::Update(float dt)
 		if (shoot == false && cooldown == 0)
 		{
 			shoot = true;
-			if (LookingR) WasLookingR = true;
-			else WasLookingR = false;
+			if (lookingR) WaslookingR = true;
+			else WaslookingR = false;
 			app->audio->PlayFx(shootFx);
 		}
 	}
@@ -334,7 +330,7 @@ bool Player::Update(float dt)
 	{
 		Ball.GetSelectedFrame(1);
 
-		if (WasLookingR) Bposition.x -= ballspeed;
+		if (WaslookingR) Bposition.x -= ballspeed;
 		else Bposition.x += ballspeed;
 
 		cooldown++;
@@ -386,7 +382,7 @@ int Player::CollisionPlayer()
 		posMapPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
 		if (CheckCollision(posMapPlayer[i]) == 2) life = 0;
 		if (CheckCollision(posMapPlayer[i]) == 3) return 1;
-		if (CheckCollision(posMapPlayer[i]) == 4) app->modcontrol->currentscene=4;
+		if (CheckCollision(posMapPlayer[i]) == 4) app->modcontrol->currentScene=4;
 	}
 
 	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1) return 2;

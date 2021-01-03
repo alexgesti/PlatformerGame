@@ -15,6 +15,7 @@
 #include "WalkingEnemy.h"
 #include "FlyEnemy.h"
 #include "Pathfinding.h"
+#include "GameplayScreenHUD.h"
 
 
 #include "Defs.h"

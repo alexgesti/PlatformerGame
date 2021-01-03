@@ -42,10 +42,10 @@ public:
 public:
 	bool gravity = false;
 	bool jump = true;
-	bool Godmode = false;
+	bool godMode = false;
 	bool dead = false;
-	bool LookingR = true;
-	bool WasLookingR = true;
+	bool lookingR = true;
+	bool waslookingR = true;
 	bool top = false;
 	bool shoot;
 	bool oncesound = false;
@@ -53,7 +53,7 @@ public:
 	float speedx = 8;
 	float speedy = 8;
 	float maxJump = 0;
-	float ballspeed = 24;
+	float ballSpeed = 24;
 	float cooldown = 0;
 
 	//Player dimensions
