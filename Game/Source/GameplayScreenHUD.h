@@ -1,4 +1,4 @@
-#ifndef  _GAMEPLAYSCREENHUD_H_
+/*#ifndef  _GAMEPLAYSCREENHUD_H_
 #define _GAMEPLAYSCREENHUD_H_
 
 #include "Module.h"
@@ -31,7 +31,7 @@ public:
 	bool PostUpdate();
 
 	// CollisionOrb
-	bool CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapOrb);
+	//bool CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapOrb);
 
 	//Called when reseting the level
 	bool Reset();
@@ -61,4 +61,4 @@ private:
 
 
 #endif // ! _GAMEPLAYSCREENHUD_H_
-#pragma once
+#pragma once*/

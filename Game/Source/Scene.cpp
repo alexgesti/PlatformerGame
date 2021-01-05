@@ -156,9 +156,9 @@ bool Scene::PostUpdate()
 	bool ret = true;
 
 	SDL_Rect rect = PillarAnim->GetCurrentFrame();
-	app->render->DrawTexture(spritePillar, 2057, 1905, &rect);
-	app->render->DrawTexture(spritePillar, 4552, 1008, &rect);
-	app->render->DrawTexture(spritePillar, 6472, 624, &rect);
+	app->render->DrawTexture(spritePillar, PosCheck1.x, PosCheck1.y, &rect);
+	app->render->DrawTexture(spritePillar, PosCheck2.x, PosCheck2.y, &rect);
+	app->render->DrawTexture(spritePillar, PosCheck3.x, PosCheck3.y, &rect);
 
 	for (int i = 0; i < app->player->life; i++)
 	{
@@ -188,8 +188,8 @@ bool Scene::LoadState(pugi::xml_node& data)
 	app->player->deadRAnim.FinishedAlready = data.child("Player").attribute("FinishedDeadRAnim").as_bool();
 	app->player->deadLAnim.FinishedAlready = data.child("Player").attribute("FinishedDeadLAnim").as_bool();
 	app->player->jump = data.child("Player").attribute("Wasjumping").as_bool();
-	app->player->lookingR = data.child("Player").attribute("lookingRight").as_bool();
-	app->player->waslookingR = data.child("Player").attribute("wasLookingRight").as_bool();
+	app->player->LookingR = data.child("Player").attribute("Lookingright").as_bool();
+	app->player->WasLookingR = data.child("Player").attribute("Waslookingright").as_bool();
 	app->player->top = data.child("Player").attribute("WasTop").as_bool();
 	app->player->shoot = data.child("Player").attribute("WasShooting").as_bool();
 	app->player->oncesound = data.child("Player").attribute("OnceSound").as_bool(); 
@@ -197,7 +197,7 @@ bool Scene::LoadState(pugi::xml_node& data)
 	app->player->maxJump = data.child("Player").attribute("maxJump").as_int();
 	app->player->cooldown = data.child("Player").attribute("Cooldown").as_int();
 	app->player->life = data.child("Player").attribute("PlayerLifes").as_int();
-	app->player->godMode = data.child("Player").attribute("WasInGodMode").as_bool();	
+	app->player->Godmode = data.child("Player").attribute("WasInGodMode").as_bool();	
 
 	// Mushroom
 	app->wenemy->position.x = data.child("Mushroom").attribute("Wx").as_int();
@@ -206,7 +206,7 @@ bool Scene::LoadState(pugi::xml_node& data)
 	app->wenemy->IsDead = data.child("Mushroom").attribute("WIsWasdead").as_bool();
 	app->wenemy->deadRAnim.FinishedAlready = data.child("Mushroom").attribute("WFinishedDeadRAnim").as_bool();
 	app->wenemy->deadLAnim.FinishedAlready = data.child("Mushroom").attribute("WFinishedDeadLAnim").as_bool();
-	app->wenemy->wasLookingRight = data.child("Mushroom").attribute("WwasLookingRight").as_bool();
+	app->wenemy->waslookingRight = data.child("Mushroom").attribute("WWaslookingright").as_bool();
 	app->wenemy->gravity = data.child("Mushroom").attribute("WHasGravity").as_bool();
 	app->wenemy->hitingPlayer = data.child("Mushroom").attribute("WHitPlayer").as_bool();
 	app->wenemy->oncesound = data.child("Mushroom").attribute("WOnceSound").as_bool();
@@ -218,7 +218,7 @@ bool Scene::LoadState(pugi::xml_node& data)
 	app->fenemy->IsDead = data.child("Bat").attribute("FIsWasdead").as_bool();
 	app->fenemy->deadRAnim.FinishedAlready = data.child("Bat").attribute("FFinishedDeadRAnim").as_bool();
 	app->fenemy->deadLAnim.FinishedAlready = data.child("Bat").attribute("FFinishedDeadLAnim").as_bool();
-	app->fenemy->wasLookingRight = data.child("Bat").attribute("FwasLookingRight").as_bool();
+	app->fenemy->waslookingRight = data.child("Bat").attribute("FWaslookingright").as_bool();
 	app->fenemy->hitingPlayer = data.child("Bat").attribute("FHitPlayer").as_bool();
 	app->fenemy->oncesound = data.child("Bat").attribute("FOnceSound").as_bool();
 
@@ -253,16 +253,16 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	playersave.append_attribute("FinishedDeadRAnim") = app->player->deadRAnim.FinishedAlready;
 	playersave.append_attribute("FinishedDeadLAnim") = app->player->deadLAnim.FinishedAlready;
 	playersave.append_attribute("Wasjumping") = app->player->jump;
-	playersave.append_attribute("lookingRight") = app->player->lookingR;
-	playersave.append_attribute("wasLookingRight") = app->player->waslookingR;
+	playersave.append_attribute("Lookingright") = app->player->LookingR;
+	playersave.append_attribute("Waslookingright") = app->player->WasLookingR;
 	playersave.append_attribute("OnceSound") = app->player->oncesound;
 	playersave.append_attribute("WasTop") = app->player->top;
 	playersave.append_attribute("WasShooting") = app->player->shoot;
 	playersave.append_attribute("maxJump") = app->player->maxJump;
 	playersave.append_attribute("Cooldown") = app->player->cooldown;
-	playersave.append_attribute("wasLookingRight") = app->player->lookingR;
+	playersave.append_attribute("Waslookingright") = app->player->LookingR;
 	playersave.append_attribute("HasGravity") = app->player->gravity;
-	playersave.append_attribute("WasInGodMode") = app->player->godMode;
+	playersave.append_attribute("WasInGodMode") = app->player->Godmode;
 	playersave.append_attribute("PlayerLifes") = app->player->life;
 
 	walkenemysave.append_attribute("Wx") = app->wenemy->position.x;
@@ -271,7 +271,7 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	walkenemysave.append_attribute("WIsWasdead") = app->wenemy->IsDead;
 	walkenemysave.append_attribute("WFinishedDeadRAnim") = app->wenemy->deadRAnim.FinishedAlready;
 	walkenemysave.append_attribute("WFinishedDeadLAnim") = app->wenemy->deadLAnim.FinishedAlready;
-	walkenemysave.append_attribute("WwasLookingRight") = app->wenemy->wasLookingRight;
+	walkenemysave.append_attribute("WWaslookingright") = app->wenemy->waslookingRight;
 	walkenemysave.append_attribute("WHasGravity") = app->wenemy->gravity;
 	walkenemysave.append_attribute("WHitPlayer") = app->wenemy->hitingPlayer;
 	walkenemysave.append_attribute("WOnceSound") = app->wenemy->oncesound;
@@ -282,7 +282,7 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	flyenemysave.append_attribute("FIsWasdead") = app->fenemy->IsDead;
 	flyenemysave.append_attribute("FFinishedDeadRAnim") = app->fenemy->deadRAnim.FinishedAlready;
 	flyenemysave.append_attribute("FFinishedDeadLAnim") = app->fenemy->deadLAnim.FinishedAlready;
-	flyenemysave.append_attribute("FwasLookingRight") = app->fenemy->wasLookingRight;
+	flyenemysave.append_attribute("FWaslookingright") = app->fenemy->waslookingRight;
 	flyenemysave.append_attribute("FHitPlayer") = app->fenemy->hitingPlayer;
 	flyenemysave.append_attribute("FOnceSound") = app->fenemy->oncesound;
 

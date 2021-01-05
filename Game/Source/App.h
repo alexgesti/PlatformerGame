@@ -29,7 +29,7 @@ class ModuleController;
 class WalkingEnemy;
 class FlyEnemy;
 class PathFinding;
-class ScreenHUD;
+//class GameplayScreenHUD;
 
 class App
 {
@@ -112,7 +112,7 @@ public:
 	WalkingEnemy* wenemy;
 	FlyEnemy* fenemy;
 	PathFinding* pathfinding;
-	ScreenHUD* screenHud;
+	//GameplayScreenHUD* screenhud;
 
 	uint32 cappedMs;
 private:

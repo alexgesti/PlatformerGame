@@ -9,8 +9,8 @@ struct Colliders;
 
 class App;
 
-class GuiControl;
-enum class GuiControlState;
+//class GuiControl;
+//enum class GuiControlState;
 
 class Module
 {
@@ -73,7 +73,7 @@ public:
 	}
 
 	// Declare on mouse click event
-	bool OnGuiMouseClickEvent(GuiControl* control);
+	//bool OnGuiMouseClickEvent(GuiControl* control);
 
 public:
 

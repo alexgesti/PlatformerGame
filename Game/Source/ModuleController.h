@@ -33,8 +33,7 @@ public:
 
 public:
 
-	int currentScene;
-	int diffCheck = 0;
+	int currentscene;
 
 private: 
 

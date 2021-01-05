@@ -65,7 +65,7 @@ bool ModuleController::Awake(pugi::xml_node& config)
 	app->modcontrol->active = true;	// ModControl
 	app->render->active = true;		// Render
 
-	currentScene = 0;				// Current Scene
+	currentscene = 0;				// Current Scene
 	
 	app->SaveGameRequest("StartValues.xml");
 
@@ -95,11 +95,11 @@ bool ModuleController::Update(float dt)
 	{
 		if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		{
-			currentScene = 2;
+			currentscene = 2;
 			app->scene->Reset();
 		}
 
-		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN && currentScene == 2)
+		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN && currentscene == 2)
 		{
 			app->scene->Reset();
 		}
@@ -110,27 +110,23 @@ bool ModuleController::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 			app->LoadGameRequest("save_game.xml");
 
-		if (app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
+		if (app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN && app->player->dead == false)
 		{
-			diffCheck++;
-			if (diffCheck == 4)diffCheck == 1;
-			switch (diffCheck)
+			if (app->player->CollisionPlayer() == 1)
 			{
-			case 1:
-				app->player->position = { -6472,-640 };
-				break;
-			case 2:
-				app->player->position = {-4552,-1024};
-				break;
-			case 3:
-				app->player->position = {-2057,-1921};
-				break;
+				app->player->position.x = -(app->scene->PosCheck2.x);
+				app->player->position.y = -(app->scene->PosCheck2.y + 15);
 			}
-		}
-
-		if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
-		{
-
+			else if (app->player->CollisionPlayer() == 4)
+			{
+				app->player->position.x = -(app->scene->PosCheck3.x);
+				app->player->position.y = -(app->scene->PosCheck3.y + 15);
+			}
+			else if (app->player->CollisionPlayer() == 5)
+			{
+				app->player->position.x = -(app->scene->PosCheck1.x);
+				app->player->position.y = -(app->scene->PosCheck1.y + 15);
+			}
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
@@ -143,10 +139,10 @@ bool ModuleController::Update(float dt)
 
 		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 		{
-			if (app->player->godMode == false)
-				app->player->godMode = true;
-			else if (app->player->godMode == true)
-				app->player->godMode = false;
+			if (app->player->Godmode == false)
+				app->player->Godmode = true;
+			else if (app->player->Godmode == true)
+				app->player->Godmode = false;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
@@ -162,33 +158,33 @@ bool ModuleController::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
 	{
-		currentScene = 0;
+		currentscene = 0;
 		app->sceneLogo->Reset();
 	}
 	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
 	{
-		currentScene = 1;
+		currentscene = 1;
 		app->sceneLogo->MusicOn = true;
 		app->sceneIntro->OneTimeOnly = false;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
 	{
-		currentScene = 2;
+		currentscene = 2;
 
 		app->scene->Reset();
 	}
-	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN) currentScene = 3;
-	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentScene = 4;
+	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN) currentscene = 3;
+	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentscene = 4;
 
 
 	if (app->player->life <= 0 && (app->player->deadLAnim.FinishedAlready || app->player->deadRAnim.FinishedAlready))
 	{
 		app->player->deadRAnim.Reset();
 		app->player->deadLAnim.Reset();
-		currentScene = 3;
+		currentscene = 3;
 	}
 	
-	switch (currentScene)
+	switch (currentscene)
 	{
 	case 0:	//Logo
 

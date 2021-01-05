@@ -1,12 +1,10 @@
-#include "GameplayScreenHUD.h"
+/*#include "GameplayScreenHUD.h"
 #include "App.h"
-#include "Player.h"
 #include "Render.h"
 #include "Textures.h"
-#include "Audio.h"
-#include "Map.h"
-#include "Scene.h"
 #include "Timer.h"
+#include "Player.h"
+#include "Scene.h"
 
 
 #include "Defs.h"
@@ -39,16 +37,16 @@ bool ScreenHUD::Awake()
 {
 	LOG("Loading ScreenHUD");
 	bool ret = true;
-	clock = &nums.GetSelectedFrame(11);
+	//clock = &nums.GetSelectedFrame(11);
 	return ret;
 }
 
 bool ScreenHUD::Start()
 {
 
-	pointsSprite = app->tex->Load("Assets/Screens/Gameplay/Points.png");
+	pointsSprite = app->tex->Load("Assets/Screens/Gameplay/points.png");
 	lifePlayer = app->tex->Load("Assets/Screens/Gameplay/lifLife_X64.png");
-	time = app->tex->Load("Assets/Screens/Gameplay/Time.png");
+	time = app->tex->Load("Assets/Screens/Gameplay/time.png");
 	
 
 	return true;
@@ -62,8 +60,10 @@ bool ScreenHUD::PreUpdate()
 
 bool ScreenHUD::Update(float dt)
 {
-	if(digit1==0&&digit2==0&&digit3==0)
-	{ }
+	if(digit1 == 0 && digit2 == 0 && digit3 ==0)
+	{
+		//?
+	}
 	else
 	{
 		if (timer.ReadSec() >= 1) digit3 --;
@@ -224,4 +224,4 @@ bool ScreenHUD::CleanUp()
 	LOG("Freeing scene");
 
 	return true;
-}
+}*/

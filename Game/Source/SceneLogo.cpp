@@ -110,7 +110,7 @@ bool SceneLogo::Update(float dt)
 
 	if (alphaFinished == true && Timer >= 5 && OnlyStart == true)
 	{	
-		app->modcontrol->currentScene = 1;
+		app->modcontrol->currentscene = 1;
 		MusicOn = true;
 		app->scene->Reset();
 	}

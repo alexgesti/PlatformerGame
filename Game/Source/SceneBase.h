@@ -7,7 +7,7 @@ class Input;
 class Render;
 class Textures;
 
-class GuiControl;
+//class GuiControl;
 
 enum class SceneType
 {
@@ -36,10 +36,10 @@ public:
     }
 
     // Define multiple Gui Event methods
-    virtual bool OnGuiMouseClickEvent(GuiControl* control)
+    /*virtual bool OnGuiMouseClickEvent(GuiControl* control)
     {
         return true;
-    }
+    }*/
 
 public:
 

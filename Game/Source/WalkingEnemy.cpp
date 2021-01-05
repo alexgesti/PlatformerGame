@@ -119,11 +119,11 @@ bool WalkingEnemy::Update(float dt)
 		position.y -= speedy;
 	}
 
-	if (wasLookingRight == true)
+	if (waslookingRight == true)
 	{
 		currentAnim = &idleRAnim;
 	}
-	if (wasLookingRight == false)
+	if (waslookingRight == false)
 	{
 		currentAnim = &idleLAnim;
 	}
@@ -132,28 +132,28 @@ bool WalkingEnemy::Update(float dt)
 	if (app->player->position.y == position.y 
 		&& app->player->position.x >= position.x 
 		&& dead == false
-		&& app->player->godMode == false)
+		&& app->player->Godmode == false)
 	{
 		currentAnim = &runRAnim;
 		position.x += speedx;
-		wasLookingRight = true;
+		waslookingRight = true;
 	}
 
 	//Mov left
 	else if (app->player->position.y == position.y
 		&& app->player->position.x <= position.x
 		&& dead == false
-		&& app->player->godMode == false)
+		&& app->player->Godmode == false)
 	{
 		currentAnim = &runLAnim;
 		position.x -= speedx;
-		wasLookingRight = false;
+		waslookingRight = false;
 	}
 
 	//Die
 	if (dead)
 	{
-		if (wasLookingRight) currentAnim = &deadRAnim;
+		if (waslookingRight) currentAnim = &deadRAnim;
 		else currentAnim = &deadLAnim;
 
 		if (oncesound == false) 
@@ -185,7 +185,7 @@ bool WalkingEnemy::Update(float dt)
 		app->player->shoot = false;
 	}
 
-	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->godMode == false)
+	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->Godmode == false)
 	{
 		hitingPlayer = true;
 		app->player->life--;

@@ -149,14 +149,14 @@ bool Player::Update(float dt)
 {
 	dt *= 100;
 
-	if (godMode == false)
+	if (Godmode == false)
 	{
 		//Gravity
 		if (gravity == true && dead == false)
 		{
 			position.y -= speedy * dt;
 
-			if (lookingR) currentAnim = &jumpRAnim;
+			if (LookingR) currentAnim = &jumpRAnim;
 			else currentAnim = &jumpLAnim;
 		}
 
@@ -168,7 +168,7 @@ bool Player::Update(float dt)
 			&& jump == false
 			&& dead == false)
 		{
-			if (lookingR) currentAnim = &idleRAnim;
+			if (LookingR) currentAnim = &idleRAnim;
 			else currentAnim = &idleLAnim;
 		}
 
@@ -181,7 +181,7 @@ bool Player::Update(float dt)
 
 			if (gravity == false) currentAnim = &runLAnim;
 
-			lookingR = false;
+			LookingR = false;
 		}
 
 		//Mov right
@@ -193,7 +193,7 @@ bool Player::Update(float dt)
 
 			if(gravity == false) currentAnim = &runRAnim;
 
-			lookingR = true;
+			LookingR = true;
 		}
 
 		//Jump
@@ -215,7 +215,7 @@ bool Player::Update(float dt)
 
 		if (jump == true)
 		{
-			if (lookingR) currentAnim = &jumpRAnim;
+			if (LookingR) currentAnim = &jumpRAnim;
 			else currentAnim = &jumpLAnim;
 		}
 
@@ -230,7 +230,7 @@ bool Player::Update(float dt)
 				app->audio->PlayFx(deathFx);
 			}
 
-			if (lookingR) currentAnim = &deadRAnim;
+			if (LookingR) currentAnim = &deadRAnim;
 			else currentAnim = &deadLAnim;
 		}
 
@@ -247,13 +247,13 @@ bool Player::Update(float dt)
 		}
 		if(!CollisionFloorPlayer()) jump = true;
 
-		if (CollisionPlayer() == 2 && lookingR == true)
+		if (CollisionPlayer() == 2 && LookingR == true)
 		{
 			speedx = 0;
 			int auxpos = position.x / 8;
 			position.x = auxpos * 8;
 		}
-		else if (CollisionPlayer() == 3 && lookingR == false)
+		else if (CollisionPlayer() == 3 && LookingR == false)
 		{
 			speedx = 0;
 			int auxpos = position.x / 8;
@@ -261,12 +261,13 @@ bool Player::Update(float dt)
 		}
 		else speedx = 8;
 
-		if (CollisionPlayer() == 1) 
+		if (CollisionPlayer() == 1 ||
+			CollisionPlayer() == 4 ||
+			CollisionPlayer() == 5)
 		{
 			app->SaveGameRequest("save_game.xml");
 
 			app->scene->CheckPointActive = true;
-
 		}
 		else
 		{
@@ -277,8 +278,8 @@ bool Player::Update(float dt)
 		}
 	}
 
-	//godMode
-	if (godMode == true)
+	//Godmode
+	if (Godmode == true)
 	{
 		gravity = false;
 		jump = false;
@@ -290,7 +291,7 @@ bool Player::Update(float dt)
 		{
 			position.x += speedx * dt;
 
-			lookingR = false;
+			LookingR = false;
 		}
 
 		//Mov right
@@ -298,7 +299,7 @@ bool Player::Update(float dt)
 		{
 			position.x -= speedx * dt;
 
-			lookingR = true;
+			LookingR = true;
 		}
 
 		//Mov up
@@ -309,7 +310,7 @@ bool Player::Update(float dt)
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
 			position.y -= speedx * dt;
 
-		if (lookingR) currentAnim = &jumpRAnim;
+		if (LookingR) currentAnim = &jumpRAnim;
 		else currentAnim = &jumpLAnim;
 	}
 
@@ -318,8 +319,8 @@ bool Player::Update(float dt)
 		if (shoot == false && cooldown == 0)
 		{
 			shoot = true;
-			if (lookingR) WaslookingR = true;
-			else WaslookingR = false;
+			if (LookingR) WasLookingR = true;
+			else WasLookingR = false;
 			app->audio->PlayFx(shootFx);
 		}
 	}
@@ -330,7 +331,7 @@ bool Player::Update(float dt)
 	{
 		Ball.GetSelectedFrame(1);
 
-		if (WaslookingR) Bposition.x -= ballspeed;
+		if (WasLookingR) Bposition.x -= ballspeed;
 		else Bposition.x += ballspeed;
 
 		cooldown++;
@@ -381,8 +382,10 @@ int Player::CollisionPlayer()
 	{
 		posMapPlayer[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
 		if (CheckCollision(posMapPlayer[i]) == 2) life = 0;
-		if (CheckCollision(posMapPlayer[i]) == 3) return 1;
-		if (CheckCollision(posMapPlayer[i]) == 4) app->modcontrol->currentScene=4;
+		if (CheckCollision(posMapPlayer[i]) == 3) return 1; // Checkpoint 1
+		if (CheckCollision(posMapPlayer[i]) == 5) return 4; // Checkpoint 2
+		if (CheckCollision(posMapPlayer[i]) == 6) return 5; // Checkpoint 3
+		if (CheckCollision(posMapPlayer[i]) == 4) app->modcontrol->currentscene=4;
 	}
 
 	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1) return 2;
@@ -409,7 +412,9 @@ int Player::CheckCollision(iPoint positionMapPlayer)
 	if (app->map->data.layers.At(1)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 1;
 	if (app->map->data.layers.At(2)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 4;
 	if (app->map->data.layers.At(3)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 2;
-	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 3;
+	if (app->map->data.layers.At(4)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 3; // CheckPoint 1
+	if (app->map->data.layers.At(5)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 5; // CheckPoint 2
+	if (app->map->data.layers.At(6)->data->Get(positionMapPlayer.x, positionMapPlayer.y) != 0) return 6; // CheckPoint 3
 
 	return false;
 }

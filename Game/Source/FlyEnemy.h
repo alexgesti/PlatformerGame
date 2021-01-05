@@ -39,7 +39,7 @@ public:
 
 public:
 	bool dead = false;
-	bool wasLookingRight = true;
+	bool waslookingRight = true;
 	bool IsDead = false;
 	bool hitingPlayer = false;
 	bool oncesound = false;

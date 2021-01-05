@@ -99,11 +99,11 @@ bool FlyEnemy::Update(float dt)
 		|| app->player->position.y == position.y)
 		&& app->player->position.x >= position.x
 		&& dead == false
-		&& app->player->godMode == false)
+		&& app->player->Godmode == false)
 	{
 		currentAnim = &runLAnim;
 		position.x += speedx;
-		wasLookingRight = false;
+		waslookingRight = false;
 
 		if (app->player->position.y == position.y);
 		if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
@@ -118,11 +118,11 @@ bool FlyEnemy::Update(float dt)
 		|| app->player->position.y == position.y)
 		&& app->player->position.x <= position.x
 		&& dead == false
-		&& app->player->godMode == false)
+		&& app->player->Godmode == false)
 	{
 		currentAnim = &runRAnim;
 		position.x -= speedx;
-		wasLookingRight = true;
+		waslookingRight = true;
 
 		if (app->player->position.y == position.y);
 		if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
@@ -132,7 +132,7 @@ bool FlyEnemy::Update(float dt)
 	//Die
 	if (dead)
 	{
-		if (wasLookingRight) currentAnim = &deadRAnim;
+		if (waslookingRight) currentAnim = &deadRAnim;
 		else currentAnim = &deadLAnim;
 
 		if (oncesound == false)
@@ -157,7 +157,7 @@ bool FlyEnemy::Update(float dt)
 		app->player->shoot = false;
 	}
 
-	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->godMode == false)
+	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->Godmode == false)
 	{
 		hitingPlayer = true;
 		app->player->life--;
