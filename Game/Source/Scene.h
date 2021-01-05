@@ -5,6 +5,8 @@
 
 #include "Map.h"
 #include "Player.h"
+#include "WalkingEnemy.h"
+#include "FlyEnemy.h"
 #include "Animation.h"
 
 struct SDL_Texture;
@@ -33,11 +35,11 @@ public:
 	// Called before all Updates
 	bool PostUpdate(Player* player);
 
-	/*
+	
 	// Load / Save (Underconstruction)
-	bool LoadState(pugi::xml_node&);
-	bool SaveState(pugi::xml_node&) const;
-	*/
+	bool LoadState(pugi::xml_node&, Player* player, WalkingEnemy* wenemy, FlyEnemy* fenemy);
+	bool SaveState(pugi::xml_node&, Player* player, WalkingEnemy* wenemy, FlyEnemy* fenemy) const;
+	
 
 	// CollisionOrb
 	bool CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapOrb);
