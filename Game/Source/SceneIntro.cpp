@@ -5,7 +5,7 @@
 #include "Window.h"
 #include "SceneIntro.h"
 #include "SceneLogo.h"
-#include "Scene.h"
+#include "SceneOptions.h"
 #include "ModuleController.h"
 #include "Audio.h"
 
@@ -17,10 +17,19 @@ SceneIntro::SceneIntro() : Module() //Esto debe de heredar de scene, habria que 
 	name.Create("sceneintro");
 
 	// GUI: Initialize required controls for the screen //PREPARACION DEL BOTON, CON TAG, POSICION Y COLOR
-	btnStart = new GuiButton(1, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "START");
+	btnStart = new GuiButton(1, { 1280 / 2 - 325, 400, 300, 80 }, "START");
 	btnStart->SetObserver(this);
 
-	btnExit = new GuiButton(2, { 1280 / 2 - 300 / 2, 400, 300, 80 }, "EXIT");
+	btnContinue = new GuiButton(2, { 1280 / 2 + 25, 400, 300, 80 }, "CONTINUE");
+	btnContinue->SetObserver(this);
+
+	btnSettings = new GuiButton(3, { 1280 / 2 - 325, 500, 300, 80 }, "SETTINGS");
+	btnSettings->SetObserver(this);
+
+	btnCredits = new GuiButton(4, { 1280 / 2 + 25, 500, 300, 80 }, "CREDITS");
+	btnCredits->SetObserver(this);
+
+	btnExit = new GuiButton(5, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
 	btnExit->SetObserver(this);
 }
 
@@ -72,8 +81,14 @@ bool SceneIntro::Update(float dt)
 		app->render->camera.y = 0;
 	}
 
-	btnStart->Update(app->input, dt);
-	btnExit->Update(app->input, dt);
+	if (app->sceneOpts->active == false)
+	{
+		btnStart->Update(app->input, dt);
+		btnContinue->Update(app->input, dt);
+		btnSettings->Update(app->input, dt);
+		btnCredits->Update(app->input, dt);
+		btnExit->Update(app->input, dt);
+	}
 
 	return retU;
 }
@@ -89,8 +104,14 @@ bool SceneIntro::PostUpdate()
 	SDL_Rect start = { 0, 0, app->render->camera.w, app->render->camera.h };
 	app->render->DrawTexture(SpaceStart, 0, 0, &rect);
 
-	btnStart->Draw(app->render);
-	btnExit->Draw(app->render);
+	if (app->sceneOpts->active == false)
+	{
+		btnStart->Draw(app->render);
+		btnContinue->Draw(app->render);
+		btnSettings->Draw(app->render);
+		btnCredits->Draw(app->render);
+		btnExit->Draw(app->render);
+	}
 
 	return ret;
 }
@@ -112,14 +133,34 @@ bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
 	{
 	case GuiControlType::BUTTON:
 	{
-		if (control->id == 1)
+		switch (control->id)
 		{
+		case 1:
 			app->scene->Reset();
 			app->modcontrol->currentscene = 2;
+			break;
+
+		case 2:
+
+			break;
+
+		case 3:
+			app->sceneOpts->active = true;			// Settings
+			break;
+
+		case 4:
+
+			break;
+
+		case 5:
+			retU = false;
+			break;
+
 		}
-		else if (control->id == 2) retU = false; // TODO: Exit request
 	}
-	default: break;
+
+	default:
+		break;
 	}
 
 	return true;

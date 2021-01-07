@@ -9,6 +9,8 @@
 #include "SceneLogo.h"
 #include "SceneLose.h"
 #include "SceneWin.h"
+#include "SceneOptions.h"
+#include "ScenePause.h"
 #include "Map.h"
 #include "Player.h"
 #include "ModuleController.h"
@@ -41,6 +43,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	sceneLogo = new SceneLogo();
 	sceneLose = new SceneLose();
 	sceneWin = new SceneWin();
+	sceneOpts = new SceneOptions();
+	scenePause = new ScenePause();
 	map = new Map();
 	player = new Player();
 	modcontrol = new ModuleController();
@@ -56,7 +60,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
-	AddModule(GameHUD);
 	AddModule(scene);
 	AddModule(sceneIntro);
 	AddModule(sceneLogo);
@@ -67,6 +70,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(player);
 	AddModule(modcontrol);
 	AddModule(pathfinding);
+	AddModule(GameHUD);
+	AddModule(scenePause);
+	AddModule(sceneOpts);
 
 	// Render last to swap buffer
 	AddModule(render);
@@ -283,8 +289,6 @@ bool App::PostUpdate()
 
 		ret = item->data->PostUpdate();
 	}
-
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) ret = false;
 
 	return ret;
 }

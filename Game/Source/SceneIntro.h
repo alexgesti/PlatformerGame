@@ -42,6 +42,9 @@ private:
 	SDL_Texture* SpaceStart;
 
 	GuiButton* btnStart;
+	GuiButton* btnContinue;
+	GuiButton* btnSettings;
+	GuiButton* btnCredits;
 	GuiButton* btnExit;
 
 	bool retU;

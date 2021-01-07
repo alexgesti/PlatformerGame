@@ -32,13 +32,11 @@ public:
 	bool CleanUp();
 
 public:
+	bool capped = false;
 
 	int currentscene;
 
 private: 
-
-	bool capped = false;
-
 	List<Module*> modules;
 
 	SDL_Color blue = { 153, 225, 204 };

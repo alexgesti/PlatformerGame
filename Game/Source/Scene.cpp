@@ -4,6 +4,7 @@
 #include "Render.h"
 #include "Window.h"
 #include "Scene.h"
+#include "ScenePause.h"
 #include "Map.h"
 #include "Player.h"
 #include "WalkingEnemy.h"
@@ -107,6 +108,11 @@ bool Scene::Update(float dt)
 		PSposition = { 0, 0 };
 		app->player->life++;
 		app->audio->PlayFx(oneupFx);
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	{
+		app->scenePause->active = !app->scenePause->active;
 	}
 
 	if (obrOb.FinishedAlready)

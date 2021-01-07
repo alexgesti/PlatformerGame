@@ -64,10 +64,11 @@ private:
 	SDL_Texture* PSup;
 	SDL_Texture* spriteorb;
 	SDL_Texture* pointsSprite;
+
 	int camX;
 	int camY;
-public:
 
+public:
 	bool NotSceneActived;
 	bool CheckPointActive; 
 	bool SoundOneTime;

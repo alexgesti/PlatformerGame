@@ -1,20 +1,5 @@
-﻿  App.cpp
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(58,20): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(60,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(67,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  ModuleController.cpp
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(58,20): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(60,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(67,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  SceneIntro.cpp
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(58,20): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(60,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(67,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  SceneLogo.cpp
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(58,20): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(60,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\Animation.h(67,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\SceneLogo.cpp(79,11): warning C4244: '=': conversion from 'float' to 'Uint8', possible loss of data
-D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Game\Source\SceneLogo.cpp(100,11): warning C4244: '=': conversion from 'float' to 'Uint8', possible loss of data
-  Generating Code...
-  Game.vcxproj -> D:\cosas de clase\Desenvolupament de Videojocs\Copy to work - Platform\Build\Debug\Game.exe
+﻿  ScenePause.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  Game.vcxproj -> C:\Users\raulc\Documents\GitHub\PlatformerGame\Build\Debug\Game.exe

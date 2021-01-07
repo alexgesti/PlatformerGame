@@ -23,6 +23,8 @@ class SceneIntro;
 class SceneLogo;
 class SceneLose;
 class SceneWin;
+class SceneOptions;
+class ScenePause;
 class Map;
 class Player;
 class ModuleController;
@@ -107,6 +109,8 @@ public:
 	SceneLogo* sceneLogo;
 	SceneLose* sceneLose;
 	SceneWin* sceneWin;
+	SceneOptions* sceneOpts;
+	ScenePause* scenePause;
 	Map* map;
 	Player* player;
 	ModuleController* modcontrol;
