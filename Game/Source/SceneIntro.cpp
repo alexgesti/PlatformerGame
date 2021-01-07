@@ -16,7 +16,7 @@ SceneIntro::SceneIntro() : Module() //Esto debe de heredar de scene, habria que 
 {
 	name.Create("sceneintro");
 
-	// GUI: Initialize required controls for the screen
+	// GUI: Initialize required controls for the screen //PREPARACION DEL BOTON, CON TAG, POSICION Y COLOR
 	/*btnStart = new GuiButton(1, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "START");
 	btnStart->SetObserver(this);
 
@@ -103,14 +103,14 @@ bool SceneIntro::CleanUp()
 //----------------------------------------------------------
 // Manage GUI events for this screen
 //----------------------------------------------------------
-/*bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
+/*bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control) //LECTOR DEL BOTON
 {
 	switch (control->type)
 	{
 	case GuiControlType::BUTTON:
 	{
 		if (control->id == 1); //Transicion a gameplay
-		else if (control->id == 2) return 0;
+		else if (control->id == 2) return 0; //RETURN 0 NO FUNCIONA PARA CERRAR EL JUEGO (?)
 	}
 	default: break;
 	}

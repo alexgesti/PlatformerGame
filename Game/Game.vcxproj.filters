@@ -78,6 +78,9 @@
     <ClCompile Include="Source\GameplayScreenHUD.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameplayHUD.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -180,10 +183,10 @@
     <ClInclude Include="Source\GuiManager.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SceneBase.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GameplayScreenHUD.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameplayHUD.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>

@@ -46,7 +46,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	wenemy = new WalkingEnemy();
 	fenemy = new FlyEnemy();
 	pathfinding = new PathFinding();
-	//screenhud = new GameplayScreenHUD();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp

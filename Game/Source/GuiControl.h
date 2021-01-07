@@ -3,7 +3,7 @@
 
 #include "Input.h"
 #include "Render.h"
-#include "Scene.h"
+#include "Scene.h" //CAMBIAR
 
 #include "Point.h"
 #include "SString.h"
@@ -65,14 +65,14 @@ public:
         section = { 0, 0, 0, 0 };
     }
 
-    void SetObserver(Scene* scene)
+    void SetObserver(Scene* scene) //SERIA NUESTRA "SCENEBASE" PERO NO FUNCIONA. SE DEBERÍA HACER UN "SCENEBASE" Y DE ESTE QUE EL RESTO DE LAS ESCENAS HEREDEN.
     {
         observer = scene;
     }
 
     void NotifyObserver()
     {
-        //observer->OnGuiMouseClickEvent(this);
+        //observer->OnGuiMouseClickEvent(this); //CONSULTAR EL DE RAY COMO FUNCIONA PORQUE EN EL DE RAY HEREDA DE "SCENE" QUE PARA NOSOTROS SERIA "SCENEBASE".
     }
 
 public:

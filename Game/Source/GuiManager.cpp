@@ -24,7 +24,7 @@ bool GuiManager::Update(float dt)
 	accumulatedTime += dt;
 	if (accumulatedTime >= updateMsCycle) doLogic = true;
 
-	//UpdateAll(dt, doLogic);
+	//UpdateAll(dt, doLogic); //DESMUTEAR PARA TESTEAR
 
 	if (doLogic == true)
 	{

@@ -1,10 +1,12 @@
 /*#include "GameplayScreenHUD.h"
 #include "App.h"
+#include "Player.h"
 #include "Render.h"
 #include "Textures.h"
-#include "Timer.h"
-#include "Player.h"
+#include "Audio.h"
+#include "Map.h"
 #include "Scene.h"
+#include "Timer.h"
 
 
 #include "Defs.h"
@@ -37,7 +39,7 @@ bool ScreenHUD::Awake()
 {
 	LOG("Loading ScreenHUD");
 	bool ret = true;
-	//clock = &nums.GetSelectedFrame(11);
+	clock = &nums.GetSelectedFrame(11);
 	return ret;
 }
 
@@ -60,10 +62,8 @@ bool ScreenHUD::PreUpdate()
 
 bool ScreenHUD::Update(float dt)
 {
-	if(digit1 == 0 && digit2 == 0 && digit3 ==0)
-	{
-		//?
-	}
+	if(digit1==0&&digit2==0&&digit3==0)
+	{ }
 	else
 	{
 		if (timer.ReadSec() >= 1) digit3 --;

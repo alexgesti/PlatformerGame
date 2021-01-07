@@ -44,8 +44,8 @@ private:
 public:
 	bool OneTimeOnly;
 
-	//GuiButton* btnStart;
-	//GuiButton* btnExit;
+	//GuiButton* btnStart; //CREACION DEL BOTON
+	//GuiButton* btnExit; //CREACION DEL BOTON
 
 };
 
