@@ -65,14 +65,14 @@ public:
         section = { 0, 0, 0, 0 };
     }
 
-    void SetObserver(Scene* scene) //SERIA NUESTRA "SCENEBASE" PERO NO FUNCIONA. SE DEBERÍA HACER UN "SCENEBASE" Y DE ESTE QUE EL RESTO DE LAS ESCENAS HEREDEN.
+    void SetObserver(Module* scene)
     {
         observer = scene;
     }
 
     void NotifyObserver()
     {
-        //observer->OnGuiMouseClickEvent(this); //CONSULTAR EL DE RAY COMO FUNCIONA PORQUE EN EL DE RAY HEREDA DE "SCENE" QUE PARA NOSOTROS SERIA "SCENEBASE".
+        observer->OnGuiMouseClickEvent(this);
     }
 
 public:

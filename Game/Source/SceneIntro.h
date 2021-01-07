@@ -3,7 +3,7 @@
 
 #include "Module.h"
 
-//#include "GuiButton.h"
+#include "GuiButton.h"
 
 struct SDL_Texture;
 
@@ -35,18 +35,19 @@ public:
 	bool CleanUp();
 
 	// Declare on mouse click event
-	//bool OnGuiMouseClickEvent(GuiControl* control);
+	bool OnGuiMouseClickEvent(GuiControl* control);
 
 private:
 	SDL_Texture* SpriteIntro;
 	SDL_Texture* SpaceStart;
 
+	GuiButton* btnStart;
+	GuiButton* btnExit;
+
+	bool retU;
+
 public:
 	bool OneTimeOnly;
-
-	//GuiButton* btnStart; //CREACION DEL BOTON
-	//GuiButton* btnExit; //CREACION DEL BOTON
-
 };
 
 #endif // __SCENEINTRO_H__

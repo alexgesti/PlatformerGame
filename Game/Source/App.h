@@ -30,6 +30,7 @@ class WalkingEnemy;
 class FlyEnemy;
 class PathFinding;
 //class ScreenHUD;
+class GameplayHUD;
 
 class App
 {
@@ -113,6 +114,7 @@ public:
 	FlyEnemy* fenemy;
 	PathFinding* pathfinding;
 	//ScreenHUD* screenHud;
+	GameplayHUD* GameHUD;
 
 	uint32 cappedMs;
 private:
@@ -142,7 +144,6 @@ private:
 	// required variables are provided:
 	PerfTimer ptimer;
 	PerfTimer delayTimer;
-	uint64 frameCount = 0;
 
 	float averageFps = 0.0f;
 	float secondsSinceStartup = 0.0f;
@@ -156,6 +157,11 @@ private:
 	uint32 lastSecFrameCount = 0;
 	uint32 prevLastSecFrameCount = 0;
 	float dt = 0.0f;
+
+public:
+
+	uint64 frameCount = 0;
+
 };
 
 extern App* app;

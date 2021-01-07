@@ -17,11 +17,11 @@ SceneIntro::SceneIntro() : Module() //Esto debe de heredar de scene, habria que 
 	name.Create("sceneintro");
 
 	// GUI: Initialize required controls for the screen //PREPARACION DEL BOTON, CON TAG, POSICION Y COLOR
-	/*btnStart = new GuiButton(1, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "START");
+	btnStart = new GuiButton(1, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "START");
 	btnStart->SetObserver(this);
 
 	btnExit = new GuiButton(2, { 1280 / 2 - 300 / 2, 400, 300, 80 }, "EXIT");
-	btnExit->SetObserver(this);*/
+	btnExit->SetObserver(this);
 }
 
 // Destructor
@@ -57,6 +57,8 @@ bool SceneIntro::PreUpdate()
 // Called each loop iteration
 bool SceneIntro::Update(float dt)
 {
+	retU = true;
+
 	// Load music
 	if (OneTimeOnly == false && app->sceneLogo->MusicOn == true)
 	{
@@ -70,7 +72,10 @@ bool SceneIntro::Update(float dt)
 		app->render->camera.y = 0;
 	}
 
-	return true;
+	btnStart->Update(app->input, dt);
+	btnExit->Update(app->input, dt);
+
+	return retU;
 }
 
 // Called each loop iteration
@@ -84,11 +89,9 @@ bool SceneIntro::PostUpdate()
 	SDL_Rect start = { 0, 0, app->render->camera.w, app->render->camera.h };
 	app->render->DrawTexture(SpaceStart, 0, 0, &rect);
 
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-	{
-		app->scene->Reset();
-		app->modcontrol->currentscene = 2;		
-	}
+	btnStart->Draw(app->render);
+	btnExit->Draw(app->render);
+
 	return ret;
 }
 
@@ -103,17 +106,21 @@ bool SceneIntro::CleanUp()
 //----------------------------------------------------------
 // Manage GUI events for this screen
 //----------------------------------------------------------
-/*bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control) //LECTOR DEL BOTON
+bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
 {
 	switch (control->type)
 	{
 	case GuiControlType::BUTTON:
 	{
-		if (control->id == 1); //Transicion a gameplay
-		else if (control->id == 2) return 0; //RETURN 0 NO FUNCIONA PARA CERRAR EL JUEGO (?)
+		if (control->id == 1)
+		{
+			app->scene->Reset();
+			app->modcontrol->currentscene = 2;
+		}
+		else if (control->id == 2) retU = false; // TODO: Exit request
 	}
 	default: break;
 	}
 
 	return true;
-}*/
+}

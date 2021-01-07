@@ -16,6 +16,7 @@
 #include "FlyEnemy.h"
 #include "Pathfinding.h"
 //#include "GameplayScreenHUD.h"
+#include "GameplayHUD.h"
 
 
 #include "Defs.h"
@@ -46,6 +47,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	wenemy = new WalkingEnemy();
 	fenemy = new FlyEnemy();
 	pathfinding = new PathFinding();
+	GameHUD = new GameplayHUD();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -54,6 +56,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
+	AddModule(GameHUD);
 	AddModule(scene);
 	AddModule(sceneIntro);
 	AddModule(sceneLogo);
