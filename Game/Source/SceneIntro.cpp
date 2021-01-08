@@ -16,6 +16,33 @@ SceneIntro::SceneIntro() : Module() //Esto debe de heredar de scene, habria que 
 {
 	name.Create("sceneintro");
 
+	//Button Play
+	play.PushBack ({ 0, 0, 137, 27});
+	play.PushBack({ 0, 28, 137, 27});
+	play.PushBack({ 0, 58, 137, 27 });
+
+	//Button Continue
+	cont.PushBack({ 0, 0, 470, 53 });
+	cont.PushBack({ 0, 54, 470, 53 });
+	cont.PushBack({ 0, 107, 470, 53 });
+	cont.PushBack({ 0, 161, 470, 53 });
+
+	//Button Settings
+	sett.PushBack({ 0, 0, 470, 53 });
+	sett.PushBack({ 0, 54, 470, 53 });
+	sett.PushBack({ 0, 107, 470, 53 });
+
+	//Button credits
+	cont.PushBack({ 0, 0, 406, 53 });
+	cont.PushBack({ 0, 54, 406, 53 });
+	cont.PushBack({ 0, 107, 406, 53 });
+
+	//Button exit
+	cont.PushBack({ 0, 0, 214, 53 });
+	cont.PushBack({ 0, 54, 214, 53 });
+	cont.PushBack({ 0, 107, 214, 53 });
+
+
 	// GUI: Initialize required controls for the screen //PREPARACION DEL BOTON, CON TAG, POSICION Y COLOR
 	btnStart = new GuiButton(1, { 1280 / 2 - 325, 400, 300, 80 }, "START");
 	btnStart->SetObserver(this);
@@ -53,6 +80,11 @@ bool SceneIntro::Start()
 {
 	SpriteIntro = app->tex->Load("Assets/Screens/Title/intro.png");
 	SpaceStart = app->tex->Load("Assets/Screens/Title/start.png");
+	statesPlay = app->tex->Load("Assets/GUI/states_play.png");
+	statesCont = app->tex->Load("Assets/GUI/states_cont.png");
+	statesSett = app->tex->Load("Assets/GUI/states_sett.png");
+	statesCredits = app->tex->Load("Assets/GUI/states_credits.png");
+	statesExit = app->tex->Load("Assets/GUI/states_exit.png");
 
 	return true;
 }
@@ -80,7 +112,68 @@ bool SceneIntro::Update(float dt)
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;
 	}
+	switch (btnStart->state)
+	{
+		
+	case GuiControlState::NORMAL: play.GetSelectedFrame(2);
+		break;
+	case GuiControlState::FOCUSED: play.GetSelectedFrame(1);
+		break;
+	case GuiControlState::PRESSED: play.GetSelectedFrame(3);
+		break;
+	default:
+		break;
+	}
+	switch (btnContinue->state)
+	{
 
+	case GuiControlState::NORMAL: cont.GetSelectedFrame(1);
+		break;
+	case GuiControlState::FOCUSED: cont.GetSelectedFrame(3);
+		break;					   
+	case GuiControlState::PRESSED: cont.GetSelectedFrame(4);
+		break;					   
+	case GuiControlState::DISABLED:cont.GetSelectedFrame(2);
+		break;
+	default:
+		break;
+	}
+	switch (btnSettings->state)
+	{
+
+	case GuiControlState::NORMAL: sett.GetSelectedFrame(2);
+		break;
+	case GuiControlState::FOCUSED: sett.GetSelectedFrame(1);
+		break;
+	case GuiControlState::PRESSED: sett.GetSelectedFrame(3);
+		break;
+	default:
+		break;
+	}
+	switch (btnCredits->state)
+	{
+
+	case GuiControlState::NORMAL: credits.GetSelectedFrame(2);
+		break;
+	case GuiControlState::FOCUSED: credits.GetSelectedFrame(1);
+		break;
+	case GuiControlState::PRESSED: credits.GetSelectedFrame(3);
+		break;
+	default:
+		break;
+	}
+	switch (btnExit->state)
+	{
+
+	case GuiControlState::NORMAL: exit.GetSelectedFrame(2);
+		break;
+	case GuiControlState::FOCUSED: exit.GetSelectedFrame(1);
+		break;
+	case GuiControlState::PRESSED: exit.GetSelectedFrame(3);
+		break;
+	default:
+		break;
+	}
 	if (app->sceneOpts->active == false)
 	{
 		btnStart->Update(app->input, dt);
@@ -88,6 +181,12 @@ bool SceneIntro::Update(float dt)
 		btnSettings->Update(app->input, dt);
 		btnCredits->Update(app->input, dt);
 		btnExit->Update(app->input, dt);
+		
+		play.Update();
+		cont.Update();
+		sett.Update();
+		credits.Update();
+		exit.Update();
 	}
 
 	return retU;
@@ -104,13 +203,28 @@ bool SceneIntro::PostUpdate()
 	SDL_Rect start = { 0, 0, app->render->camera.w, app->render->camera.h };
 	app->render->DrawTexture(SpaceStart, 0, 0, &rect);
 
+	SDL_Rect rect1 = play.GetCurrentFrame();
+	app->render->DrawTexture(statesPlay, btnStart->bounds.x, btnStart->bounds.y, &rect1);
+
+	SDL_Rect rect2 = cont.GetCurrentFrame();
+	app->render->DrawTexture(statesCont, btnContinue->bounds.x, btnContinue->bounds.y, &rect2);
+
+	SDL_Rect rect3 = sett.GetCurrentFrame();
+	app->render->DrawTexture(statesSett, btnSettings->bounds.x, btnSettings->bounds.y, &rect3);
+
+	SDL_Rect rect4 = credits.GetCurrentFrame();
+	app->render->DrawTexture(statesCredits, btnCredits->bounds.x, btnCredits->bounds.y, &rect4);
+
+	SDL_Rect rect5 = exit.GetCurrentFrame();
+	app->render->DrawTexture(statesExit, btnExit->bounds.x, btnExit->bounds.y, &rect5);
+
 	if (app->sceneOpts->active == false)
 	{
-		btnStart->Draw(app->render);
+		/*btnStart->Draw(app->render);
 		btnContinue->Draw(app->render);
 		btnSettings->Draw(app->render);
 		btnCredits->Draw(app->render);
-		btnExit->Draw(app->render);
+		btnExit->Draw(app->render);*/
 	}
 
 	return ret;

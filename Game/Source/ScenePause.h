@@ -43,6 +43,16 @@ private:
 	GuiButton* btnTitle;
 	GuiButton* btnExit;
 
+	Animation resume;
+	Animation sett;
+	Animation title;
+	Animation exit;
+
+	SDL_Texture* statesResume;
+	SDL_Texture* statesSett;
+	SDL_Texture* statesTitle;
+	SDL_Texture* statesExit;
+
 	bool retU;
 
 public:

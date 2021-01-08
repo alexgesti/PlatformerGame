@@ -14,6 +14,26 @@ ScenePause::ScenePause() : Module() //Esto debe de heredar de scene, habria que 
 {
 	name.Create("sceneintro");
 
+	//Button Resume
+	resume.PushBack({ 0, 0, 137, 27 });
+	resume.PushBack({ 0, 28, 137, 27 });
+	resume.PushBack({ 0, 58, 137, 27 });
+
+	//Button Settings
+	sett.PushBack({ 0, 0, 470, 53 });
+	sett.PushBack({ 0, 54, 470, 53 });
+	sett.PushBack({ 0, 107, 470, 53 });
+
+	//Button Back to Tilte
+	title.PushBack({ 0, 0, 470, 53 });
+	title.PushBack({ 0, 54, 470, 53 });
+	title.PushBack({ 0, 107, 470, 53 });
+
+	//Button Exit
+	exit.PushBack({ 0, 0, 470, 53 });
+	exit.PushBack({ 0, 54, 470, 53 });
+	exit.PushBack({ 0, 107, 470, 53 });
+
 	btnResume = new GuiButton(1, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "RESUME");
 	btnResume->SetObserver(this);
 
@@ -45,6 +65,11 @@ bool ScenePause::Awake()
 // Called before the first frame
 bool ScenePause::Start()
 {
+	statesResume = app->tex->Load("Assets/GUI/states_resume");
+	statesSett = app->tex->Load("Assets/GUI/states_sett");
+	statesTitle = app->tex->Load("Assets/GUI/states_title");
+	statesExit = app->tex->Load("Assets/GUI/states_exit");
+
 	return true;
 }
 
@@ -58,13 +83,64 @@ bool ScenePause::PreUpdate()
 bool ScenePause::Update(float dt)
 {
 	retU = true;
+	switch (btnResume->state)
+	{
+	case GuiControlState::NORMAL: resume.GetSelectedFrame(2);
+		break;
+	case GuiControlState::FOCUSED: resume.GetSelectedFrame(1);
+		break;
+	case GuiControlState::PRESSED: resume.GetSelectedFrame(3);
+		break;
+	default:
+		break;
+	}
+	switch (btnSettings->state)
+	{
 
+	case GuiControlState::NORMAL: sett.GetSelectedFrame(2);
+		break;
+	case GuiControlState::FOCUSED: sett.GetSelectedFrame(1);
+		break;
+	case GuiControlState::PRESSED: sett.GetSelectedFrame(3);
+		break;
+	default:
+		break;
+	}
+	switch (btnTitle->state)
+	{
+
+	case GuiControlState::NORMAL: title.GetSelectedFrame(2);
+		break;
+	case GuiControlState::FOCUSED: title.GetSelectedFrame(1);
+		break;
+	case GuiControlState::PRESSED: title.GetSelectedFrame(3);
+		break;
+	default:
+		break;
+	}
+	switch (btnExit->state)
+	{
+
+	case GuiControlState::NORMAL: exit.GetSelectedFrame(2);
+		break;
+	case GuiControlState::FOCUSED: exit.GetSelectedFrame(1);
+		break;
+	case GuiControlState::PRESSED: exit.GetSelectedFrame(3);
+		break;
+	default:
+		break;
+	}
 	if (app->sceneOpts->active == false)
 	{
 		btnResume->Update(app->input, dt);
 		btnSettings->Update(app->input, dt);
 		btnTitle->Update(app->input, dt);
 		btnExit->Update(app->input, dt);
+
+		resume.Update();
+		sett.Update();
+		title.Update();
+		exit.Update();
 	}
 	
 	return retU;
@@ -74,13 +150,24 @@ bool ScenePause::Update(float dt)
 bool ScenePause::PostUpdate()
 {
 	bool ret = true;
+	SDL_Rect rect1 = resume.GetCurrentFrame();
+	app->render->DrawTexture(statesResume, btnResume->bounds.x, btnResume->bounds.y, &rect1);
+
+	SDL_Rect rect2 = sett.GetCurrentFrame();
+	app->render->DrawTexture(statesSett, btnSettings->bounds.x, btnSettings->bounds.y, &rect2);
+
+	SDL_Rect rect3 = sett.GetCurrentFrame();
+	app->render->DrawTexture(statesTitle, btnTitle->bounds.x, btnTitle->bounds.y, &rect3);
+
+	SDL_Rect rect4 = exit.GetCurrentFrame();
+	app->render->DrawTexture(statesExit, btnExit->bounds.x, btnExit->bounds.y, &rect4);
 
 	if (app->sceneOpts->active == false)
 	{
-		btnResume->Draw(app->render);
+		/*btnResume->Draw(app->render);
 		btnSettings->Draw(app->render);
 		btnTitle->Draw(app->render);
-		btnExit->Draw(app->render);
+		btnExit->Draw(app->render);*/
 	}
 
 	return ret;

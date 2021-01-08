@@ -13,6 +13,22 @@ SceneOptions::SceneOptions() : Module() //Esto debe de heredar de scene, habria 
 {
 	name.Create("sceneintro");
 
+
+	//Button Fullscreen
+	fullscreen.PushBack({ 0, 0, 137, 27 });
+	fullscreen.PushBack({ 0, 28, 137, 27 });
+	fullscreen.PushBack({ 0, 58, 137, 27 });
+
+	//Button Vsync
+	vsync.PushBack({ 0, 0, 470, 53 });
+	vsync.PushBack({ 0, 54, 470, 53 });
+	vsync.PushBack({ 0, 107, 470, 53 });
+
+	//Button Exit
+	exit.PushBack({ 0, 0, 470, 53 });
+	exit.PushBack({ 0, 54, 470, 53 });
+	exit.PushBack({ 0, 107, 470, 53 });
+
 	btnFull = new GuiButton(1, { 1280 / 2 - 300 / 2, 400, 300, 80 }, "FULLSCREEN");
 	btnFull->SetObserver(this);
 
@@ -41,6 +57,10 @@ bool SceneOptions::Awake()
 // Called before the first frame
 bool SceneOptions::Start()
 {
+	statesFullscreen = app->tex->Load("Assets/GUI/states_fullscreen");
+	statesVsync = app->tex->Load("Assets/GUI/states_vsync");
+	statesExit = app->tex->Load("Assets/GUI/states_exit");
+
 	return true;
 }
 
@@ -54,11 +74,49 @@ bool SceneOptions::PreUpdate()
 bool SceneOptions::Update(float dt)
 {
 	retU = true;
+	switch (btnFull->state)
+	{
+	case GuiControlState::NORMAL: fullscreen.GetSelectedFrame(2);
+		break;
+	case GuiControlState::FOCUSED: fullscreen.GetSelectedFrame(1);
+		break;
+	case GuiControlState::PRESSED: fullscreen.GetSelectedFrame(3);
+		break;
+	default:
+		break;
+	}
+	switch (btnSync->state)
+	{
 
+	case GuiControlState::NORMAL: vsync.GetSelectedFrame(2);
+		break;
+	case GuiControlState::FOCUSED: vsync.GetSelectedFrame(1);
+		break;
+	case GuiControlState::PRESSED: vsync.GetSelectedFrame(3);
+		break;
+	default:
+		break;
+	}
+	switch (btnExit->state)
+	{
+
+	case GuiControlState::NORMAL: exit.GetSelectedFrame(2);
+		break;
+	case GuiControlState::FOCUSED: exit.GetSelectedFrame(1);
+		break;
+	case GuiControlState::PRESSED: exit.GetSelectedFrame(3);
+		break;
+	default:
+		break;
+	}
 	btnFull->Update(app->input, dt);
 	btnSync->Update(app->input, dt);
 	btnExit->Update(app->input, dt);
 	
+	fullscreen.Update();
+	vsync.Update();
+	exit.Update();
+
 	return retU;
 }
 
@@ -67,9 +125,18 @@ bool SceneOptions::PostUpdate()
 {
 	bool ret = true;
 
-	btnFull->Draw(app->render);
+	SDL_Rect rect1 = fullscreen.GetCurrentFrame();
+	app->render->DrawTexture(statesFullscreen, btnFull->bounds.x, btnFull->bounds.y, &rect1);
+	
+	SDL_Rect rect2 = vsync.GetCurrentFrame();
+	app->render->DrawTexture(statesVsync, btnSync->bounds.x, btnSync->bounds.y, &rect2);
+	
+	SDL_Rect rect3 = exit.GetCurrentFrame();
+	app->render->DrawTexture(statesExit, btnExit->bounds.x, btnExit->bounds.y, &rect3);
+	
+	/*btnFull->Draw(app->render);
 	btnSync->Draw(app->render);
-	btnExit->Draw(app->render);
+	btnExit->Draw(app->render);*/
 
 	return ret;
 }

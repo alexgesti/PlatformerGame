@@ -42,6 +42,13 @@ private:
 	GuiButton* btnSync;
 	GuiButton* btnExit;
 
+	Animation fullscreen;
+	Animation vsync;
+	Animation exit;
+
+	SDL_Texture* statesFullscreen;
+	SDL_Texture* statesVsync;
+	SDL_Texture* statesExit;
 	bool retU;
 
 public:
