@@ -13,6 +13,7 @@
 #include "Player.h"
 #include "WalkingEnemy.h"
 #include "FlyEnemy.h"
+#include "GameplayHUD.h"
 #include "ModuleController.h"
 
 #include "Defs.h"
@@ -63,6 +64,7 @@ bool ModuleController::Awake(pugi::xml_node& config)
 	app->wenemy->active = true;		// Walking Enemy
 	app->fenemy->active = true;		// Flying Enemy
 	app->modcontrol->active = true;	// ModControl
+	app->GameHUD->active = true;	// GameplayHUD
 	app->render->active = true;		// Render
 
 	currentscene = 0;				// Current Scene
@@ -131,10 +133,16 @@ bool ModuleController::Update(float dt)
 
 		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		{
-			if (app->map->showCollider == false)
+			if (showColliders == false)
+			{
 				app->map->showCollider = true;
-			else if (app->map->showCollider == true)
+				showColliders = true;
+			}
+			else if (showColliders == true)
+			{
 				app->map->showCollider = false;
+				showColliders = false;
+			}
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
@@ -198,6 +206,7 @@ bool ModuleController::Update(float dt)
 		app->sceneLogo->active = true;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
 		app->sceneWin->active = false;			// SceneWin
+		app->GameHUD->active = false;			// GameplayHUD
 
 		app->render->SetBackgroundColor(black);	
 
@@ -215,6 +224,7 @@ bool ModuleController::Update(float dt)
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
 		app->sceneWin->active = false;			// SceneWin
+		app->GameHUD->active = false;			// GameplayHUD
 
 		break;
 
@@ -230,6 +240,7 @@ bool ModuleController::Update(float dt)
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
 		app->sceneWin->active = false;			// SceneWin
+		app->GameHUD->active = true;			// GameplayHUD
 
 		app->render->SetBackgroundColor(blue);
 
@@ -247,6 +258,7 @@ bool ModuleController::Update(float dt)
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = true;			// SceneLose
 		app->sceneWin->active = false;			// SceneWin
+		app->GameHUD->active = false;			// GameplayHUD
 
 		break;
 
@@ -262,6 +274,7 @@ bool ModuleController::Update(float dt)
 		app->sceneLogo->active = false;			// SceneLogo
 		app->sceneLose->active = false;			// SceneLose
 		app->sceneWin->active = true;			// SceneWin
+		app->GameHUD->active = false;			// GameplayHUD
 
 		break;
 

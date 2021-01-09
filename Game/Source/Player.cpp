@@ -362,6 +362,11 @@ bool Player::PostUpdate()
 	SDL_Rect rectB = BcurrentAnim->GetCurrentFrame();
 	app->render->DrawTexture(ball, -Bposition.x, -Bposition.y, &rectB); //Probar solo 1 shoot
 	
+	if (app->modcontrol->showColliders)
+	{
+		SDL_Rect rectCol = { app->win->width / 2 - 32, app->win->height / 2 - 32, 64, 64 };
+		app->render->DrawRectangle(rectCol, {0, 0, 255, 128});
+	}
 
 	return ret;
 }

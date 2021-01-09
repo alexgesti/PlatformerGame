@@ -11,6 +11,7 @@
 #include "Pathfinding.h"
 #include "Player.h"
 #include "Audio.h"
+#include "GameplayHUD.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -139,6 +140,7 @@ bool FlyEnemy::Update(float dt)
 		{
 			oncesound = true;
 			app->audio->PlayFx(deathEnemyFx);
+			app->GameHUD->points[2]++;
 		}
 
 		if (deadRAnim.FinishedAlready || deadLAnim.FinishedAlready)

@@ -9,6 +9,7 @@
 #include "WalkingEnemy.h"
 #include "FlyEnemy.h"
 #include "Audio.h"
+#include "GameplayHUD.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -63,7 +64,6 @@ bool Scene::Start()
 	lifePlayer = app->tex->Load("Assets/Screens/Gameplay/lifLife_X64.png");
 	PSup = app->tex->Load("Assets/Screens/Gameplay/lifLife_X32.png");
 	spriteorb = app->tex->Load("Assets/Screens/Gameplay/orb.png");
-	pointsSprite = app->tex->Load("Assets/Screens/Gameplay/Points.png");
 
     checkpointSound = app->audio->LoadFx("Assets/Audio/Fx/checkPoint.wav");
 	oneupFx = app->audio->LoadFx("Assets/Audio/Fx/1up.wav");
@@ -72,7 +72,6 @@ bool Scene::Start()
 	NotSceneActived = false;
 	PillarAnim = &pillar;
 	CurrentAnimOrb = &obrN;
-	pointsAnim = &p0;
 
 	Orbposition = { 3150, 1175 };
 	PSposition = { 3950, 1280 };
@@ -107,6 +106,7 @@ bool Scene::Update(float dt)
 		PSposition = { 0, 0 };
 		app->player->life++;
 		app->audio->PlayFx(oneupFx);
+		app->GameHUD->points[1]++;
 	}
 
 	if (obrOb.FinishedAlready)
@@ -117,11 +117,12 @@ bool Scene::Update(float dt)
 	
 	if (OrbObtained)
 	{
-		pointsAnim = &p1;
+		app->GameHUD->points[1]++;
+		app->GameHUD->coins[1]++;
 		obrOb.Reset();
 		CurrentAnimOrb = &obrN;
+		OrbObtained = false;
 	}
-	else pointsAnim = &p0;
 
 	// Draw map
 	app->map->Draw();
@@ -145,8 +146,6 @@ bool Scene::Update(float dt)
 
 	if (OrbObtained == false) CurrentAnimOrb->Update();
 
-	pointsAnim->Update();
-
 	return true;
 }
 
@@ -159,14 +158,6 @@ bool Scene::PostUpdate()
 	app->render->DrawTexture(spritePillar, PosCheck1.x, PosCheck1.y, &rect);
 	app->render->DrawTexture(spritePillar, PosCheck2.x, PosCheck2.y, &rect);
 	app->render->DrawTexture(spritePillar, PosCheck3.x, PosCheck3.y, &rect);
-
-	for (int i = 0; i < app->player->life; i++)
-	{
-		app->render->DrawTexture(lifePlayer, -app->render->camera.x + (64*i), -app->render->camera.y);
-	}
-
-	SDL_Rect pointRect = pointsAnim->GetCurrentFrame();
-	app->render->DrawTexture(pointsSprite, -app->render->camera.x + 850, -app->render->camera.y, &pointRect);
 
 	SDL_Rect orbrect = CurrentAnimOrb->GetCurrentFrame();
 	app->render->DrawTexture(spriteorb, Orbposition.x, Orbposition.y, &orbrect);
@@ -224,7 +215,6 @@ bool Scene::LoadState(pugi::xml_node& data)
 
 	// Scene
 	CheckPointActive = data.child("Scene").attribute("checkpointActive").as_bool();
-	checkpointSound = data.child("Scene").attribute("checkpointSound").as_bool();
 	OrbObtained = data.child("Scene").attribute("OrbObtained").as_bool();
 	counterCheckPointSound = data.child("Scene").attribute("counterCheckPointSound").as_float();
 	Orbposition.x = data.child("Scene").attribute("OrbPosX").as_int();
@@ -233,6 +223,25 @@ bool Scene::LoadState(pugi::xml_node& data)
 	OnlyOnceOrb = data.child("Scene").attribute("OnlyOnceOrb").as_bool();
 	PSposition.x = data.child("Scene").attribute("PSpositionX").as_int();
 	PSposition.y = data.child("Scene").attribute("PSpositionY").as_int();
+	PosCheck1.x = data.child("Scene").attribute("PosCheck1X").as_int();
+	PosCheck1.y	= data.child("Scene").attribute("PosCheck1Y").as_int();
+	PosCheck2.x	= data.child("Scene").attribute("PosCheck2X").as_int();
+	PosCheck2.y	= data.child("Scene").attribute("PosCheck2Y").as_int();
+	PosCheck3.x	= data.child("Scene").attribute("PosCheck3X").as_int();
+	PosCheck3.y	= data.child("Scene").attribute("PosCheck3Y").as_int();
+
+	// GameplayHUD
+	app->GameHUD->digits[0] = data.child("GameHUD").attribute("clockdigit0").as_int();
+	app->GameHUD->digits[1] = data.child("GameHUD").attribute("clockdigit1").as_int();
+	app->GameHUD->digits[2] = data.child("GameHUD").attribute("clockdigit2").as_int();
+	app->GameHUD->Counter = data.child("GameHUD").attribute("CounterClock").as_float();
+	app->GameHUD->points[0] = data.child("GameHUD").attribute("points0").as_int();
+	app->GameHUD->points[1] = data.child("GameHUD").attribute("points1").as_int();
+	app->GameHUD->points[2] = data.child("GameHUD").attribute("points2").as_int();
+	app->GameHUD->points[3] = data.child("GameHUD").attribute("points3").as_int();
+	app->GameHUD->points[4] = data.child("GameHUD").attribute("points4").as_int();
+	app->GameHUD->coins[0] = data.child("GameHUD").attribute("coin1").as_int();
+	app->GameHUD->coins[1] = data.child("GameHUD").attribute("coin2").as_int();
 
 	return true;
 }
@@ -244,7 +253,9 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	pugi::xml_node walkenemysave = data.append_child("Mushroom");
 	pugi::xml_node flyenemysave = data.append_child("Bat");
 	pugi::xml_node scenesave = data.append_child("Scene");
+	pugi::xml_node gamehud = data.append_child("GameHUD");
 
+	// Player
 	playersave.append_attribute("x") = app->player->position.x;
 	playersave.append_attribute("y") = app->player->position.y;
 	playersave.append_attribute("Ballx") = app->player->Bposition.x;
@@ -265,6 +276,7 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	playersave.append_attribute("WasInGodMode") = app->player->Godmode;
 	playersave.append_attribute("PlayerLifes") = app->player->life;
 
+	// Mushroom
 	walkenemysave.append_attribute("Wx") = app->wenemy->position.x;
 	walkenemysave.append_attribute("Wy") = app->wenemy->position.y;
 	walkenemysave.append_attribute("WWasdead") = app->wenemy->dead;
@@ -276,6 +288,7 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	walkenemysave.append_attribute("WHitPlayer") = app->wenemy->hitingPlayer;
 	walkenemysave.append_attribute("WOnceSound") = app->wenemy->oncesound;
 
+	// Bat
 	flyenemysave.append_attribute("Fx") = app->fenemy->position.x;
 	flyenemysave.append_attribute("Fy") = app->fenemy->position.y;
 	flyenemysave.append_attribute("FWasdead") = app->fenemy->dead;
@@ -286,8 +299,8 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	flyenemysave.append_attribute("FHitPlayer") = app->fenemy->hitingPlayer;
 	flyenemysave.append_attribute("FOnceSound") = app->fenemy->oncesound;
 
+	// Scene
 	scenesave.append_attribute("checkpointActive") = CheckPointActive;
-	scenesave.append_attribute("checkpointSound") = checkpointSound;
 	scenesave.append_attribute("OrbObtained") = OrbObtained;
 	scenesave.append_attribute("counterCheckPointSound") = counterCheckPointSound;
 	scenesave.append_attribute("OrbPosX") = Orbposition.x;
@@ -296,6 +309,25 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	scenesave.append_attribute("OnlyOnceOrb") = OnlyOnceOrb;
 	scenesave.append_attribute("PSpositionX") = PSposition.x;
 	scenesave.append_attribute("PSpositionY") = PSposition.y;
+	scenesave.append_attribute("PosCheck1X") = PosCheck1.x;
+	scenesave.append_attribute("PosCheck1Y") = PosCheck1.y;
+	scenesave.append_attribute("PosCheck2X") = PosCheck2.x;
+	scenesave.append_attribute("PosCheck2Y") = PosCheck2.y;
+	scenesave.append_attribute("PosCheck3X") = PosCheck3.x;
+	scenesave.append_attribute("PosCheck3Y") = PosCheck3.y;
+
+	// GameplayHUD
+	gamehud.append_attribute("clockdigit0") = app->GameHUD->digits[0];
+	gamehud.append_attribute("clockdigit1") = app->GameHUD->digits[1];
+	gamehud.append_attribute("clockdigit2") = app->GameHUD->digits[2];
+	gamehud.append_attribute("CounterClock") = app->GameHUD->Counter;
+	gamehud.append_attribute("points0") = app->GameHUD->points[0];
+	gamehud.append_attribute("points1") = app->GameHUD->points[1];
+	gamehud.append_attribute("points2") = app->GameHUD->points[2];
+	gamehud.append_attribute("points3") = app->GameHUD->points[3];
+	gamehud.append_attribute("points4") = app->GameHUD->points[4];
+	gamehud.append_attribute("coin1") = app->GameHUD->coins[0];
+	gamehud.append_attribute("coin2") = app->GameHUD->coins[1];
 
 	return true;
 }
@@ -304,7 +336,6 @@ bool Scene::CheckCollisionRec(iPoint positionMapPlayer, iPoint positionMapOrb)
 {
 	if ((-positionMapPlayer.x < (positionMapOrb.x + 52)) && ((-positionMapPlayer.x + 52) > positionMapOrb.x) &&
 		(-positionMapPlayer.y < (positionMapOrb.y + 64)) && ((-positionMapPlayer.y + 64) > positionMapOrb.y)) return true;
-
 
 	return false;
 }

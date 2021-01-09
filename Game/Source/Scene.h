@@ -47,7 +47,6 @@ public:
 public:
 	Animation* PillarAnim;
 	Animation* CurrentAnimOrb;
-	Animation* pointsAnim;
 
 	Animation pillar;
 
@@ -63,7 +62,6 @@ private:
 	SDL_Texture* lifePlayer;
 	SDL_Texture* PSup;
 	SDL_Texture* spriteorb;
-	SDL_Texture* pointsSprite;
 	int camX;
 	int camY;
 public:

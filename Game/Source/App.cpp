@@ -15,7 +15,6 @@
 #include "WalkingEnemy.h"
 #include "FlyEnemy.h"
 #include "Pathfinding.h"
-//#include "GameplayScreenHUD.h"
 #include "GameplayHUD.h"
 
 
@@ -56,12 +55,12 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(map);
-	AddModule(GameHUD);
 	AddModule(scene);
 	AddModule(sceneIntro);
 	AddModule(sceneLogo);
 	AddModule(sceneLose);
 	AddModule(sceneWin);
+	AddModule(GameHUD);
 	AddModule(wenemy);
 	AddModule(fenemy);
 	AddModule(player);

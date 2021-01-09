@@ -35,6 +35,8 @@ public:
 
 	int currentscene;
 
+	bool showColliders;
+
 private: 
 
 	bool capped = false;

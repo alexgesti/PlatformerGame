@@ -11,6 +11,8 @@
 #include "ModuleController.h"
 #include "Pathfinding.h"
 #include "Audio.h"
+#include "GameplayHUD.h"
+#include "Map.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -160,6 +162,7 @@ bool WalkingEnemy::Update(float dt)
 		{
 			oncesound = true;
 			app->audio->PlayFx(deathEnemyFx);
+			app->GameHUD->points[2]++;
 		}		
 
 		if (deadRAnim.FinishedAlready || deadLAnim.FinishedAlready)

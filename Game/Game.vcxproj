@@ -91,7 +91,6 @@
   <ItemGroup>
     <ClCompile Include="Source\FlyEnemy.cpp" />
     <ClCompile Include="Source\GameplayHUD.cpp" />
-    <ClCompile Include="Source\GameplayScreenHUD.cpp" />
     <ClCompile Include="Source\GuiButton.cpp" />
     <ClCompile Include="Source\GuiCheckBox.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
@@ -118,7 +117,6 @@
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\FlyEnemy.h" />
     <ClInclude Include="Source\GameplayHUD.h" />
-    <ClInclude Include="Source\GameplayScreenHUD.h" />
     <ClInclude Include="Source\GuiButton.h" />
     <ClInclude Include="Source\GuiCheckBox.h" />
     <ClInclude Include="Source\GuiControl.h" />
