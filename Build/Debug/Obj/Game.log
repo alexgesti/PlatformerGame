@@ -1,1 +1,131 @@
-﻿  Game.vcxproj -> D:\UNI\PlatformerGame\Build\Debug\Game.exe
+﻿  App.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  FlyEnemy.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(105,23): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(109,123): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(110,123): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(124,23): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(128,123): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(129,123): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(108,45): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\FlyEnemy.cpp(127,45): warning C4390: ';': se encontró una instrucción controlada vacía; ¿es esa la intención?
+  GameplayHUD.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  ModuleController.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  Player.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(157,29): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(182,29): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(194,29): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(209,25): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(214,24): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(290,29): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(298,29): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(305,29): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(309,29): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(332,44): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Player.cpp(333,32): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+  Scene.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(120,27): warning C4553: "==": el resultado de la expresión no se usa. ¿Quiso decir "="?
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(209,73): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Scene.cpp(210,75): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  WalkingEnemy.cpp
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\WalkingEnemy.cpp(119,23): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\WalkingEnemy.cpp(138,23): warning C4244: '+=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\WalkingEnemy.cpp(149,23): warning C4244: '-=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+  Generando código...
+  Game.vcxproj -> C:\Users\raulc\Documents\GitHub\PlatformerGame\Build\Debug\Game.exe

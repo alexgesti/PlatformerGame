@@ -160,6 +160,8 @@ bool Player::Update(float dt)
 			else currentAnim = &jumpLAnim;
 		}
 
+		if (jump == true && top == false) gravity = true;
+
 		//Idle	
 		if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
 			&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
@@ -212,6 +214,7 @@ bool Player::Update(float dt)
 			position.y += speedy;
 			if (position.y >= maxJump) top = false;
 		}
+		if (!CollisionFloorPlayer()) jump = true;
 
 		if (jump == true)
 		{
@@ -238,26 +241,21 @@ bool Player::Update(float dt)
 		{
 			gravity = false;
 			jump = false;
-			int auxpos = position.y / 16;
-			position.y = auxpos * 16;
+			int auxposy = position.y / 16;
+			position.y = auxposy * 16;
 		}
-		else if (top == false)
-		{
-			gravity = true;
-		}
-		if(!CollisionFloorPlayer()) jump = true;
 
 		if (CollisionPlayer() == 2 && LookingR == true)
 		{
 			speedx = 0;
-			int auxpos = position.x / 8;
-			position.x = auxpos * 8;
+			int auxposx = position.x / 8;
+			position.x = auxposx * 8;
 		}
 		else if (CollisionPlayer() == 3 && LookingR == false)
 		{
 			speedx = 0;
-			int auxpos = position.x / 8;
-			position.x = auxpos * 8;
+			int auxposx = position.x / 8;
+			position.x = auxposx * 8;
 		}
 		else speedx = 8;
 
