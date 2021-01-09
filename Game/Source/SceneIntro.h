@@ -39,7 +39,6 @@ public:
 
 private:
 	SDL_Texture* spriteIntro;
-	SDL_Texture* spaceStart;
 
 	GuiButton* btnStart;
 	GuiButton* btnContinue;

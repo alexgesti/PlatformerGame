@@ -79,7 +79,6 @@ bool SceneIntro::Awake()
 bool SceneIntro::Start()
 {
 	spriteIntro = app->tex->Load("Assets/Screens/Title/intro.png");
-	spaceStart = app->tex->Load("Assets/Screens/Title/start.png");
 	statesPlay = app->tex->Load("Assets/GUI/states_play.png");
 	statesCont = app->tex->Load("Assets/GUI/states_continue.png");
 	statesSett = app->tex->Load("Assets/GUI/states_sett.png");
@@ -200,9 +199,6 @@ bool SceneIntro::PostUpdate()
 
 	SDL_Rect rect = { 0, 0, app->render->camera.w, app->render->camera.h };
 	app->render->DrawTexture(spriteIntro, 0, 0, &rect);
-
-	SDL_Rect start = { 0, 0, app->render->camera.w, app->render->camera.h };
-	app->render->DrawTexture(spaceStart, 0, 0, &rect);
 
 	//Render Buttons
 	if (app->sceneOpts->active == false)
