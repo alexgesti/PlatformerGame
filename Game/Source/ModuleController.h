@@ -34,6 +34,7 @@ public:
 public:
 	bool capped = false;
 	bool showCollider = false;
+	bool showButtons = false;
 
 	int currentscene;
 

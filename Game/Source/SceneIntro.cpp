@@ -204,21 +204,21 @@ bool SceneIntro::PostUpdate()
 	if (app->sceneOpts->active == false)
 	{
 		SDL_Rect rect1 = play.GetCurrentFrame();
-		app->render->DrawTexture(statesPlay, btnStart->bounds.x + ((btnStart->bounds.w - 137)/2), btnStart->bounds.y, &rect1);
+		app->render->DrawTexture(statesPlay, btnStart->bounds.x + ((btnStart->bounds.w - 137)/2), btnStart->bounds.y + ((btnStart->bounds.h - 27) / 2), &rect1);
 
 		SDL_Rect rect2 = cont.GetCurrentFrame();
-		app->render->DrawTexture(statesCont, btnContinue->bounds.x + ((btnContinue->bounds.w - 270) / 2), btnContinue->bounds.y, &rect2);
+		app->render->DrawTexture(statesCont, btnContinue->bounds.x + ((btnContinue->bounds.w - 270) / 2), btnContinue->bounds.y + ((btnContinue->bounds.h - 27) / 2), &rect2);
 
 		SDL_Rect rect3 = sett.GetCurrentFrame();
-		app->render->DrawTexture(statesSett, btnSettings->bounds.x + ((btnSettings->bounds.w - 270) / 2), btnSettings->bounds.y, &rect3);
+		app->render->DrawTexture(statesSett, btnSettings->bounds.x + ((btnSettings->bounds.w - 270) / 2), btnSettings->bounds.y + ((btnSettings->bounds.h - 27) / 2), &rect3);
 
 		SDL_Rect rect4 = credits.GetCurrentFrame();
-		app->render->DrawTexture(statesCredits, btnCredits->bounds.x + ((btnCredits->bounds.w - 233) / 2), btnCredits->bounds.y, &rect4);
+		app->render->DrawTexture(statesCredits, btnCredits->bounds.x + ((btnCredits->bounds.w - 233) / 2), btnCredits->bounds.y + ((btnCredits->bounds.h - 28) / 2), &rect4);
 
 		SDL_Rect rect5 = exit.GetCurrentFrame();
-		app->render->DrawTexture(statesExit, btnExit->bounds.x + ((btnExit->bounds.w - 122) / 2), btnExit->bounds.y, &rect5);
+		app->render->DrawTexture(statesExit, btnExit->bounds.x + ((btnExit->bounds.w - 122) / 2), btnExit->bounds.y + ((btnExit->bounds.h - 28) / 2), &rect5);
 
-		if (app->modcontrol->showCollider == true)
+		if (app->modcontrol->showButtons == true)
 		{
 			btnStart->Draw(app->render);
 			btnContinue->Draw(app->render);

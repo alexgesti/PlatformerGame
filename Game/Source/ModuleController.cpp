@@ -94,6 +94,11 @@ bool ModuleController::Start()
 
 bool ModuleController::Update(float dt)
 {
+	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
+	{
+		showButtons = !showButtons;
+	}
+
 	// DEBUG KEYS
 	if (app->scene->NotSceneActived)
 	{

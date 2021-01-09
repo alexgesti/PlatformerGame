@@ -141,15 +141,15 @@ bool SceneOptions::PostUpdate()
 	bool ret = true;
 
 	SDL_Rect rect1 = fullscreen.GetCurrentFrame();
-	app->render->DrawTexture(statesFullscreen, btnFull->bounds.x, btnFull->bounds.y, &rect1);
+	app->render->DrawTexture(statesFullscreen, -app->render->camera.x + btnFull->bounds.x + ((btnFull->bounds.w - 226) / 2), -app->render->camera.y + btnFull->bounds.y + ((btnFull->bounds.h - 226) / 2), &rect1);
 	
 	SDL_Rect rect2 = vsync.GetCurrentFrame();
-	app->render->DrawTexture(statesVsync, btnSync->bounds.x, btnSync->bounds.y, &rect2);
+	app->render->DrawTexture(statesVsync, -app->render->camera.x + btnSync->bounds.x + ((btnSync->bounds.w - 226) / 2), -app->render->camera.y + btnSync->bounds.y + ((btnSync->bounds.h - 226) / 2), &rect2);
 	
 	SDL_Rect rect3 = exit.GetCurrentFrame();
-	app->render->DrawTexture(statesExit, btnExit->bounds.x, btnExit->bounds.y, &rect3);
+	app->render->DrawTexture(statesExit, -app->render->camera.x + btnExit->bounds.x + ((btnExit->bounds.w - 122) / 2), -app->render->camera.y + btnExit->bounds.y + ((btnExit->bounds.h - 226) / 2), &rect3);
 	
-	if (app->modcontrol->showCollider == true)
+	if (app->modcontrol->showButtons == true)
 	{
 		sldMusic->Draw(app->render);
 		sldFx->Draw(app->render);

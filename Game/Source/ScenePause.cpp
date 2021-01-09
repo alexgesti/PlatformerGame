@@ -156,18 +156,18 @@ bool ScenePause::PostUpdate()
 	if (app->sceneOpts->active == false)
 	{
 		SDL_Rect rect1 = resume.GetCurrentFrame();
-		app->render->DrawTexture(statesResume, btnResume->bounds.x + ((btnResume->bounds.w - 226) / 2), btnResume->bounds.y, &rect1);
+		app->render->DrawTexture(statesResume, -app->render->camera.x + btnResume->bounds.x + ((btnResume->bounds.w - 226) / 2), -app->render->camera.y + btnResume->bounds.y + ((btnResume->bounds.h - 28) / 2), &rect1);
 
 		SDL_Rect rect2 = sett.GetCurrentFrame();
-		app->render->DrawTexture(statesSett, btnSettings->bounds.x + ((btnSettings->bounds.w - 270) / 2), btnSettings->bounds.y, &rect2);
+		app->render->DrawTexture(statesSett, -app->render->camera.x + btnSettings->bounds.x + ((btnSettings->bounds.w - 270) / 2), -app->render->camera.y + btnSettings->bounds.y + ((btnSettings->bounds.h - 27) / 2), &rect2);
 
 		SDL_Rect rect3 = title.GetCurrentFrame();
-		app->render->DrawTexture(statesTitle, btnTitle->bounds.x + ((btnTitle->bounds.w - 159) / 2), btnTitle->bounds.y, &rect3);
+		app->render->DrawTexture(statesTitle, -app->render->camera.x + btnTitle->bounds.x + ((btnTitle->bounds.w - 159) / 2), -app->render->camera.y + btnTitle->bounds.y + ((btnTitle ->bounds.h - 28) / 2), &rect3);
 
 		SDL_Rect rect4 = exit.GetCurrentFrame();
-		app->render->DrawTexture(statesExit, btnExit->bounds.x + ((btnExit->bounds.w - 122) / 2), btnExit->bounds.y, &rect4);
-
-		if (app->modcontrol->showCollider == true)
+		app->render->DrawTexture(statesExit, -app->render->camera.x + btnExit->bounds.x + ((btnExit->bounds.w - 122) / 2), -app->render->camera.y + btnExit->bounds.y + ((btnExit->bounds.h - 28) / 2), &rect4);
+	
+		if (app->modcontrol->showButtons == true)
 		{
 			btnResume->Draw(app->render);
 			btnSettings->Draw(app->render);
