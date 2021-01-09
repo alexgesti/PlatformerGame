@@ -15,24 +15,24 @@ ScenePause::ScenePause() : Module() //Esto debe de heredar de scene, habria que 
 	name.Create("sceneintro");
 
 	//Button Resume
-	resume.PushBack({ 0, 0, 137, 27 });
-	resume.PushBack({ 0, 28, 137, 27 });
-	resume.PushBack({ 0, 58, 137, 27 });
+	resume.PushBack({ 0, 0, 226, 28 });
+	resume.PushBack({ 0, 29, 226, 28 });
+	resume.PushBack({ 0, 56, 226, 28 });
 
 	//Button Settings
-	sett.PushBack({ 0, 0, 470, 53 });
-	sett.PushBack({ 0, 54, 470, 53 });
-	sett.PushBack({ 0, 107, 470, 53 });
+	sett.PushBack({ 0, 0, 270, 27 });
+	sett.PushBack({ 0, 28, 270, 27 });
+	sett.PushBack({ 0, 56, 270, 27 });
 
 	//Button Back to Tilte
-	title.PushBack({ 0, 0, 470, 53 });
-	title.PushBack({ 0, 54, 470, 53 });
-	title.PushBack({ 0, 107, 470, 53 });
+	title.PushBack({ 0, 0, 159, 28 });
+	title.PushBack({ 0, 29, 159, 28 });
+	title.PushBack({ 0, 58, 159	, 28 });
 
 	//Button Exit
-	exit.PushBack({ 0, 0, 470, 53 });
-	exit.PushBack({ 0, 54, 470, 53 });
-	exit.PushBack({ 0, 107, 470, 53 });
+	exit.PushBack({ 0, 0, 122, 28 });
+	exit.PushBack({ 0, 29, 122, 28 });
+	exit.PushBack({ 0, 56, 122, 28 });
 
 	btnResume = new GuiButton(1, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "RESUME");
 	btnResume->SetObserver(this);

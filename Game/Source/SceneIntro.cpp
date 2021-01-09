@@ -19,28 +19,28 @@ SceneIntro::SceneIntro() : Module() //Esto debe de heredar de scene, habria que 
 	//Button Play
 	play.PushBack ({ 0, 0, 137, 27});
 	play.PushBack({ 0, 28, 137, 27});
-	play.PushBack({ 0, 58, 137, 27 });
+	play.PushBack({ 0, 54, 137, 27 });
 
 	//Button Continue
-	cont.PushBack({ 0, 0, 470, 53 });
-	cont.PushBack({ 0, 54, 470, 53 });
-	cont.PushBack({ 0, 107, 470, 53 });
-	cont.PushBack({ 0, 161, 470, 53 });
+	cont.PushBack({ 0, 0, 270, 27 });
+	cont.PushBack({ 0, 28, 270, 27 });
+	cont.PushBack({ 0, 56, 270, 27 });
+	cont.PushBack({ 0, 85, 270, 27 });
 
 	//Button Settings
-	sett.PushBack({ 0, 0, 470, 53 });
-	sett.PushBack({ 0, 54, 470, 53 });
-	sett.PushBack({ 0, 107, 470, 53 });
+	sett.PushBack({ 0, 0, 270, 27 });
+	sett.PushBack({ 0, 28, 270, 27 });
+	sett.PushBack({ 0, 56, 270, 27 });
 
 	//Button credits
-	cont.PushBack({ 0, 0, 406, 53 });
-	cont.PushBack({ 0, 54, 406, 53 });
-	cont.PushBack({ 0, 107, 406, 53 });
+	credits.PushBack({ 0, 0, 233, 28 });
+	credits.PushBack({ 0, 29, 233, 28 });
+	credits.PushBack({ 0, 58, 233, 28 });
 
 	//Button exit
-	cont.PushBack({ 0, 0, 214, 53 });
-	cont.PushBack({ 0, 54, 214, 53 });
-	cont.PushBack({ 0, 107, 214, 53 });
+	exit.PushBack({ 0, 0, 122, 28 });
+	exit.PushBack({ 0, 29, 122, 28 });
+	exit.PushBack({ 0, 56, 122, 28 });
 
 
 	// GUI: Initialize required controls for the screen //PREPARACION DEL BOTON, CON TAG, POSICION Y COLOR
@@ -81,10 +81,10 @@ bool SceneIntro::Start()
 	SpriteIntro = app->tex->Load("Assets/Screens/Title/intro.png");
 	SpaceStart = app->tex->Load("Assets/Screens/Title/start.png");
 	statesPlay = app->tex->Load("Assets/GUI/states_play.png");
-	statesCont = app->tex->Load("Assets/GUI/states_cont.png");
+	statesCont = app->tex->Load("Assets/GUI/states_continue.png");
 	statesSett = app->tex->Load("Assets/GUI/states_sett.png");
 	statesCredits = app->tex->Load("Assets/GUI/states_credits.png");
-	statesExit = app->tex->Load("Assets/GUI/states_exit.png");
+	statesExit = app->tex->Load("Assets/GUI/states_exit30.png");
 
 	return true;
 }
@@ -127,11 +127,11 @@ bool SceneIntro::Update(float dt)
 	switch (btnContinue->state)
 	{
 
-	case GuiControlState::NORMAL: cont.GetSelectedFrame(1);
+	case GuiControlState::NORMAL: cont.GetSelectedFrame(4);
 		break;
-	case GuiControlState::FOCUSED: cont.GetSelectedFrame(3);
+	case GuiControlState::FOCUSED: cont.GetSelectedFrame(1);
 		break;					   
-	case GuiControlState::PRESSED: cont.GetSelectedFrame(4);
+	case GuiControlState::PRESSED: cont.GetSelectedFrame(3);
 		break;					   
 	case GuiControlState::DISABLED:cont.GetSelectedFrame(2);
 		break;
