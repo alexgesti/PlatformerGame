@@ -207,8 +207,6 @@ bool GameplayHUD::Update(float dt)
 		}
 	}
 
-	LOG("%d %d %d", digits[0], digits[1], digits[2]);
-
 	switch (digits[0])
 	{
 	case 0:

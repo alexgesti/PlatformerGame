@@ -74,6 +74,11 @@ WalkingEnemy::WalkingEnemy() : Module()
 	idleLAnim.PushBack({ 448, 128, 64, 64 });
 	idleRAnim.loop = true;
 	idleRAnim.speed = 0.05f;
+
+	//Collisions
+	Collision.PushBack({ 32, 0, 64, 64 });
+
+	currentAnimColl = &Collision;
 }
 
 // Destructor
@@ -97,6 +102,7 @@ bool WalkingEnemy::Start()
 	//Load texture
 	spriteSheet = app->tex->Load("Assets/Characters/Enemies/WalkingEnemies/enemy_spritesheet.png");
 	deathEnemyFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Enemies/deathEnemy.wav");
+	collision = app->tex->Load("Assets/Screens/Gameplay/collision_entities.png");
 
 	currentAnim = &runRAnim;
 
@@ -214,6 +220,12 @@ bool WalkingEnemy::PostUpdate()
 
 	SDL_Rect rect = currentAnim->GetCurrentFrame();
 	if (IsDead == false) app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
+
+	if (app->modcontrol->showColliders)
+	{
+		SDL_Rect rectCol = currentAnimColl->GetCurrentFrame();
+		app->render->DrawTexture(collision, -position.x, -position.y, &rectCol);
+	}
 
 	return ret;
 }

@@ -10,6 +10,7 @@
 #include "FlyEnemy.h"
 #include "Audio.h"
 #include "GameplayHUD.h"
+#include "ModuleController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -40,6 +41,13 @@ Scene::Scene() : Module()
 	// Points
 	p0.PushBack({ 0, 0, 432, 48 });
 	p1.PushBack({ 0, 49, 432, 48 });
+
+	//Collisions
+	CollisionOrb.PushBack({ 160, 0, 24, 24 });
+	CollisionLife.PushBack({ 184, 0, 26, 24 });
+
+	currentAnimCollOrb = &CollisionOrb;
+	currentAnimCollLife = &CollisionLife;
 }
 
 // Destructor
@@ -64,6 +72,7 @@ bool Scene::Start()
 	lifePlayer = app->tex->Load("Assets/Screens/Gameplay/lifLife_X64.png");
 	PSup = app->tex->Load("Assets/Screens/Gameplay/lifLife_X32.png");
 	spriteorb = app->tex->Load("Assets/Screens/Gameplay/orb.png");
+	collision = app->tex->Load("Assets/Screens/Gameplay/collision_entities.png");
 
     checkpointSound = app->audio->LoadFx("Assets/Audio/Fx/checkPoint.wav");
 	oneupFx = app->audio->LoadFx("Assets/Audio/Fx/1up.wav");
@@ -164,6 +173,15 @@ bool Scene::PostUpdate()
 
 	app->render->DrawTexture(PSup, PSposition.x, PSposition.y);
 	
+	if (app->modcontrol->showColliders)
+	{
+		SDL_Rect rectColOrb = currentAnimCollOrb->GetCurrentFrame();
+		app->render->DrawTexture(collision, Orbposition.x + 4, Orbposition.y + 4, &rectColOrb);
+
+		SDL_Rect rectColLife = currentAnimCollLife->GetCurrentFrame();
+		app->render->DrawTexture(collision, PSposition.x + 2, PSposition.y + 4, &rectColLife);
+	}
+
 	return ret;
 }
 

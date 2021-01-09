@@ -97,6 +97,13 @@ Player::Player() : Module()
 	//Shoot
 	Ball.PushBack({ 0, 0, 0, 0 });
 	Ball.PushBack({ 0, 0, 16, 16 });
+
+	//Collisions
+	Collision.PushBack({96, 0, 64, 64});
+	CollisionB.PushBack({210, 0, 16, 16});
+
+	currentAnimColl = &Collision;
+	currentAnimCollB = &CollisionB;
 }
 
 // Destructor
@@ -120,6 +127,7 @@ bool Player::Start()
 	//Load texture
 	spriteSheet = app->tex->Load("Assets/Characters/Hero/herochar_spriteSheet.png");
 	ball = app->tex->Load("Assets/Screens/Gameplay/shoot.png");
+	collision = app->tex->Load("Assets/Screens/Gameplay/collision_entities.png");
 
 	jumpFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Hero/jump.wav");
 	deathFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Hero/deathPlayer.wav");
@@ -364,8 +372,11 @@ bool Player::PostUpdate()
 	
 	if (app->modcontrol->showColliders)
 	{
-		SDL_Rect rectCol = { app->win->width / 2 - 32, app->win->height / 2 - 32, 64, 64 };
-		app->render->DrawRectangle(rectCol, {0, 0, 255, 128});
+		SDL_Rect rectCol = currentAnimColl->GetCurrentFrame();
+		app->render->DrawTexture(collision, -position.x, -position.y, &rectCol);
+
+		SDL_Rect rectColB = currentAnimCollB->GetCurrentFrame();
+		app->render->DrawTexture(collision, -Bposition.x, -Bposition.y, &rectColB);
 	}
 
 	return ret;
