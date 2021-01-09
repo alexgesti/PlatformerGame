@@ -15,6 +15,7 @@
 	<sceneLogo />
 	<sceneLose />
 	<sceneWin />
+	<entitymanager />
 	<enemy />
 	<Flyenemy />
 	<player />

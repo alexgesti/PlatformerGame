@@ -43,7 +43,7 @@ private:
 	GuiSlider* sldFx;
 	GuiButton* btnFull;
 	GuiButton* btnSync;
-	GuiButton* btnExit;
+	GuiButton* btnBack;
 
 	Animation fullscreen;
 	Animation vsync;
@@ -51,7 +51,7 @@ private:
 
 	SDL_Texture* statesFullscreen;
 	SDL_Texture* statesVsync;
-	SDL_Texture* statesExit;
+	SDL_Texture* statesBack;
 	bool retU;
 
 public:

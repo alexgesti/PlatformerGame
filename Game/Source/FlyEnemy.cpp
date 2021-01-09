@@ -11,6 +11,7 @@
 #include "Pathfinding.h"
 #include "Player.h"
 #include "Audio.h"
+#include "ScenePause.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -91,87 +92,90 @@ bool FlyEnemy::PreUpdate()
 // Called each loop iteration
 bool FlyEnemy::Update(float dt)
 {
-	//Mov left
-	if (((app->player->position.y <= position.y + detectdistance 
-		&& app->player->position.y > position.y)
-		|| (app->player->position.y >= position.y - detectdistance
-		&& app->player->position.y < position.y)
-		|| app->player->position.y == position.y)
-		&& app->player->position.x >= position.x
-		&& dead == false
-		&& app->player->Godmode == false)
+	if (app->scenePause->active == false)
 	{
-		currentAnim = &runLAnim;
-		position.x += speedx;
-		waslookingRight = false;
-
-		if (app->player->position.y == position.y);
-		if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
-		if (app->player->position.y >= position.y - detectdistance && app->player->position.y < position.y) position.y -= speedy;
-	}
-
-	//Mov right
-	if (((app->player->position.y <= position.y + detectdistance
-		&& app->player->position.y > position.y)
-		|| (app->player->position.y >= position.y - detectdistance
-			&& app->player->position.y < position.y)
-		|| app->player->position.y == position.y)
-		&& app->player->position.x <= position.x
-		&& dead == false
-		&& app->player->Godmode == false)
-	{
-		currentAnim = &runRAnim;
-		position.x -= speedx;
-		waslookingRight = true;
-
-		if (app->player->position.y == position.y);
-		if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
-		if (app->player->position.y >= position.y - detectdistance && app->player->position.y < position.y) position.y -= speedy;
-	}
-
-	//Die
-	if (dead)
-	{
-		if (waslookingRight) currentAnim = &deadRAnim;
-		else currentAnim = &deadLAnim;
-
-		if (oncesound == false)
+		//Mov left
+		if (((app->player->position.y <= position.y + detectdistance
+			&& app->player->position.y > position.y)
+			|| (app->player->position.y >= position.y - detectdistance
+				&& app->player->position.y < position.y)
+			|| app->player->position.y == position.y)
+			&& app->player->position.x >= position.x
+			&& dead == false
+			&& app->player->Godmode == false)
 		{
-			oncesound = true;
-			app->audio->PlayFx(deathEnemyFx);
+			currentAnim = &runLAnim;
+			position.x += speedx;
+			waslookingRight = false;
+
+			if (app->player->position.y == position.y);
+			if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
+			if (app->player->position.y >= position.y - detectdistance && app->player->position.y < position.y) position.y -= speedy;
 		}
 
-		if (deadRAnim.FinishedAlready || deadLAnim.FinishedAlready)
+		//Mov right
+		if (((app->player->position.y <= position.y + detectdistance
+			&& app->player->position.y > position.y)
+			|| (app->player->position.y >= position.y - detectdistance
+				&& app->player->position.y < position.y)
+			|| app->player->position.y == position.y)
+			&& app->player->position.x <= position.x
+			&& dead == false
+			&& app->player->Godmode == false)
 		{
-			position.x = 0;
-			position.y = 0;
-			deadRAnim.Reset();
-			deadLAnim.Reset();
-			IsDead = true;
+			currentAnim = &runRAnim;
+			position.x -= speedx;
+			waslookingRight = true;
+
+			if (app->player->position.y == position.y);
+			if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
+			if (app->player->position.y >= position.y - detectdistance && app->player->position.y < position.y) position.y -= speedy;
 		}
+
+		//Die
+		if (dead)
+		{
+			if (waslookingRight) currentAnim = &deadRAnim;
+			else currentAnim = &deadLAnim;
+
+			if (oncesound == false)
+			{
+				oncesound = true;
+				app->audio->PlayFx(deathEnemyFx);
+			}
+
+			if (deadRAnim.FinishedAlready || deadLAnim.FinishedAlready)
+			{
+				position.x = 0;
+				position.y = 0;
+				deadRAnim.Reset();
+				deadLAnim.Reset();
+				IsDead = true;
+			}
+		}
+
+		if (CheckCollisionRec(app->player->Bposition, position) && app->player->shoot == true && dead == false)
+		{
+			dead = true;
+			app->player->shoot = false;
+		}
+
+		if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->Godmode == false)
+		{
+			hitingPlayer = true;
+			app->player->life--;
+			app->audio->PlayFx(app->player->hitFx);
+		}
+
+		if (!CheckCollisionRec(app->player->position, position) && dead == false)
+		{
+			hitingPlayer = false;
+		}
+
+		//app->pathfinding->CreatePath(position, app->player->position);
+
+		if (IsDead == false) currentAnim->Update();
 	}
-
-	if (CheckCollisionRec(app->player->Bposition, position) && app->player->shoot == true && dead == false)
-	{
-		dead = true;
-		app->player->shoot = false;
-	}
-
-	if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->Godmode == false)
-	{
-		hitingPlayer = true;
-		app->player->life--;
-		app->audio->PlayFx(app->player->hitFx);
-	}
-
-	if (!CheckCollisionRec(app->player->position, position) && dead == false)
-	{
-		hitingPlayer = false;
-	}
-
-	//app->pathfinding->CreatePath(position, app->player->position);
-
-	if (IsDead == false) currentAnim->Update();
 
 	return true;
 }

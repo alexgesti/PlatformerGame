@@ -43,8 +43,8 @@ SceneOptions::SceneOptions() : Module() //Esto debe de heredar de scene, habria 
 	btnSync = new GuiButton(2, { 1280 / 2 - 300 / 2, 500, 300, 80 }, "VSYNC");
 	btnSync->SetObserver(this);
 
-	btnExit = new GuiButton(3, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
-	btnExit->SetObserver(this);
+	btnBack = new GuiButton(3, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
+	btnBack->SetObserver(this);
 }
 
 // Destructor
@@ -67,7 +67,7 @@ bool SceneOptions::Start()
 {
 	statesFullscreen = app->tex->Load("Assets/GUI/states_fullscreen.png");
 	statesVsync = app->tex->Load("Assets/GUI/states_vsync.png");
-	statesExit = app->tex->Load("Assets/GUI/states_exit30.png");
+	statesBack = app->tex->Load("Assets/GUI/states_exit30.png");
 
 	return true;
 }
@@ -110,7 +110,7 @@ bool SceneOptions::Update(float dt)
 		break;
 	}
 
-	switch (btnExit->state)
+	switch (btnBack->state)
 	{
 	case GuiControlState::NORMAL: exit.GetSelectedFrame(2);
 		break;
@@ -126,7 +126,7 @@ bool SceneOptions::Update(float dt)
 	sldFx->Update(app->input, dt);
 	btnFull->Update(app->input, dt);
 	btnSync->Update(app->input, dt);
-	btnExit->Update(app->input, dt);
+	btnBack->Update(app->input, dt);
 	
 	fullscreen.Update();
 	vsync.Update();
@@ -147,7 +147,7 @@ bool SceneOptions::PostUpdate()
 	app->render->DrawTexture(statesVsync, -app->render->camera.x + btnSync->bounds.x + ((btnSync->bounds.w - 226) / 2), -app->render->camera.y + btnSync->bounds.y + ((btnSync->bounds.h - 226) / 2), &rect2);
 	
 	SDL_Rect rect3 = exit.GetCurrentFrame();
-	app->render->DrawTexture(statesExit, -app->render->camera.x + btnExit->bounds.x + ((btnExit->bounds.w - 122) / 2), -app->render->camera.y + btnExit->bounds.y + ((btnExit->bounds.h - 226) / 2), &rect3);
+	app->render->DrawTexture(statesBack, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 122) / 2), -app->render->camera.y + btnBack->bounds.y + ((btnBack->bounds.h - 226) / 2), &rect3);
 	
 	if (app->modcontrol->showButtons == true)
 	{
@@ -155,7 +155,7 @@ bool SceneOptions::PostUpdate()
 		sldFx->Draw(app->render);
 		btnFull->Draw(app->render);
 		btnSync->Draw(app->render);
-		btnExit->Draw(app->render);
+		btnBack->Draw(app->render);
 	}
 
 	return ret;

@@ -112,6 +112,15 @@ bool SceneIntro::Update(float dt)
 		app->render->camera.y = 0;
 	}
 
+	//if (app->LoadGameRequest("save_game.xml") == NULL)
+	{
+		btnContinue->state = GuiControlState::DISABLED;
+	}
+	//else
+	{
+		btnContinue->state = GuiControlState::NORMAL;
+	}
+
 	if (app->sceneOpts->active == false)
 	{
 		switch (btnStart->state)
@@ -256,7 +265,11 @@ bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
 			break;
 
 		case 2:
-
+			//if (app->LoadGameRequest("save_game.xml") != NULL)
+			{
+				app->LoadGameRequest("save_game.xml");
+				app->modcontrol->currentscene = 2;
+			}
 			break;
 
 		case 3:

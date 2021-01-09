@@ -30,6 +30,7 @@ class Player;
 class ModuleController;
 class WalkingEnemy;
 class FlyEnemy;
+class EntityManager;
 class PathFinding;
 //class ScreenHUD;
 class GameplayHUD;
@@ -116,6 +117,7 @@ public:
 	ModuleController* modcontrol;
 	WalkingEnemy* wenemy;
 	FlyEnemy* fenemy;
+	EntityManager* entity;
 	PathFinding* pathfinding;
 	//ScreenHUD* screenHud;
 	GameplayHUD* GameHUD;
@@ -165,7 +167,6 @@ private:
 public:
 
 	uint64 frameCount = 0;
-
 };
 
 extern App* app;

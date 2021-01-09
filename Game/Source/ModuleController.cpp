@@ -225,7 +225,7 @@ bool ModuleController::Update(float dt)
 		break;
 
 	case 2:	//Gameplay
-
+		
 		app->map->active = true;				// Map
 		app->scene->active = true;				// Scene
 		app->scene->NotSceneActived = true;		// SceneCamera

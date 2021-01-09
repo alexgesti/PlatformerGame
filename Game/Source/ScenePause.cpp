@@ -69,6 +69,7 @@ bool ScenePause::Start()
 	statesSett = app->tex->Load("Assets/GUI/states_sett.png");
 	statesTitle = app->tex->Load("Assets/GUI/states_title.png");
 	statesExit = app->tex->Load("Assets/GUI/states_exit30.png");
+	pause = app->tex->Load("Assets/GUI/pause.png");
 
 	return true;
 }
@@ -152,6 +153,10 @@ bool ScenePause::Update(float dt)
 bool ScenePause::PostUpdate()
 {
 	bool ret = true;
+
+	app->render->DrawRectangle({ 0, 0, app->render->camera.w, app->render->camera.h}, { 0, 0, 0, 128});
+
+	app->render->DrawTexture(pause, -app->render->camera.x + ((app->render->camera.w - 467) / 2), -app->render->camera.y + 50);
 
 	if (app->sceneOpts->active == false)
 	{

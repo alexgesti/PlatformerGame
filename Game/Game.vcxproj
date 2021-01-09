@@ -89,6 +89,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\EntityManager.cpp" />
     <ClCompile Include="Source\FlyEnemy.cpp" />
     <ClCompile Include="Source\GameplayHUD.cpp" />
     <ClCompile Include="Source\GameplayScreenHUD.cpp" />
@@ -118,6 +119,8 @@
     <ClCompile Include="Source\WalkingEnemy.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\Entity.h" />
+    <ClInclude Include="Source\EntityManager.h" />
     <ClInclude Include="Source\FlyEnemy.h" />
     <ClInclude Include="Source\GameplayHUD.h" />
     <ClInclude Include="Source\GameplayScreenHUD.h" />

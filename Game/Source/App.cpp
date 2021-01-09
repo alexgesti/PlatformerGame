@@ -16,6 +16,7 @@
 #include "ModuleController.h"
 #include "WalkingEnemy.h"
 #include "FlyEnemy.h"
+#include "EntityManager.h"
 #include "Pathfinding.h"
 //#include "GameplayScreenHUD.h"
 #include "GameplayHUD.h"
@@ -50,6 +51,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	modcontrol = new ModuleController();
 	wenemy = new WalkingEnemy();
 	fenemy = new FlyEnemy();
+	entity = new EntityManager();
 	pathfinding = new PathFinding();
 	GameHUD = new GameplayHUD();
 
@@ -65,6 +67,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(sceneLogo);
 	AddModule(sceneLose);
 	AddModule(sceneWin);
+	AddModule(entity);
 	AddModule(wenemy);
 	AddModule(fenemy);
 	AddModule(player);
