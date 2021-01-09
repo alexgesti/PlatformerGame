@@ -4,6 +4,7 @@
 #include "Module.h"
 
 #include "GuiButton.h"
+#include "GuiSlider.h"
 
 struct SDL_Texture;
 
@@ -38,6 +39,8 @@ public:
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
 private:
+	GuiSlider* sldMusic;
+	GuiSlider* sldFx;
 	GuiButton* btnFull;
 	GuiButton* btnSync;
 	GuiButton* btnExit;

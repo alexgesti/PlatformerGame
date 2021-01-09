@@ -9,6 +9,8 @@
 #include "Defs.h"
 #include "Log.h"
 
+#include "SDL_mixer/include/SDL_mixer.h"
+
 SceneOptions::SceneOptions() : Module() //Esto debe de heredar de scene, habria que sacar todos los void que no sean necesarios (no esten puesto en scene) y modificarlos. Ademas necesitamos un scene manager.
 {
 	name.Create("sceneintro");
@@ -28,6 +30,12 @@ SceneOptions::SceneOptions() : Module() //Esto debe de heredar de scene, habria 
 	exit.PushBack({ 0, 0, 470, 53 });
 	exit.PushBack({ 0, 54, 470, 53 });
 	exit.PushBack({ 0, 107, 470, 53 });
+
+	sldMusic = new GuiSlider(1, { 1280 / 2 - 300 / 2, 200, 300, 80 }, "MUSIC");
+	sldMusic->SetObserver(this);
+
+	sldFx = new GuiSlider(2, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "FX");
+	sldFx->SetObserver(this);
 
 	btnFull = new GuiButton(1, { 1280 / 2 - 300 / 2, 400, 300, 80 }, "FULLSCREEN");
 	btnFull->SetObserver(this);
@@ -74,6 +82,10 @@ bool SceneOptions::PreUpdate()
 bool SceneOptions::Update(float dt)
 {
 	retU = true;
+
+	Mix_VolumeMusic(sldMusic->percentage);
+	Mix_Volume(1, sldFx->percentage);
+
 	switch (btnFull->state)
 	{
 	case GuiControlState::NORMAL: fullscreen.GetSelectedFrame(2);
@@ -85,9 +97,9 @@ bool SceneOptions::Update(float dt)
 	default:
 		break;
 	}
+
 	switch (btnSync->state)
 	{
-
 	case GuiControlState::NORMAL: vsync.GetSelectedFrame(2);
 		break;
 	case GuiControlState::FOCUSED: vsync.GetSelectedFrame(1);
@@ -97,9 +109,9 @@ bool SceneOptions::Update(float dt)
 	default:
 		break;
 	}
+
 	switch (btnExit->state)
 	{
-
 	case GuiControlState::NORMAL: exit.GetSelectedFrame(2);
 		break;
 	case GuiControlState::FOCUSED: exit.GetSelectedFrame(1);
@@ -109,6 +121,9 @@ bool SceneOptions::Update(float dt)
 	default:
 		break;
 	}
+
+	sldMusic->Update(app->input, dt);
+	sldFx->Update(app->input, dt);
 	btnFull->Update(app->input, dt);
 	btnSync->Update(app->input, dt);
 	btnExit->Update(app->input, dt);
@@ -134,6 +149,8 @@ bool SceneOptions::PostUpdate()
 	SDL_Rect rect3 = exit.GetCurrentFrame();
 	app->render->DrawTexture(statesExit, btnExit->bounds.x, btnExit->bounds.y, &rect3);
 	
+	sldMusic->Draw(app->render);
+	sldFx->Draw(app->render);
 	/*btnFull->Draw(app->render);
 	btnSync->Draw(app->render);
 	btnExit->Draw(app->render);*/

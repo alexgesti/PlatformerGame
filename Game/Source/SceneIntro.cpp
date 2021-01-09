@@ -112,9 +112,9 @@ bool SceneIntro::Update(float dt)
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;
 	}
+
 	switch (btnStart->state)
 	{
-		
 	case GuiControlState::NORMAL: play.GetSelectedFrame(2);
 		break;
 	case GuiControlState::FOCUSED: play.GetSelectedFrame(1);
@@ -124,9 +124,9 @@ bool SceneIntro::Update(float dt)
 	default:
 		break;
 	}
+
 	switch (btnContinue->state)
 	{
-
 	case GuiControlState::NORMAL: cont.GetSelectedFrame(4);
 		break;
 	case GuiControlState::FOCUSED: cont.GetSelectedFrame(1);
@@ -138,9 +138,9 @@ bool SceneIntro::Update(float dt)
 	default:
 		break;
 	}
+
 	switch (btnSettings->state)
 	{
-
 	case GuiControlState::NORMAL: sett.GetSelectedFrame(2);
 		break;
 	case GuiControlState::FOCUSED: sett.GetSelectedFrame(1);
@@ -150,9 +150,9 @@ bool SceneIntro::Update(float dt)
 	default:
 		break;
 	}
+
 	switch (btnCredits->state)
 	{
-
 	case GuiControlState::NORMAL: credits.GetSelectedFrame(2);
 		break;
 	case GuiControlState::FOCUSED: credits.GetSelectedFrame(1);
@@ -162,9 +162,9 @@ bool SceneIntro::Update(float dt)
 	default:
 		break;
 	}
+
 	switch (btnExit->state)
 	{
-
 	case GuiControlState::NORMAL: exit.GetSelectedFrame(2);
 		break;
 	case GuiControlState::FOCUSED: exit.GetSelectedFrame(1);
@@ -174,6 +174,7 @@ bool SceneIntro::Update(float dt)
 	default:
 		break;
 	}
+
 	if (app->sceneOpts->active == false)
 	{
 		btnStart->Update(app->input, dt);

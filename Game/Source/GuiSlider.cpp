@@ -23,7 +23,7 @@ bool GuiSlider::Update(Input* input, float dt)
         {
             state = GuiControlState::FOCUSED;
 
-            // TODO.
+            percentage = (mouseX - bounds.x) / (bounds.w / 100);
         }
         else state = GuiControlState::NORMAL;
     }

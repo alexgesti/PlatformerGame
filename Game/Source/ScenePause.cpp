@@ -83,6 +83,7 @@ bool ScenePause::PreUpdate()
 bool ScenePause::Update(float dt)
 {
 	retU = true;
+
 	switch (btnResume->state)
 	{
 	case GuiControlState::NORMAL: resume.GetSelectedFrame(2);
@@ -94,9 +95,9 @@ bool ScenePause::Update(float dt)
 	default:
 		break;
 	}
+
 	switch (btnSettings->state)
 	{
-
 	case GuiControlState::NORMAL: sett.GetSelectedFrame(2);
 		break;
 	case GuiControlState::FOCUSED: sett.GetSelectedFrame(1);
@@ -106,9 +107,9 @@ bool ScenePause::Update(float dt)
 	default:
 		break;
 	}
+
 	switch (btnTitle->state)
 	{
-
 	case GuiControlState::NORMAL: title.GetSelectedFrame(2);
 		break;
 	case GuiControlState::FOCUSED: title.GetSelectedFrame(1);
@@ -118,9 +119,9 @@ bool ScenePause::Update(float dt)
 	default:
 		break;
 	}
+
 	switch (btnExit->state)
 	{
-
 	case GuiControlState::NORMAL: exit.GetSelectedFrame(2);
 		break;
 	case GuiControlState::FOCUSED: exit.GetSelectedFrame(1);
@@ -130,6 +131,7 @@ bool ScenePause::Update(float dt)
 	default:
 		break;
 	}
+
 	if (app->sceneOpts->active == false)
 	{
 		btnResume->Update(app->input, dt);
