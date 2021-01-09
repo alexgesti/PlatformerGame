@@ -38,8 +38,8 @@ public:
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
 private:
-	SDL_Texture* SpriteIntro;
-	SDL_Texture* SpaceStart;
+	SDL_Texture* spriteIntro;
+	SDL_Texture* spaceStart;
 
 	GuiButton* btnStart;
 	GuiButton* btnContinue;

@@ -33,6 +33,7 @@ public:
 
 public:
 	bool capped = false;
+	bool showCollider = false;
 
 	int currentscene;
 

@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "Scene.h"
 #include "ScenePause.h"
+#include "SceneOptions.h"
 #include "Map.h"
 #include "Player.h"
 #include "WalkingEnemy.h"
@@ -113,6 +114,11 @@ bool Scene::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
 		app->scenePause->active = !app->scenePause->active;
+
+		if (app->sceneOpts->active == true)
+		{
+			app->sceneOpts->active == false;
+		}
 	}
 
 	if (obrOb.FinishedAlready)

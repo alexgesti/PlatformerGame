@@ -3,6 +3,7 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Map.h"
+#include "ModuleController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -66,10 +67,10 @@ void Map::Draw()
 					iPoint vec = MapToWorld(x, y);
 					for (int i = 0; i < data.tilesets.count(); i++)
 					{
-						if (showCollider == true) {
+						if (app->modcontrol->showCollider == true) {
 							app->render->DrawTexture(GetTilesetFromTileId(tileId)->texture, vec.x, vec.y, &GetTilesetFromTileId(tileId)->GetTileRect(tileId));
 						}
-						if (showCollider == false) {
+						if (app->modcontrol->showCollider == false) {
 							if (layer->data->properties.GetProperty("Draw", 0) == 0)
 								app->render->DrawTexture(GetTilesetFromTileId(tileId)->texture, vec.x, vec.y, &GetTilesetFromTileId(tileId)->GetTileRect(tileId));
 						}

@@ -135,18 +135,12 @@ bool ModuleController::Update(float dt)
 
 		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		{
-			if (app->map->showCollider == false)
-				app->map->showCollider = true;
-			else if (app->map->showCollider == true)
-				app->map->showCollider = false;
+			showCollider = !showCollider;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 		{
-			if (app->player->Godmode == false)
-				app->player->Godmode = true;
-			else if (app->player->Godmode == true)
-				app->player->Godmode = false;
+			app->player->Godmode = !app->player->Godmode;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)

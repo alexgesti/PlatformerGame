@@ -27,9 +27,9 @@ SceneOptions::SceneOptions() : Module() //Esto debe de heredar de scene, habria 
 	vsync.PushBack({ 0, 107, 470, 53 });
 
 	//Button Exit
-	exit.PushBack({ 0, 0, 470, 53 });
-	exit.PushBack({ 0, 54, 470, 53 });
-	exit.PushBack({ 0, 107, 470, 53 });
+	exit.PushBack({ 0, 0, 122, 28 });
+	exit.PushBack({ 0, 29, 122, 28 });
+	exit.PushBack({ 0, 56, 122, 28 });
 
 	sldMusic = new GuiSlider(1, { 1280 / 2 - 300 / 2, 200, 300, 80 }, "MUSIC");
 	sldMusic->SetObserver(this);
@@ -43,7 +43,7 @@ SceneOptions::SceneOptions() : Module() //Esto debe de heredar de scene, habria 
 	btnSync = new GuiButton(2, { 1280 / 2 - 300 / 2, 500, 300, 80 }, "VSYNC");
 	btnSync->SetObserver(this);
 
-	btnExit = new GuiButton(3, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "Exit");
+	btnExit = new GuiButton(3, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
 	btnExit->SetObserver(this);
 }
 
@@ -65,9 +65,9 @@ bool SceneOptions::Awake()
 // Called before the first frame
 bool SceneOptions::Start()
 {
-	statesFullscreen = app->tex->Load("Assets/GUI/states_fullscreen");
-	statesVsync = app->tex->Load("Assets/GUI/states_vsync");
-	statesExit = app->tex->Load("Assets/GUI/states_exit");
+	statesFullscreen = app->tex->Load("Assets/GUI/states_fullscreen.png");
+	statesVsync = app->tex->Load("Assets/GUI/states_vsync.png");
+	statesExit = app->tex->Load("Assets/GUI/states_exit30.png");
 
 	return true;
 }
@@ -84,7 +84,7 @@ bool SceneOptions::Update(float dt)
 	retU = true;
 
 	Mix_VolumeMusic(sldMusic->percentage);
-	Mix_Volume(1, sldFx->percentage);
+	Mix_Volume(-1, sldFx->percentage);
 
 	switch (btnFull->state)
 	{
@@ -149,11 +149,14 @@ bool SceneOptions::PostUpdate()
 	SDL_Rect rect3 = exit.GetCurrentFrame();
 	app->render->DrawTexture(statesExit, btnExit->bounds.x, btnExit->bounds.y, &rect3);
 	
-	sldMusic->Draw(app->render);
-	sldFx->Draw(app->render);
-	/*btnFull->Draw(app->render);
-	btnSync->Draw(app->render);
-	btnExit->Draw(app->render);*/
+	if (app->modcontrol->showCollider == true)
+	{
+		sldMusic->Draw(app->render);
+		sldFx->Draw(app->render);
+		btnFull->Draw(app->render);
+		btnSync->Draw(app->render);
+		btnExit->Draw(app->render);
+	}
 
 	return ret;
 }

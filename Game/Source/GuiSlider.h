@@ -28,7 +28,7 @@ private:
 
 public:
 
-    int percentage = 0;
+    int percentage = 100;
 };
 
 #endif // __GUISLIDER_H__

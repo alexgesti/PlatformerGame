@@ -65,10 +65,10 @@ bool ScenePause::Awake()
 // Called before the first frame
 bool ScenePause::Start()
 {
-	statesResume = app->tex->Load("Assets/GUI/states_resume");
-	statesSett = app->tex->Load("Assets/GUI/states_sett");
-	statesTitle = app->tex->Load("Assets/GUI/states_title");
-	statesExit = app->tex->Load("Assets/GUI/states_exit");
+	statesResume = app->tex->Load("Assets/GUI/states_resume.png");
+	statesSett = app->tex->Load("Assets/GUI/states_sett.png");
+	statesTitle = app->tex->Load("Assets/GUI/states_title.png");
+	statesExit = app->tex->Load("Assets/GUI/states_exit30.png");
 
 	return true;
 }
@@ -84,56 +84,56 @@ bool ScenePause::Update(float dt)
 {
 	retU = true;
 
-	switch (btnResume->state)
-	{
-	case GuiControlState::NORMAL: resume.GetSelectedFrame(2);
-		break;
-	case GuiControlState::FOCUSED: resume.GetSelectedFrame(1);
-		break;
-	case GuiControlState::PRESSED: resume.GetSelectedFrame(3);
-		break;
-	default:
-		break;
-	}
-
-	switch (btnSettings->state)
-	{
-	case GuiControlState::NORMAL: sett.GetSelectedFrame(2);
-		break;
-	case GuiControlState::FOCUSED: sett.GetSelectedFrame(1);
-		break;
-	case GuiControlState::PRESSED: sett.GetSelectedFrame(3);
-		break;
-	default:
-		break;
-	}
-
-	switch (btnTitle->state)
-	{
-	case GuiControlState::NORMAL: title.GetSelectedFrame(2);
-		break;
-	case GuiControlState::FOCUSED: title.GetSelectedFrame(1);
-		break;
-	case GuiControlState::PRESSED: title.GetSelectedFrame(3);
-		break;
-	default:
-		break;
-	}
-
-	switch (btnExit->state)
-	{
-	case GuiControlState::NORMAL: exit.GetSelectedFrame(2);
-		break;
-	case GuiControlState::FOCUSED: exit.GetSelectedFrame(1);
-		break;
-	case GuiControlState::PRESSED: exit.GetSelectedFrame(3);
-		break;
-	default:
-		break;
-	}
-
 	if (app->sceneOpts->active == false)
 	{
+		switch (btnResume->state)
+		{
+		case GuiControlState::NORMAL: resume.GetSelectedFrame(2);
+			break;
+		case GuiControlState::FOCUSED: resume.GetSelectedFrame(1);
+			break;
+		case GuiControlState::PRESSED: resume.GetSelectedFrame(3);
+			break;
+		default:
+			break;
+		}
+
+		switch (btnSettings->state)
+		{
+		case GuiControlState::NORMAL: sett.GetSelectedFrame(2);
+			break;
+		case GuiControlState::FOCUSED: sett.GetSelectedFrame(1);
+			break;
+		case GuiControlState::PRESSED: sett.GetSelectedFrame(3);
+			break;
+		default:
+			break;
+		}
+
+		switch (btnTitle->state)
+		{
+		case GuiControlState::NORMAL: title.GetSelectedFrame(2);
+			break;
+		case GuiControlState::FOCUSED: title.GetSelectedFrame(1);
+			break;
+		case GuiControlState::PRESSED: title.GetSelectedFrame(3);
+			break;
+		default:
+			break;
+		}
+
+		switch (btnExit->state)
+		{
+		case GuiControlState::NORMAL: exit.GetSelectedFrame(2);
+			break;
+		case GuiControlState::FOCUSED: exit.GetSelectedFrame(1);
+			break;
+		case GuiControlState::PRESSED: exit.GetSelectedFrame(3);
+			break;
+		default:
+			break;
+		}
+
 		btnResume->Update(app->input, dt);
 		btnSettings->Update(app->input, dt);
 		btnTitle->Update(app->input, dt);
@@ -152,24 +152,28 @@ bool ScenePause::Update(float dt)
 bool ScenePause::PostUpdate()
 {
 	bool ret = true;
-	SDL_Rect rect1 = resume.GetCurrentFrame();
-	app->render->DrawTexture(statesResume, btnResume->bounds.x, btnResume->bounds.y, &rect1);
-
-	SDL_Rect rect2 = sett.GetCurrentFrame();
-	app->render->DrawTexture(statesSett, btnSettings->bounds.x, btnSettings->bounds.y, &rect2);
-
-	SDL_Rect rect3 = sett.GetCurrentFrame();
-	app->render->DrawTexture(statesTitle, btnTitle->bounds.x, btnTitle->bounds.y, &rect3);
-
-	SDL_Rect rect4 = exit.GetCurrentFrame();
-	app->render->DrawTexture(statesExit, btnExit->bounds.x, btnExit->bounds.y, &rect4);
 
 	if (app->sceneOpts->active == false)
 	{
-		/*btnResume->Draw(app->render);
-		btnSettings->Draw(app->render);
-		btnTitle->Draw(app->render);
-		btnExit->Draw(app->render);*/
+		SDL_Rect rect1 = resume.GetCurrentFrame();
+		app->render->DrawTexture(statesResume, btnResume->bounds.x + ((btnResume->bounds.w - 226) / 2), btnResume->bounds.y, &rect1);
+
+		SDL_Rect rect2 = sett.GetCurrentFrame();
+		app->render->DrawTexture(statesSett, btnSettings->bounds.x + ((btnSettings->bounds.w - 270) / 2), btnSettings->bounds.y, &rect2);
+
+		SDL_Rect rect3 = title.GetCurrentFrame();
+		app->render->DrawTexture(statesTitle, btnTitle->bounds.x + ((btnTitle->bounds.w - 159) / 2), btnTitle->bounds.y, &rect3);
+
+		SDL_Rect rect4 = exit.GetCurrentFrame();
+		app->render->DrawTexture(statesExit, btnExit->bounds.x + ((btnExit->bounds.w - 122) / 2), btnExit->bounds.y, &rect4);
+
+		if (app->modcontrol->showCollider == true)
+		{
+			btnResume->Draw(app->render);
+			btnSettings->Draw(app->render);
+			btnTitle->Draw(app->render);
+			btnExit->Draw(app->render);
+		}
 	}
 
 	return ret;
