@@ -72,11 +72,11 @@ This game is a 2D platformer where you need to kill the enemies and finish the c
 
 ## Developers
 
- - Raul Cano - Player and Level Mechanics
+ - Raul Cano - Player Mechanics, Level Mechanics and GUI Logic
    - Github: https://github.com/ercanon
- - Alex Gesti - Level and Debug Mechanics
+ - Alex Gesti - Level Mechanics, Debug Mechanics and Pixel Artist
    - Github: https://github.com/alexgesti
- - Pau Mota - Level Designer and Scenes Logic
+ - Pau Mota - Level Designer, Scenes Logic and Pixel Artist
    - Github: https://github.com/paumotta
 
 ## License
