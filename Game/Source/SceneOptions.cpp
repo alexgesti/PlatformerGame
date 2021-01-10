@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "ModuleController.h"
 #include "SceneOptions.h"
+#include "ScenePause.h"
 #include "Audio.h"
 
 #include "Defs.h"
@@ -132,6 +133,11 @@ bool SceneOptions::Update(float dt)
 bool SceneOptions::PostUpdate()
 {
 	bool ret = true;
+
+	if (app->scenePause->active == false)
+	{
+		app->render->DrawRectangle({ 0, 0, app->render->camera.w, app->render->camera.h }, { 0, 0, 0, 200 });
+	}
 
 	app->render->DrawTexture(statesMusic, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 174) / 2), -app->render->camera.y + 150);
 	app->render->DrawTexture(statesVolume, -app->render->camera.x + sldMusic->bounds.x + ((sldMusic->bounds.w - 295) / 2), -app->render->camera.y + sldMusic->bounds.y + ((sldMusic->bounds.h - 24) / 2));
