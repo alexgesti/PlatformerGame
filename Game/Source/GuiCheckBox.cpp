@@ -49,12 +49,12 @@ bool GuiCheckBox::Draw(Render* render)
     case GuiControlState::DISABLED:
     {
         if (checked) render->DrawRectangle(bounds, { 100, 100, 100, 255 });
-        else render->DrawRectangle(bounds, { 100, 100, 100, 255 });
+        else render->DrawRectangle(bounds, { 100, 100, 100, 128 });
     } break;
     case GuiControlState::NORMAL:
     {
         if (checked) render->DrawRectangle(bounds, { 0, 255, 0, 255 });
-        else render->DrawRectangle(bounds, { 0, 255, 0, 255 });
+        else render->DrawRectangle(bounds, { 0, 255, 0, 128 });
     } break;
     case GuiControlState::FOCUSED: render->DrawRectangle(bounds, { 255, 255, 0, 255 });
         break;

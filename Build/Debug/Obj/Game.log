@@ -1,14 +1,8 @@
-﻿  EntityManager.cpp
+﻿  SceneIntro.cpp
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\EntityManager.cpp(46,2): warning C4065: la instrucción switch contiene etiquetas 'default' pero no etiquetas 'case'
-  pugixml.cpp
-  GuiButton.cpp
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-  SceneIntro.cpp
+  SceneOptions.cpp
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
 C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos

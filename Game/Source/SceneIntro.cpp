@@ -125,7 +125,7 @@ bool SceneIntro::Update(float dt)
 			break;
 		case GuiControlState::FOCUSED: play.GetSelectedFrame(1);
 			break;
-		case GuiControlState::PRESSED: play.GetSelectedFrame(3);
+		case GuiControlState::PRESSED: play.GetSelectedFrame(0);
 			break;
 		default:
 			break;
@@ -137,7 +137,7 @@ bool SceneIntro::Update(float dt)
 			break;
 		case GuiControlState::FOCUSED: cont.GetSelectedFrame(1);
 			break;					   
-		case GuiControlState::PRESSED: cont.GetSelectedFrame(3);
+		case GuiControlState::PRESSED: cont.GetSelectedFrame(0);
 			break;					   
 		case GuiControlState::DISABLED:cont.GetSelectedFrame(2);
 			break;
@@ -151,7 +151,7 @@ bool SceneIntro::Update(float dt)
 			break;
 		case GuiControlState::FOCUSED: sett.GetSelectedFrame(1);
 			break;
-		case GuiControlState::PRESSED: sett.GetSelectedFrame(3);
+		case GuiControlState::PRESSED: sett.GetSelectedFrame(0);
 			break;
 		default:
 			break;
@@ -163,7 +163,7 @@ bool SceneIntro::Update(float dt)
 			break;
 		case GuiControlState::FOCUSED: credits.GetSelectedFrame(1);
 			break;
-		case GuiControlState::PRESSED: credits.GetSelectedFrame(3);
+		case GuiControlState::PRESSED: credits.GetSelectedFrame(0);
 			break;
 		default:
 			break;
@@ -175,7 +175,7 @@ bool SceneIntro::Update(float dt)
 			break;
 		case GuiControlState::FOCUSED: exit.GetSelectedFrame(1);
 			break;
-		case GuiControlState::PRESSED: exit.GetSelectedFrame(3);
+		case GuiControlState::PRESSED: exit.GetSelectedFrame(0);
 			break;
 		default:
 			break;

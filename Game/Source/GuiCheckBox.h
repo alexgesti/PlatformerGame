@@ -20,6 +20,8 @@ private:
 
     // GuiCheckBox specific properties
     // Maybe some animation properties for state change?
+
+public:
     bool checked;
 };
 

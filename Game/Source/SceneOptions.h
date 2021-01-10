@@ -3,8 +3,10 @@
 
 #include "Module.h"
 
+#include "Animation.h"
 #include "GuiButton.h"
 #include "GuiSlider.h"
+#include "GuiCheckBox.h"
 
 struct SDL_Texture;
 
@@ -43,14 +45,19 @@ public:
 private:
 	GuiSlider* sldMusic;
 	GuiSlider* sldFx;
-	GuiButton* btnFull;
-	GuiButton* btnSync;
+	GuiCheckBox* btnFull;
+	GuiCheckBox* btnSync;
 	GuiButton* btnBack;
 
-	Animation fullscreen;
-	Animation vsync;
 	Animation back;
+	Animation vsync;
+	Animation fullscreen;
 
+	SDL_Texture* statesGuide;
+	SDL_Texture* statesVolume;
+	SDL_Texture* statesMusic;
+	SDL_Texture* statesFx;
+	SDL_Texture* statesCheck;
 	SDL_Texture* statesFullscreen;
 	SDL_Texture* statesVsync;
 	SDL_Texture* statesBack;

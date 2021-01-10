@@ -27,7 +27,7 @@ private:
     int maxValue;
 
 public:
-
+    int guideRender;
     int percentage = 100;
 };
 

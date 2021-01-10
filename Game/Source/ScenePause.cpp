@@ -93,7 +93,7 @@ bool ScenePause::Update(float dt)
 			break;
 		case GuiControlState::FOCUSED: resume.GetSelectedFrame(1);
 			break;
-		case GuiControlState::PRESSED: resume.GetSelectedFrame(3);
+		case GuiControlState::PRESSED: resume.GetSelectedFrame(0);
 			break;
 		default:
 			break;
@@ -105,7 +105,7 @@ bool ScenePause::Update(float dt)
 			break;
 		case GuiControlState::FOCUSED: sett.GetSelectedFrame(1);
 			break;
-		case GuiControlState::PRESSED: sett.GetSelectedFrame(3);
+		case GuiControlState::PRESSED: sett.GetSelectedFrame(0);
 			break;
 		default:
 			break;
@@ -117,7 +117,7 @@ bool ScenePause::Update(float dt)
 			break;
 		case GuiControlState::FOCUSED: title.GetSelectedFrame(1);
 			break;
-		case GuiControlState::PRESSED: title.GetSelectedFrame(3);
+		case GuiControlState::PRESSED: title.GetSelectedFrame(0);
 			break;
 		default:
 			break;
@@ -129,7 +129,7 @@ bool ScenePause::Update(float dt)
 			break;
 		case GuiControlState::FOCUSED: exit.GetSelectedFrame(1);
 			break;
-		case GuiControlState::PRESSED: exit.GetSelectedFrame(3);
+		case GuiControlState::PRESSED: exit.GetSelectedFrame(0);
 			break;
 		default:
 			break;
@@ -156,7 +156,7 @@ bool ScenePause::PostUpdate()
 
 	app->render->DrawRectangle({ 0, 0, app->render->camera.w, app->render->camera.h}, { 0, 0, 0, 128});
 
-	app->render->DrawTexture(pause, -app->render->camera.x + ((app->render->camera.w - 467) / 2), -app->render->camera.y + 50);
+	app->render->DrawTexture(pause, -app->render->camera.x + ((app->render->camera.w - 467) / 2), -app->render->camera.y + 48);
 
 	if (app->sceneOpts->active == false)
 	{

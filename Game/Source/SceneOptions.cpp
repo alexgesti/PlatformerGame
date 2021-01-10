@@ -15,32 +15,29 @@ SceneOptions::SceneOptions() : Module() //Esto debe de heredar de scene, habria 
 {
 	name.Create("sceneintro");
 
-
 	//Button Fullscreen
-	fullscreen.PushBack({ 0, 0, 546, 27 });
-	fullscreen.PushBack({ 0, 28, 546, 27 });
-	fullscreen.PushBack({ 0, 56, 546, 27 });
+	fullscreen.PushBack({ 0, 0, 23, 23});
+	fullscreen.PushBack({ 23, 0, 23, 23 });
 
 	//Button Vsync
-	vsync.PushBack({ 0, 0, 174, 27 });
-	vsync.PushBack({ 0, 28, 174, 27 });
-	vsync.PushBack({ 0, 56, 174, 27 });
+	vsync.PushBack({ 0, 0, 23, 23 });
+	vsync.PushBack({ 23, 0, 23, 23 });
 
 	//Button Exit
 	back.PushBack({ 0, 0, 137, 27 });
 	back.PushBack({ 0, 28, 137, 27 });
 	back.PushBack({ 0, 56, 137, 27 });
 
-	sldMusic = new GuiSlider(1, { 1280 / 2 - 300 / 2, 200, 300, 80 }, "MUSIC");
+	sldMusic = new GuiSlider(1, { 1280 / 2 - 300 / 2, 175, 300, 80 }, "MUSIC");
 	sldMusic->SetObserver(this);
 
-	sldFx = new GuiSlider(2, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "FX");
+	sldFx = new GuiSlider(2, { 1280 / 2 - 300 / 2, 315, 300, 80 }, "FX");
 	sldFx->SetObserver(this);
 
-	btnFull = new GuiButton(1, { 1280 / 2 - 600 / 2, 400, 600, 80 }, "FULLSCREEN");
+	btnFull = new GuiCheckBox(1, { 1000 / 2 - 300 / 2, 400, 80, 80 }, "FULLSCREEN");
 	btnFull->SetObserver(this);
 
-	btnSync = new GuiButton(2, { 1280 / 2 - 300 / 2, 500, 300, 80 }, "VSYNC");
+	btnSync = new GuiCheckBox(2, { 1000 / 2 - 300 / 2, 500, 80, 80 }, "VSYNC");
 	btnSync->SetObserver(this);
 
 	btnBack = new GuiButton(3, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
@@ -65,9 +62,17 @@ bool SceneOptions::Awake()
 // Called before the first frame
 bool SceneOptions::Start()
 {
+	statesGuide = app->tex->Load("Assets/GUI/volbar.png");
+	statesVolume = app->tex->Load("Assets/GUI/volume.png");
+	statesMusic = app->tex->Load("Assets/GUI/music.png");
+	statesFx = app->tex->Load("Assets/GUI/fx_volume.png");
+	statesCheck = app->tex->Load("Assets/GUI/check.png");
 	statesFullscreen = app->tex->Load("Assets/GUI/states_fullscreen.png");
 	statesVsync = app->tex->Load("Assets/GUI/states_vsync.png");
 	statesBack = app->tex->Load("Assets/GUI/states_back.png");
+
+	btnFull->checked = false;
+	btnFull->checked = false;
 
 	return true;
 }
@@ -87,29 +92,11 @@ bool SceneOptions::Update(float dt)
 		Mix_VolumeMusic(sldMusic->percentage);
 		Mix_Volume(-1, sldFx->percentage);
 
-		switch (btnFull->state)
-		{
-		case GuiControlState::NORMAL: fullscreen.GetSelectedFrame(2);
-			break;
-		case GuiControlState::FOCUSED: fullscreen.GetSelectedFrame(1);
-			break;
-		case GuiControlState::PRESSED: fullscreen.GetSelectedFrame(3);
-			break;
-		default:
-			break;
-		}
+		if (btnFull->checked == true) fullscreen.GetSelectedFrame(1);
+		else fullscreen.GetSelectedFrame(0);
 
-		switch (btnSync->state)
-		{
-		case GuiControlState::NORMAL: vsync.GetSelectedFrame(2);
-			break;
-		case GuiControlState::FOCUSED: vsync.GetSelectedFrame(1);
-			break;
-		case GuiControlState::PRESSED: vsync.GetSelectedFrame(3);
-			break;
-		default:
-			break;
-		}
+		if (btnSync->checked == true) vsync.GetSelectedFrame(1);
+		else vsync.GetSelectedFrame(0);
 
 		switch (btnBack->state)
 		{
@@ -117,7 +104,7 @@ bool SceneOptions::Update(float dt)
 			break;
 		case GuiControlState::FOCUSED: back.GetSelectedFrame(1);
 			break;
-		case GuiControlState::PRESSED: back.GetSelectedFrame(3);
+		case GuiControlState::PRESSED: back.GetSelectedFrame(0);
 			break;
 		default:
 			break;
@@ -143,11 +130,21 @@ bool SceneOptions::PostUpdate()
 {
 	bool ret = true;
 
+	app->render->DrawTexture(statesMusic, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 174) / 2), -app->render->camera.y + 150);
+	app->render->DrawTexture(statesVolume, -app->render->camera.x + sldMusic->bounds.x + ((sldMusic->bounds.w - 295) / 2), -app->render->camera.y + sldMusic->bounds.y + ((sldMusic->bounds.h - 24) / 2));
+	app->render->DrawTexture(statesGuide, -app->render->camera.x + sldMusic->guideRender, -app->render->camera.y + sldMusic->bounds.y + ((sldMusic->bounds.h - 24) / 2));
+
+	app->render->DrawTexture(statesFx, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 323) / 2), -app->render->camera.y + 275);
+	app->render->DrawTexture(statesVolume, -app->render->camera.x + sldFx->bounds.x + ((sldFx->bounds.w - 295) / 2), -app->render->camera.y + sldFx->bounds.y + ((sldFx->bounds.h - 24) / 2));
+	app->render->DrawTexture(statesGuide, -app->render->camera.x + sldFx->guideRender, -app->render->camera.y + sldFx->bounds.y + ((sldFx->bounds.h - 24) / 2));
+
 	SDL_Rect rect1 = fullscreen.GetCurrentFrame();
-	app->render->DrawTexture(statesFullscreen, -app->render->camera.x + btnFull->bounds.x + ((btnFull->bounds.w - 546) / 2), -app->render->camera.y + btnFull->bounds.y + ((btnFull->bounds.h - 27) / 2), &rect1);
+	app->render->DrawTexture(statesCheck, -app->render->camera.x + btnFull->bounds.x + ((btnFull->bounds.w - 23) / 2), -app->render->camera.y + btnFull->bounds.y + ((btnFull->bounds.h - 23) / 2), &rect1);
+	app->render->DrawTexture(statesFullscreen, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 360) / 2), -app->render->camera.y + btnFull->bounds.y + ((btnBack->bounds.h - 27) / 2));
 	
 	SDL_Rect rect2 = vsync.GetCurrentFrame();
-	app->render->DrawTexture(statesVsync, -app->render->camera.x + btnSync->bounds.x + ((btnSync->bounds.w - 174) / 2), -app->render->camera.y + btnSync->bounds.y + ((btnSync->bounds.h - 27) / 2), &rect2);
+	app->render->DrawTexture(statesCheck, -app->render->camera.x + btnSync->bounds.x + ((btnSync->bounds.w - 23) / 2), -app->render->camera.y + btnSync->bounds.y + ((btnSync->bounds.h - 23) / 2), &rect2);
+	app->render->DrawTexture(statesVsync, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 174) / 2), -app->render->camera.y + btnSync->bounds.y + ((btnBack->bounds.h - 27) / 2));
 	
 	SDL_Rect rect3 = back.GetCurrentFrame();
 	app->render->DrawTexture(statesBack, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 137) / 2), -app->render->camera.y + btnBack->bounds.y + ((btnBack->bounds.h - 27) / 2), &rect3);
@@ -190,16 +187,22 @@ bool SceneOptions::OnGuiMouseClickEvent(GuiControl* control)
 	{
 		switch (control->id)
 		{
+		case 3:
+			active = false;			// Settings
+			break;
+		}
+	}
+
+	case GuiControlType::CHECKBOX:
+	{
+		switch (control->id)
+		{
 		case 1:
 			ToggleFullscreen(app->win->window);
 			break;
 
 		case 2:
 			app->modcontrol->capped = !app->modcontrol->capped;
-			break;
-
-		case 3:
-			active = false;			// Settings
 			break;
 		}
 	}
