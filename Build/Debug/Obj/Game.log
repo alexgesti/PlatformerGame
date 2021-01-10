@@ -1,5 +1,7 @@
-﻿  SceneIntro.cpp
-D:\UNI\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-D:\UNI\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-D:\UNI\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-  Game.vcxproj -> D:\UNI\PlatformerGame\Build\Debug\Game.exe
+﻿  SceneLogo.cpp
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\SceneLogo.cpp(80,11): warning C4244: '=': conversion from 'float' to 'Uint8', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\SceneLogo.cpp(101,11): warning C4244: '=': conversion from 'float' to 'Uint8', possible loss of data
+  Game.vcxproj -> D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Build\Debug\Game.exe

@@ -115,6 +115,9 @@ bool SceneIntro::Update(float dt)
 		app->LoadGameRequest("save_game.xml");
 	}
 
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KeyState::KEY_DOWN ||
+		app->input->GetKey(SDL_SCANCODE_SPACE) == KeyState::KEY_DOWN) creditsBut = false;
+
 	if (app->SaveDataExist == false && app->fade->CanFade == true)
 	{
 		btnContinue->state = GuiControlState::DISABLED;
@@ -124,7 +127,7 @@ bool SceneIntro::Update(float dt)
 		btnContinue->state = GuiControlState::NORMAL;
 	}
 
-	if (app->sceneOpts->active == false && app->fade->CanFade == false)
+	if (app->sceneOpts->active == false && app->fade->CanFade == false && creditsBut == false)
 	{
 		switch (btnStart->state)
 		{
@@ -215,11 +218,6 @@ bool SceneIntro::PostUpdate()
 	//Render Buttons
 	if (app->sceneOpts->active == false)
 	{
-		if (creditsBut == true)
-		{
-			SDL_Rect rectCred = { -app->render->camera.x, -app->render->camera.y, -app->render->camera.w, -app->render->camera.h };
-			app->render->DrawTexture(creditS, -app->render->camera.x, -app->render->camera.y, &rectCred);
-		}
 		SDL_Rect rect1 = play.GetCurrentFrame();
 		app->render->DrawTexture(statesPlay, btnStart->bounds.x + ((btnStart->bounds.w - 137)/2), btnStart->bounds.y + ((btnStart->bounds.h - 27) / 2), &rect1);
 
@@ -243,6 +241,12 @@ bool SceneIntro::PostUpdate()
 			btnCredits->Draw(app->render);
 			btnExit->Draw(app->render);
 		}
+	}
+
+	if (creditsBut == true)
+	{
+		SDL_Rect rectCred = { 0, 0, app->render->camera.w, app->render->camera.h };
+		app->render->DrawTexture(creditS, -app->render->camera.x, -app->render->camera.y, &rectCred);
 	}
 
 	return ret;

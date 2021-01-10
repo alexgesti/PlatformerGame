@@ -114,6 +114,7 @@ bool FadeController::Update(float dt)
 	if (BackTitle && blackFade.a >= 245)
 	{
 		app->scenePause->active = false;
+		app->LoadGameRequest("save_game.xml");
 
 		BackTitle = false;
 		app->modcontrol->currentscene = 1;
