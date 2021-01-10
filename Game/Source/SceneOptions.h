@@ -47,7 +47,7 @@ private:
 
 	Animation fullscreen;
 	Animation vsync;
-	Animation exit;
+	Animation back;
 
 	SDL_Texture* statesFullscreen;
 	SDL_Texture* statesVsync;

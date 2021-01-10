@@ -6,10 +6,10 @@
 	<audio />
 	<map />
 	<scene>
-		<Player x="-1989" y="-1920" Ballx="-1989" Bally="-1935" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Lookingright="false" Waslookingright="true" OnceSound="false" WasTop="false" WasShooting="false" maxJump="-1520" Cooldown="0" Waslookingright="false" HasGravity="false" WasInGodMode="false" PlayerLifes="3" />
-		<Mushroom Wx="-3052" Wy="-1664" WWasdead="false" WIsWasdead="false" WFinishedDeadRAnim="false" WFinishedDeadLAnim="false" WWaslookingright="true" WHasGravity="false" WHitPlayer="false" WOnceSound="false" />
-		<Bat Fx="-3976" Fy="-1312" FWasdead="false" FIsWasdead="false" FFinishedDeadRAnim="false" FFinishedDeadLAnim="false" FWaslookingright="true" FHitPlayer="false" FOnceSound="false" />
-		<Scene checkpointActive="true" checkpointSound="1" OrbObtained="true" counterCheckPointSound="0.96900028" OrbPosX="0" OrbPosY="0" AnimOrbFinished="false" OnlyOnceOrb="true" PSpositionX="0" PSpositionY="0" />
+		<Player x="-4606" y="-1024" Ballx="-4606" Bally="-1039" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Lookingright="true" Waslookingright="true" OnceSound="false" WasTop="false" WasShooting="false" maxJump="-880" Cooldown="0" Waslookingright="true" HasGravity="false" WasInGodMode="false" PlayerLifes="3" />
+		<Mushroom Wx="0" Wy="-1520" WWasdead="true" WIsWasdead="true" WFinishedDeadRAnim="false" WFinishedDeadLAnim="false" WWaslookingright="false" WHasGravity="true" WHitPlayer="true" WOnceSound="true" />
+		<Bat Fx="-4432" Fy="-1024" FWasdead="false" FIsWasdead="false" FFinishedDeadRAnim="true" FFinishedDeadLAnim="false" FWaslookingright="true" FHitPlayer="false" FOnceSound="false" />
+		<Scene checkpointActive="true" checkpointSound="1" OrbObtained="true" counterCheckPointSound="0.153000012" OrbPosX="0" OrbPosY="0" AnimOrbFinished="false" OnlyOnceOrb="true" PSpositionX="0" PSpositionY="0" />
 	</scene>
 	<sceneintro />
 	<sceneLogo />
@@ -25,6 +25,6 @@
 	<sceneintro />
 	<sceneintro />
 	<renderer>
-		<camera x="-1401" y="-1592" />
+		<camera x="-3985" y="-696" />
 	</renderer>
 </save_state>
