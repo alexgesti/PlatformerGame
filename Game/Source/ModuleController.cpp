@@ -17,6 +17,7 @@
 #include "FlyEnemy.h"
 #include "GameplayHUD.h"
 #include "ModuleController.h"
+#include "FadeController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -68,8 +69,9 @@ bool ModuleController::Awake(pugi::xml_node& config)
 	app->wenemy->active = true;			// Walking Enemy
 	app->fenemy->active = true;			// Flying Enemy
 	app->modcontrol->active = true;		// ModControl
-	app->GameHUD->active = true;	// GameplayHUD
+	app->GameHUD->active = true;		// GameplayHUD
 	app->render->active = true;			// Render
+	app->fade->active = true;			// Fade
 
 	currentscene = 0;					// Current Scene
 	
@@ -96,13 +98,6 @@ bool ModuleController::Start()
 
 bool ModuleController::Update(float dt)
 {
-	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
-	{
-		showButtons = !showButtons;
-	}
-
-	if (app->sceneOpts->active == false) app->sceneOpts->wait = false;
-
 	// DEBUG KEYS
 	if (app->scene->NotSceneActived)
 	{
@@ -142,6 +137,13 @@ bool ModuleController::Update(float dt)
 			}
 		}
 
+		if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
+		{
+			showButtons = !showButtons;
+		}
+		
+		if (app->sceneOpts->active == false) app->sceneOpts->wait = false;
+
 		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		{
 			showCollider = !showCollider;
@@ -168,6 +170,9 @@ bool ModuleController::Update(float dt)
 		currentscene = 0;
 
 		app->sceneLogo->Reset();
+
+		app->fade->CanFade = true;
+		app->fade->StartInBlack = true;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
 	{
@@ -175,23 +180,39 @@ bool ModuleController::Update(float dt)
 
 		app->sceneLogo->MusicOn = true;
 		app->sceneIntro->OneTimeOnly = false;
+
+		app->fade->CanFade = true;
+		app->fade->StartInBlack = true;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
 	{
 		currentscene = 2;
 
 		app->scene->Reset();
-	}
-	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN) currentscene = 3;
-	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) currentscene = 4;
 
+		app->fade->CanFade = true;
+		app->fade->StartInBlack = true;
+	}
+	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
+	{
+		currentscene = 3;
+
+		app->fade->CanFade = true;
+		app->fade->StartInBlack = true;
+	}
+	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN)
+	{
+		currentscene = 4;
+
+		app->fade->CanFade = true;
+		app->fade->StartInBlack = true;
+	}
 
 	if (app->player->life <= 0 && (app->player->deadLAnim.FinishedAlready || app->player->deadRAnim.FinishedAlready))
 	{
-		app->player->deadRAnim.Reset();
-		app->player->deadLAnim.Reset();
-
-		currentscene = 3;
+		app->fade->HeLose = true;
+		app->fade->StartInBlack = false;
+		app->fade->CanFade = true;
 	}
 	
 	switch (currentscene)

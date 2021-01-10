@@ -19,6 +19,7 @@
 #include "EntityManager.h"
 #include "Pathfinding.h"
 #include "GameplayHUD.h"
+#include "FadeController.h"
 
 
 #include "Defs.h"
@@ -53,6 +54,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	entity = new EntityManager();
 	pathfinding = new PathFinding();
 	GameHUD = new GameplayHUD();
+	fade = new FadeController();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -75,6 +77,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scenePause);
 	AddModule(sceneOpts);
 	AddModule(GameHUD);
+	AddModule(fade);
 
 	// Render last to swap buffer
 	AddModule(render);

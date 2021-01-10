@@ -1,5 +1,5 @@
 ﻿  SceneOptions.cpp
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\raulc\Documents\GitHub\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-  Game.vcxproj -> C:\Users\raulc\Documents\GitHub\PlatformerGame\Build\Debug\Game.exe
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Animation.h(58,20): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Animation.h(60,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Game\Source\Animation.h(67,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Game.vcxproj -> D:\cosas de clase\Desenvolupament de Videojocs\PlatformerGame\Build\Debug\Game.exe

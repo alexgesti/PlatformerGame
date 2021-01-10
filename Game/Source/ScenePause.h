@@ -56,8 +56,6 @@ private:
 
 	uint buttonFx = 0;
 
-	bool retU;
-
 public:
 };
 

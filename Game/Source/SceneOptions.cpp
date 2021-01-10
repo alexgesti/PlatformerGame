@@ -107,7 +107,7 @@ bool SceneOptions::Update(float dt)
 			break;
 		case GuiControlState::FOCUSED: back.GetSelectedFrame(1);
 			break;
-		case GuiControlState::PRESSED: back.GetSelectedFrame(0);
+		case GuiControlState::PRESSED: back.GetSelectedFrame(0); 
 			break;
 		default:
 			break;

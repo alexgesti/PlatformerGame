@@ -13,6 +13,7 @@
 #include "Audio.h"
 #include "GameplayHUD.h"
 #include "ModuleController.h"
+#include "FadeController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -123,7 +124,7 @@ bool Scene::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
-		app->scenePause->active = !app->scenePause->active;
+		if (app->fade->CanFade == false) app->scenePause->active = !app->scenePause->active;
 
 		if (app->sceneOpts->active == true) app->sceneOpts->active = false;
 	}
