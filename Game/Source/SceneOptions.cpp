@@ -13,7 +13,7 @@
 
 #include "SDL_mixer/include/SDL_mixer.h"
 
-SceneOptions::SceneOptions() : Module() //Esto debe de heredar de scene, habria que sacar todos los void que no sean necesarios (no esten puesto en scene) y modificarlos. Ademas necesitamos un scene manager.
+SceneOptions::SceneOptions() : Module()
 {
 	name.Create("sceneintro");
 

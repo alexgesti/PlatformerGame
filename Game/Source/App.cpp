@@ -380,10 +380,18 @@ bool App::LoadGame()
 		}
 
 		data.reset();
-		if (ret) LOG("...finished loading");
+		if (ret)
+		{
+			LOG("...finished loading");
+			SaveDataExist = true;
+		}
 		else LOG("...loading process interrupted with error on module %s", item->data->name.GetString());
 	}
-	else LOG("Could not parse game state xml file %s. pugi error: %s", loadedGame.GetString(), result.description());
+	else
+	{
+		SaveDataExist = false;
+		LOG("Could not parse game state xml file %s. pugi error: %s", loadedGame.GetString(), result.description());
+	}
 
 	loadGameRequested = false;
 

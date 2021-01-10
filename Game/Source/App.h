@@ -123,6 +123,9 @@ public:
 	FadeController* fade;
 
 	uint32 cappedMs;
+
+	bool SaveDataExist;
+
 private:
 
 	int argc;

@@ -13,7 +13,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-SceneIntro::SceneIntro() : Module() //Esto debe de heredar de scene, habria que sacar todos los void que no sean necesarios (no esten puesto en scene) y modificarlos. Ademas necesitamos un scene manager.
+SceneIntro::SceneIntro() : Module()
 {
 	name.Create("sceneintro");
 
@@ -111,11 +111,16 @@ bool SceneIntro::Update(float dt)
 	{
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;
+		app->LoadGameRequest("save_game.xml");
 	}
 
-	//if (app->LoadGameRequest("save_game.xml") == NULL)
+	if (app->SaveDataExist == false && app->fade->CanFade == true)
 	{
 		btnContinue->state = GuiControlState::DISABLED;
+	}
+	else if (app->fade->CanFade == true && app->SaveDataExist == true)
+	{
+		btnContinue->state = GuiControlState::NORMAL;
 	}
 
 	if (app->sceneOpts->active == false && app->fade->CanFade == false)

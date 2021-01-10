@@ -12,7 +12,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-ScenePause::ScenePause() : Module() //Esto debe de heredar de scene, habria que sacar todos los void que no sean necesarios (no esten puesto en scene) y modificarlos. Ademas necesitamos un scene manager.
+ScenePause::ScenePause() : Module()
 {
 	name.Create("sceneintro");
 
