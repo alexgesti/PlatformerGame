@@ -14,17 +14,36 @@ This game is a 2D platformer where you need to kill the enemies and finish the c
  
 ## Controls
 
+### Title Screen
+
+ - Play: Start the game.
+ - Continue: Start the game from the last save.
+ - Settings: Open the settings.
+ - Credits: Show the credits.
+ - Exit: Close the game.
+ 
+#### Settings
+
+ - Music volume: Sets the music volume.
+ - Fx volume: Sets the fx volume.
+ - Fullscreen: Set the window to fullscreen.
+ - Vsync: Caps the fps.
+ - Back: Return to the last screen.
+
 ### Gameplay
 
- - ENTER: Start game/Next screen.
- - A: moves left.
- - D: moves right.
- - E: shot. (It has a cooldown of 5 seconds)
- - SPACE: jump.
- - 1: First checkpoint.
- - 2: Second checkpoint.
- - 3: Third checkpoint.
- - ESCAPE: Close game.
+ - A: Moves left.
+ - D: Moves right.
+ - E: Shot. (It has a cooldown of 5 seconds)
+ - SPACE: Jump.
+ - ESCAPE: Pause menu.
+ 
+#### Pause
+
+ - Resume: Return to the game.
+ - Settings: Open the settings.
+ - Title: Return to the title screen.
+ - Exit: Close the game.
  
 ### DEBUG Keys
 
@@ -32,6 +51,8 @@ This game is a 2D platformer where you need to kill the enemies and finish the c
  - F3: Start from the beginning of the current level.
  - F5: Save the current game state.
  - F6: Load the previous state.
+ - F7: Move between checkpoints.
+ - F8: View GUI buttons colliders.
  - F9: View colliders.
  - F10: God Mode.
  - F11: Change capped FPS (60 to 30).
