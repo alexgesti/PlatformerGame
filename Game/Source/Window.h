@@ -39,9 +39,12 @@ public:
 
 private:
 	SString title;
+	uint scale;
+
+public:
 	uint width;
 	uint height;
-	uint scale;
+
 };
 
 #endif // __WINDOW_H__

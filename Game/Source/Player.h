@@ -65,6 +65,8 @@ public:
 
 	Animation* currentAnim;
 	Animation* BcurrentAnim;
+	Animation* currentAnimColl;
+	Animation* currentAnimCollB;
 
 	Animation idleRAnim;
 	Animation jumpRAnim;
@@ -77,11 +79,15 @@ public:
 
 	Animation Ball;
 
+	Animation Collision;
+	Animation CollisionB;
+
 	Colliders* playerCollider = nullptr;
 
 private:
 	SDL_Texture* spriteSheet = nullptr;
 	SDL_Texture* ball = nullptr;
+	SDL_Texture* collision = nullptr;
 
 	static const int numnPoints = 4;
 	int pointsCollision[numnPoints][2] = { {-8, 0}, {64, 0}, {-8, 55}, {64, 55} };

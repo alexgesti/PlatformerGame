@@ -47,7 +47,8 @@ public:
 public:
 	Animation* PillarAnim;
 	Animation* CurrentAnimOrb;
-	Animation* pointsAnim;
+	Animation* currentAnimCollOrb;
+	Animation* currentAnimCollLife;
 
 	Animation pillar;
 
@@ -57,18 +58,22 @@ public:
 	Animation p0;
 	Animation p1;
 
+	Animation CollisionOrb;
+	Animation CollisionLife;
+
 private:
 	SDL_Texture* img;
 	SDL_Texture* spritePillar;
 	SDL_Texture* lifePlayer;
 	SDL_Texture* PSup;
 	SDL_Texture* spriteorb;
-	SDL_Texture* pointsSprite;
+	SDL_Texture* collision = nullptr;
 
 	int camX;
 	int camY;
 
 public:
+
 	bool NotSceneActived;
 	bool CheckPointActive; 
 	bool SoundOneTime;

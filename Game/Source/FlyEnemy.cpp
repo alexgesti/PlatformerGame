@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Audio.h"
 #include "ScenePause.h"
+#include "GameplayHUD.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -51,6 +52,11 @@ FlyEnemy::FlyEnemy() : Module()
 	deadLAnim.PushBack({ 128, 64, 32, 32 });
 	deadLAnim.loop = false;
 	deadLAnim.speed = 0.12f;
+
+	//Collisions
+	Collision.PushBack({ 0, 0, 32, 32 });
+
+	currentAnimColl = &Collision;
 }
 
 // Destructor
@@ -73,6 +79,7 @@ bool FlyEnemy::Start()
 {
 	//Load texture
 	spriteSheet = app->tex->Load("Assets/Characters/Enemies/FlyingEnemies/flyenemy_spritesheet.png");
+	collision = app->tex->Load("Assets/Screens/Gameplay/collision_entities.png");
 	deathEnemyFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Enemies/deathEnemy.wav");
 
 	currentAnim = &runRAnim;
@@ -138,11 +145,12 @@ bool FlyEnemy::Update(float dt)
 			if (waslookingRight) currentAnim = &deadRAnim;
 			else currentAnim = &deadLAnim;
 
-			if (oncesound == false)
-			{
-				oncesound = true;
-				app->audio->PlayFx(deathEnemyFx);
-			}
+		if (oncesound == false)
+		{
+			oncesound = true;
+			app->audio->PlayFx(deathEnemyFx);
+			app->GameHUD->points[2]++;
+		}
 
 			if (deadRAnim.FinishedAlready || deadLAnim.FinishedAlready)
 			{
@@ -187,6 +195,12 @@ bool FlyEnemy::PostUpdate()
 
 	SDL_Rect rect = currentAnim->GetCurrentFrame();
 	if (IsDead == false) app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
+
+	if (app->modcontrol->showCollider)
+	{
+		SDL_Rect rectCol = currentAnimColl->GetCurrentFrame();
+		app->render->DrawTexture(collision, -position.x, -position.y, &rectCol);
+	}
 
 	return ret;
 }

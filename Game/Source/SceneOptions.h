@@ -35,6 +35,8 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void ToggleFullscreen(SDL_Window* Window);
+
 	// Declare on mouse click event
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
@@ -55,6 +57,7 @@ private:
 	bool retU;
 
 public:
+	bool wait = false;
 };
 
 #endif // __SCENEINTRO_H__

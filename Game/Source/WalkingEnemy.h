@@ -55,6 +55,7 @@ public:
 	iPoint position;
 
 	Animation* currentAnim;
+	Animation* currentAnimColl;
 
 	Animation runRAnim;
 	Animation deadRAnim;
@@ -64,10 +65,13 @@ public:
 	Animation deadLAnim;
 	Animation idleLAnim;
 
+	Animation Collision;
+
 	Colliders* enemyCollider = nullptr;
 
 private:
 	SDL_Texture* spriteSheet = nullptr;
+	SDL_Texture* collision = nullptr;
 
 	static const int numnPoints = 4;
 	int pointsCollision[numnPoints][2] = { {0, 0}, {64, 0}, {0, 62}, {64, 62} };

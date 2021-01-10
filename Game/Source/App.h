@@ -32,7 +32,6 @@ class WalkingEnemy;
 class FlyEnemy;
 class EntityManager;
 class PathFinding;
-//class ScreenHUD;
 class GameplayHUD;
 
 class App
@@ -119,7 +118,6 @@ public:
 	FlyEnemy* fenemy;
 	EntityManager* entity;
 	PathFinding* pathfinding;
-	//ScreenHUD* screenHud;
 	GameplayHUD* GameHUD;
 
 	uint32 cappedMs;
@@ -167,6 +165,7 @@ private:
 public:
 
 	uint64 frameCount = 0;
+
 };
 
 extern App* app;

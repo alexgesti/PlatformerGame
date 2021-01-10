@@ -18,7 +18,6 @@
 #include "FlyEnemy.h"
 #include "EntityManager.h"
 #include "Pathfinding.h"
-//#include "GameplayScreenHUD.h"
 #include "GameplayHUD.h"
 
 
@@ -73,13 +72,12 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(player);
 	AddModule(modcontrol);
 	AddModule(pathfinding);
-	AddModule(GameHUD);
 	AddModule(scenePause);
 	AddModule(sceneOpts);
+	AddModule(GameHUD);
 
 	// Render last to swap buffer
 	AddModule(render);
-
 
 	PERF_PEEK(ptimer);
 }

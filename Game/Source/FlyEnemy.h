@@ -50,16 +50,20 @@ public:
 	iPoint position;
 
 	Animation* currentAnim;
+	Animation* currentAnimColl;
 
 	Animation runRAnim;
 	Animation deadRAnim;
 	Animation runLAnim;
 	Animation deadLAnim;
 
+	Animation Collision;
+
 	Colliders* enemyCollider = nullptr;
 
 private:
 	SDL_Texture* spriteSheet = nullptr;
+	SDL_Texture* collision = nullptr;
 
 	int detectdistance = 192;
 
