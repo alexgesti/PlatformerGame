@@ -8,6 +8,7 @@
 #include "Map.h"
 #include "Scene.h"
 #include "ScenePause.h"
+#include "FadeController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -180,7 +181,7 @@ bool GameplayHUD::PreUpdate()
 bool GameplayHUD::Update(float dt)
 {
 	// Clock
-	if (app->scenePause->active == false) Counter -= 0.16f;
+	if (app->scenePause->active == false && app->fade->CanFade == false) Counter -= 0.16f;
 
 	if (Counter < 0)
 	{

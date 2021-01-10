@@ -87,6 +87,9 @@
     <ClCompile Include="Source\EntityManager.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source\FadeController.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -202,6 +205,9 @@
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Source\EntityManager.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FadeController.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>

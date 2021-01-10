@@ -7,6 +7,7 @@
 #include "SceneLogo.h"
 #include "SceneOptions.h"
 #include "ModuleController.h"
+#include "FadeController.h"
 #include "Audio.h"
 
 #include "Defs.h"
@@ -97,8 +98,6 @@ bool SceneIntro::PreUpdate()
 // Called each loop iteration
 bool SceneIntro::Update(float dt)
 {
-	retU = true;
-
 	// Load music
 	if (OneTimeOnly == false && app->sceneLogo->MusicOn == true)
 	{
@@ -117,7 +116,7 @@ bool SceneIntro::Update(float dt)
 		btnContinue->state = GuiControlState::DISABLED;
 	}
 
-	if (app->sceneOpts->active == false)
+	if (app->sceneOpts->active == false && app->fade->CanFade == false)
 	{
 		switch (btnStart->state)
 		{
@@ -194,7 +193,7 @@ bool SceneIntro::Update(float dt)
 		exit.Update();
 	}
 
-	return retU;
+	return true;
 }
 
 // Called each loop iteration
@@ -256,15 +255,18 @@ bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
 		switch (control->id)
 		{
 		case 1:
-			app->scene->Reset();
-			app->modcontrol->currentscene = 2;
+			app->fade->CanFade = true;
+			app->fade->StartInBlack = false;
+			app->fade->StartBoton = true;
 			break;
 
 		case 2:
 			//if (app->LoadGameRequest("save_game.xml") != NULL)
 			{
-				app->LoadGameRequest("save_game.xml");
-				app->modcontrol->currentscene = 2;
+				app->fade->CanFade = true;
+				app->fade->StartInBlack = false;
+				app->fade->StartBoton = true;
+				app->fade->ContinueBoton = true;
 			}
 			break;
 
@@ -277,12 +279,13 @@ bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
 			break;
 
 		case 5:
-			retU = false;
+			app->fade->CanFade = true;
+			app->fade->StartInBlack = false;
+			app->fade->StartBoton = true;
+			app->fade->ExitBoton = true;
 			break;
-
 		}
 	}
-
 	default:
 		break;
 	}

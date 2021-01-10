@@ -54,8 +54,6 @@ private:
 	SDL_Texture* statesExit;
 	SDL_Texture* pause;
 
-	bool retU;
-
 public:
 };
 

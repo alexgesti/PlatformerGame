@@ -46,8 +46,6 @@ private:
 	GuiButton* btnCredits;
 	GuiButton* btnExit;
 
-	bool retU;
-
 	Animation play;
 	Animation cont;
 	Animation sett;

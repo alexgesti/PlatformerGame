@@ -8,6 +8,7 @@
 #include "Scene.h"
 #include "ModuleController.h"
 #include "Audio.h"
+#include "FadeController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -112,6 +113,9 @@ bool SceneLogo::Update(float dt)
 	{	
 		app->modcontrol->currentscene = 1;
 		MusicOn = true;
+		app->fade->blackFade.a = 255;
+		app->fade->StartInBlack = true;
+		app->fade->CanFade = true;
 		app->scene->Reset();
 	}
 

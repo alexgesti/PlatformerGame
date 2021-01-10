@@ -6,6 +6,7 @@
 #include "SceneWin.h"
 #include "Scene.h"
 #include "ModuleController.h"
+#include "FadeController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -31,7 +32,7 @@ bool SceneWin::Awake()
 // Called before the first frame
 bool SceneWin::Start()
 {
-	SpriteWin = app->tex->Load("Assets/Screens/Title//Win.png");
+	SpriteWin = app->tex->Load("Assets/Screens/Title/Win.png");
 
 	return true;
 }
@@ -64,9 +65,9 @@ bool SceneWin::PostUpdate()
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		app->scene->Reset();
-		app->modcontrol->currentscene = 1;
-
+		app->fade->CanFade = true;
+		app->fade->StartInBlack = false;
+		app->fade->WinLoseContinue = true;
 	}
 	return ret;
 }

@@ -6,6 +6,7 @@
 #include "SceneLose.h"
 #include "Scene.h"
 #include "ModuleController.h"
+#include "FadeController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -64,9 +65,9 @@ bool SceneLose::PostUpdate()
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		app->scene->Reset();
-		app->modcontrol->currentscene = 1;
-
+		app->fade->CanFade = true;
+		app->fade->StartInBlack = false;
+		app->fade->WinLoseContinue = true;
 	}
 
 	return ret;

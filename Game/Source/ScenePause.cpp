@@ -6,6 +6,7 @@
 #include "ModuleController.h"
 #include "SceneOptions.h"
 #include "ScenePause.h"
+#include "FadeController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -83,9 +84,7 @@ bool ScenePause::PreUpdate()
 // Called each loop iteration
 bool ScenePause::Update(float dt)
 {
-	retU = true;
-
-	if (app->sceneOpts->active == false)
+	if (app->sceneOpts->active == false && app->fade->CanFade == false)
 	{
 		switch (btnResume->state)
 		{
@@ -146,7 +145,7 @@ bool ScenePause::Update(float dt)
 		exit.Update();
 	}
 	
-	return retU;
+	return true;
 }
 
 // Called each loop iteration
@@ -204,7 +203,7 @@ bool ScenePause::OnGuiMouseClickEvent(GuiControl* control)
 		switch (control->id)
 		{
 		case 1:
-			app->scenePause->active = false;
+			active = false;
 			break;
 
 		case 2:
@@ -212,13 +211,16 @@ bool ScenePause::OnGuiMouseClickEvent(GuiControl* control)
 			break;
 
 		case 3:
-			app->modcontrol->currentscene = 1;
-
-			app->scenePause->active = false;
+			app->fade->CanFade = true;
+			app->fade->StartInBlack = false;
+			app->fade->BackTitle = true;
 			break;
 
 		case 4:
-			retU = false;
+			app->fade->CanFade = true;
+			app->fade->StartInBlack = false;
+			app->fade->StartBoton = true;
+			app->fade->ExitBoton = true;
 			break;
 		}
 	}

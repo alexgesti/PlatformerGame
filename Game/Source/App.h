@@ -33,6 +33,7 @@ class FlyEnemy;
 class EntityManager;
 class PathFinding;
 class GameplayHUD;
+class FadeController;
 
 class App
 {
@@ -119,6 +120,7 @@ public:
 	EntityManager* entity;
 	PathFinding* pathfinding;
 	GameplayHUD* GameHUD;
+	FadeController* fade;
 
 	uint32 cappedMs;
 private:

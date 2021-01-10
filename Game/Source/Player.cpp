@@ -11,6 +11,7 @@
 #include "Audio.h"
 #include "ModuleController.h"
 #include "ScenePause.h"
+#include "FadeController.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -156,7 +157,7 @@ bool Player::PreUpdate()
 // Called each loop iteration
 bool Player::Update(float dt)
 {
-	if (app->scenePause->active == false)
+	if (app->scenePause->active == false && app->fade->CanFade == false)
 	{
 		dt *= 100;
 
@@ -403,7 +404,12 @@ int Player::CollisionPlayer()
 		if (CheckCollision(posMapPlayer[i]) == 3) return 1; // Checkpoint 1
 		if (CheckCollision(posMapPlayer[i]) == 5) return 4; // Checkpoint 2
 		if (CheckCollision(posMapPlayer[i]) == 6) return 5; // Checkpoint 3
-		if (CheckCollision(posMapPlayer[i]) == 4) app->modcontrol->currentscene=4;
+		if (CheckCollision(posMapPlayer[i]) == 4)
+		{
+			app->fade->CanFade = true;
+			app->fade->StartInBlack = false;
+			app->fade->HeWin = true;
+		}
 	}
 
 	if (CheckCollision(posMapPlayer[numnPoints - 1]) == 1) return 2;
