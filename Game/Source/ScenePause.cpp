@@ -6,6 +6,7 @@
 #include "ModuleController.h"
 #include "SceneOptions.h"
 #include "ScenePause.h"
+#include "Audio.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -70,6 +71,8 @@ bool ScenePause::Start()
 	statesTitle = app->tex->Load("Assets/GUI/states_title.png");
 	statesExit = app->tex->Load("Assets/GUI/states_exit30.png");
 	pause = app->tex->Load("Assets/GUI/pause.png");
+
+	buttonFx = app->audio->LoadFx("Assets/Audio/Fx/buttonfx.wav");
 
 	return true;
 }
@@ -204,20 +207,23 @@ bool ScenePause::OnGuiMouseClickEvent(GuiControl* control)
 		switch (control->id)
 		{
 		case 1:
+			app->audio->PlayFx(buttonFx);
 			app->scenePause->active = false;
 			break;
 
 		case 2:
+			app->audio->PlayFx(buttonFx);
 			app->sceneOpts->active = true;			// Settings
 			break;
 
 		case 3:
+			app->audio->PlayFx(buttonFx);
 			app->modcontrol->currentscene = 1;
-
 			app->scenePause->active = false;
 			break;
 
 		case 4:
+			app->audio->PlayFx(buttonFx);
 			retU = false;
 			break;
 		}

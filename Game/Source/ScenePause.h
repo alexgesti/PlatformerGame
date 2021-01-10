@@ -54,6 +54,8 @@ private:
 	SDL_Texture* statesExit;
 	SDL_Texture* pause;
 
+	uint buttonFx = 0;
+
 	bool retU;
 
 public:

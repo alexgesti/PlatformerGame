@@ -61,6 +61,9 @@ private:
 	SDL_Texture* statesFullscreen;
 	SDL_Texture* statesVsync;
 	SDL_Texture* statesBack;
+
+	uint buttonFx = 0;
+
 	bool retU;
 
 public:

@@ -60,6 +60,7 @@ private:
 	SDL_Texture* statesCredits;
 	SDL_Texture* statesExit;
 
+	uint buttonFx = 0;
 
 public:
 	bool OneTimeOnly;

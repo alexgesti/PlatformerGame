@@ -8,6 +8,7 @@
 #include "SceneOptions.h"
 #include "ModuleController.h"
 #include "Audio.h"
+#include "Audio.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -84,6 +85,8 @@ bool SceneIntro::Start()
 	statesSett = app->tex->Load("Assets/GUI/states_sett.png");
 	statesCredits = app->tex->Load("Assets/GUI/states_credits.png");
 	statesExit = app->tex->Load("Assets/GUI/states_exit30.png");
+
+	buttonFx = app->audio->LoadFx("Assets/Audio/Fx/buttonfx.wav");
 
 	return true;
 }
@@ -261,22 +264,22 @@ bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
 			break;
 
 		case 2:
-			//if (app->LoadGameRequest("save_game.xml") != NULL)
-			{
-				app->LoadGameRequest("save_game.xml");
-				app->modcontrol->currentscene = 2;
-			}
+			app->audio->PlayFx(buttonFx);
+			app->LoadGameRequest("save_game.xml");
+			app->modcontrol->currentscene = 2;
 			break;
 
 		case 3:
+			app->audio->PlayFx(buttonFx);
 			app->sceneOpts->active = true;			// Settings
 			break;
 
 		case 4:
-
+			app->audio->PlayFx(buttonFx);
 			break;
 
 		case 5:
+			app->audio->PlayFx(buttonFx);
 			retU = false;
 			break;
 

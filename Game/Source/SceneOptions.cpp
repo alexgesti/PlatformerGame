@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "ModuleController.h"
 #include "SceneOptions.h"
+#include "Audio.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -34,13 +35,13 @@ SceneOptions::SceneOptions() : Module() //Esto debe de heredar de scene, habria 
 	sldFx = new GuiSlider(2, { 1280 / 2 - 300 / 2, 315, 300, 80 }, "FX");
 	sldFx->SetObserver(this);
 
-	btnFull = new GuiCheckBox(1, { 1000 / 2 - 300 / 2, 400, 80, 80 }, "FULLSCREEN");
+	btnFull = new GuiCheckBox(3, { 1000 / 2 - 300 / 2, 400, 80, 80 }, "FULLSCREEN");
 	btnFull->SetObserver(this);
 
-	btnSync = new GuiCheckBox(2, { 1000 / 2 - 300 / 2, 500, 80, 80 }, "VSYNC");
+	btnSync = new GuiCheckBox(4, { 1000 / 2 - 300 / 2, 500, 80, 80 }, "VSYNC");
 	btnSync->SetObserver(this);
 
-	btnBack = new GuiButton(3, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
+	btnBack = new GuiButton(5, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
 	btnBack->SetObserver(this);
 }
 
@@ -70,6 +71,8 @@ bool SceneOptions::Start()
 	statesFullscreen = app->tex->Load("Assets/GUI/states_fullscreen.png");
 	statesVsync = app->tex->Load("Assets/GUI/states_vsync.png");
 	statesBack = app->tex->Load("Assets/GUI/states_back.png");
+
+	buttonFx = app->audio->LoadFx("Assets/Audio/Fx/buttonfx.wav");
 
 	btnFull->checked = false;
 	btnFull->checked = false;
@@ -183,12 +186,15 @@ bool SceneOptions::OnGuiMouseClickEvent(GuiControl* control)
 {
 	switch (control->type)
 	{
-	case GuiControlType::BUTTON:
+	case GuiControlType::SLIDER:
 	{
 		switch (control->id)
 		{
-		case 3:
-			active = false;			// Settings
+		case 1:
+			app->audio->PlayFx(buttonFx);
+			break;
+		case 2:
+			app->audio->PlayFx(buttonFx);
 			break;
 		}
 	}
@@ -197,12 +203,25 @@ bool SceneOptions::OnGuiMouseClickEvent(GuiControl* control)
 	{
 		switch (control->id)
 		{
-		case 1:
+		case 3:
+			app->audio->PlayFx(buttonFx);
 			ToggleFullscreen(app->win->window);
 			break;
 
-		case 2:
+		case 4:
+			app->audio->PlayFx(buttonFx);
 			app->modcontrol->capped = !app->modcontrol->capped;
+			break;
+		}
+	}
+
+	case GuiControlType::BUTTON:
+	{
+		switch (control->id)
+		{
+		case 5:
+			app->audio->PlayFx(buttonFx);
+			active = false;			// Settings
 			break;
 		}
 	}
