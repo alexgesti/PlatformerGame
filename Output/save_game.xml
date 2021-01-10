@@ -6,11 +6,11 @@
 	<audio />
 	<map />
 	<scene>
-		<Player x="-2118" y="-1827" Ballx="-2118" Bally="-1842" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="true" Lookingright="true" Waslookingright="true" OnceSound="false" WasTop="false" WasShooting="false" maxJump="-1776" Cooldown="0" Waslookingright="true" HasGravity="true" WasInGodMode="false" PlayerLifes="3" />
+		<Player x="-2116" y="-1888" Ballx="-2116" Bally="-1903" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="true" Lookingright="true" Waslookingright="true" OnceSound="false" WasTop="true" WasShooting="false" maxJump="-1776" Cooldown="0" Waslookingright="true" HasGravity="false" WasInGodMode="false" PlayerLifes="3" />
 		<Mushroom Wx="-3456" Wy="-1664" WWasdead="false" WIsWasdead="false" WFinishedDeadRAnim="false" WFinishedDeadLAnim="false" WWaslookingright="true" WHasGravity="false" WHitPlayer="false" WOnceSound="false" />
 		<Bat Fx="-4928" Fy="-1024" FWasdead="false" FIsWasdead="false" FFinishedDeadRAnim="false" FFinishedDeadLAnim="false" FWaslookingright="true" FHitPlayer="false" FOnceSound="false" />
-		<Scene checkpointActive="true" OrbObtained="false" counterCheckPointSound="0.167000026" OrbPosX="3150" OrbPosY="1175" AnimOrbFinished="false" OnlyOnceOrb="false" PSpositionX="3950" PSpositionY="1280" PosCheck1X="2057" PosCheck1Y="1905" PosCheck2X="4552" PosCheck2Y="1008" PosCheck3X="6472" PosCheck3Y="624" />
-		<GameHUD clockdigit0="1" clockdigit1="1" clockdigit2="8" CounterClock="8.52000046" points0="0" points1="0" points2="0" points3="0" points4="0" coin1="0" coin2="0" />
+		<Scene checkpointActive="true" OrbObtained="false" counterCheckPointSound="0.153999999" OrbPosX="3150" OrbPosY="1175" AnimOrbFinished="false" OnlyOnceOrb="false" PSpositionX="3950" PSpositionY="1280" PosCheck1X="2057" PosCheck1Y="1905" PosCheck2X="4552" PosCheck2Y="1008" PosCheck3X="6472" PosCheck3Y="624" />
+		<GameHUD clockdigit0="1" clockdigit1="1" clockdigit2="6" CounterClock="6.76000214" points0="0" points1="0" points2="0" points3="0" points4="0" coin1="0" coin2="0" />
 	</scene>
 	<sceneintro />
 	<sceneLogo />
@@ -26,6 +26,6 @@
 	<sceneintro />
 	<:anonymous />
 	<renderer>
-		<camera x="-1497" y="-1486" />
+		<camera x="-1491" y="-1568" />
 	</renderer>
 </save_state>

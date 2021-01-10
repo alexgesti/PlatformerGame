@@ -116,10 +116,6 @@ bool SceneIntro::Update(float dt)
 	{
 		btnContinue->state = GuiControlState::DISABLED;
 	}
-	//else
-	{
-		btnContinue->state = GuiControlState::NORMAL;
-	}
 
 	if (app->sceneOpts->active == false)
 	{

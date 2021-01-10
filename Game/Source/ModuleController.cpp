@@ -96,6 +96,13 @@ bool ModuleController::Start()
 
 bool ModuleController::Update(float dt)
 {
+	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
+	{
+		showButtons = !showButtons;
+	}
+
+	if (app->sceneOpts->active == false) app->sceneOpts->wait = false;
+
 	// DEBUG KEYS
 	if (app->scene->NotSceneActived)
 	{
@@ -133,11 +140,6 @@ bool ModuleController::Update(float dt)
 				app->player->position.x = -(app->scene->PosCheck1.x);
 				app->player->position.y = -(app->scene->PosCheck1.y + 15);
 			}
-		}
-
-		if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
-		{
-			showButtons = !showButtons;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)

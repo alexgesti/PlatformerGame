@@ -125,10 +125,7 @@ bool Scene::Update(float dt)
 	{
 		app->scenePause->active = !app->scenePause->active;
 
-		if (app->sceneOpts->active == true)
-		{
-			app->sceneOpts->active == false;
-		}
+		if (app->sceneOpts->active == true) app->sceneOpts->active = false;
 	}
 
 	if (obrOb.FinishedAlready)
