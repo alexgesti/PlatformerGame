@@ -80,6 +80,7 @@ bool SceneIntro::Awake()
 bool SceneIntro::Start()
 {
 	spriteIntro = app->tex->Load("Assets/Screens/Title/intro.png");
+	creditS = app->tex->Load("Assets/Screens/Title/credits.png");
 	statesPlay = app->tex->Load("Assets/GUI/states_play.png");
 	statesCont = app->tex->Load("Assets/GUI/states_continue.png");
 	statesSett = app->tex->Load("Assets/GUI/states_sett.png");
@@ -214,6 +215,11 @@ bool SceneIntro::PostUpdate()
 	//Render Buttons
 	if (app->sceneOpts->active == false)
 	{
+		if (creditsBut == true)
+		{
+			SDL_Rect rectCred = { -app->render->camera.x, -app->render->camera.y, -app->render->camera.w, -app->render->camera.h };
+			app->render->DrawTexture(creditS, -app->render->camera.x, -app->render->camera.y, &rectCred);
+		}
 		SDL_Rect rect1 = play.GetCurrentFrame();
 		app->render->DrawTexture(statesPlay, btnStart->bounds.x + ((btnStart->bounds.w - 137)/2), btnStart->bounds.y + ((btnStart->bounds.h - 27) / 2), &rect1);
 
@@ -283,6 +289,7 @@ bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
 
 		case 4:
 			app->audio->PlayFx(buttonFx);
+			creditsBut = !creditsBut;
 			break;
 
 		case 5:

@@ -57,6 +57,9 @@ private:
 	SDL_Texture* statesSett;
 	SDL_Texture* statesCredits;
 	SDL_Texture* statesExit;
+	SDL_Texture* creditS;
+
+	bool creditsBut;
 
 	uint buttonFx = 0;
 
