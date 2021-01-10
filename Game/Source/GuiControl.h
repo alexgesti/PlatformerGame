@@ -3,7 +3,7 @@
 
 #include "Input.h"
 #include "Render.h"
-#include "Scene.h" //CAMBIAR
+#include "Scene.h"
 
 #include "Point.h"
 #include "SString.h"

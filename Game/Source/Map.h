@@ -151,8 +151,6 @@ public:
 	// L03: DONE 1: Add your struct for map info
 	MapData data;
 
-	bool showCollider = false;
-
 private:
 
 	pugi::xml_document mapFile;

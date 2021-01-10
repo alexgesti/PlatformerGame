@@ -32,15 +32,13 @@ public:
 	bool CleanUp();
 
 public:
+	bool capped = false;
+	bool showCollider = false;
+	bool showButtons = false;
 
 	int currentscene;
 
-	bool showColliders;
-
 private: 
-
-	bool capped = false;
-
 	List<Module*> modules;
 
 	SDL_Color blue = { 153, 225, 204 };

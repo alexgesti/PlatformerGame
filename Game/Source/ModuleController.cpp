@@ -9,6 +9,8 @@
 #include "SceneLogo.h"
 #include "SceneLose.h"
 #include "SceneWin.h"
+#include "SceneOptions.h"
+#include "ScenePause.h"
 #include "Map.h"
 #include "Player.h"
 #include "WalkingEnemy.h"
@@ -50,24 +52,26 @@ bool ModuleController::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Module Controller");
 
-	app->win->active = true;		// Windows
-	app->input->active = true;		// Input
-	app->tex->active = true;		// Texture
-	app->audio->active = true;		// Audio
-	app->map->active = true;		// Map
-	app->scene->active = true;		// Scene
-	app->sceneIntro->active = true;	// SceneIntro
-	app->sceneLogo->active = true;	// SceneLogo
-	app->sceneLose->active = true;	// SceneLose
-	app->sceneWin->active = true;	// SceneWin
-	app->player->active = true;		// Player
-	app->wenemy->active = true;		// Walking Enemy
-	app->fenemy->active = true;		// Flying Enemy
-	app->modcontrol->active = true;	// ModControl
+	app->win->active = true;			// Windows
+	app->input->active = true;			// Input
+	app->tex->active = true;			// Texture
+	app->audio->active = true;			// Audio
+	app->map->active = true;			// Map
+	app->scene->active = true;			// Scene
+	app->sceneIntro->active = true;		// SceneIntro
+	app->sceneLogo->active = true;		// SceneLogo
+	app->sceneLose->active = true;		// SceneLose
+	app->sceneWin->active = true;		// SceneWin
+	app->scenePause->active = false;	// Pause
+	app->sceneOpts->active = false;		// Settings
+	app->player->active = true;			// Player
+	app->wenemy->active = true;			// Walking Enemy
+	app->fenemy->active = true;			// Flying Enemy
+	app->modcontrol->active = true;		// ModControl
 	app->GameHUD->active = true;	// GameplayHUD
-	app->render->active = true;		// Render
+	app->render->active = true;			// Render
 
-	currentscene = 0;				// Current Scene
+	currentscene = 0;					// Current Scene
 	
 	app->SaveGameRequest("StartValues.xml");
 
@@ -131,47 +135,42 @@ bool ModuleController::Update(float dt)
 			}
 		}
 
+		if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
+		{
+			showButtons = !showButtons;
+		}
+
 		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		{
-			if (showColliders == false)
-			{
-				app->map->showCollider = true;
-				showColliders = true;
-			}
-			else if (showColliders == true)
-			{
-				app->map->showCollider = false;
-				showColliders = false;
-			}
+			showCollider = !showCollider;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 		{
-			if (app->player->Godmode == false)
-				app->player->Godmode = true;
-			else if (app->player->Godmode == true)
-				app->player->Godmode = false;
+			app->player->Godmode = !app->player->Godmode;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
 		{
 			capped = !capped;
-
-			if (capped)
-				app->cappedMs = 30;
-			else if (capped == false)
-				app->cappedMs = 60;
 		}
 	}
+
+	if (capped)
+		app->cappedMs = 30;
+	else if (capped == false)
+		app->cappedMs = 60;
 
 	if (app->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
 	{
 		currentscene = 0;
+
 		app->sceneLogo->Reset();
 	}
 	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
 	{
 		currentscene = 1;
+
 		app->sceneLogo->MusicOn = true;
 		app->sceneIntro->OneTimeOnly = false;
 	}
@@ -189,6 +188,7 @@ bool ModuleController::Update(float dt)
 	{
 		app->player->deadRAnim.Reset();
 		app->player->deadLAnim.Reset();
+
 		currentscene = 3;
 	}
 	
@@ -229,7 +229,7 @@ bool ModuleController::Update(float dt)
 		break;
 
 	case 2:	//Gameplay
-
+		
 		app->map->active = true;				// Map
 		app->scene->active = true;				// Scene
 		app->scene->NotSceneActived = true;		// SceneCamera

@@ -10,6 +10,7 @@
 #include "Scene.h"
 #include "Audio.h"
 #include "ModuleController.h"
+#include "ScenePause.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -155,206 +156,207 @@ bool Player::PreUpdate()
 // Called each loop iteration
 bool Player::Update(float dt)
 {
-	dt *= 100;
-
-	if (Godmode == false)
+	if (app->scenePause->active == false)
 	{
-		//Gravity
-		if (gravity == true && dead == false)
+		dt *= 100;
+
+		if (Godmode == false)
 		{
-			position.y -= speedy * dt;
-
-			if (LookingR) currentAnim = &jumpRAnim;
-			else currentAnim = &jumpLAnim;
-		}
-
-		//Idle	
-		if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
-			&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
-			|| (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT
-			&& app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-			&& jump == false
-			&& dead == false)
-		{
-			if (LookingR) currentAnim = &idleRAnim;
-			else currentAnim = &idleLAnim;
-		}
-
-		//Mov left
-		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT
-			&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE
-			&& dead == false)
-		{
-			position.x += speedx * dt;
-
-			if (gravity == false) currentAnim = &runLAnim;
-
-			LookingR = false;
-		}
-
-		//Mov right
-		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT
-			&& app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE 
-			&& dead == false)
-		{
-			position.x -= speedx * dt;
-
-			if(gravity == false) currentAnim = &runRAnim;
-
-			LookingR = true;
-		}
-
-		//Jump
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN
-			&& jump == false
-			&& dead == false)
-		{
-			jump = true;
-			top = true;
-			gravity = false;
-			maxJump = position.y + 144;
-			app->audio->PlayFx(jumpFx);
-		}
-		if (top == true && position.y < maxJump)
-		{
-			position.y += speedy;
-			if (position.y >= maxJump) top = false;
-		}
-
-		if (jump == true)
-		{
-			if (LookingR) currentAnim = &jumpRAnim;
-			else currentAnim = &jumpLAnim;
-		}
-
-		//Die
-		if (life <= 0)
-		{
-			dead = true;
-
-			if (oncesound == false)
+			//Gravity
+			if (gravity == true && dead == false)
 			{
-				oncesound = true;
-				app->audio->PlayFx(deathFx);
+				position.y -= speedy * dt;
+
+				if (LookingR) currentAnim = &jumpRAnim;
+				else currentAnim = &jumpLAnim;
 			}
 
-			if (LookingR) currentAnim = &deadRAnim;
-			else currentAnim = &deadLAnim;
+			if (jump == true && top == false) gravity = true;
+
+			//Idle	
+			if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
+				&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
+				|| (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT
+					&& app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+				&& jump == false
+				&& dead == false)
+			{
+				if (LookingR) currentAnim = &idleRAnim;
+				else currentAnim = &idleLAnim;
+			}
+
+			//Mov left
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT
+				&& app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE
+				&& dead == false)
+			{
+				position.x += speedx * dt;
+
+				if (gravity == false) currentAnim = &runLAnim;
+
+				LookingR = false;
+			}
+
+			//Mov right
+			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT
+				&& app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE
+				&& dead == false)
+			{
+				position.x -= speedx * dt;
+
+				if (gravity == false) currentAnim = &runRAnim;
+
+				LookingR = true;
+			}
+
+			//Jump
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN
+				&& jump == false
+				&& dead == false)
+			{
+				jump = true;
+				top = true;
+				gravity = false;
+				maxJump = position.y + 144;
+				app->audio->PlayFx(jumpFx);
+			}
+			if (top == true && position.y < maxJump)
+			{
+				position.y += speedy;
+				if (position.y >= maxJump) top = false;
+			}
+			if (!CollisionFloorPlayer()) jump = true;
+
+			if (jump == true)
+			{
+				if (LookingR) currentAnim = &jumpRAnim;
+				else currentAnim = &jumpLAnim;
+			}
+
+			//Die
+			if (life <= 0)
+			{
+				dead = true;
+
+				if (oncesound == false)
+				{
+					oncesound = true;
+					app->audio->PlayFx(deathFx);
+				}
+
+				if (LookingR) currentAnim = &deadRAnim;
+				else currentAnim = &deadLAnim;
+			}
+
+			if (CollisionFloorPlayer())
+			{
+				gravity = false;
+				jump = false;
+				int auxposy = position.y / 16;
+				position.y = auxposy * 16;
+			}
+
+			if (CollisionPlayer() == 2 && LookingR == true)
+			{
+				speedx = 0;
+				int auxposx = position.x / 8;
+				position.x = auxposx * 8;
+			}
+			else if (CollisionPlayer() == 3 && LookingR == false)
+			{
+				speedx = 0;
+				int auxposx = position.x / 8;
+				position.x = auxposx * 8;
+			}
+			else speedx = 8;
+
+			if (CollisionPlayer() == 1 ||
+				CollisionPlayer() == 4 ||
+				CollisionPlayer() == 5)
+			{
+				app->SaveGameRequest("save_game.xml");
+
+				app->scene->CheckPointActive = true;
+			}
+			else
+			{
+				app->scene->CheckPointActive = false;
+				if (app->scene->counterCheckPointSound >= 1) app->scene->counterCheckPointSound = 0;
+				app->scene->SoundOneTime = false;
+				app->scene->pillar.Reset();
+			}
 		}
 
-		if (CollisionFloorPlayer())
+		//Godmode
+		if (Godmode == true)
 		{
 			gravity = false;
 			jump = false;
-			int auxpos = position.y / 16;
-			position.y = auxpos * 16;
-		}
-		else if (top == false)
-		{
-			gravity = true;
-		}
-		if(!CollisionFloorPlayer()) jump = true;
+			top = false;
+			speedx = 8;
 
-		if (CollisionPlayer() == 2 && LookingR == true)
-		{
-			speedx = 0;
-			int auxpos = position.x / 8;
-			position.x = auxpos * 8;
-		}
-		else if (CollisionPlayer() == 3 && LookingR == false)
-		{
-			speedx = 0;
-			int auxpos = position.x / 8;
-			position.x = auxpos * 8;
-		}
-		else speedx = 8;
+			//Mov left
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
+			{
+				position.x += speedx * dt;
 
-		if (CollisionPlayer() == 1 ||
-			CollisionPlayer() == 4 ||
-			CollisionPlayer() == 5)
-		{
-			app->SaveGameRequest("save_game.xml");
+				LookingR = false;
+			}
 
-			app->scene->CheckPointActive = true;
+			//Mov right
+			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE)
+			{
+				position.x -= speedx * dt;
+
+				LookingR = true;
+			}
+
+			//Mov up
+			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
+				position.y += speedx * dt;
+
+			//Mov down
+			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
+				position.y -= speedx * dt;
+
+			if (LookingR) currentAnim = &jumpRAnim;
+			else currentAnim = &jumpLAnim;
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+		{
+			if (shoot == false && cooldown == 0)
+			{
+				shoot = true;
+				if (LookingR) WasLookingR = true;
+				else WasLookingR = false;
+				app->audio->PlayFx(shootFx);
+			}
+		}
+
+		if (shoot == true && cooldown >= 20) shoot = false;
+
+		if (shoot == true)
+		{
+			Ball.GetSelectedFrame(1);
+
+			if (WasLookingR) Bposition.x -= ballspeed;
+			else Bposition.x += ballspeed;
+
+			cooldown++;
 		}
 		else
 		{
-			app->scene->CheckPointActive = false;
-			if (app->scene->counterCheckPointSound >= 1) app->scene->counterCheckPointSound = 0;
-			app->scene->SoundOneTime = false;
-			app->scene->pillar.Reset();
-		}
-	}
+			Ball.GetSelectedFrame(2);
+			Bposition.x = position.x;
+			Bposition.y = position.y - 15;
 
-	//Godmode
-	if (Godmode == true)
-	{
-		gravity = false;
-		jump = false;
-		top = false;
-		speedx = 8;
-
-		//Mov left
-		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
-		{
-			position.x += speedx * dt;
-
-			LookingR = false;
+			cooldown = 0;
 		}
 
-		//Mov right
-		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE)
-		{
-			position.x -= speedx * dt;
 
-			LookingR = true;
-		}
-
-		//Mov up
-		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
-			position.y += speedx * dt;
-
-		//Mov down
-		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT && app->input->GetKey(SDL_SCANCODE_W) == KEY_IDLE)
-			position.y -= speedx * dt;
-
-		if (LookingR) currentAnim = &jumpRAnim;
-		else currentAnim = &jumpLAnim;
+		currentAnim->Update();
 	}
-
-	if (app->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
-	{
-		if (shoot == false && cooldown == 0)
-		{
-			shoot = true;
-			if (LookingR) WasLookingR = true;
-			else WasLookingR = false;
-			app->audio->PlayFx(shootFx);
-		}
-	}
-
-	if (shoot == true && cooldown >= 20) shoot = false;
-
-	if (shoot == true)
-	{
-		Ball.GetSelectedFrame(1);
-
-		if (WasLookingR) Bposition.x -= ballspeed;
-		else Bposition.x += ballspeed;
-
-		cooldown++;
-	}
-	else
-	{
-		Ball.GetSelectedFrame(2);
-		Bposition.x = position.x;
-		Bposition.y = position.y - 15;
-
-		cooldown = 0;
-	}
-
-
-	currentAnim->Update();
 
 	return true;
 }
@@ -370,7 +372,7 @@ bool Player::PostUpdate()
 	SDL_Rect rectB = BcurrentAnim->GetCurrentFrame();
 	app->render->DrawTexture(ball, -Bposition.x, -Bposition.y, &rectB); //Probar solo 1 shoot
 	
-	if (app->modcontrol->showColliders)
+	if (app->modcontrol->showCollider)
 	{
 		SDL_Rect rectCol = currentAnimColl->GetCurrentFrame();
 		app->render->DrawTexture(collision, -position.x, -position.y, &rectCol);

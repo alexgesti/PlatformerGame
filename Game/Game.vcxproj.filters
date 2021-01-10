@@ -78,6 +78,15 @@
     <ClCompile Include="Source\GameplayHUD.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SceneOptions.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ScenePause.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntityManager.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\App.h" />
@@ -181,6 +190,18 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameplayHUD.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneOptions.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ScenePause.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Entity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntityManager.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>

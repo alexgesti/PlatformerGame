@@ -23,7 +23,18 @@ bool GuiSlider::Update(Input* input, float dt)
         {
             state = GuiControlState::FOCUSED;
 
-            // TODO.
+            if (input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT)
+            {
+                state = GuiControlState::PRESSED;
+
+                percentage = (mouseX - bounds.x) / (bounds.w / 100);
+            }
+
+            // If mouse button pressed -> Generate event!
+            if (input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP)
+            {
+                NotifyObserver();
+            }
         }
         else state = GuiControlState::NORMAL;
     }

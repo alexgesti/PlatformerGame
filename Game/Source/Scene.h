@@ -71,6 +71,7 @@ private:
 
 	int camX;
 	int camY;
+
 public:
 
 	bool NotSceneActived;

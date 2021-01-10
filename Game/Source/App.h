@@ -23,11 +23,14 @@ class SceneIntro;
 class SceneLogo;
 class SceneLose;
 class SceneWin;
+class SceneOptions;
+class ScenePause;
 class Map;
 class Player;
 class ModuleController;
 class WalkingEnemy;
 class FlyEnemy;
+class EntityManager;
 class PathFinding;
 class GameplayHUD;
 
@@ -106,11 +109,14 @@ public:
 	SceneLogo* sceneLogo;
 	SceneLose* sceneLose;
 	SceneWin* sceneWin;
+	SceneOptions* sceneOpts;
+	ScenePause* scenePause;
 	Map* map;
 	Player* player;
 	ModuleController* modcontrol;
 	WalkingEnemy* wenemy;
 	FlyEnemy* fenemy;
+	EntityManager* entity;
 	PathFinding* pathfinding;
 	GameplayHUD* GameHUD;
 

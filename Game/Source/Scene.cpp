@@ -4,6 +4,8 @@
 #include "Render.h"
 #include "Window.h"
 #include "Scene.h"
+#include "ScenePause.h"
+#include "SceneOptions.h"
 #include "Map.h"
 #include "Player.h"
 #include "WalkingEnemy.h"
@@ -68,7 +70,7 @@ bool Scene::Start()
 {
 	// L03: DONE: Load map
 	app->map->Load("mapa.tmx");
-	spritePillar = app->tex->Load("Assets/Screens/Gameplay/save_point_saving-x64.png");
+	spritePillar = app->tex->Load("Assets/Screens/Gameplay/save_point_saving_x64.png");
 	lifePlayer = app->tex->Load("Assets/Screens/Gameplay/lifLife_X64.png");
 	PSup = app->tex->Load("Assets/Screens/Gameplay/lifLife_X32.png");
 	spriteorb = app->tex->Load("Assets/Screens/Gameplay/orb.png");
@@ -81,6 +83,7 @@ bool Scene::Start()
 	NotSceneActived = false;
 	PillarAnim = &pillar;
 	CurrentAnimOrb = &obrN;
+
 
 	Orbposition = { 3150, 1175 };
 	PSposition = { 3950, 1280 };
@@ -116,6 +119,16 @@ bool Scene::Update(float dt)
 		app->player->life++;
 		app->audio->PlayFx(oneupFx);
 		app->GameHUD->points[1]++;
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	{
+		app->scenePause->active = !app->scenePause->active;
+
+		if (app->sceneOpts->active == true)
+		{
+			app->sceneOpts->active == false;
+		}
 	}
 
 	if (obrOb.FinishedAlready)
@@ -173,7 +186,7 @@ bool Scene::PostUpdate()
 
 	app->render->DrawTexture(PSup, PSposition.x, PSposition.y);
 	
-	if (app->modcontrol->showColliders)
+	if (app->modcontrol->showCollider)
 	{
 		SDL_Rect rectColOrb = currentAnimCollOrb->GetCurrentFrame();
 		app->render->DrawTexture(collision, Orbposition.x + 4, Orbposition.y + 4, &rectColOrb);
@@ -273,7 +286,6 @@ bool Scene::SaveState(pugi::xml_node& data) const
 	pugi::xml_node scenesave = data.append_child("Scene");
 	pugi::xml_node gamehud = data.append_child("GameHUD");
 
-	// Player
 	playersave.append_attribute("x") = app->player->position.x;
 	playersave.append_attribute("y") = app->player->position.y;
 	playersave.append_attribute("Ballx") = app->player->Bposition.x;

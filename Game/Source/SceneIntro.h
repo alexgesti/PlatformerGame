@@ -38,13 +38,28 @@ public:
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
 private:
-	SDL_Texture* SpriteIntro;
-	SDL_Texture* SpaceStart;
+	SDL_Texture* spriteIntro;
 
 	GuiButton* btnStart;
+	GuiButton* btnContinue;
+	GuiButton* btnSettings;
+	GuiButton* btnCredits;
 	GuiButton* btnExit;
 
 	bool retU;
+
+	Animation play;
+	Animation cont;
+	Animation sett;
+	Animation credits;
+	Animation exit;
+
+	SDL_Texture* statesPlay;
+	SDL_Texture* statesCont;
+	SDL_Texture* statesSett;
+	SDL_Texture* statesCredits;
+	SDL_Texture* statesExit;
+
 
 public:
 	bool OneTimeOnly;

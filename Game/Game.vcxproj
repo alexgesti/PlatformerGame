@@ -89,6 +89,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\EntityManager.cpp" />
     <ClCompile Include="Source\FlyEnemy.cpp" />
     <ClCompile Include="Source\GameplayHUD.cpp" />
     <ClCompile Include="Source\GuiButton.cpp" />
@@ -109,12 +110,16 @@
     <ClCompile Include="Source\SceneIntro.cpp" />
     <ClCompile Include="Source\SceneLogo.cpp" />
     <ClCompile Include="Source\SceneLose.cpp" />
+    <ClCompile Include="Source\SceneOptions.cpp" />
+    <ClCompile Include="Source\ScenePause.cpp" />
     <ClCompile Include="Source\SceneWin.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\WalkingEnemy.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\Entity.h" />
+    <ClInclude Include="Source\EntityManager.h" />
     <ClInclude Include="Source\FlyEnemy.h" />
     <ClInclude Include="Source\GameplayHUD.h" />
     <ClInclude Include="Source\GuiButton.h" />
@@ -136,6 +141,8 @@
     <ClInclude Include="Source\SceneIntro.h" />
     <ClInclude Include="Source\SceneLogo.h" />
     <ClInclude Include="Source\SceneLose.h" />
+    <ClInclude Include="Source\SceneOptions.h" />
+    <ClInclude Include="Source\ScenePause.h" />
     <ClInclude Include="Source\SceneWin.h" />
     <ClInclude Include="Source\Textures.h" />
     <ClInclude Include="Source\Timer.h" />

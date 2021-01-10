@@ -25,6 +25,10 @@ private:
 
     int minValue;
     int maxValue;
+
+public:
+
+    int percentage = 100;
 };
 
 #endif // __GUISLIDER_H__

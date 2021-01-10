@@ -9,11 +9,14 @@
 #include "SceneLogo.h"
 #include "SceneLose.h"
 #include "SceneWin.h"
+#include "SceneOptions.h"
+#include "ScenePause.h"
 #include "Map.h"
 #include "Player.h"
 #include "ModuleController.h"
 #include "WalkingEnemy.h"
 #include "FlyEnemy.h"
+#include "EntityManager.h"
 #include "Pathfinding.h"
 #include "GameplayHUD.h"
 
@@ -40,11 +43,14 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	sceneLogo = new SceneLogo();
 	sceneLose = new SceneLose();
 	sceneWin = new SceneWin();
+	sceneOpts = new SceneOptions();
+	scenePause = new ScenePause();
 	map = new Map();
 	player = new Player();
 	modcontrol = new ModuleController();
 	wenemy = new WalkingEnemy();
 	fenemy = new FlyEnemy();
+	entity = new EntityManager();
 	pathfinding = new PathFinding();
 	GameHUD = new GameplayHUD();
 
@@ -60,16 +66,18 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(sceneLogo);
 	AddModule(sceneLose);
 	AddModule(sceneWin);
-	AddModule(GameHUD);
+	AddModule(entity);
 	AddModule(wenemy);
 	AddModule(fenemy);
 	AddModule(player);
 	AddModule(modcontrol);
 	AddModule(pathfinding);
+	AddModule(scenePause);
+	AddModule(sceneOpts);
+	AddModule(GameHUD);
 
 	// Render last to swap buffer
 	AddModule(render);
-
 
 	PERF_PEEK(ptimer);
 }
@@ -282,8 +290,6 @@ bool App::PostUpdate()
 
 		ret = item->data->PostUpdate();
 	}
-
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) ret = false;
 
 	return ret;
 }

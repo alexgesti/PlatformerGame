@@ -90,10 +90,10 @@ private:
 	SDL_Texture* collision = nullptr;
 
 	static const int numnPoints = 4;
-	int pointsCollision[numnPoints][2] = { {-8, 0}, {64, 0}, {-8, 63}, {64, 63} };
+	int pointsCollision[numnPoints][2] = { {-8, 0}, {64, 0}, {-8, 55}, {64, 55} };
 	
 public:
-	int pointsFloorCollision[numnPoints][2] = { {4, 64}, {52, 64}, {4, 64}, {52, 64} };
+	int pointsFloorCollision[numnPoints][2] = { {8, 56}, {48, 56}, {8, 64}, {48, 64} };
 
 	//FX
 	uint jumpFx = 0;
