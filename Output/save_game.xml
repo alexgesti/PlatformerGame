@@ -6,11 +6,11 @@
 	<audio />
 	<map />
 	<scene>
-		<Player x="-1995" y="-1920" Ballx="-1995" Bally="-1935" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Lookingright="false" Waslookingright="true" OnceSound="false" WasTop="false" WasShooting="false" maxJump="-752" Cooldown="0" Waslookingright="false" HasGravity="false" WasInGodMode="false" PlayerLifes="4" />
-		<Mushroom Wx="0" Wy="-1920" WWasdead="true" WIsWasdead="true" WFinishedDeadRAnim="false" WFinishedDeadLAnim="false" WWaslookingright="true" WHasGravity="false" WHitPlayer="false" WOnceSound="true" />
-		<Bat Fx="0" Fy="0" FWasdead="true" FIsWasdead="true" FFinishedDeadRAnim="false" FFinishedDeadLAnim="false" FWaslookingright="false" FHitPlayer="false" FOnceSound="true" />
-		<Scene checkpointActive="true" OrbObtained="false" counterCheckPointSound="0.138999999" OrbPosX="0" OrbPosY="0" AnimOrbFinished="false" OnlyOnceOrb="true" PSpositionX="0" PSpositionY="0" PosCheck1X="2057" PosCheck1Y="1905" PosCheck2X="4552" PosCheck2Y="1008" PosCheck3X="6472" PosCheck3Y="624" />
-		<GameHUD clockdigit0="1" clockdigit1="0" clockdigit2="1" CounterClock="1.48000383" points0="0" points1="2" points2="2" points3="0" points4="0" coin1="0" coin2="1" />
+		<Player x="-2112" y="-1920" Ballx="-2112" Bally="-1935" Wasdead="false" FinishedDeadRAnim="false" FinishedDeadLAnim="false" Wasjumping="false" Lookingright="true" Waslookingright="true" OnceSound="false" WasTop="false" WasShooting="false" maxJump="0" Cooldown="0" Waslookingright="true" HasGravity="false" WasInGodMode="false" PlayerLifes="3" />
+		<Mushroom Wx="-3456" Wy="-1664" WWasdead="false" WIsWasdead="false" WFinishedDeadRAnim="false" WFinishedDeadLAnim="false" WWaslookingright="true" WHasGravity="false" WHitPlayer="false" WOnceSound="false" />
+		<Bat Fx="-4928" Fy="-1024" FWasdead="false" FIsWasdead="false" FFinishedDeadRAnim="false" FFinishedDeadLAnim="false" FWaslookingright="true" FHitPlayer="false" FOnceSound="false" />
+		<Scene checkpointActive="true" OrbObtained="false" counterCheckPointSound="0.153000027" OrbPosX="3150" OrbPosY="1175" AnimOrbFinished="false" OnlyOnceOrb="false" PSpositionX="3950" PSpositionY="1280" PosCheck1X="2057" PosCheck1Y="1905" PosCheck2X="4552" PosCheck2Y="1008" PosCheck3X="6472" PosCheck3Y="624" />
+		<GameHUD clockdigit0="1" clockdigit1="2" clockdigit2="0" CounterClock="2.28000379" points0="0" points1="0" points2="0" points3="0" points4="0" coin1="0" coin2="0" />
 	</scene>
 	<sceneintro />
 	<sceneLogo />
@@ -27,6 +27,6 @@
 	<:anonymous />
 	<:anonymous />
 	<renderer>
-		<camera x="-1404" y="-1592" />
+		<camera x="-1490" y="-1592" />
 	</renderer>
 </save_state>
