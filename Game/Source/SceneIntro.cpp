@@ -112,7 +112,6 @@ bool SceneIntro::Update(float dt)
 	{
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;
-		app->LoadGameRequest("save_game.xml");
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KeyState::KEY_DOWN ||

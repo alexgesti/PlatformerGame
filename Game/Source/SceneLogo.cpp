@@ -117,6 +117,7 @@ bool SceneLogo::Update(float dt)
 		app->fade->StartInBlack = true;
 		app->fade->CanFade = true;
 		app->scene->Reset();
+		app->LoadGameRequest("save_game.xml");
 	}
 
 	return true;
