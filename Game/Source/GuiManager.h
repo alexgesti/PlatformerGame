@@ -36,9 +36,9 @@ public:
 
 	List<GuiControl*> controls;
 
-	float accumulatedTime = 0.0f;
-	float updateMsCycle = 0.0f;
-	bool doLogic = false;
+	float accumulatedtime = 0.0f;
+	float updatemscycle = 0.0f;
+	bool dologic = false;
 };
 
 #endif // __GUIMANAGER_H__

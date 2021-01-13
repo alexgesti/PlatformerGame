@@ -34,7 +34,7 @@ bool SceneLogo::Awake()
 // Called before the first frame
 bool SceneLogo::Start()
 {
-	SpriteLogo = app->tex->Load("Assets/Screens/Logo/logo.png");
+	spritelogo = app->tex->Load("Assets/Screens/Logo/logo.png");
 
 	app->render->camera.x = 0;
 	app->render->camera.y = 0;
@@ -54,68 +54,68 @@ bool SceneLogo::PreUpdate()
 bool SceneLogo::Update(float dt)
 {
 	// Check if texture exist
-	if (SpriteLogo)
+	if (spritelogo)
 	{
 		// Set alpha of the texture
-		SDL_SetTextureAlphaMod(SpriteLogo, alpha);
+		SDL_SetTextureAlphaMod(spritelogo, alpha);
 	}
 
-	if (OnlyStart == false)
+	if (onlystart == false)
 	{
-		Timer++;
+		timer++;
 
-		if (Timer >= 5)
+		if (timer >= 5)
 		{
-			OnlyStart = true;
-			Timer = 0;
+			onlystart = true;
+			timer = 0;
 		}
 
 		app->audio->PlayMusic("NULL", 0);
 	}
 
 	// Update the alpha value positive
-	if (alpha < 254 && alphaFinished == false && OnlyStart == true)
+	if (alpha < 254 && alphafinished == false && onlystart == true)
 	{
-		alphaCalc += 15 * 0.16f;
-		alpha = alphaCalc;
+		alphacalc += 15 * 0.16f;
+		alpha = alphacalc;
 	}
 
 	// If alpha is above 255, clamp it
-	if (alpha >= 254 && alphaFinished == false)
+	if (alpha >= 254 && alphafinished == false)
 	{
 		alpha = SDL_ALPHA_OPAQUE;
-		alphaCalc = (float)SDL_ALPHA_OPAQUE;
-		Timer++;
+		alphacalc = (float)SDL_ALPHA_OPAQUE;
+		timer++;
 	}
 
-	if (alphaFinished == false && Timer >= 100 && OnlyStart == true)
+	if (alphafinished == false && timer >= 100 && onlystart == true)
 	{
-		alphaFinished = true;
-		Timer = 0;
+		alphafinished = true;
+		timer = 0;
 	}
 
 	// Update the alpha value negative
-	if (alphaFinished == true && alpha > 0)
+	if (alphafinished == true && alpha > 0)
 	{
-		alphaCalc -= 15 * 0.16f;
-		alpha = alphaCalc;
+		alphacalc -= 15 * 0.16f;
+		alpha = alphacalc;
 	}
 
 	// If alpha is above 0, clamp it
-	if (alphaFinished == true && alpha <= 0)
+	if (alphafinished == true && alpha <= 0)
 	{
 		alpha = 0;
-		alphaCalc = 0;
-		Timer++;
+		alphacalc = 0;
+		timer++;
 	}
 
-	if (alphaFinished == true && Timer >= 5 && OnlyStart == true)
+	if (alphafinished == true && timer >= 5 && onlystart == true)
 	{	
 		app->modcontrol->currentscene = 1;
-		MusicOn = true;
-		app->fade->blackFade.a = 255;
-		app->fade->StartInBlack = true;
-		app->fade->CanFade = true;
+		musicon = true;
+		app->fade->blackfade.a = 255;
+		app->fade->startinblack = true;
+		app->fade->canfade = true;
 		app->scene->Reset();
 		app->LoadGameRequest("save_game.xml");
 	}
@@ -129,7 +129,7 @@ bool SceneLogo::PostUpdate()
 	bool ret = true;
 
 	SDL_Rect rect = { 0, 0, app->render->camera.w, app->render->camera.h };
-	app->render->DrawTexture(SpriteLogo, 0, 0, &rect);
+	app->render->DrawTexture(spritelogo, 0, 0, &rect);
 
 	return ret;
 }
@@ -137,11 +137,11 @@ bool SceneLogo::PostUpdate()
 // Reset
 bool SceneLogo::Reset()
 {
-	MusicOn = false;
-	app->sceneIntro->OneTimeOnly = false;
-	OnlyStart = false;
-	alphaFinished = false;
-	Timer = 0;
+	musicon = false;
+	app->sceneintro->onetimeonly = false;
+	onlystart = false;
+	alphafinished = false;
+	timer = 0;
 	alpha = 0;
 
 	return true;

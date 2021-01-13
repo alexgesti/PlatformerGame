@@ -20,41 +20,41 @@ FlyEnemy::FlyEnemy() : Module()
 	name.Create("Flyenemy");
 
 	//run left animation
-	runLAnim.PushBack({ 0, 96, 32, 32 });
-	runLAnim.PushBack({ 32, 96, 32, 32 });
-	runLAnim.PushBack({ 64, 96, 32, 32 });
-	runLAnim.loop = true;
-	runLAnim.speed = 0.15f;
+	runlanim.PushBack({ 0, 96, 32, 32 });
+	runlanim.PushBack({ 32, 96, 32, 32 });
+	runlanim.PushBack({ 64, 96, 32, 32 });
+	runlanim.loop = true;
+	runlanim.speed = 0.15f;
 
 	//run rigth animation
-	runRAnim.PushBack({ 128, 32, 32, 32 });
-	runRAnim.PushBack({ 96, 32, 32, 32 });
-	runRAnim.PushBack({ 64, 32, 32, 32 });
-	runRAnim.loop = true;
-	runRAnim.speed = 0.15f;
+	runranim.PushBack({ 128, 32, 32, 32 });
+	runranim.PushBack({ 96, 32, 32, 32 });
+	runranim.PushBack({ 64, 32, 32, 32 });
+	runranim.loop = true;
+	runranim.speed = 0.15f;
 
 	//dead rigth animation
-	deadRAnim.PushBack({ 128, 0, 32, 32 });
-	deadRAnim.PushBack({ 96, 0, 32, 32 });
-	deadRAnim.PushBack({ 64, 0, 32, 32 });
-	deadRAnim.PushBack({ 32, 0, 32, 32 });
-	deadRAnim.PushBack({ 0, 0, 32, 32 });
-	deadRAnim.loop = false;
-	deadRAnim.speed = 0.12f;
+	deadranim.PushBack({ 128, 0, 32, 32 });
+	deadranim.PushBack({ 96, 0, 32, 32 });
+	deadranim.PushBack({ 64, 0, 32, 32 });
+	deadranim.PushBack({ 32, 0, 32, 32 });
+	deadranim.PushBack({ 0, 0, 32, 32 });
+	deadranim.loop = false;
+	deadranim.speed = 0.12f;
 
 	//dead left animation
-	deadLAnim.PushBack({ 0, 64, 32, 32 });
-	deadLAnim.PushBack({ 32, 64, 32, 32 });
-	deadLAnim.PushBack({ 64, 64, 32, 32 });
-	deadLAnim.PushBack({ 96, 64, 32, 32 });
-	deadLAnim.PushBack({ 128, 64, 32, 32 });
-	deadLAnim.loop = false;
-	deadLAnim.speed = 0.12f;
+	deadlanim.PushBack({ 0, 64, 32, 32 });
+	deadlanim.PushBack({ 32, 64, 32, 32 });
+	deadlanim.PushBack({ 64, 64, 32, 32 });
+	deadlanim.PushBack({ 96, 64, 32, 32 });
+	deadlanim.PushBack({ 128, 64, 32, 32 });
+	deadlanim.loop = false;
+	deadlanim.speed = 0.12f;
 
-	//Collisions
-	Collision.PushBack({ 0, 0, 32, 32 });
+	//collisions
+	collision.PushBack({ 0, 0, 32, 32 });
 
-	currentAnimColl = &Collision;
+	currentanimcoll = &collision;
 }
 
 // Destructor
@@ -76,11 +76,11 @@ bool FlyEnemy::Awake()
 bool FlyEnemy::Start()
 {
 	//Load texture
-	spriteSheet = app->tex->Load("Assets/Characters/Enemies/FlyingEnemies/flyenemy_spritesheet.png");
-	collision = app->tex->Load("Assets/Screens/Gameplay/collision_entities.png");
-	deathEnemyFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Enemies/deathEnemy.wav");
+	spritesheet = app->tex->Load("Assets/Characters/Enemies/FlyingEnemies/flyenemy_spritesheet.png");
+	collisiontex = app->tex->Load("Assets/Screens/Gameplay/collision_entities.png");
+	deathenemyfx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Enemies/deathEnemy.wav");
 
-	currentAnim = &runRAnim;
+	currentanim = &runranim;
 
 	position.x = -4928;
 	position.y = -1024;
@@ -97,7 +97,7 @@ bool FlyEnemy::PreUpdate()
 // Called each loop iteration
 bool FlyEnemy::Update(float dt)
 {
-	if (app->scenePause->active == false)
+	if (app->scenepause->active == false)
 	{
 		//Mov left
 		if (((app->player->position.y <= position.y + detectdistance
@@ -107,11 +107,11 @@ bool FlyEnemy::Update(float dt)
 			|| app->player->position.y == position.y)
 			&& app->player->position.x >= position.x
 			&& dead == false
-			&& app->player->Godmode == false)
+			&& app->player->godmode == false)
 		{
-			currentAnim = &runLAnim;
+			currentanim = &runlanim;
 			position.x += speedx;
-			waslookingRight = false;
+			waslookingright = false;
 
 			if (app->player->position.y == position.y);
 			if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
@@ -126,11 +126,11 @@ bool FlyEnemy::Update(float dt)
 			|| app->player->position.y == position.y)
 			&& app->player->position.x <= position.x
 			&& dead == false
-			&& app->player->Godmode == false)
+			&& app->player->godmode == false)
 		{
-			currentAnim = &runRAnim;
+			currentanim = &runranim;
 			position.x -= speedx;
-			waslookingRight = true;
+			waslookingright = true;
 
 			if (app->player->position.y == position.y);
 			if (app->player->position.y <= position.y + detectdistance && app->player->position.y > position.y) position.y += speedy;
@@ -140,47 +140,47 @@ bool FlyEnemy::Update(float dt)
 		//Die
 		if (dead)
 		{
-			if (waslookingRight) currentAnim = &deadRAnim;
-			else currentAnim = &deadLAnim;
+			if (waslookingright) currentanim = &deadranim;
+			else currentanim = &deadlanim;
 
 		if (oncesound == false)
 		{
 			oncesound = true;
-			app->audio->PlayFx(deathEnemyFx);
-			app->GameHUD->points[2]++;
+			app->audio->PlayFx(deathenemyfx);
+			app->gamehud->points[2]++;
 		}
 
-			if (deadRAnim.FinishedAlready || deadLAnim.FinishedAlready)
+			if (deadranim.FinishedAlready || deadlanim.FinishedAlready)
 			{
 				position.x = 0;
 				position.y = 0;
-				deadRAnim.Reset();
-				deadLAnim.Reset();
-				IsDead = true;
+				deadranim.Reset();
+				deadlanim.Reset();
+				isdead = true;
 			}
 		}
 
-		if (CheckCollisionRec(app->player->Bposition, position) && app->player->shoot == true && dead == false)
+		if (CheckCollisionRec(app->player->bposition, position) && app->player->shoot == true && dead == false)
 		{
 			dead = true;
 			app->player->shoot = false;
 		}
 
-		if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->Godmode == false)
+		if (CheckCollisionRec(app->player->position, position) && hitingplayer == false && dead == false && app->player->godmode == false)
 		{
-			hitingPlayer = true;
+			hitingplayer = true;
 			app->player->life--;
 			app->audio->PlayFx(app->player->hitFx);
 		}
 
 		if (!CheckCollisionRec(app->player->position, position) && dead == false)
 		{
-			hitingPlayer = false;
+			hitingplayer = false;
 		}
 
 		//app->pathfinding->CreatePath(position, app->player->position);
 
-		if (IsDead == false) currentAnim->Update();
+		if (isdead == false) currentanim->Update();
 	}
 
 	return true;
@@ -191,13 +191,13 @@ bool FlyEnemy::PostUpdate()
 {
 	bool ret = true;
 
-	SDL_Rect rect = currentAnim->GetCurrentFrame();
-	if (IsDead == false) app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
+	SDL_Rect rect = currentanim->GetCurrentFrame();
+	if (isdead == false) app->render->DrawTexture(spritesheet, -position.x, -position.y, &rect);
 
-	if (app->modcontrol->showCollider)
+	if (app->modcontrol->showcollider)
 	{
-		SDL_Rect rectCol = currentAnimColl->GetCurrentFrame();
-		app->render->DrawTexture(collision, -position.x, -position.y, &rectCol);
+		SDL_Rect rectCol = currentanimcoll->GetCurrentFrame();
+		app->render->DrawTexture(collisiontex, -position.x, -position.y, &rectCol);
 	}
 
 	return ret;

@@ -45,27 +45,27 @@ public:
 	bool CleanUp();
 
 public:
-	Animation* PillarAnim;
-	Animation* CurrentAnimOrb;
-	Animation* currentAnimCollOrb;
-	Animation* currentAnimCollLife;
+	Animation* pillaranim;
+	Animation* currentanimorb;
+	Animation* currentanimcollorb;
+	Animation* currentanimcolllife;
 
 	Animation pillar;
 
-	Animation obrN;
-	Animation obrOb;
+	Animation obrn;
+	Animation obrob;
 
 	Animation p0;
 	Animation p1;
 
-	Animation CollisionOrb;
-	Animation CollisionLife;
+	Animation collisionorb;
+	Animation collisionlife;
 
 private:
 	SDL_Texture* img;
-	SDL_Texture* spritePillar;
-	SDL_Texture* lifePlayer;
-	SDL_Texture* PSup;
+	SDL_Texture* spritepillar;
+	SDL_Texture* lifeplayer;
+	SDL_Texture* psup;
 	SDL_Texture* spriteorb;
 	SDL_Texture* collision = nullptr;
 
@@ -74,26 +74,26 @@ private:
 
 public:
 
-	bool NotSceneActived;
-	bool CheckPointActive; 
-	bool SoundOneTime;
-	bool OrbObtained;
-	bool OnlyOnceOrb;
+	bool notsceneactived;
+	bool checkpointactive; 
+	bool soundonetime;
+	bool orbobtained;
+	bool onlyonceorb;
 
-	float counterCheckPointSound;
+	float countercheckpointsound;
 
-	iPoint Orbposition;
-	iPoint PSposition;
+	iPoint orbposition;
+	iPoint psposition;
 
 	// Checkpoint
-	iPoint PosCheck1 = { 2057, 1905 };
-	iPoint PosCheck2 = { 4552, 1008 };
-	iPoint PosCheck3 = { 6472, 624 };
+	iPoint poscheck1 = { 2057, 1905 };
+	iPoint poscheck2 = { 4552, 1008 };
+	iPoint poscheck3 = { 6472, 624 };
 
 	// Sound
-	uint checkpointSound;
-	uint oneupFx;
-	uint coinFx;
+	uint checkpointsound;
+	uint oneupfx;
+	uint coinfx;
 
 };
 

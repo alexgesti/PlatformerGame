@@ -38,8 +38,8 @@ public:
 
 private:
 
-	SDL_Texture* lifePlayer;
-	SDL_Texture* timeSprite;
+	SDL_Texture* lifeplayer;
+	SDL_Texture* timesprite;
 
 	Animation nums;
 	Animation nums2;
@@ -51,32 +51,32 @@ private:
 	Animation points3;
 	Animation points4;
 	Animation points5;
-	Animation pointsName;
+	Animation pointsname;
 
-	Animation CoinSimbol;
+	Animation coinsimbol;
 	Animation coins1;
 	Animation coins2;
 
-	Animation* CurrentClock;
-	Animation* CurrentanimNum1;
-	Animation* CurrentanimNum2;
-	Animation* CurrentanimNum3;
+	Animation* currentclock;
+	Animation* currentanimnum1;
+	Animation* currentanimnum2;
+	Animation* currentanimnum3;
 
-	Animation* CurrentpName;
-	Animation* CurrentanimP1;
-	Animation* CurrentanimP2;
-	Animation* CurrentanimP3;
-	Animation* CurrentanimP4;
-	Animation* CurrentanimP5;
+	Animation* currentpname;
+	Animation* currentanimp1;
+	Animation* currentanimp2;
+	Animation* currentanimp3;
+	Animation* currentanimp4;
+	Animation* currentanimp5;
 
-	Animation* CurrentCSimbol;
-	Animation* CurrentanimC1;
-	Animation* CurrentanimC2;
+	Animation* currentcsimbol;
+	Animation* currentanimc1;
+	Animation* currentanimc2;
 
 public:
 
 	int digits[3];
-	float Counter = 9;
+	float counter = 9;
 
 	int points[5];
 

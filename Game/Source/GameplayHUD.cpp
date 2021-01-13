@@ -121,19 +121,19 @@ GameplayHUD::GameplayHUD()
 	clock.PushBack({ 13,52,23,23 });
 
 	// Points Name
-	pointsName.PushBack({48, 48, 103, 22});
+	pointsname.PushBack({48, 48, 103, 22});
 
 	// Coin Simbol
-	CoinSimbol.PushBack({176, 48, 43, 23});
+	coinsimbol.PushBack({176, 48, 43, 23});
 
-	CurrentClock = &clock;
+	currentclock = &clock;
 
-	CurrentpName = &pointsName;
+	currentpname = &pointsname;
 
-	CurrentCSimbol = &CoinSimbol;
+	currentcsimbol = &coinsimbol;
 
-	CurrentanimP5 = &points1;
-	CurrentanimP4 = &points2;
+	currentanimp5 = &points1;
+	currentanimp4 = &points2;
 }
 
 GameplayHUD::~GameplayHUD()
@@ -152,8 +152,8 @@ bool GameplayHUD::Awake()
 
 bool GameplayHUD::Start()
 {
-	lifePlayer = app->tex->Load("Assets/Screens/Gameplay/lifLife_X64.png");
-	timeSprite = app->tex->Load("Assets/Screens/Gameplay/time.png");
+	lifeplayer = app->tex->Load("Assets/Screens/Gameplay/lifLife_X64.png");
+	timesprite = app->tex->Load("Assets/Screens/Gameplay/time.png");
 
 	digits[0] = 1;
 	digits[1] = 2;
@@ -165,7 +165,7 @@ bool GameplayHUD::Start()
 	points[3] = 0;
 	points[4] = 0;
 
-	Counter = 9;
+	counter = 9;
 
 	coins[0] = 0;
 	coins[1] = 0;
@@ -181,11 +181,11 @@ bool GameplayHUD::PreUpdate()
 bool GameplayHUD::Update(float dt)
 {
 	// Clock
-	if (app->scenePause->active == false && app->fade->CanFade == false) Counter -= 0.16f;
+	if (app->scenepause->active == false && app->fade->canfade == false) counter -= 0.16f;
 
-	if (Counter < 0)
+	if (counter < 0)
 	{
-		Counter = 9;
+		counter = 9;
 		digits[2]--;
 	}
 
@@ -224,7 +224,7 @@ bool GameplayHUD::Update(float dt)
 		break;
 	}
 
-	CurrentanimNum1 = &nums;
+	currentanimnum1 = &nums;
 
 	switch (digits[1])
 	{
@@ -269,7 +269,7 @@ bool GameplayHUD::Update(float dt)
 		break;
 	}
 
-	CurrentanimNum2 = &nums2;
+	currentanimnum2 = &nums2;
 
 	switch(digits[2])
 	{
@@ -314,7 +314,7 @@ bool GameplayHUD::Update(float dt)
 		break;
 	}
 
-	CurrentanimNum3 = &nums3;
+	currentanimnum3 = &nums3;
 
 	// Points
 
@@ -379,7 +379,7 @@ bool GameplayHUD::Update(float dt)
 		break;
 	}
 
-	CurrentanimP1 = &points5;
+	currentanimp1 = &points5;
 
 	// Points 2
 	switch (points[1])
@@ -425,7 +425,7 @@ bool GameplayHUD::Update(float dt)
 		break;
 	}
 
-	CurrentanimP2 = &points4;
+	currentanimp2 = &points4;
 
 	// Points 3
 	switch (points[2])
@@ -471,7 +471,7 @@ bool GameplayHUD::Update(float dt)
 		break;
 	}
 
-	CurrentanimP3 = &points3;
+	currentanimp3 = &points3;
 
 	// "Coins"
 	if (coins[1] > 9)
@@ -530,7 +530,7 @@ bool GameplayHUD::Update(float dt)
 		break;
 	}
 
-	CurrentanimC2 = &coins2;
+	currentanimc2 = &coins2;
 
 	// Coins 2
 	switch (coins[0])
@@ -576,7 +576,7 @@ bool GameplayHUD::Update(float dt)
 		break;
 	}
 
-	CurrentanimC1 = &coins1;
+	currentanimc1 = &coins1;
 
 	return true;
 }
@@ -584,52 +584,52 @@ bool GameplayHUD::Update(float dt)
 bool GameplayHUD::PostUpdate()
 {
 	// Clock
-	SDL_Rect cl = CurrentClock->GetCurrentFrame();
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + (app->win->width - 105), -app->render->camera.y + 15, &cl);
+	SDL_Rect cl = currentclock->GetCurrentFrame();
+	app->render->DrawTexture(timesprite, -app->render->camera.x + (app->win->width - 105), -app->render->camera.y + 15, &cl);
 
-	SDL_Rect n1 = CurrentanimNum1->GetCurrentFrame();
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + (app->win->width - 77), -app->render->camera.y + 15, &n1);
+	SDL_Rect n1 = currentanimnum1->GetCurrentFrame();
+	app->render->DrawTexture(timesprite, -app->render->camera.x + (app->win->width - 77), -app->render->camera.y + 15, &n1);
 
-	SDL_Rect n2 = CurrentanimNum2->GetCurrentFrame();
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + (app->win->width - 53), -app->render->camera.y + 15, &n2);
+	SDL_Rect n2 = currentanimnum2->GetCurrentFrame();
+	app->render->DrawTexture(timesprite, -app->render->camera.x + (app->win->width - 53), -app->render->camera.y + 15, &n2);
 
-	SDL_Rect n3 = CurrentanimNum3->GetCurrentFrame();
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + (app->win->width - 29), -app->render->camera.y + 15, &n3);
+	SDL_Rect n3 = currentanimnum3->GetCurrentFrame();
+	app->render->DrawTexture(timesprite, -app->render->camera.x + (app->win->width - 29), -app->render->camera.y + 15, &n3);
 
 	// Points
-	SDL_Rect PN = CurrentpName->GetCurrentFrame();
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + (app->win->width - 366), -app->render->camera.y + 15, &PN);
+	SDL_Rect PN = currentpname->GetCurrentFrame();
+	app->render->DrawTexture(timesprite, -app->render->camera.x + (app->win->width - 366), -app->render->camera.y + 15, &PN);
 
-	SDL_Rect p1 = CurrentanimP1->GetCurrentFrame();
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + (app->win->width - 249), -app->render->camera.y + 15, &p1);
+	SDL_Rect p1 = currentanimp1->GetCurrentFrame();
+	app->render->DrawTexture(timesprite, -app->render->camera.x + (app->win->width - 249), -app->render->camera.y + 15, &p1);
 																   
-	SDL_Rect p2 = CurrentanimP2->GetCurrentFrame();				   
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + (app->win->width - 225), -app->render->camera.y + 15, &p2);
+	SDL_Rect p2 = currentanimp2->GetCurrentFrame();				   
+	app->render->DrawTexture(timesprite, -app->render->camera.x + (app->win->width - 225), -app->render->camera.y + 15, &p2);
 																   
-	SDL_Rect p3 = CurrentanimP3->GetCurrentFrame();				   
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + (app->win->width - 201), -app->render->camera.y + 15, &p3);
+	SDL_Rect p3 = currentanimp3->GetCurrentFrame();				   
+	app->render->DrawTexture(timesprite, -app->render->camera.x + (app->win->width - 201), -app->render->camera.y + 15, &p3);
 
-	SDL_Rect p4 = CurrentanimP4->GetCurrentFrame();
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + (app->win->width - 177), -app->render->camera.y + 15, &p4);
+	SDL_Rect p4 = currentanimp4->GetCurrentFrame();
+	app->render->DrawTexture(timesprite, -app->render->camera.x + (app->win->width - 177), -app->render->camera.y + 15, &p4);
 
-	SDL_Rect p5 = CurrentanimP5->GetCurrentFrame();
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + (app->win->width - 153), -app->render->camera.y + 15, &p5);
+	SDL_Rect p5 = currentanimp5->GetCurrentFrame();
+	app->render->DrawTexture(timesprite, -app->render->camera.x + (app->win->width - 153), -app->render->camera.y + 15, &p5);
 
 	// Life
 	for (int i = 0; i < app->player->life; i++)
 	{
-		app->render->DrawTexture(lifePlayer, -app->render->camera.x + (64 * i), -app->render->camera.y);
+		app->render->DrawTexture(lifeplayer, -app->render->camera.x + (64 * i), -app->render->camera.y);
 	}
 
 	// Coins
-	SDL_Rect CoinS = CurrentCSimbol->GetCurrentFrame();
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + 12, -app->render->camera.y + 64, &CoinS);
+	SDL_Rect CoinS = currentcsimbol->GetCurrentFrame();
+	app->render->DrawTexture(timesprite, -app->render->camera.x + 12, -app->render->camera.y + 64, &CoinS);
 
-	SDL_Rect coin1 = CurrentanimC1->GetCurrentFrame();
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + 63, -app->render->camera.y + 64, &coin1);
+	SDL_Rect coin1 = currentanimc1->GetCurrentFrame();
+	app->render->DrawTexture(timesprite, -app->render->camera.x + 63, -app->render->camera.y + 64, &coin1);
 
-	SDL_Rect coin2 = CurrentanimC2->GetCurrentFrame();
-	app->render->DrawTexture(timeSprite, -app->render->camera.x + 87, -app->render->camera.y + 64, &coin2);
+	SDL_Rect coin2 = currentanimc2->GetCurrentFrame();
+	app->render->DrawTexture(timesprite, -app->render->camera.x + 87, -app->render->camera.y + 64, &coin2);
 
 	return true;
 }

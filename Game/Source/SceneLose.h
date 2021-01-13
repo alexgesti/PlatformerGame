@@ -33,7 +33,7 @@ public:
 	bool CleanUp();
 
 private:
-	SDL_Texture* SpriteLose;
+	SDL_Texture* spritelose;
 };
 
 #endif // __SCENELOSE_H__

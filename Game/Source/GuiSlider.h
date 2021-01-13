@@ -23,11 +23,11 @@ private:
     SDL_Rect slider;
     int value;
 
-    int minValue;
-    int maxValue;
+    int minvalue;
+    int maxvalue;
 
 public:
-    int guideRender;
+    int guiderender;
     int percentage = 100;
 };
 

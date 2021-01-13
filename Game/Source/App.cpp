@@ -40,12 +40,12 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	tex = new Textures();
 	audio = new Audio();
 	scene = new Scene();
-	sceneIntro = new SceneIntro();
-	sceneLogo = new SceneLogo();
-	sceneLose = new SceneLose();
-	sceneWin = new SceneWin();
-	sceneOpts = new SceneOptions();
-	scenePause = new ScenePause();
+	sceneintro = new SceneIntro();
+	scenelogo = new SceneLogo();
+	scenelose = new SceneLose();
+	scenewin = new SceneWin();
+	sceneopts = new SceneOptions();
+	scenepause = new ScenePause();
 	map = new Map();
 	player = new Player();
 	modcontrol = new ModuleController();
@@ -53,7 +53,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	fenemy = new FlyEnemy();
 	entity = new EntityManager();
 	pathfinding = new PathFinding();
-	GameHUD = new GameplayHUD();
+	gamehud = new GameplayHUD();
 	fade = new FadeController();
 
 	// Ordered for awake / Start / Update
@@ -64,19 +64,19 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(scene);
-	AddModule(sceneIntro);
-	AddModule(sceneLogo);
-	AddModule(sceneLose);
-	AddModule(sceneWin);
+	AddModule(sceneintro);
+	AddModule(scenelogo);
+	AddModule(scenelose);
+	AddModule(scenewin);
 	AddModule(entity);
 	AddModule(wenemy);
 	AddModule(fenemy);
 	AddModule(player);
 	AddModule(modcontrol);
 	AddModule(pathfinding);
-	AddModule(scenePause);
-	AddModule(sceneOpts);
-	AddModule(GameHUD);
+	AddModule(scenepause);
+	AddModule(sceneopts);
+	AddModule(gamehud);
 	AddModule(fade);
 
 	// Render last to swap buffer
@@ -127,7 +127,7 @@ bool App::Awake()
 		title.Create(configApp.child("title").child_value());
 		organization.Create(configApp.child("organization").child_value());
 
-		cappedMs = configApp.attribute("framerate_cap").as_uint();
+		cappedms = configApp.attribute("framerate_cap").as_uint();
 	}
 
 	if (ret == true)
@@ -204,12 +204,12 @@ pugi::xml_node App::LoadConfig(pugi::xml_document& configFile) const
 // ---------------------------------------------
 void App::PrepareUpdate()
 {
-	frameCount++;
-	lastSecFrameCount++;
+	framecount++;
+	lastsecframecount++;
 
 	// L08: DONE 4: Calculate the dt: differential time since last frame
-	dt = frameTime.ReadSec();
-	frameTime.Start();
+	dt = frametime.ReadSec();
+	frametime.Start();
 	delayTimer.Start();
 }
 
@@ -217,14 +217,14 @@ void App::PrepareUpdate()
 void App::FinishUpdate()
 {
 	// L02: DONE 1: This is a good place to call Load / Save methods
-	if (loadGameRequested == true) LoadGame();
-	if (saveGameRequested == true) SaveGame();
+	if (loadgamerequested == true) LoadGame();
+	if (savegamerequested == true) SaveGame();
     
 	FramerateLogic();
 
 	static char title[256];
 	sprintf_s(title, 256, "Platformer Game (The Crossing) (FPS: %i / Av.FPS: %.2f / Last Frame Ms: %02u ms / Last dt: %.3f / Play Time: %.3f / Frame Count: %I64u / Vsync: %i / Map:%dx%d / Camera position:%d %d)",
-		prevLastSecFrameCount, averageFps, lastFrameMs, dt, secondsSinceStartup, frameCount, (int)app->render->Vsync ,app->map->data.width, app->map->data.height, app->render->camera.x, app->render->camera.y);
+		prevlastsecframecount, averagefps, lastframems, dt, secondssincestartup, framecount, (int)app->render->Vsync ,app->map->data.width, app->map->data.height, app->render->camera.x, app->render->camera.y);
 
 	app->win->SetTitle(title);
 }
@@ -341,15 +341,15 @@ const char* App::GetOrganization() const
 // Load / Save
 void App::LoadGameRequest(const char* fileName)
 {
-	loadGameRequested = true;
-	loadedGame.Create(fileName);
+	loadgamerequested = true;
+	loadedgame.Create(fileName);
 }
 
 // ---------------------------------------
 void App::SaveGameRequest(const char* fileName) const
 {
-	saveGameRequested = true;
-	savedGame.Create(fileName);
+	savegamerequested = true;
+	savedgame.Create(fileName);
 }
 
 // ---------------------------------------
@@ -362,11 +362,11 @@ bool App::LoadGame()
 	pugi::xml_document data;
 	pugi::xml_node root;
 
-	pugi::xml_parse_result result = data.load_file(loadedGame.GetString());
+	pugi::xml_parse_result result = data.load_file(loadedgame.GetString());
 
 	if (result != NULL)
 	{
-		LOG("Loading new Game State from %s...", loadedGame.GetString());
+		LOG("Loading new Game State from %s...", loadedgame.GetString());
 
 		root = data.child("save_state");
 
@@ -383,17 +383,17 @@ bool App::LoadGame()
 		if (ret)
 		{
 			LOG("...finished loading");
-			SaveDataExist = true;
+			savedataexist = true;
 		}
 		else LOG("...loading process interrupted with error on module %s", item->data->name.GetString());
 	}
 	else
 	{
-		SaveDataExist = false;
-		LOG("Could not parse game state xml file %s. pugi error: %s", loadedGame.GetString(), result.description());
+		savedataexist = false;
+		LOG("Could not parse game state xml file %s. pugi error: %s", loadedgame.GetString(), result.description());
 	}
 
-	loadGameRequested = false;
+	loadgamerequested = false;
 
 	return ret;
 }
@@ -403,7 +403,7 @@ bool App::SaveGame() const
 {
 	bool ret = true;
 
-	LOG("Saving Game State to %s...", savedGame.GetString());
+	LOG("Saving Game State to %s...", savedgame.GetString());
 
 	//xml object were we will store all data
 	pugi::xml_document data;
@@ -421,32 +421,32 @@ bool App::SaveGame() const
 
 	if (ret)
 	{
-		data.save_file(savedGame.GetString());
+		data.save_file(savedgame.GetString());
 		LOG("... finished saving");
 	}
 	else LOG("Save process halted from an error in module %s", item->data->name.GetString());
 
 	data.reset();
 
-	saveGameRequested = false;
+	savegamerequested = false;
 
 	return ret;
 }
 
 void App::FramerateLogic()
 {
-	if (lastSecFrameTime.Read() > 1000)
+	if (lastsecframetime.Read() > 1000)
 	{
-		lastSecFrameTime.Start();
-		prevLastSecFrameCount = lastSecFrameCount;
-		lastSecFrameCount = 0;
+		lastsecframetime.Start();
+		prevlastsecframecount = lastsecframecount;
+		lastsecframecount = 0;
 	}
 
-	averageFps = float(frameCount) / startupTime.ReadSec();
-	secondsSinceStartup = startupTime.ReadSec();
-	lastFrameMs = frameTime.Read();
+	averagefps = float(framecount) / startuptime.ReadSec();
+	secondssincestartup = startuptime.ReadSec();
+	lastframems = frametime.Read();
 
-	int delayTime = (1000 / cappedMs) - lastFrameMs;
+	int delayTime = (1000 / cappedms) - lastframems;
 	if (delayTime > 0)
 	{
 		SDL_Delay((Uint32)delayTime);

@@ -20,63 +20,63 @@ WalkingEnemy::WalkingEnemy() : Module()
 	name.Create("enemy");
 
 	//run left animation
-	runLAnim.PushBack({ 0, 128, 64, 64 });
-	runLAnim.PushBack({ 64, 128, 64, 64 });
-	runLAnim.PushBack({ 128, 128, 64, 64 });
-	runLAnim.PushBack({ 192, 128, 64, 64 });
-	runLAnim.PushBack({ 256, 128, 64, 64 });
-	runLAnim.PushBack({ 320, 128, 64, 64 });
-	runLAnim.PushBack({ 384, 128, 64, 64 });
-	runLAnim.PushBack({ 448, 128, 64, 64 });
-	runLAnim.loop = true;
-	runLAnim.speed = 0.15f;
+	runlanim.PushBack({ 0, 128, 64, 64 });
+	runlanim.PushBack({ 64, 128, 64, 64 });
+	runlanim.PushBack({ 128, 128, 64, 64 });
+	runlanim.PushBack({ 192, 128, 64, 64 });
+	runlanim.PushBack({ 256, 128, 64, 64 });
+	runlanim.PushBack({ 320, 128, 64, 64 });
+	runlanim.PushBack({ 384, 128, 64, 64 });
+	runlanim.PushBack({ 448, 128, 64, 64 });
+	runlanim.loop = true;
+	runlanim.speed = 0.15f;
 
 	//run rigth animation
-	runRAnim.PushBack({ 448, 0, 64, 64 });
-	runRAnim.PushBack({ 384, 0, 64, 64 });
-	runRAnim.PushBack({ 320, 0, 64, 64 });
-	runRAnim.PushBack({ 256, 0, 64, 64 });
-	runRAnim.PushBack({ 192, 0, 64, 64 });
-	runRAnim.PushBack({ 128, 0, 64, 64 });
-	runRAnim.PushBack({ 64, 0, 64, 64 });
-	runRAnim.PushBack({ 0, 0, 64, 64 });
-	runRAnim.loop = true;
-	runRAnim.speed = 0.15f;
+	runranim.PushBack({ 448, 0, 64, 64 });
+	runranim.PushBack({ 384, 0, 64, 64 });
+	runranim.PushBack({ 320, 0, 64, 64 });
+	runranim.PushBack({ 256, 0, 64, 64 });
+	runranim.PushBack({ 192, 0, 64, 64 });
+	runranim.PushBack({ 128, 0, 64, 64 });
+	runranim.PushBack({ 64, 0, 64, 64 });
+	runranim.PushBack({ 0, 0, 64, 64 });
+	runranim.loop = true;
+	runranim.speed = 0.15f;
 
 	//dead rigth animation
-	deadRAnim.PushBack({ 448, 64, 64, 64 });
-	deadRAnim.PushBack({ 384, 64, 64, 64 });
-	deadRAnim.PushBack({ 320, 64, 64, 64 });
-	deadRAnim.PushBack({ 256, 64, 64, 64 });
-	deadRAnim.PushBack({ 192, 64, 64, 64 });
-	deadRAnim.PushBack({ 128, 64, 64, 64 });
-	deadRAnim.loop = false;
-	deadRAnim.speed = 0.12f;
+	deadranim.PushBack({ 448, 64, 64, 64 });
+	deadranim.PushBack({ 384, 64, 64, 64 });
+	deadranim.PushBack({ 320, 64, 64, 64 });
+	deadranim.PushBack({ 256, 64, 64, 64 });
+	deadranim.PushBack({ 192, 64, 64, 64 });
+	deadranim.PushBack({ 128, 64, 64, 64 });
+	deadranim.loop = false;
+	deadranim.speed = 0.12f;
 
 	//dead left animation
-	deadLAnim.PushBack({ 0, 192, 64, 64 });
-	deadLAnim.PushBack({ 64, 192, 64, 64 });
-	deadLAnim.PushBack({ 128, 192, 64, 64 });
-	deadLAnim.PushBack({ 192, 192, 64, 64 });
-	deadLAnim.PushBack({ 256, 192, 64, 64 });
-	deadLAnim.PushBack({ 320, 192, 64, 64 });
-	deadLAnim.loop = false;
-	deadLAnim.speed = 0.12f;
+	deadlanim.PushBack({ 0, 192, 64, 64 });
+	deadlanim.PushBack({ 64, 192, 64, 64 });
+	deadlanim.PushBack({ 128, 192, 64, 64 });
+	deadlanim.PushBack({ 192, 192, 64, 64 });
+	deadlanim.PushBack({ 256, 192, 64, 64 });
+	deadlanim.PushBack({ 320, 192, 64, 64 });
+	deadlanim.loop = false;
+	deadlanim.speed = 0.12f;
 
-	idleRAnim.PushBack({ 64, 0, 64, 64 });
-	idleRAnim.PushBack({ 0, 0, 64, 64 });
-	idleLAnim.loop = true;
-	idleLAnim.speed = 0.05f;
+	idleranim.PushBack({ 64, 0, 64, 64 });
+	idleranim.PushBack({ 0, 0, 64, 64 });
+	idlelanim.loop = true;
+	idlelanim.speed = 0.05f;
 
-	idleLAnim.PushBack({ 384, 128, 64, 64 });
-	idleLAnim.PushBack({ 448, 128, 64, 64 });
-	idleRAnim.loop = true;
-	idleRAnim.speed = 0.05f;
+	idlelanim.PushBack({ 384, 128, 64, 64 });
+	idlelanim.PushBack({ 448, 128, 64, 64 });
+	idleranim.loop = true;
+	idleranim.speed = 0.05f;
 
-	//Collisions
-	Collision.PushBack({ 32, 0, 64, 64 });
+	//collisions
+	collision.PushBack({ 32, 0, 64, 64 });
 
-	currentAnimColl = &Collision;
+	currentanimcoll = &collision;
 }
 
 // Destructor
@@ -98,11 +98,11 @@ bool WalkingEnemy::Awake()
 bool WalkingEnemy::Start()
 {
 	//Load texture
-	spriteSheet = app->tex->Load("Assets/Characters/Enemies/WalkingEnemies/enemy_spritesheet.png");
-	deathEnemyFx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Enemies/deathEnemy.wav");
-	collision = app->tex->Load("Assets/Screens/Gameplay/collision_entities.png");
+	spritesheet = app->tex->Load("Assets/Characters/Enemies/WalkingEnemies/enemy_spritesheet.png");
+	deathenemyfx = app->audio->LoadFx("Assets/Audio/Fx/Characters/Enemies/deathEnemy.wav");
+	collisiontext = app->tex->Load("Assets/Screens/Gameplay/collision_entities.png");
 
-	currentAnim = &runRAnim;
+	currentanim = &runranim;
 
 	position.x = -3456;
 	position.y = -1664;
@@ -119,66 +119,66 @@ bool WalkingEnemy::PreUpdate()
 // Called each loop iteration
 bool WalkingEnemy::Update(float dt)
 {
-	if (app->scenePause->active == false)
+	if (app->scenepause->active == false)
 	{
-		//Gravity
+		//gravity
 		if (gravity == true)
 		{
 			position.y -= speedy;
 		}
 
-		if (waslookingRight == true)
+		if (waslookingright == true)
 		{
-			currentAnim = &idleRAnim;
+			currentanim = &idleranim;
 		}
-		if (waslookingRight == false)
+		if (waslookingright == false)
 		{
-			currentAnim = &idleLAnim;
+			currentanim = &idlelanim;
 		}
 
-		//Mov right
+		//mov right
 		if (app->player->position.y == position.y
 			&& app->player->position.x >= position.x
 			&& dead == false
-			&& app->player->Godmode == false)
+			&& app->player->godmode == false)
 		{
-			currentAnim = &runRAnim;
+			currentanim = &runranim;
 			position.x += speedx;
-			waslookingRight = true;
+			waslookingright = true;
 		}
 
-		//Mov left
+		//mov left
 		else if (app->player->position.y == position.y
 			&& app->player->position.x <= position.x
 			&& dead == false
-			&& app->player->Godmode == false)
+			&& app->player->godmode == false)
 		{
-			currentAnim = &runLAnim;
+			currentanim = &runlanim;
 			position.x -= speedx;
-			waslookingRight = false;
+			waslookingright = false;
 		}
 
-		//Die
+		//die
 		if (dead)
 		{
-			if (waslookingRight) currentAnim = &deadRAnim;
-			else currentAnim = &deadLAnim;
+			if (waslookingright) currentanim = &deadranim;
+			else currentanim = &deadlanim;
 
 			if (oncesound == false) 
 			{
 				oncesound = true;
-				app->audio->PlayFx(deathEnemyFx);
-				app->GameHUD->points[2]++;
+				app->audio->PlayFx(deathenemyfx);
+				app->gamehud->points[2]++;
 			}		
 
-			if (deadRAnim.FinishedAlready || deadLAnim.FinishedAlready)
+			if (deadranim.FinishedAlready || deadlanim.FinishedAlready)
 			{
 				position.x = 0;
 				position.y = 0;
-				deadRAnim.Reset();
-				deadLAnim.Reset();
+				deadranim.Reset();
+				deadlanim.Reset();
 				gravity = false;
-				IsDead = true;
+				isdead = true;
 			}
 		}
 
@@ -188,27 +188,27 @@ bool WalkingEnemy::Update(float dt)
 		}
 		else gravity = true;
 
-		if (CheckCollisionRec(app->player->Bposition, position) && app->player->shoot == true && dead == false)
+		if (CheckCollisionRec(app->player->bposition, position) && app->player->shoot == true && dead == false)
 		{
 			dead = true;
 			app->player->shoot = false;
 		}
 
-		if (CheckCollisionRec(app->player->position, position) && hitingPlayer == false && dead == false && app->player->Godmode == false)
+		if (CheckCollisionRec(app->player->position, position) && hitingplayer == false && dead == false && app->player->godmode == false)
 		{
-			hitingPlayer = true;
+			hitingplayer = true;
 			app->player->life--;
 			app->audio->PlayFx(app->player->hitFx);
 		}
 
 		if (!CheckCollisionRec(app->player->position, position) && dead == false)
 		{
-			hitingPlayer = false;
+			hitingplayer = false;
 		}
 
 		//app->pathfinding->CreatePath(position, app->player->position);
 
-		if (IsDead == false) currentAnim->Update();
+		if (isdead == false) currentanim->Update();
 	}
 
 	return true;
@@ -219,13 +219,13 @@ bool WalkingEnemy::PostUpdate()
 {
 	bool ret = true;
 
-	SDL_Rect rect = currentAnim->GetCurrentFrame();
-	if (IsDead == false) app->render->DrawTexture(spriteSheet, -position.x, -position.y, &rect);
+	SDL_Rect rect = currentanim->GetCurrentFrame();
+	if (isdead == false) app->render->DrawTexture(spritesheet, -position.x, -position.y, &rect);
 
-	if (app->modcontrol->showCollider)
+	if (app->modcontrol->showcollider)
 	{
-		SDL_Rect rectCol = currentAnimColl->GetCurrentFrame();
-		app->render->DrawTexture(collision, -position.x, -position.y, &rectCol);
+		SDL_Rect rectCol = currentanimcoll->GetCurrentFrame();
+		app->render->DrawTexture(collisiontext, -position.x, -position.y, &rectCol);
 	}
 
 	return ret;
@@ -241,25 +241,25 @@ bool WalkingEnemy::CleanUp()
 
 int WalkingEnemy::CollisionEnemy()
 {
-	iPoint posMapEnemy[numnPoints];
+	iPoint posMapEnemy[numnpoints];
 
-	for (int i = 0; i < numnPoints; i++)
+	for (int i = 0; i < numnpoints; i++)
 	{
-		posMapEnemy[i] = app->map->WorldToMap(-position.x + (int)pointsCollision[i][0], -position.y + (int)pointsCollision[i][1]);
+		posMapEnemy[i] = app->map->WorldToMap(-position.x + (int)pointscollision[i][0], -position.y + (int)pointscollision[i][1]);
 	}
-	if (CheckCollision(posMapEnemy[numnPoints - 1]) == 1) return 2;
-	if (CheckCollision(posMapEnemy[numnPoints - 2]) == 1) return 3;
+	if (CheckCollision(posMapEnemy[numnpoints - 1]) == 1) return 2;
+	if (CheckCollision(posMapEnemy[numnpoints - 2]) == 1) return 3;
 
 	return false;
 }
 
 bool WalkingEnemy::CollisionFloorEnemy()
 {
-	iPoint posFloorEnemy[numnPoints];
+	iPoint posFloorEnemy[numnpoints];
 
-	for (int i = 0; i < numnPoints; i++)
+	for (int i = 0; i < numnpoints; i++)
 	{
-		posFloorEnemy[i] = app->map->WorldToMap(-position.x + (int)pointsFloorCollision[i][0], -position.y + (int)pointsFloorCollision[i][1]);
+		posFloorEnemy[i] = app->map->WorldToMap(-position.x + (int)pointsfloorcollision[i][0], -position.y + (int)pointsfloorcollision[i][1]);
 		if (CheckCollision(posFloorEnemy[i]) == 1) return true;
 	}
 

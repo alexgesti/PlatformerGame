@@ -36,18 +36,18 @@ public:
 	bool CleanUp();
 
 private:
-	SDL_Texture* SpriteLogo;
+	SDL_Texture* spritelogo;
 
-	bool OnlyStart;
+	bool onlystart;
 
 	Uint8 alpha = 0;
-	float alphaCalc;
+	float alphacalc;
 
-	bool alphaFinished = false;
-	float Timer = 0;
+	bool alphafinished = false;
+	float timer = 0;
 
 public:
-	bool MusicOn;
+	bool musicon;
 };
 
 #endif // __SCENELOGO_H__

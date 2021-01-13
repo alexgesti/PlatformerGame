@@ -32,7 +32,7 @@ bool SceneWin::Awake()
 // Called before the first frame
 bool SceneWin::Start()
 {
-	SpriteWin = app->tex->Load("Assets/Screens/Title/Win.png");
+	spritewin = app->tex->Load("Assets/Screens/Title/Win.png");
 
 	return true;
 }
@@ -46,7 +46,7 @@ bool SceneWin::PreUpdate()
 // Called each loop iteration
 bool SceneWin::Update(float dt)
 {
-	if (app->scene->NotSceneActived == false)
+	if (app->scene->notsceneactived == false)
 	{
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;
@@ -61,13 +61,13 @@ bool SceneWin::PostUpdate()
 	bool ret = true;
 
 	SDL_Rect rect = { 0, 0, app->render->camera.w, app->render->camera.h };
-	app->render->DrawTexture(SpriteWin, 0, 0, &rect);
+	app->render->DrawTexture(spritewin, 0, 0, &rect);
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		app->fade->CanFade = true;
-		app->fade->StartInBlack = false;
-		app->fade->WinLoseContinue = true;
+		app->fade->canfade = true;
+		app->fade->startinblack = false;
+		app->fade->winlosecontinue = true;
 	}
 	return ret;
 }

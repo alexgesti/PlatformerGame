@@ -21,15 +21,15 @@ GuiControl* GuiManager::CreateGuiControl(GuiControlType type)
 
 bool GuiManager::Update(float dt)
 {
-	accumulatedTime += dt;
-	if (accumulatedTime >= updateMsCycle) doLogic = true;
+	accumulatedtime += dt;
+	if (accumulatedtime >= updatemscycle) dologic = true;
 
 	//UpdateAll(dt, doLogic); //DESMUTEAR PARA TESTEAR
 
-	if (doLogic == true)
+	if (dologic == true)
 	{
-		accumulatedTime = 0.0f;
-		doLogic = false;
+		accumulatedtime = 0.0f;
+		dologic = false;
 	}
 
 	return true;

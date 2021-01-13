@@ -4,7 +4,7 @@ GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, const char* text) : GuiControl(
 {
     this->bounds = bounds;
     this->text = text;
-    guideRender = bounds.x + bounds.w;
+    guiderender = bounds.x + bounds.w;
 }
 
 GuiSlider::~GuiSlider()
@@ -29,7 +29,7 @@ bool GuiSlider::Update(Input* input, float dt)
                 state = GuiControlState::PRESSED;
 
                 percentage = (mouseX - bounds.x) / (bounds.w / 100);
-                guideRender = mouseX;
+                guiderender = mouseX;
             }
 
             // If mouse button pressed -> Generate event!

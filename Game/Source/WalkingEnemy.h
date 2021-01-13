@@ -44,9 +44,9 @@ public:
 public:
 	bool gravity = false;
 	bool dead = false;
-	bool waslookingRight = true;
-	bool IsDead = false;
-	bool hitingPlayer = false;
+	bool waslookingright = true;
+	bool isdead = false;
+	bool hitingplayer = false;
 	bool oncesound = false;
 
 	float speedx = 4;
@@ -54,31 +54,31 @@ public:
 
 	iPoint position;
 
-	Animation* currentAnim;
-	Animation* currentAnimColl;
+	Animation* currentanim;
+	Animation* currentanimcoll;
 
-	Animation runRAnim;
-	Animation deadRAnim;
-	Animation idleRAnim;
+	Animation runranim;
+	Animation deadranim;
+	Animation idleranim;
 
-	Animation runLAnim;
-	Animation deadLAnim;
-	Animation idleLAnim;
+	Animation runlanim;
+	Animation deadlanim;
+	Animation idlelanim;
 
-	Animation Collision;
+	Animation collision;
 
-	Colliders* enemyCollider = nullptr;
+	Colliders* enemycollider = nullptr;
 
 private:
-	SDL_Texture* spriteSheet = nullptr;
-	SDL_Texture* collision = nullptr;
+	SDL_Texture* spritesheet = nullptr;
+	SDL_Texture* collisiontext = nullptr;
 
-	static const int numnPoints = 4;
-	int pointsCollision[numnPoints][2] = { {0, 0}, {64, 0}, {0, 62}, {64, 62} };
-	int pointsFloorCollision[numnPoints][2] = { {12, 63}, {52, 63}, {12, 64}, {52, 64} };
+	static const int numnpoints = 4;
+	int pointscollision[numnpoints][2] = { {0, 0}, {64, 0}, {0, 62}, {64, 62} };
+	int pointsfloorcollision[numnpoints][2] = { {12, 63}, {52, 63}, {12, 64}, {52, 64} };
 
 	//FX
-	uint deathEnemyFx = 0;
+	uint deathenemyfx = 0;
 };
 
 #endif // __SCENE_H__

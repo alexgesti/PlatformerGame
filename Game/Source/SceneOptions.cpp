@@ -30,20 +30,20 @@ SceneOptions::SceneOptions() : Module()
 	back.PushBack({ 0, 28, 137, 27 });
 	back.PushBack({ 0, 56, 137, 27 });
 
-	sldMusic = new GuiSlider(1, { 1280 / 2 - 300 / 2, 175, 300, 80 }, "MUSIC");
-	sldMusic->SetObserver(this);
+	sldmusic = new GuiSlider(1, { 1280 / 2 - 300 / 2, 175, 300, 80 }, "MUSIC");
+	sldmusic->SetObserver(this);
 
-	sldFx = new GuiSlider(2, { 1280 / 2 - 300 / 2, 315, 300, 80 }, "FX");
-	sldFx->SetObserver(this);
+	sldfx = new GuiSlider(2, { 1280 / 2 - 300 / 2, 315, 300, 80 }, "FX");
+	sldfx->SetObserver(this);
 
-	btnFull = new GuiCheckBox(3, { 1000 / 2 - 300 / 2, 400, 80, 80 }, "FULLSCREEN");
-	btnFull->SetObserver(this);
+	btnfull = new GuiCheckBox(3, { 1000 / 2 - 300 / 2, 400, 80, 80 }, "FULLSCREEN");
+	btnfull->SetObserver(this);
 
-	btnSync = new GuiCheckBox(4, { 1000 / 2 - 300 / 2, 500, 80, 80 }, "VSYNC");
-	btnSync->SetObserver(this);
+	btnsync = new GuiCheckBox(4, { 1000 / 2 - 300 / 2, 500, 80, 80 }, "VSYNC");
+	btnsync->SetObserver(this);
 
-	btnBack = new GuiButton(5, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
-	btnBack->SetObserver(this);
+	btnback = new GuiButton(5, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
+	btnback->SetObserver(this);
 }
 
 // Destructor
@@ -64,19 +64,19 @@ bool SceneOptions::Awake()
 // Called before the first frame
 bool SceneOptions::Start()
 {
-	statesGuide = app->tex->Load("Assets/GUI/volbar.png");
-	statesVolume = app->tex->Load("Assets/GUI/volume.png");
-	statesMusic = app->tex->Load("Assets/GUI/music.png");
-	statesFx = app->tex->Load("Assets/GUI/fx_volume.png");
-	statesCheck = app->tex->Load("Assets/GUI/check.png");
-	statesFullscreen = app->tex->Load("Assets/GUI/states_fullscreen.png");
-	statesVsync = app->tex->Load("Assets/GUI/states_vsync.png");
-	statesBack = app->tex->Load("Assets/GUI/states_back.png");
+	statesguide = app->tex->Load("Assets/GUI/volbar.png");
+	statesvolume = app->tex->Load("Assets/GUI/volume.png");
+	statesmusic = app->tex->Load("Assets/GUI/music.png");
+	statesfx = app->tex->Load("Assets/GUI/fx_volume.png");
+	statescheck = app->tex->Load("Assets/GUI/check.png");
+	statesfullscreen = app->tex->Load("Assets/GUI/states_fullscreen.png");
+	statesvsync = app->tex->Load("Assets/GUI/states_vsync.png");
+	statesback = app->tex->Load("Assets/GUI/states_back.png");
 
-	buttonFx = app->audio->LoadFx("Assets/Audio/Fx/buttonfx.wav");
+	buttonfx = app->audio->LoadFx("Assets/Audio/Fx/buttonfx.wav");
 
-	btnFull->checked = false;
-	btnFull->checked = false;
+	btnfull->checked = false;
+	btnfull->checked = false;
 
 	return true;
 }
@@ -93,16 +93,16 @@ bool SceneOptions::Update(float dt)
 	retU = true;
 
 	if (wait == true) {
-		Mix_VolumeMusic(sldMusic->percentage);
-		Mix_Volume(-1, sldFx->percentage);
+		Mix_VolumeMusic(sldmusic->percentage);
+		Mix_Volume(-1, sldfx->percentage);
 
-		if (btnFull->checked == true) fullscreen.GetSelectedFrame(1);
+		if (btnfull->checked == true) fullscreen.GetSelectedFrame(1);
 		else fullscreen.GetSelectedFrame(0);
 
-		if (btnSync->checked == true) vsync.GetSelectedFrame(1);
+		if (btnsync->checked == true) vsync.GetSelectedFrame(1);
 		else vsync.GetSelectedFrame(0);
 
-		switch (btnBack->state)
+		switch (btnback->state)
 		{
 		case GuiControlState::NORMAL: back.GetSelectedFrame(2);
 			break;
@@ -114,11 +114,11 @@ bool SceneOptions::Update(float dt)
 			break;
 		}
 
-		sldMusic->Update(app->input, dt);
-		sldFx->Update(app->input, dt);
-		btnFull->Update(app->input, dt);
-		btnSync->Update(app->input, dt);
-		btnBack->Update(app->input, dt);
+		sldmusic->Update(app->input, dt);
+		sldfx->Update(app->input, dt);
+		btnfull->Update(app->input, dt);
+		btnsync->Update(app->input, dt);
+		btnback->Update(app->input, dt);
 
 		fullscreen.Update();
 		vsync.Update();
@@ -134,37 +134,37 @@ bool SceneOptions::PostUpdate()
 {
 	bool ret = true;
 
-	if (app->scenePause->active == false)
+	if (app->scenepause->active == false)
 	{
 		app->render->DrawRectangle({ 0, 0, app->render->camera.w, app->render->camera.h }, { 0, 0, 0, 200 });
 	}
 
-	app->render->DrawTexture(statesMusic, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 174) / 2), -app->render->camera.y + 150);
-	app->render->DrawTexture(statesVolume, -app->render->camera.x + sldMusic->bounds.x + ((sldMusic->bounds.w - 295) / 2), -app->render->camera.y + sldMusic->bounds.y + ((sldMusic->bounds.h - 24) / 2));
-	app->render->DrawTexture(statesGuide, -app->render->camera.x + sldMusic->guideRender, -app->render->camera.y + sldMusic->bounds.y + ((sldMusic->bounds.h - 24) / 2));
+	app->render->DrawTexture(statesmusic, -app->render->camera.x + btnback->bounds.x + ((btnback->bounds.w - 174) / 2), -app->render->camera.y + 150);
+	app->render->DrawTexture(statesvolume, -app->render->camera.x + sldmusic->bounds.x + ((sldmusic->bounds.w - 295) / 2), -app->render->camera.y + sldmusic->bounds.y + ((sldmusic->bounds.h - 24) / 2));
+	app->render->DrawTexture(statesguide, -app->render->camera.x + sldmusic->guiderender, -app->render->camera.y + sldmusic->bounds.y + ((sldmusic->bounds.h - 24) / 2));
 
-	app->render->DrawTexture(statesFx, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 323) / 2), -app->render->camera.y + 275);
-	app->render->DrawTexture(statesVolume, -app->render->camera.x + sldFx->bounds.x + ((sldFx->bounds.w - 295) / 2), -app->render->camera.y + sldFx->bounds.y + ((sldFx->bounds.h - 24) / 2));
-	app->render->DrawTexture(statesGuide, -app->render->camera.x + sldFx->guideRender, -app->render->camera.y + sldFx->bounds.y + ((sldFx->bounds.h - 24) / 2));
+	app->render->DrawTexture(statesfx, -app->render->camera.x + btnback->bounds.x + ((btnback->bounds.w - 323) / 2), -app->render->camera.y + 275);
+	app->render->DrawTexture(statesvolume, -app->render->camera.x + sldfx->bounds.x + ((sldfx->bounds.w - 295) / 2), -app->render->camera.y + sldfx->bounds.y + ((sldfx->bounds.h - 24) / 2));
+	app->render->DrawTexture(statesguide, -app->render->camera.x + sldfx->guiderender, -app->render->camera.y + sldfx->bounds.y + ((sldfx->bounds.h - 24) / 2));
 
 	SDL_Rect rect1 = fullscreen.GetCurrentFrame();
-	app->render->DrawTexture(statesCheck, -app->render->camera.x + btnFull->bounds.x + ((btnFull->bounds.w - 23) / 2), -app->render->camera.y + btnFull->bounds.y + ((btnFull->bounds.h - 23) / 2), &rect1);
-	app->render->DrawTexture(statesFullscreen, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 360) / 2), -app->render->camera.y + btnFull->bounds.y + ((btnBack->bounds.h - 27) / 2));
+	app->render->DrawTexture(statescheck, -app->render->camera.x + btnfull->bounds.x + ((btnfull->bounds.w - 23) / 2), -app->render->camera.y + btnfull->bounds.y + ((btnfull->bounds.h - 23) / 2), &rect1);
+	app->render->DrawTexture(statesfullscreen, -app->render->camera.x + btnback->bounds.x + ((btnback->bounds.w - 360) / 2), -app->render->camera.y + btnfull->bounds.y + ((btnback->bounds.h - 27) / 2));
 	
 	SDL_Rect rect2 = vsync.GetCurrentFrame();
-	app->render->DrawTexture(statesCheck, -app->render->camera.x + btnSync->bounds.x + ((btnSync->bounds.w - 23) / 2), -app->render->camera.y + btnSync->bounds.y + ((btnSync->bounds.h - 23) / 2), &rect2);
-	app->render->DrawTexture(statesVsync, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 174) / 2), -app->render->camera.y + btnSync->bounds.y + ((btnBack->bounds.h - 27) / 2));
+	app->render->DrawTexture(statescheck, -app->render->camera.x + btnsync->bounds.x + ((btnsync->bounds.w - 23) / 2), -app->render->camera.y + btnsync->bounds.y + ((btnsync->bounds.h - 23) / 2), &rect2);
+	app->render->DrawTexture(statesvsync, -app->render->camera.x + btnback->bounds.x + ((btnback->bounds.w - 174) / 2), -app->render->camera.y + btnsync->bounds.y + ((btnback->bounds.h - 27) / 2));
 	
 	SDL_Rect rect3 = back.GetCurrentFrame();
-	app->render->DrawTexture(statesBack, -app->render->camera.x + btnBack->bounds.x + ((btnBack->bounds.w - 137) / 2), -app->render->camera.y + btnBack->bounds.y + ((btnBack->bounds.h - 27) / 2), &rect3);
+	app->render->DrawTexture(statesback, -app->render->camera.x + btnback->bounds.x + ((btnback->bounds.w - 137) / 2), -app->render->camera.y + btnback->bounds.y + ((btnback->bounds.h - 27) / 2), &rect3);
 	
-	if (app->modcontrol->showButtons == true)
+	if (app->modcontrol->showbuttons == true)
 	{
-		sldMusic->Draw(app->render);
-		sldFx->Draw(app->render);
-		btnFull->Draw(app->render);
-		btnSync->Draw(app->render);
-		btnBack->Draw(app->render);
+		sldmusic->Draw(app->render);
+		sldfx->Draw(app->render);
+		btnfull->Draw(app->render);
+		btnsync->Draw(app->render);
+		btnback->Draw(app->render);
 	}
 
 	return ret;
@@ -197,10 +197,10 @@ bool SceneOptions::OnGuiMouseClickEvent(GuiControl* control)
 		switch (control->id)
 		{
 		case 1:
-			app->audio->PlayFx(buttonFx);
+			app->audio->PlayFx(buttonfx);
 			break;
 		case 2:
-			app->audio->PlayFx(buttonFx);
+			app->audio->PlayFx(buttonfx);
 			break;
 		}
 	}
@@ -210,12 +210,12 @@ bool SceneOptions::OnGuiMouseClickEvent(GuiControl* control)
 		switch (control->id)
 		{
 		case 3:
-			app->audio->PlayFx(buttonFx);
+			app->audio->PlayFx(buttonfx);
 			ToggleFullscreen(app->win->window);
 			break;
 
 		case 4:
-			app->audio->PlayFx(buttonFx);
+			app->audio->PlayFx(buttonfx);
 			app->modcontrol->capped = !app->modcontrol->capped;
 			break;
 		}
@@ -226,7 +226,7 @@ bool SceneOptions::OnGuiMouseClickEvent(GuiControl* control)
 		switch (control->id)
 		{
 		case 5:
-			app->audio->PlayFx(buttonFx);
+			app->audio->PlayFx(buttonfx);
 			active = false;			// Settings
 			break;
 		}

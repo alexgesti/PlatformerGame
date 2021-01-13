@@ -29,17 +29,17 @@ public:
 
 public:
 
-	bool CanFade = false;
-	bool StartInBlack = false;
-	bool StartBoton = false;
-	bool ExitBoton = false;
-	bool ContinueBoton = false;
-	bool BackTitle = false;
-	bool WinLoseContinue = false;
-	bool HeWin = false;
-	bool HeLose = false;
+	bool canfade = false;
+	bool startinblack = false;
+	bool startboton = false;
+	bool exitboton = false;
+	bool continueboton = false;
+	bool backtitle = false;
+	bool winlosecontinue = false;
+	bool hewin = false;
+	bool helose = false;
 
-	SDL_Color blackFade = { 0, 0, 0, 0 };
+	SDL_Color blackfade = { 0, 0, 0, 0 };
 
 };
 

@@ -45,20 +45,20 @@ SceneIntro::SceneIntro() : Module()
 
 
 	// GUI: Initialize required controls for the screen //PREPARACION DEL BOTON, CON TAG, POSICION Y COLOR
-	btnStart = new GuiButton(1, { 1280 / 2 - 325, 400, 300, 80 }, "START");
-	btnStart->SetObserver(this);
+	btnstart = new GuiButton(1, { 1280 / 2 - 325, 400, 300, 80 }, "START");
+	btnstart->SetObserver(this);
 
-	btnContinue = new GuiButton(2, { 1280 / 2 + 25, 400, 300, 80 }, "CONTINUE");
-	btnContinue->SetObserver(this);
+	btncontinue = new GuiButton(2, { 1280 / 2 + 25, 400, 300, 80 }, "CONTINUE");
+	btncontinue->SetObserver(this);
 
-	btnSettings = new GuiButton(3, { 1280 / 2 - 325, 500, 300, 80 }, "SETTINGS");
-	btnSettings->SetObserver(this);
+	btnsettings = new GuiButton(3, { 1280 / 2 - 325, 500, 300, 80 }, "SETTINGS");
+	btnsettings->SetObserver(this);
 
-	btnCredits = new GuiButton(4, { 1280 / 2 + 25, 500, 300, 80 }, "CREDITS");
-	btnCredits->SetObserver(this);
+	btncredits = new GuiButton(4, { 1280 / 2 + 25, 500, 300, 80 }, "CREDITS");
+	btncredits->SetObserver(this);
 
-	btnExit = new GuiButton(5, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
-	btnExit->SetObserver(this);
+	btnexit = new GuiButton(5, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
+	btnexit->SetObserver(this);
 }
 
 // Destructor
@@ -79,15 +79,15 @@ bool SceneIntro::Awake()
 // Called before the first frame
 bool SceneIntro::Start()
 {
-	spriteIntro = app->tex->Load("Assets/Screens/Title/intro.png");
-	creditS = app->tex->Load("Assets/Screens/Title/credits.png");
-	statesPlay = app->tex->Load("Assets/GUI/states_play.png");
-	statesCont = app->tex->Load("Assets/GUI/states_continue.png");
-	statesSett = app->tex->Load("Assets/GUI/states_sett.png");
-	statesCredits = app->tex->Load("Assets/GUI/states_credits.png");
-	statesExit = app->tex->Load("Assets/GUI/states_exit30.png");
+	spriteintro = app->tex->Load("Assets/Screens/Title/intro.png");
+	creditstext = app->tex->Load("Assets/Screens/Title/credits.png");
+	statesplay = app->tex->Load("Assets/GUI/states_play.png");
+	statescont = app->tex->Load("Assets/GUI/states_continue.png");
+	statessett = app->tex->Load("Assets/GUI/states_sett.png");
+	statescredits = app->tex->Load("Assets/GUI/states_credits.png");
+	statesexit = app->tex->Load("Assets/GUI/states_exit30.png");
 
-	buttonFx = app->audio->LoadFx("Assets/Audio/Fx/buttonfx.wav");
+	buttonfx = app->audio->LoadFx("Assets/Audio/Fx/buttonfx.wav");
 
 	return true;
 }
@@ -102,33 +102,33 @@ bool SceneIntro::PreUpdate()
 bool SceneIntro::Update(float dt)
 {
 	// Load music
-	if (OneTimeOnly == false && app->sceneLogo->MusicOn == true)
+	if (onetimeonly == false && app->scenelogo->musicon == true)
 	{
 		app->audio->PlayMusic("Assets/Audio/Music/deities_get_takeout_too.ogg", 0);
-		OneTimeOnly = true;
+		onetimeonly = true;
 	}
 
-	if (app->scene->NotSceneActived == false)
+	if (app->scene->notsceneactived == false)
 	{
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KeyState::KEY_DOWN ||
-		app->input->GetKey(SDL_SCANCODE_SPACE) == KeyState::KEY_DOWN) creditsBut = false;
+		app->input->GetKey(SDL_SCANCODE_SPACE) == KeyState::KEY_DOWN) creditsbut = false;
 
-	if (app->SaveDataExist == false && app->fade->CanFade == true)
+	if (app->savedataexist == false && app->fade->canfade == true)
 	{
-		btnContinue->state = GuiControlState::DISABLED;
+		btncontinue->state = GuiControlState::DISABLED;
 	}
-	else if (app->fade->CanFade == true && app->SaveDataExist == true)
+	else if (app->fade->canfade == true && app->savedataexist == true)
 	{
-		btnContinue->state = GuiControlState::NORMAL;
+		btncontinue->state = GuiControlState::NORMAL;
 	}
 
-	if (app->sceneOpts->active == false && app->fade->CanFade == false && creditsBut == false)
+	if (app->sceneopts->active == false && app->fade->canfade == false && creditsbut == false)
 	{
-		switch (btnStart->state)
+		switch (btnstart->state)
 		{
 		case GuiControlState::NORMAL: play.GetSelectedFrame(2);
 			break;
@@ -140,7 +140,7 @@ bool SceneIntro::Update(float dt)
 			break;
 		}
 
-		switch (btnContinue->state)
+		switch (btncontinue->state)
 		{
 		case GuiControlState::NORMAL: cont.GetSelectedFrame(4);
 			break;
@@ -154,7 +154,7 @@ bool SceneIntro::Update(float dt)
 			break;
 		}
 
-		switch (btnSettings->state)
+		switch (btnsettings->state)
 		{
 		case GuiControlState::NORMAL: sett.GetSelectedFrame(2);
 			break;
@@ -166,7 +166,7 @@ bool SceneIntro::Update(float dt)
 			break;
 		}
 
-		switch (btnCredits->state)
+		switch (btncredits->state)
 		{
 		case GuiControlState::NORMAL: credits.GetSelectedFrame(2);
 			break;
@@ -178,7 +178,7 @@ bool SceneIntro::Update(float dt)
 			break;
 		}
 
-		switch (btnExit->state)
+		switch (btnexit->state)
 		{
 		case GuiControlState::NORMAL: exit.GetSelectedFrame(2);
 			break;
@@ -190,11 +190,11 @@ bool SceneIntro::Update(float dt)
 			break;
 		}
 
-		btnStart->Update(app->input, dt);
-		btnContinue->Update(app->input, dt);
-		btnSettings->Update(app->input, dt);
-		btnCredits->Update(app->input, dt);
-		btnExit->Update(app->input, dt);
+		btnstart->Update(app->input, dt);
+		btncontinue->Update(app->input, dt);
+		btnsettings->Update(app->input, dt);
+		btncredits->Update(app->input, dt);
+		btnexit->Update(app->input, dt);
 		
 		play.Update();
 		cont.Update();
@@ -212,40 +212,40 @@ bool SceneIntro::PostUpdate()
 	bool ret = true;
 
 	SDL_Rect rect = { 0, 0, app->render->camera.w, app->render->camera.h };
-	app->render->DrawTexture(spriteIntro, 0, 0, &rect);
+	app->render->DrawTexture(spriteintro, 0, 0, &rect);
 
 	//Render Buttons
-	if (app->sceneOpts->active == false)
+	if (app->sceneopts->active == false)
 	{
 		SDL_Rect rect1 = play.GetCurrentFrame();
-		app->render->DrawTexture(statesPlay, btnStart->bounds.x + ((btnStart->bounds.w - 137)/2), btnStart->bounds.y + ((btnStart->bounds.h - 27) / 2), &rect1);
+		app->render->DrawTexture(statesplay, btnstart->bounds.x + ((btnstart->bounds.w - 137)/2), btnstart->bounds.y + ((btnstart->bounds.h - 27) / 2), &rect1);
 
 		SDL_Rect rect2 = cont.GetCurrentFrame();
-		app->render->DrawTexture(statesCont, btnContinue->bounds.x + ((btnContinue->bounds.w - 270) / 2), btnContinue->bounds.y + ((btnContinue->bounds.h - 27) / 2), &rect2);
+		app->render->DrawTexture(statescont, btncontinue->bounds.x + ((btncontinue->bounds.w - 270) / 2), btncontinue->bounds.y + ((btncontinue->bounds.h - 27) / 2), &rect2);
 
 		SDL_Rect rect3 = sett.GetCurrentFrame();
-		app->render->DrawTexture(statesSett, btnSettings->bounds.x + ((btnSettings->bounds.w - 270) / 2), btnSettings->bounds.y + ((btnSettings->bounds.h - 27) / 2), &rect3);
+		app->render->DrawTexture(statessett, btnsettings->bounds.x + ((btnsettings->bounds.w - 270) / 2), btnsettings->bounds.y + ((btnsettings->bounds.h - 27) / 2), &rect3);
 
 		SDL_Rect rect4 = credits.GetCurrentFrame();
-		app->render->DrawTexture(statesCredits, btnCredits->bounds.x + ((btnCredits->bounds.w - 233) / 2), btnCredits->bounds.y + ((btnCredits->bounds.h - 28) / 2), &rect4);
+		app->render->DrawTexture(statescredits, btncredits->bounds.x + ((btncredits->bounds.w - 233) / 2), btncredits->bounds.y + ((btncredits->bounds.h - 28) / 2), &rect4);
 
 		SDL_Rect rect5 = exit.GetCurrentFrame();
-		app->render->DrawTexture(statesExit, btnExit->bounds.x + ((btnExit->bounds.w - 122) / 2), btnExit->bounds.y + ((btnExit->bounds.h - 28) / 2), &rect5);
+		app->render->DrawTexture(statesexit, btnexit->bounds.x + ((btnexit->bounds.w - 122) / 2), btnexit->bounds.y + ((btnexit->bounds.h - 28) / 2), &rect5);
 
-		if (app->modcontrol->showButtons == true)
+		if (app->modcontrol->showbuttons == true)
 		{
-			btnStart->Draw(app->render);
-			btnContinue->Draw(app->render);
-			btnSettings->Draw(app->render);
-			btnCredits->Draw(app->render);
-			btnExit->Draw(app->render);
+			btnstart->Draw(app->render);
+			btncontinue->Draw(app->render);
+			btnsettings->Draw(app->render);
+			btncredits->Draw(app->render);
+			btnexit->Draw(app->render);
 		}
 	}
 
-	if (creditsBut == true)
+	if (creditsbut == true)
 	{
 		SDL_Rect rectCred = { 0, 0, app->render->camera.w, app->render->camera.h };
-		app->render->DrawTexture(creditS, -app->render->camera.x, -app->render->camera.y, &rectCred);
+		app->render->DrawTexture(creditstext, -app->render->camera.x, -app->render->camera.y, &rectCred);
 	}
 
 	return ret;
@@ -271,36 +271,36 @@ bool SceneIntro::OnGuiMouseClickEvent(GuiControl* control)
 		switch (control->id)
 		{
 		case 1:
-			app->audio->PlayFx(buttonFx);
-			app->fade->CanFade = true;
-			app->fade->StartInBlack = false;
-			app->fade->StartBoton = true;
+			app->audio->PlayFx(buttonfx);
+			app->fade->canfade = true;
+			app->fade->startinblack = false;
+			app->fade->startboton = true;
 			break;
 
 		case 2:
-			app->audio->PlayFx(buttonFx);
-			app->fade->CanFade = true;
-			app->fade->StartInBlack = false;
-			app->fade->StartBoton = true;
-			app->fade->ContinueBoton = true;
+			app->audio->PlayFx(buttonfx);
+			app->fade->canfade = true;
+			app->fade->startinblack = false;
+			app->fade->startboton = true;
+			app->fade->continueboton = true;
 			break;
 
 		case 3:
-			app->audio->PlayFx(buttonFx);
-			app->sceneOpts->active = true;			// Settings
+			app->audio->PlayFx(buttonfx);
+			app->sceneopts->active = true;			// Settings
 			break;
 
 		case 4:
-			app->audio->PlayFx(buttonFx);
-			creditsBut = !creditsBut;
+			app->audio->PlayFx(buttonfx);
+			creditsbut = !creditsbut;
 			break;
 
 		case 5:
-			app->audio->PlayFx(buttonFx);
-			app->fade->CanFade = true;
-			app->fade->StartInBlack = false;
-			app->fade->StartBoton = true;
-			app->fade->ExitBoton = true;
+			app->audio->PlayFx(buttonfx);
+			app->fade->canfade = true;
+			app->fade->startinblack = false;
+			app->fade->startboton = true;
+			app->fade->exitboton = true;
 			break;
 
 		}

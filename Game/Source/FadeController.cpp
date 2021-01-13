@@ -37,113 +37,113 @@ bool FadeController::PreUpdate()
 bool FadeController::Update(float dt)
 {
 	// Fade General
-	if (CanFade)
+	if (canfade)
 	{
-		if (StartInBlack)
+		if (startinblack)
 		{
-			blackFade.a -= 15 * 0.16f;
-			if (blackFade.a <= 5)
+			blackfade.a -= 15 * 0.16f;
+			if (blackfade.a <= 5)
 			{
-				blackFade.a = 0;
-				CanFade = false;
+				blackfade.a = 0;
+				canfade = false;
 			}
 		}
 		else
 		{
-			blackFade.a += 15 * 0.16f;
-			if (blackFade.a >= 245)
+			blackfade.a += 15 * 0.16f;
+			if (blackfade.a >= 245)
 			{
-				blackFade.a = 255;
-				CanFade = false;
+				blackfade.a = 255;
+				canfade = false;
 			}
 		}
 	}
 
 	// Intro
-	if (StartBoton
-		&& blackFade.a >= 245
-		&& ContinueBoton == false
-		&& ExitBoton == false)
+	if (startboton
+		&& blackfade.a >= 245
+		&& continueboton == false
+		&& exitboton == false)
 	{
-		CanFade = true;
-		StartInBlack = true;
-		StartBoton = false;
-		ExitBoton = false;
-		ContinueBoton = false;
+		canfade = true;
+		startinblack = true;
+		startboton = false;
+		exitboton = false;
+		continueboton = false;
 
-		app->player->currentAnim = &app->player->idleRAnim;
+		app->player->currentanim = &app->player->idleranim;
 
 		app->scene->Reset();
 		app->modcontrol->currentscene = 2;
 	}
-	else if (StartBoton
-		&& blackFade.a >= 245
-		&& ContinueBoton == true
-		&& ExitBoton == false)
+	else if (startboton
+		&& blackfade.a >= 245
+		&& continueboton == true
+		&& exitboton == false)
 	{
-		CanFade = true;
-		StartInBlack = true;
-		StartBoton = false;
-		ExitBoton = false;
-		ContinueBoton = false;
+		canfade = true;
+		startinblack = true;
+		startboton = false;
+		exitboton = false;
+		continueboton = false;
 
-		app->player->currentAnim = &app->player->idleRAnim;
+		app->player->currentanim = &app->player->idleranim;
 
 		app->LoadGameRequest("save_game.xml");
 		app->modcontrol->currentscene = 2;
 	}
-	else if (StartBoton
-		&& blackFade.a >= 245
-		&& ContinueBoton == false
-		&& ExitBoton == true)
+	else if (startboton
+		&& blackfade.a >= 245
+		&& continueboton == false
+		&& exitboton == true)
 	{
 		return false;
 	}
 
 	//Scene
-	if (HeWin && blackFade.a >= 245)
+	if (hewin && blackfade.a >= 245)
 	{
-		HeWin = false;
+		hewin = false;
 		app->modcontrol->currentscene = 4;
 		
-		CanFade = true;
-		StartInBlack = true;
+		canfade = true;
+		startinblack = true;
 	}
 
 	// Pause
-	if (BackTitle && blackFade.a >= 245)
+	if (backtitle && blackfade.a >= 245)
 	{
-		app->scenePause->active = false;
+		app->scenepause->active = false;
 		app->LoadGameRequest("save_game.xml");
 
-		BackTitle = false;
+		backtitle = false;
 		app->modcontrol->currentscene = 1;
 
-		CanFade = true;
-		StartInBlack = true;
+		canfade = true;
+		startinblack = true;
 	}
 	
-	// Win / Lose
-	if (HeLose && blackFade.a >= 245)
+	// win / lose
+	if (helose && blackfade.a >= 245)
 	{
-		app->player->deadRAnim.Reset();
-		app->player->deadLAnim.Reset();
+		app->player->deadranim.Reset();
+		app->player->deadlanim.Reset();
 
-		HeLose = false;
+		helose = false;
 		app->modcontrol->currentscene = 3;
 		
-		CanFade = true;
-		StartInBlack = true;
+		canfade = true;
+		startinblack = true;
 	}
 
-	if (WinLoseContinue && blackFade.a >= 245)
+	if (winlosecontinue && blackfade.a >= 245)
 	{
-		WinLoseContinue = false;
+		winlosecontinue = false;
 		app->scene->Reset();
 		app->modcontrol->currentscene = 1;
 	
-		CanFade = true;
-		StartInBlack = true;
+		canfade = true;
+		startinblack = true;
 	}
 
 	return true;
@@ -151,7 +151,7 @@ bool FadeController::Update(float dt)
 
 bool FadeController::PostUpdate()
 {
-	app->render->DrawRectangle({ 0, 0, app->render->camera.w, app->render->camera.h }, blackFade);
+	app->render->DrawRectangle({ 0, 0, app->render->camera.w, app->render->camera.h }, blackfade);
 
 	return true;
 }

@@ -39,9 +39,9 @@ public:
 
 public:
 	bool dead = false;
-	bool waslookingRight = true;
-	bool IsDead = false;
-	bool hitingPlayer = false;
+	bool waslookingright = true;
+	bool isdead = false;
+	bool hitingplayer = false;
 	bool oncesound = false;
 
 	float speedx = 8;
@@ -49,26 +49,26 @@ public:
 
 	iPoint position;
 
-	Animation* currentAnim;
-	Animation* currentAnimColl;
+	Animation* currentanim;
+	Animation* currentanimcoll;
 
-	Animation runRAnim;
-	Animation deadRAnim;
-	Animation runLAnim;
-	Animation deadLAnim;
+	Animation runranim;
+	Animation deadranim;
+	Animation runlanim;
+	Animation deadlanim;
 
-	Animation Collision;
+	Animation collision;
 
-	Colliders* enemyCollider = nullptr;
+	Colliders* enemycollider = nullptr;
 
 private:
-	SDL_Texture* spriteSheet = nullptr;
-	SDL_Texture* collision = nullptr;
+	SDL_Texture* spritesheet = nullptr;
+	SDL_Texture* collisiontex = nullptr;
 
 	int detectdistance = 192;
 
 	//FX
-	uint deathEnemyFx = 0;
+	uint deathenemyfx = 0;
 };
 
 #endif // __SCENE_H__

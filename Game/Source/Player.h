@@ -42,17 +42,17 @@ public:
 public:
 	bool gravity = false;
 	bool jump = true;
-	bool Godmode = false;
+	bool godmode = false;
 	bool dead = false;
-	bool LookingR = true;
-	bool WasLookingR = true;
+	bool lookingr = true;
+	bool waslookingr = true;
 	bool top = false;
 	bool shoot;
 	bool oncesound = false;
 
 	float speedx = 8;
 	float speedy = 8;
-	float maxJump = 0;
+	float maxjump = 0;
 	float ballspeed = 24;
 	float cooldown = 0;
 
@@ -61,39 +61,39 @@ public:
 	int life = 3;
 
 	iPoint position;
-	iPoint Bposition;
+	iPoint bposition;
 
-	Animation* currentAnim;
-	Animation* BcurrentAnim;
-	Animation* currentAnimColl;
-	Animation* currentAnimCollB;
+	Animation* currentanim;
+	Animation* bcurrentanim;
+	Animation* currentanimcoll;
+	Animation* currentanimcollb;
 
-	Animation idleRAnim;
-	Animation jumpRAnim;
-	Animation runRAnim;
-	Animation deadRAnim;
-	Animation idleLAnim;
-	Animation jumpLAnim;
-	Animation runLAnim;
-	Animation deadLAnim;
+	Animation idleranim;
+	Animation jumpranim;
+	Animation runranim;
+	Animation deadranim;
+	Animation idlelanim;
+	Animation jumplanim;
+	Animation runlanim;
+	Animation deadlanim;
 
-	Animation Ball;
+	Animation ball;
 
-	Animation Collision;
-	Animation CollisionB;
+	Animation collision;
+	Animation collisionb;
 
-	Colliders* playerCollider = nullptr;
+	Colliders* playercollider = nullptr;
 
 private:
-	SDL_Texture* spriteSheet = nullptr;
-	SDL_Texture* ball = nullptr;
-	SDL_Texture* collision = nullptr;
+	SDL_Texture* spritesheet = nullptr;
+	SDL_Texture* balltext = nullptr;
+	SDL_Texture* collisiontext = nullptr;
 
-	static const int numnPoints = 4;
-	int pointsCollision[numnPoints][2] = { {-8, 0}, {64, 0}, {-8, 55}, {64, 55} };
+	static const int numnpoints = 4;
+	int pointscollision[numnpoints][2] = { {-8, 0}, {64, 0}, {-8, 55}, {64, 55} };
 	
 public:
-	int pointsFloorCollision[numnPoints][2] = { {8, 56}, {48, 56}, {8, 64}, {48, 64} };
+	int pointsfloorcollision[numnpoints][2] = { {8, 56}, {48, 56}, {8, 64}, {48, 64} };
 
 	//FX
 	uint jumpFx = 0;

@@ -32,7 +32,7 @@ bool SceneLose::Awake()
 // Called before the first frame
 bool SceneLose::Start()
 {
-	SpriteLose = app->tex->Load("Assets/Screens/Title/Lose.png");
+	spritelose = app->tex->Load("Assets/Screens/Title/Lose.png");
 
 	return true;
 }
@@ -46,7 +46,7 @@ bool SceneLose::PreUpdate()
 // Called each loop iteration
 bool SceneLose::Update(float dt)
 {
-	if (app->scene->NotSceneActived == false)
+	if (app->scene->notsceneactived == false)
 	{
 		app->render->camera.x = 0;
 		app->render->camera.y = 0;
@@ -61,13 +61,13 @@ bool SceneLose::PostUpdate()
 	bool ret = true;
 
 	SDL_Rect rect = { 0, 0, app->render->camera.w, app->render->camera.h };
-	app->render->DrawTexture(SpriteLose, 0, 0, &rect);
+	app->render->DrawTexture(spritelose, 0, 0, &rect);
 
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 	{
-		app->fade->CanFade = true;
-		app->fade->StartInBlack = false;
-		app->fade->WinLoseContinue = true;
+		app->fade->canfade = true;
+		app->fade->startinblack = false;
+		app->fade->winlosecontinue = true;
 	}
 
 	return ret;

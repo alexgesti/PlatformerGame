@@ -33,7 +33,7 @@ public:
 	bool CleanUp();
 
 private:
-	SDL_Texture* SpriteWin;
+	SDL_Texture* spritewin;
 };
 
 #endif // __SceneWin_H__

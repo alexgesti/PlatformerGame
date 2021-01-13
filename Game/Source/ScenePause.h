@@ -38,20 +38,20 @@ public:
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
 private:
-	GuiButton* btnResume;
-	GuiButton* btnSettings;
-	GuiButton* btnTitle;
-	GuiButton* btnExit;
+	GuiButton* btnresume;
+	GuiButton* btnsettings;
+	GuiButton* btntitle;
+	GuiButton* btnexit;
 
 	Animation resume;
 	Animation sett;
 	Animation title;
 	Animation exit;
 
-	SDL_Texture* statesResume;
-	SDL_Texture* statesSett;
-	SDL_Texture* statesTitle;
-	SDL_Texture* statesExit;
+	SDL_Texture* statesresume;
+	SDL_Texture* statessett;
+	SDL_Texture* statestitle;
+	SDL_Texture* statesexit;
 	SDL_Texture* pause;
 
 	uint buttonFx = 0;

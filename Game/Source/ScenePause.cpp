@@ -36,17 +36,17 @@ ScenePause::ScenePause() : Module()
 	exit.PushBack({ 0, 29, 122, 28 });
 	exit.PushBack({ 0, 56, 122, 28 });
 
-	btnResume = new GuiButton(1, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "RESUME");
-	btnResume->SetObserver(this);
+	btnresume = new GuiButton(1, { 1280 / 2 - 300 / 2, 300, 300, 80 }, "RESUME");
+	btnresume->SetObserver(this);
 
-	btnSettings = new GuiButton(2, { 1280 / 2 - 300 / 2, 400, 300, 80 }, "SETTINGS");
-	btnSettings->SetObserver(this);
+	btnsettings = new GuiButton(2, { 1280 / 2 - 300 / 2, 400, 300, 80 }, "SETTINGS");
+	btnsettings->SetObserver(this);
 
-	btnTitle = new GuiButton(3, { 1280 / 2 - 300 / 2, 500, 300, 80 }, "TITLE");
-	btnTitle->SetObserver(this);
+	btntitle = new GuiButton(3, { 1280 / 2 - 300 / 2, 500, 300, 80 }, "TITLE");
+	btntitle->SetObserver(this);
 
-	btnExit = new GuiButton(4, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
-	btnExit->SetObserver(this);
+	btnexit = new GuiButton(4, { 1280 / 2 - 300 / 2, 600, 300, 80 }, "EXIT");
+	btnexit->SetObserver(this);
 }
 
 // Destructor
@@ -67,10 +67,10 @@ bool ScenePause::Awake()
 // Called before the first frame
 bool ScenePause::Start()
 {
-	statesResume = app->tex->Load("Assets/GUI/states_resume.png");
-	statesSett = app->tex->Load("Assets/GUI/states_sett.png");
-	statesTitle = app->tex->Load("Assets/GUI/states_title.png");
-	statesExit = app->tex->Load("Assets/GUI/states_exit30.png");
+	statesresume = app->tex->Load("Assets/GUI/states_resume.png");
+	statessett = app->tex->Load("Assets/GUI/states_sett.png");
+	statestitle = app->tex->Load("Assets/GUI/states_title.png");
+	statesexit = app->tex->Load("Assets/GUI/states_exit30.png");
 	pause = app->tex->Load("Assets/GUI/pause.png");
 
 	buttonFx = app->audio->LoadFx("Assets/Audio/Fx/buttonfx.wav");
@@ -87,9 +87,9 @@ bool ScenePause::PreUpdate()
 // Called each loop iteration
 bool ScenePause::Update(float dt)
 {
-	if (app->sceneOpts->active == false && app->fade->CanFade == false)
+	if (app->sceneopts->active == false && app->fade->canfade == false)
 	{
-		switch (btnResume->state)
+		switch (btnresume->state)
 		{
 		case GuiControlState::NORMAL: resume.GetSelectedFrame(2);
 			break;
@@ -101,7 +101,7 @@ bool ScenePause::Update(float dt)
 			break;
 		}
 
-		switch (btnSettings->state)
+		switch (btnsettings->state)
 		{
 		case GuiControlState::NORMAL: sett.GetSelectedFrame(2);
 			break;
@@ -113,7 +113,7 @@ bool ScenePause::Update(float dt)
 			break;
 		}
 
-		switch (btnTitle->state)
+		switch (btntitle->state)
 		{
 		case GuiControlState::NORMAL: title.GetSelectedFrame(2);
 			break;
@@ -125,7 +125,7 @@ bool ScenePause::Update(float dt)
 			break;
 		}
 
-		switch (btnExit->state)
+		switch (btnexit->state)
 		{
 		case GuiControlState::NORMAL: exit.GetSelectedFrame(2);
 			break;
@@ -137,10 +137,10 @@ bool ScenePause::Update(float dt)
 			break;
 		}
 
-		btnResume->Update(app->input, dt);
-		btnSettings->Update(app->input, dt);
-		btnTitle->Update(app->input, dt);
-		btnExit->Update(app->input, dt);
+		btnresume->Update(app->input, dt);
+		btnsettings->Update(app->input, dt);
+		btntitle->Update(app->input, dt);
+		btnexit->Update(app->input, dt);
 
 		resume.Update();
 		sett.Update();
@@ -160,26 +160,26 @@ bool ScenePause::PostUpdate()
 
 	app->render->DrawTexture(pause, -app->render->camera.x + ((app->render->camera.w - 467) / 2), -app->render->camera.y + 48);
 
-	if (app->sceneOpts->active == false)
+	if (app->sceneopts->active == false)
 	{
 		SDL_Rect rect1 = resume.GetCurrentFrame();
-		app->render->DrawTexture(statesResume, -app->render->camera.x + btnResume->bounds.x + ((btnResume->bounds.w - 226) / 2), -app->render->camera.y + btnResume->bounds.y + ((btnResume->bounds.h - 28) / 2), &rect1);
+		app->render->DrawTexture(statesresume, -app->render->camera.x + btnresume->bounds.x + ((btnresume->bounds.w - 226) / 2), -app->render->camera.y + btnresume->bounds.y + ((btnresume->bounds.h - 28) / 2), &rect1);
 
 		SDL_Rect rect2 = sett.GetCurrentFrame();
-		app->render->DrawTexture(statesSett, -app->render->camera.x + btnSettings->bounds.x + ((btnSettings->bounds.w - 270) / 2), -app->render->camera.y + btnSettings->bounds.y + ((btnSettings->bounds.h - 27) / 2), &rect2);
+		app->render->DrawTexture(statessett, -app->render->camera.x + btnsettings->bounds.x + ((btnsettings->bounds.w - 270) / 2), -app->render->camera.y + btnsettings->bounds.y + ((btnsettings->bounds.h - 27) / 2), &rect2);
 
 		SDL_Rect rect3 = title.GetCurrentFrame();
-		app->render->DrawTexture(statesTitle, -app->render->camera.x + btnTitle->bounds.x + ((btnTitle->bounds.w - 159) / 2), -app->render->camera.y + btnTitle->bounds.y + ((btnTitle ->bounds.h - 28) / 2), &rect3);
+		app->render->DrawTexture(statestitle, -app->render->camera.x + btntitle->bounds.x + ((btntitle->bounds.w - 159) / 2), -app->render->camera.y + btntitle->bounds.y + ((btntitle ->bounds.h - 28) / 2), &rect3);
 
 		SDL_Rect rect4 = exit.GetCurrentFrame();
-		app->render->DrawTexture(statesExit, -app->render->camera.x + btnExit->bounds.x + ((btnExit->bounds.w - 122) / 2), -app->render->camera.y + btnExit->bounds.y + ((btnExit->bounds.h - 28) / 2), &rect4);
+		app->render->DrawTexture(statesexit, -app->render->camera.x + btnexit->bounds.x + ((btnexit->bounds.w - 122) / 2), -app->render->camera.y + btnexit->bounds.y + ((btnexit->bounds.h - 28) / 2), &rect4);
 	
-		if (app->modcontrol->showButtons == true)
+		if (app->modcontrol->showbuttons == true)
 		{
-			btnResume->Draw(app->render);
-			btnSettings->Draw(app->render);
-			btnTitle->Draw(app->render);
-			btnExit->Draw(app->render);
+			btnresume->Draw(app->render);
+			btnsettings->Draw(app->render);
+			btntitle->Draw(app->render);
+			btnexit->Draw(app->render);
 		}
 	}
 
@@ -207,27 +207,27 @@ bool ScenePause::OnGuiMouseClickEvent(GuiControl* control)
 		{
 		case 1:
 			app->audio->PlayFx(buttonFx);
-			app->scenePause->active = false;
+			app->scenepause->active = false;
 			break;
 
 		case 2:
 			app->audio->PlayFx(buttonFx);
-			app->sceneOpts->active = true;			// Settings
+			app->sceneopts->active = true;			// Settings
 			break;
 
 		case 3:
 			app->audio->PlayFx(buttonFx);
-			app->fade->CanFade = true;
-			app->fade->StartInBlack = false;
-			app->fade->BackTitle = true;
+			app->fade->canfade = true;
+			app->fade->startinblack = false;
+			app->fade->backtitle = true;
 			break;
 
 		case 4:
 			app->audio->PlayFx(buttonFx);
-			app->fade->CanFade = true;
-			app->fade->StartInBlack = false;
-			app->fade->StartBoton = true;
-			app->fade->ExitBoton = true;
+			app->fade->canfade = true;
+			app->fade->startinblack = false;
+			app->fade->startboton = true;
+			app->fade->exitboton = true;
 			break;
 		}
 	}

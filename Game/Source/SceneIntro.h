@@ -38,13 +38,13 @@ public:
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
 private:
-	SDL_Texture* spriteIntro;
+	SDL_Texture* spriteintro;
 
-	GuiButton* btnStart;
-	GuiButton* btnContinue;
-	GuiButton* btnSettings;
-	GuiButton* btnCredits;
-	GuiButton* btnExit;
+	GuiButton* btnstart;
+	GuiButton* btncontinue;
+	GuiButton* btnsettings;
+	GuiButton* btncredits;
+	GuiButton* btnexit;
 
 	Animation play;
 	Animation cont;
@@ -52,19 +52,19 @@ private:
 	Animation credits;
 	Animation exit;
 
-	SDL_Texture* statesPlay;
-	SDL_Texture* statesCont;
-	SDL_Texture* statesSett;
-	SDL_Texture* statesCredits;
-	SDL_Texture* statesExit;
-	SDL_Texture* creditS;
+	SDL_Texture* statesplay;
+	SDL_Texture* statescont;
+	SDL_Texture* statessett;
+	SDL_Texture* statescredits;
+	SDL_Texture* statesexit;
+	SDL_Texture* creditstext;
 
-	bool creditsBut;
+	bool creditsbut;
 
-	uint buttonFx = 0;
+	uint buttonfx = 0;
 
 public:
-	bool OneTimeOnly;
+	bool onetimeonly;
 };
 
 #endif // __SCENEINTRO_H__

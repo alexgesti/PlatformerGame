@@ -59,17 +59,17 @@ bool ModuleController::Awake(pugi::xml_node& config)
 	app->audio->active = true;			// Audio
 	app->map->active = true;			// Map
 	app->scene->active = true;			// Scene
-	app->sceneIntro->active = true;		// SceneIntro
-	app->sceneLogo->active = true;		// SceneLogo
-	app->sceneLose->active = true;		// SceneLose
-	app->sceneWin->active = true;		// SceneWin
-	app->scenePause->active = false;	// Pause
-	app->sceneOpts->active = false;		// Settings
+	app->sceneintro->active = true;		// SceneIntro
+	app->scenelogo->active = true;		// SceneLogo
+	app->scenelose->active = true;		// SceneLose
+	app->scenewin->active = true;		// SceneWin
+	app->scenepause->active = false;	// Pause
+	app->sceneopts->active = false;		// Settings
 	app->player->active = true;			// Player
 	app->wenemy->active = true;			// Walking Enemy
 	app->fenemy->active = true;			// Flying Enemy
 	app->modcontrol->active = true;		// ModControl
-	app->GameHUD->active = true;		// GameplayHUD
+	app->gamehud->active = true;		// GameplayHUD
 	app->render->active = true;			// Render
 	app->fade->active = true;			// Fade
 
@@ -99,7 +99,7 @@ bool ModuleController::Start()
 bool ModuleController::Update(float dt)
 {
 	// DEBUG KEYS
-	if (app->scene->NotSceneActived)
+	if (app->scene->notsceneactived)
 	{
 		if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		{
@@ -122,36 +122,36 @@ bool ModuleController::Update(float dt)
 		{
 			if (app->player->CollisionPlayer() == 1)
 			{
-				app->player->position.x = -(app->scene->PosCheck2.x);
-				app->player->position.y = -(app->scene->PosCheck2.y + 15);
+				app->player->position.x = -(app->scene->poscheck2.x);
+				app->player->position.y = -(app->scene->poscheck2.y + 15);
 			}
 			else if (app->player->CollisionPlayer() == 4)
 			{
-				app->player->position.x = -(app->scene->PosCheck3.x);
-				app->player->position.y = -(app->scene->PosCheck3.y + 15);
+				app->player->position.x = -(app->scene->poscheck3.x);
+				app->player->position.y = -(app->scene->poscheck3.y + 15);
 			}
 			else if (app->player->CollisionPlayer() == 5)
 			{
-				app->player->position.x = -(app->scene->PosCheck1.x);
-				app->player->position.y = -(app->scene->PosCheck1.y + 15);
+				app->player->position.x = -(app->scene->poscheck1.x);
+				app->player->position.y = -(app->scene->poscheck1.y + 15);
 			}
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN)
 		{
-			showButtons = !showButtons;
+			showbuttons = !showbuttons;
 		}
 		
-		if (app->sceneOpts->active == false) app->sceneOpts->wait = false;
+		if (app->sceneopts->active == false) app->sceneopts->wait = false;
 
 		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		{
-			showCollider = !showCollider;
+			showcollider = !showcollider;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 		{
-			app->player->Godmode = !app->player->Godmode;
+			app->player->godmode = !app->player->godmode;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
@@ -161,28 +161,28 @@ bool ModuleController::Update(float dt)
 	}
 
 	if (capped)
-		app->cappedMs = 30;
+		app->cappedms = 30;
 	else if (capped == false)
-		app->cappedMs = 60;
+		app->cappedms = 60;
 
 	if (app->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN)
 	{
 		currentscene = 0;
 
-		app->sceneLogo->Reset();
+		app->scenelogo->Reset();
 
-		app->fade->CanFade = true;
-		app->fade->StartInBlack = true;
+		app->fade->canfade = true;
+		app->fade->startinblack = true;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_7) == KEY_DOWN)
 	{
 		currentscene = 1;
 
-		app->sceneLogo->MusicOn = true;
-		app->sceneIntro->OneTimeOnly = false;
+		app->scenelogo->musicon = true;
+		app->sceneintro->onetimeonly = false;
 
-		app->fade->CanFade = true;
-		app->fade->StartInBlack = true;
+		app->fade->canfade = true;
+		app->fade->startinblack = true;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_8) == KEY_DOWN)
 	{
@@ -190,29 +190,29 @@ bool ModuleController::Update(float dt)
 
 		app->scene->Reset();
 
-		app->fade->CanFade = true;
-		app->fade->StartInBlack = true;
+		app->fade->canfade = true;
+		app->fade->startinblack = true;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_9) == KEY_DOWN)
 	{
 		currentscene = 3;
 
-		app->fade->CanFade = true;
-		app->fade->StartInBlack = true;
+		app->fade->canfade = true;
+		app->fade->startinblack = true;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN)
 	{
 		currentscene = 4;
 
-		app->fade->CanFade = true;
-		app->fade->StartInBlack = true;
+		app->fade->canfade = true;
+		app->fade->startinblack = true;
 	}
 
-	if (app->player->life <= 0 && (app->player->deadLAnim.FinishedAlready || app->player->deadRAnim.FinishedAlready))
+	if (app->player->life <= 0 && (app->player->deadlanim.FinishedAlready || app->player->deadranim.FinishedAlready))
 	{
-		app->fade->HeLose = true;
-		app->fade->StartInBlack = false;
-		app->fade->CanFade = true;
+		app->fade->helose = true;
+		app->fade->startinblack = false;
+		app->fade->canfade = true;
 	}
 	
 	switch (currentscene)
@@ -221,15 +221,15 @@ bool ModuleController::Update(float dt)
 
 		app->map->active = false;				// Map
 		app->scene->active = false;				// Scene
-		app->scene->NotSceneActived = false;	// SceneCamera
+		app->scene->notsceneactived = false;	// SceneCamera
 		app->player->active = false;			// Player
 		app->wenemy->active = false;			// Walking Enemy
 		app->fenemy->active = false;			// Flying Enemy
-		app->sceneIntro->active = false;		// SceneIntro
-		app->sceneLogo->active = true;			// SceneLogo
-		app->sceneLose->active = false;			// SceneLose
-		app->sceneWin->active = false;			// SceneWin
-		app->GameHUD->active = false;			// GameplayHUD
+		app->sceneintro->active = false;		// SceneIntro
+		app->scenelogo->active = true;			// SceneLogo
+		app->scenelose->active = false;			// SceneLose
+		app->scenewin->active = false;			// SceneWin
+		app->gamehud->active = false;			// GameplayHUD
 
 		app->render->SetBackgroundColor(black);	
 
@@ -239,15 +239,15 @@ bool ModuleController::Update(float dt)
 
 		app->map->active = false;				// Map
 		app->scene->active = false;				// Scene
-		app->scene->NotSceneActived = false;	// SceneCamera
+		app->scene->notsceneactived = false;	// SceneCamera
 		app->player->active = false;			// Player
 		app->wenemy->active = false;			// Walking Enemy
 		app->fenemy->active = false;			// Flying Enemy
-		app->sceneIntro->active = true;			// SceneIntro
-		app->sceneLogo->active = false;			// SceneLogo
-		app->sceneLose->active = false;			// SceneLose
-		app->sceneWin->active = false;			// SceneWin
-		app->GameHUD->active = false;			// GameplayHUD
+		app->sceneintro->active = true;			// SceneIntro
+		app->scenelogo->active = false;			// SceneLogo
+		app->scenelose->active = false;			// SceneLose
+		app->scenewin->active = false;			// SceneWin
+		app->gamehud->active = false;			// GameplayHUD
 
 		break;
 
@@ -255,15 +255,15 @@ bool ModuleController::Update(float dt)
 		
 		app->map->active = true;				// Map
 		app->scene->active = true;				// Scene
-		app->scene->NotSceneActived = true;		// SceneCamera
+		app->scene->notsceneactived = true;		// SceneCamera
 		app->player->active = true;				// Player
 		app->wenemy->active = true;				// Walking Enemy
 		app->fenemy->active = true;				// Flying Enemy
-		app->sceneIntro->active = false;		// SceneIntro
-		app->sceneLogo->active = false;			// SceneLogo
-		app->sceneLose->active = false;			// SceneLose
-		app->sceneWin->active = false;			// SceneWin
-		app->GameHUD->active = true;			// GameplayHUD
+		app->sceneintro->active = false;		// SceneIntro
+		app->scenelogo->active = false;			// SceneLogo
+		app->scenelose->active = false;			// SceneLose
+		app->scenewin->active = false;			// SceneWin
+		app->gamehud->active = true;			// GameplayHUD
 
 		app->render->SetBackgroundColor(blue);
 
@@ -273,15 +273,15 @@ bool ModuleController::Update(float dt)
 
 		app->map->active = false;				// Map
 		app->scene->active = false;				// Scene
-		app->scene->NotSceneActived = false;	// SceneCamera
+		app->scene->notsceneactived = false;	// SceneCamera
 		app->player->active = false;			// Player
 		app->wenemy->active = false;			// Walking Enemy
 		app->fenemy->active = false;			// Flying Enemy
-		app->sceneIntro->active = false;		// SceneIntro
-		app->sceneLogo->active = false;			// SceneLogo
-		app->sceneLose->active = true;			// SceneLose
-		app->sceneWin->active = false;			// SceneWin
-		app->GameHUD->active = false;			// GameplayHUD
+		app->sceneintro->active = false;		// SceneIntro
+		app->scenelogo->active = false;			// SceneLogo
+		app->scenelose->active = true;			// SceneLose
+		app->scenewin->active = false;			// SceneWin
+		app->gamehud->active = false;			// GameplayHUD
 
 		break;
 
@@ -289,15 +289,15 @@ bool ModuleController::Update(float dt)
 
 		app->map->active = false;				// Map
 		app->scene->active = false;				// Scene
-		app->scene->NotSceneActived = false;	// SceneCamera
+		app->scene->notsceneactived = false;	// SceneCamera
 		app->player->active = false;			// Player
 		app->wenemy->active = false;			// Walking Enemy
 		app->fenemy->active = false;			// Flying Enemy
-		app->sceneIntro->active = false;		// SceneIntro
-		app->sceneLogo->active = false;			// SceneLogo
-		app->sceneLose->active = false;			// SceneLose
-		app->sceneWin->active = true;			// SceneWin
-		app->GameHUD->active = false;			// GameplayHUD
+		app->sceneintro->active = false;		// SceneIntro
+		app->scenelogo->active = false;			// SceneLogo
+		app->scenelose->active = false;			// SceneLose
+		app->scenewin->active = true;			// SceneWin
+		app->gamehud->active = false;			// GameplayHUD
 
 		break;
 

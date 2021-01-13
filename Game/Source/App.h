@@ -106,12 +106,12 @@ public:
 	Textures* tex;
 	Audio* audio;
 	Scene* scene;
-	SceneIntro* sceneIntro;
-	SceneLogo* sceneLogo;
-	SceneLose* sceneLose;
-	SceneWin* sceneWin;
-	SceneOptions* sceneOpts;
-	ScenePause* scenePause;
+	SceneIntro* sceneintro;
+	SceneLogo* scenelogo;
+	SceneLose* scenelose;
+	SceneWin* scenewin;
+	SceneOptions* sceneopts;
+	ScenePause* scenepause;
 	Map* map;
 	Player* player;
 	ModuleController* modcontrol;
@@ -119,12 +119,12 @@ public:
 	FlyEnemy* fenemy;
 	EntityManager* entity;
 	PathFinding* pathfinding;
-	GameplayHUD* GameHUD;
+	GameplayHUD* gamehud;
 	FadeController* fade;
 
-	uint32 cappedMs;
+	uint32 cappedms;
 
-	bool SaveDataExist;
+	bool savedataexist;
 
 private:
 
@@ -144,32 +144,32 @@ private:
 	uint frames;
 
 
-	mutable bool saveGameRequested;
-	bool loadGameRequested;
-	SString loadedGame;	
-	mutable SString savedGame;
+	mutable bool savegamerequested;
+	bool loadgamerequested;
+	SString loadedgame;	
+	mutable SString savedgame;
 
 	// L07: TODO 4: Calculate some timing measures
 	// required variables are provided:
 	PerfTimer ptimer;
 	PerfTimer delayTimer;
 
-	float averageFps = 0.0f;
-	float secondsSinceStartup = 0.0f;
-	uint32 lastFrameMs = 0;
-	uint32 framesOnLastUpdate = 0;
-	uint32 delayTime = 0;
+	float averagefps = 0.0f;
+	float secondssincestartup = 0.0f;
+	uint32 lastframems = 0;
+	uint32 framesonlastupdate = 0;
+	uint32 delaytime = 0;
 
-	Timer startupTime;
-	Timer frameTime;
-	Timer lastSecFrameTime;
-	uint32 lastSecFrameCount = 0;
-	uint32 prevLastSecFrameCount = 0;
+	Timer startuptime;
+	Timer frametime;
+	Timer lastsecframetime;
+	uint32 lastsecframecount = 0;
+	uint32 prevlastsecframecount = 0;
 	float dt = 0.0f;
 
 public:
 
-	uint64 frameCount = 0;
+	uint64 framecount = 0;
 
 };
 
